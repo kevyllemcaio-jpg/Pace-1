@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Gera as imagens da marca do canal em saida/marca/:
 //   logo-perfil.png     1080x1080, sem texto (foto de perfil do YouTube, TikTok e Instagram)
-//   logo-com-nome.png   1080x1080, com o nome do canal
+//   logo-com-nome.png   1080x1080, com o nome do canal (Constrói Isso Aí!)
 // Uso: node estudio3d/marca/gerar.js
 const { chromium } = require('playwright');
 const express = require('express');
