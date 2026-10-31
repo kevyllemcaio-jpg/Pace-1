@@ -198,3 +198,99 @@ export function respingos(n, cor, origem, { vel = 9, tam = 0.35, gravidade = 18,
   g.visible = false;
   return g;
 }
+
+/**
+ * Cano que passa pelos pontos dados. .crescer(k) mostra só a fração k (0..1) do comprimento.
+ * .pontoEm(u) devolve a posição na fração u do comprimento.
+ */
+export function cano(pontos, raio, material) {
+  const g = new THREE.Group();
+  const ps = pontos.map((p) => new THREE.Vector3(...p));
+  const segs = [];
+  let total = 0;
+  for (let i = 0; i < ps.length - 1; i++) {
+    const a = ps[i], b = ps[i + 1];
+    const dir = b.clone().sub(a);
+    const len = dir.length();
+    dir.normalize();
+    const m = malha(new THREE.CylinderGeometry(raio, raio, 1, 10), material);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    const junta = malha(new THREE.SphereGeometry(raio * 1.08, 10, 6), material);
+    junta.position.copy(a);
+    g.add(m, junta);
+    segs.push({ a, dir, len, ini: total, m, junta });
+    total += len;
+  }
+  g.comprimento = total;
+  g.pontoEm = (u) => {
+    const d = Math.min(Math.max(u, 0), 1) * total;
+    const s = segs.find((x) => d <= x.ini + x.len) || segs[segs.length - 1];
+    return s.a.clone().addScaledVector(s.dir, d - s.ini);
+  };
+  g.crescer = (k) => {
+    const d = k * total;
+    g.visible = k > 0.001;
+    for (const s of segs) {
+      const f = Math.min(Math.max((d - s.ini) / s.len, 0), 1);
+      s.m.visible = f > 0;
+      s.junta.visible = d >= s.ini;
+      s.m.scale.y = Math.max(f * s.len, 0.001);
+      s.m.position.copy(s.a).addScaledVector(s.dir, (f * s.len) / 2);
+    }
+  };
+  g.crescer(1);
+  return g;
+}
+
+/** Bolinhas correndo dentro de um cano (mostra o sentido da água). .em(t, k) — k = fração já construída. */
+export function fluxo(canoObj, n, cor, vel = 6) {
+  const g = new THREE.Group();
+  const bolas = [];
+  for (let i = 0; i < n; i++) {
+    const m = caixa(0.32, 0.32, 0.32, mat(cor, { emissivo: cor, unico: true }), [0, 0, 0], { sombra: false });
+    g.add(m);
+    bolas.push(m);
+  }
+  g.material = (c) => bolas.forEach((b) => { b.material.color.set(c); b.material.emissive.set(c); });
+  g.em = (t, k = 1) => {
+    bolas.forEach((b, i) => {
+      const u = ((i / n + (t * vel) / canoObj.comprimento) % 1 + 1) % 1;
+      b.visible = u <= k;
+      b.position.copy(canoObj.pontoEm(u));
+      b.position.y += canoObj.raioFluxo || 0;
+    });
+  };
+  return g;
+}
+
+/**
+ * Tanque de concreto aberto em cima, centrado em z = 0 (para a vista em corte).
+ * As paredes somem na frente (cortáveis); a água fica só na metade de trás, então
+ * no corte aparece o "aquário" por dentro. .nivel(h), .corAgua(c).
+ */
+export function tanque(x, y, larg, alt, prof, cortavel) {
+  const g = new THREE.Group();
+  g.position.set(x, y, 0);
+  const parede = cortavel(mat('#C9CCD2', { cortavel: true, duplo: true }));
+  const e = 0.4;
+  g.add(caixa(larg, e, prof, parede, [0, e / 2, 0]));
+  g.add(caixa(e, alt, prof, parede, [-larg / 2 + e / 2, alt / 2, 0]));
+  g.add(caixa(e, alt, prof, parede, [larg / 2 - e / 2, alt / 2, 0]));
+  g.add(caixa(larg, alt, e, parede, [0, alt / 2, -prof / 2 + e / 2]));
+  g.add(caixa(larg, alt, e, parede, [0, alt / 2, prof / 2 - e / 2]));
+  const matAgua = mat('#5FB2E8', { unico: true, brilho: true, opacidade: 0.55 });
+  const agua = caixa(larg - 2 * e, 1, prof / 2 - e, matAgua, [0, 0, -(prof / 2 - e) / 2], { sombra: false });
+  const topo = malha(new THREE.PlaneGeometry(larg - 2 * e, prof - 2 * e), cortavel(mat('#5FB2E8', { unico: true, brilho: true, cortavel: true, opacidade: 0.95 })), { sombra: false });
+  topo.rotation.x = -Math.PI / 2;
+  g.add(agua, topo);
+  g.nivel = (h) => {
+    agua.visible = topo.visible = h > 0.02;
+    agua.scale.y = Math.max(h - e, 0.01);
+    agua.position.y = e + (h - e) / 2;
+    topo.position.y = h;
+  };
+  g.corAgua = (c) => { matAgua.color.set(c); topo.material.color.set(c); };
+  g.nivel(alt - 0.6);
+  g.interno = { larg: larg - 2 * e, prof: prof - 2 * e, e };
+  return g;
+}
