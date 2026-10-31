@@ -27,6 +27,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   selo verde (`ok`) e onomatopeia (`som`).
 - **Vista em corte** (`corte: true`) para mostrar o que fica debaixo da terra/água.
 - Duração alvo: **~60–75 s**.
+- **Música de fundo original** em todo vídeo (`musica.py`, gerada por código → sem direitos de
+  terceiros, segura no YouTube, TikTok e Instagram). Cada vídeo ganha uma música diferente; ela
+  abaixa sozinha quando a voz fala. Entra automaticamente no `render3d.js`
+  (`node estudio3d/musicar.js <video>` recoloca a música num vídeo já pronto).
 
 ## Personagem principal ("você")
 `personagem3d.js`: jaqueta amarela sem zíper, calça preta, tênis branco com sola vermelha,
@@ -45,4 +49,4 @@ Braços: `normal`, `cima`, `aceno`, `cabeca`, `aponta`. Rosto: `feliz`, `serio`,
 - `node estudio3d/quadros.js ponte 0,10.5,30` → imagens de instantes exatos
 - `node estudio3d/render3d.js ponte` → vídeo final em `saida/ponte.mp4` (~25 s de render por segundo de vídeo)
 
-Requer: `npm install` e `pip install edge-tts`.
+Requer: `npm install` e `pip install edge-tts numpy scipy`.

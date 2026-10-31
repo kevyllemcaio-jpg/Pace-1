@@ -6,6 +6,7 @@
 //   node estudio3d/render3d.js ponte --previa   -> um PNG por bloco (rápido, para conferir)
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
+// Música de fundo original entra automaticamente (desligue com config.musica = false no vídeo).
 
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execFileSync } = require('child_process');
@@ -13,6 +14,7 @@ const crypto = require('crypto');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { musicar } = require('./musicar');
 
 const args = process.argv.slice(2);
 const nome = args.find((a) => !a.startsWith('--'));
@@ -145,10 +147,14 @@ function arquivoSom(tipo) {
   const filtro =
     faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,volume=${vol},adelay=${Math.round(ini * 1000)}:all=1[s${i}]`).join(';') +
     `;${faixas.map((_, i) => `[s${i}]`).join('')}amix=inputs=${faixas.length}:normalize=0,alimiter=limit=0.95,apad[a]`;
-  const final = path.join(pastaSaida, `${nome}.mp4`);
-  ffmpeg([...entradas, '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', final]);
+  // versão só com voz e efeitos (guardada) + versão final com música de fundo
+  const semMusica = path.join(pastaSaida, '.sem-musica', `${nome}.mp4`);
+  fs.mkdirSync(path.dirname(semMusica), { recursive: true });
+  ffmpeg([...entradas, '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', semMusica]);
   fs.rmSync(semAudio);
-  console.log(`Pronto: ${final} (${duracao.toFixed(1)} s)`);
+  if (config.musica === false) fs.copyFileSync(semMusica, path.join(pastaSaida, `${nome}.mp4`));
+  else musicar(nome);
+  console.log(`Pronto: ${path.join(pastaSaida, `${nome}.mp4`)} (${duracao.toFixed(1)} s)`);
 })().catch((e) => {
   console.error(e);
   process.exit(1);
