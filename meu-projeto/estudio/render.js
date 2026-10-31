@@ -10,7 +10,9 @@ const { spawn, execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const [, , videoArg, ...resto] = process.argv;
+const args = process.argv.slice(2);
+const videoArg = args.find((a) => !a.startsWith('--'));
+const resto = args.filter((a) => a.startsWith('--'));
 if (!videoArg) {
   console.error('Uso: node estudio/render.js estudio/videos/<video>.js [--previa]');
   process.exit(1);
@@ -32,7 +34,7 @@ function ffmpeg(args) {
     '<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}svg{display:block}</style></head>' +
       '<body><svg id="tela" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['comum.js', 'personagem.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['comum.js', 'personagem.js', 'cenario.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(videoArg) });
 
   const { duracao, inicios, fps } = await page.evaluate(() => ({ duracao: DURACAO, inicios: INICIOS, fps: FPS }));

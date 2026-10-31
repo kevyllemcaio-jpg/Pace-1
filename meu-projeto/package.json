@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "video": "node estudio/render.js estudio/videos/altura.js",
-    "previa": "node estudio/render.js estudio/videos/altura.js --previa"
+    "video": "node estudio/render.js",
+    "previa": "node estudio/render.js --previa"
   },
   "keywords": [],
   "author": "",

@@ -4,6 +4,7 @@
 const W = 1080; // vertical (Shorts)
 const H = 1920;
 const FPS = 30;
+const CHAO = 1500; // linha do chão padrão
 
 const lim = (x) => Math.min(1, Math.max(0, x));
 const suave = (x) => 1 - Math.pow(1 - lim(x), 3);
@@ -71,8 +72,9 @@ function legenda(linhas, lt, { y = 1690, tamanho = 74 } = {}) {
  *   DURACAO, INICIOS, FPS, renderizar(t) -> conteúdo SVG do quadro.
  *
  * Cada cena: { dur, dia?, valor?, cabecalho?(lt), legenda: [...], estiloLegenda?, desenhar(lt, p) }
+ * Opções: formatar(valor) -> texto do número no cabeçalho (padrão: formatarAltura).
  */
-function criarVideo(cenas) {
+function criarVideo(cenas, { formatar = formatarAltura } = {}) {
   let acc = 0;
   for (const c of cenas) {
     c.inicio = acc;
@@ -99,9 +101,57 @@ function criarVideo(cenas) {
     // Câmera: entra com zoom e vai aproximando devagar.
     const zoom = (1 + 0.08 * (1 - suave(lt / 0.4))) * (1 + 0.03 * p);
     let s = `<g transform="translate(540 960) scale(${zoom}) translate(-540 -960)">${c.desenhar(lt, p)}</g>`;
-    s += c.cabecalho ? c.cabecalho(lt) : cabecalho(c.dia, formatarAltura(valor), lt);
+    s += c.cabecalho ? c.cabecalho(lt) : cabecalho(c.dia, formatar(valor), lt);
     s += legenda(c.legenda, lt, c.estiloLegenda);
     if (i > 0) s += `<rect width="${W}" height="${H}" fill="#fff" opacity="${0.7 * (1 - lim(lt / 0.15))}"/>`;
     return s;
+  };
+}
+
+function formatarDistancia(m) {
+  return m < 1 ? numero(m * 100, 0) + ' cm' : formatarAltura(m);
+}
+
+// ================= PADRÃO DO CANAL =================
+// Todo vídeo começa com cenaAbertura() e termina com cenaFinalIA().
+
+/**
+ * Abertura: a pergunta do vídeo, já completa no primeiro quadro (serve de thumb).
+ * @param {string[]} pergunta  linhas da pergunta; *palavra* = destaque amarelo
+ */
+function cenaAbertura({ pergunta, legenda = [], desenhar, dur = 2.8, tamanho = 96 }) {
+  return {
+    dur,
+    abertura: true,
+    cabecalho: () => texto(pergunta, { y: 230, tamanho }),
+    legenda,
+    estiloLegenda: { tamanho: 66 },
+    desenhar,
+  };
+}
+
+/** Encerramento fixo: vídeo feito 100% com IA + chamada para o perfil. */
+function cenaFinalIA({ dur = 6.5 } = {}) {
+  return {
+    dur,
+    cabecalho: (lt) =>
+      aparecer(texto(['ESSE VÍDEO FOI', 'FEITO *100% COM IA*'], { y: 190, tamanho: 82 }), lt, 540, 190) +
+      aparecer(texto(['Quer aprender a fazer', '*vídeos assim?*'], { y: 450, tamanho: 66 }), lt, 540, 470, 0.9),
+    legenda: ['Visita o *perfil* e clica', 'no *link*, ou assiste', 'o *último vídeo*!'],
+    estiloLegenda: { y: 1640, tamanho: 64 },
+    desenhar: (lt) => {
+      let grade = '';
+      for (let x = 0; x <= W; x += 90) grade += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#7C9CFF" stroke-width="2" opacity="0.15"/>`;
+      for (let y = (lt * 60) % 90; y <= H; y += 90) grade += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#7C9CFF" stroke-width="2" opacity="0.15"/>`;
+      const legal = lt > 2.6; // primeiro dá a língua, depois coloca os óculos
+      const seta = 20 * Math.abs(Math.sin(lt * 5));
+      return (
+        `<defs><linearGradient id="fimIA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#160B3A"/><stop offset="1" stop-color="#3B1D8F"/></linearGradient></defs>` +
+        `<rect width="${W}" height="${H}" fill="url(#fimIA)"/>` +
+        grade +
+        personagem({ x: 540, y: 1460, h: 680, t: lt, expr: legal ? 'confiante' : 'lingua', oculos: legal, pose: legal ? 'aponta' : 'aceno' }) +
+        (lt > 3 ? `<g transform="translate(930 ${1230 - seta})"><path d="M0,-70 L45,0 L15,0 L15,70 L-15,70 L-15,0 L-45,0 Z" fill="#FFD21F" stroke="#111" stroke-width="8" stroke-linejoin="round"/></g>` : '')
+      );
+    },
   };
 }
