@@ -3,7 +3,7 @@
 // cabelo castanho-escuro curto repartido de lado. Olha para +z; pés em y = 0.
 //
 // Uso:  const p = criarPersonagem();  cena.add(p);
-//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1 }
+//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1 }
 //       p.animar(t)   // a cada quadro
 
 import * as THREE from 'three';
@@ -117,6 +117,9 @@ export function criarPersonagem() {
         break;
       case 'aponta':
         dir.rotation.set(-1.45, 0, -0.25);
+        break;
+      case 'lado': // aponta para o lado direito do personagem (-x), braço esticado
+        dir.rotation.set(0, 0, -1.5 + Math.sin(t * 5) * 0.06);
         break;
     }
 

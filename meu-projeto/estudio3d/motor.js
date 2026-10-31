@@ -10,7 +10,7 @@
 //   destaque: [...],      palavras da legenda em amarelo
 //   camera: {pos, alvo} | (lt, b) => {pos, alvo},   cameraFim?: {pos, alvo}
 //   transicao?: s,        tempo do movimento de câmera vindo do bloco anterior (padrão 1.4)
-//   corte?: true,         vista em corte (mostra o subsolo)
+//   corte?: true | (lt, b) => bool,   vista em corte (mostra o subsolo / o interior)
 //   semLegenda?: true,    não mostra a legenda palavra por palavra
 //   aplicar(lt, b),       ajusta o mundo para o instante lt (s) do bloco
 //   camada?(lt, b),       HTML extra (cartão, etiqueta...) por cima do vídeo
@@ -200,8 +200,9 @@ export function iniciar(video) {
     }
     const b = blocos[i];
     const lt = t - b.inicio;
-    for (const m of cortaveis) m.clippingPlanes = b.corte ? [planoCorte] : [];
-    roteiro.sempre && roteiro.sempre(t, b.corte);
+    const corte = typeof b.corte === 'function' ? b.corte(lt, b) : !!b.corte;
+    for (const m of cortaveis) m.clippingPlanes = corte ? [planoCorte] : [];
+    roteiro.sempre && roteiro.sempre(t, corte);
     posicionarCamera(i, lt);
     renderer.render(cena, camera);
 
