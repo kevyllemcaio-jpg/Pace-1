@@ -1,0 +1,38 @@
+// CURSO — Aula 4: Gerando o vídeo com IA
+import { aula } from '../curso/estudio-aula.js';
+
+export const { config, preparar, criar } = aula({
+  titulo: ['AULA 4:', 'GERANDO O VÍDEO', 'COM *IA*'],
+  blocos: [
+    { plano: 'thumb', gesto: 'lado', tela: { titulo: 'MÃO NA MASSA', imagem: 'cena-tatuzao', legenda: 'cenário, voz, legenda e música' },
+      fala: 'Chegou a hora de gerar o vídeo. Você pede em português, e a inteligência artificial monta o cenário, a animação, a voz, a legenda e a música.', destaque: ['gerar', 'português'] },
+    { plano: 'perto', gesto: 'aponta', fala: 'A ferramenta que a gente usa é o Claude Code: uma IA que escreve e roda código no computador. Você conversa com ela como num chat.', destaque: ['Claude', 'chat'] },
+    { plano: 'tela', tela: { titulo: 'O PASSO A PASSO', passos: ['Abra o Claude Code na pasta do estúdio', 'Peça o vídeo com o seu roteiro', 'Confira as prévias e peça ajustes', 'Mande renderizar o vídeo final'] },
+      fala: 'São quatro passos: abrir na pasta do estúdio, pedir o vídeo, conferir as prévias, e renderizar.', destaque: ['quatro', 'prévias', 'renderizar'] },
+    { plano: 'tela', tela: { titulo: 'O PEDIDO', prompt: 'Crie um vídeo no formato do estúdio 3D (leia o PADRAO.md) sobre: como funciona um elevador.\nUse este roteiro: ...' },
+      fala: 'O pedido é simples, assim: crie um vídeo no formato do estúdio 3D sobre como funciona um elevador. E aí você cola o roteiro que escreveu na aula dois.', destaque: ['pedido', 'roteiro'] },
+    { plano: 'perto', gesto: 'cima', fala: 'O arquivo PADRAO ponto md é o manual do estúdio. Ele diz pra IA como é o formato, o personagem e a thumb. Por isso todo vídeo sai no mesmo estilo.', destaque: ['manual', 'estilo'] },
+    { plano: 'tela', tela: { titulo: 'AS PRÉVIAS', imagem: 'thumb-elevador', legenda: 'confira cada cena antes' },
+      fala: 'A IA monta as cenas e te mostra uma prévia de cada parte. Aí você confere: a câmera está boa? O personagem aparece? A thumb está certa?', destaque: ['prévia', 'confere'] },
+    { plano: 'tela', tela: { titulo: 'PEDINDO AJUSTES', prompt: 'O personagem está cortado na thumb. Afaste a câmera e deixe o elevador no centro.' },
+      fala: 'Se algo não ficou bom, é só falar: o personagem está cortado, afaste a câmera. Ela corrige e te mostra de novo.', destaque: ['falar', 'corrige'] },
+    { plano: 'tela', tela: { titulo: 'O QUE SAI AUTOMÁTICO', itens: ['Narração com voz e boca sincronizada', 'Legenda palavra por palavra', 'Música original, sem direitos autorais', 'Cartões com números e etiquetas'] },
+      fala: 'E muita coisa sai automática: a voz da narração, a boca do personagem mexendo, a legenda palavra por palavra, e a música de fundo, original, sem direitos autorais.', destaque: ['automática', 'música'] },
+    { plano: 'tela', tela: { titulo: 'O VÍDEO FINAL', prompt: 'Está ótimo! Pode renderizar o vídeo final.' },
+      fala: 'Quando estiver tudo certo, você pede pra renderizar. O vídeo sai em alta qualidade, no formato vertical, pronto pra postar.', destaque: ['renderizar', 'vertical'] },
+    { plano: 'perto', gesto: 'cabeca', expr: 'surpreso', fala: 'Importante: renderizar demora. Dependendo do computador, um vídeo de um minuto leva de alguns minutos até meia hora. Deixa rodando e vai escrever o próximo roteiro.', destaque: ['demora', 'próximo'] },
+    { plano: 'tela', tela: { titulo: 'DICAS', itens: ['Um vídeo por vez no computador', 'Confira sempre os fatos do roteiro', 'Peça um ajuste de cada vez', 'Guarde seus roteiros e vídeos'] },
+      fala: 'Dicas: renderize um vídeo por vez, confira sempre os fatos, e peça um ajuste de cada vez, que a IA erra menos.', destaque: ['fatos', 'ajuste'] },
+    { plano: 'tela', tela: { titulo: 'ANTES DE COMEÇAR', passos: ['Instale o Claude Code (site da Anthropic)', 'Baixe e descompacte o kit do estúdio', 'Abra o terminal na pasta do kit', 'Digite: claude'] },
+      fala: 'Antes de começar: instale o Claude Code pelo site da Anthropic, baixe o kit do estúdio, abra o terminal na pasta do kit, e digite claude.', destaque: ['instale', 'kit'] },
+    { plano: 'perto', gesto: 'aponta', fala: 'Na primeira vez, peça pra IA instalar o que falta. Ela mesma confere e instala as ferramentas do estúdio.', destaque: ['instalar', 'ferramentas'] },
+    { plano: 'tela', tela: { titulo: 'O PRIMEIRO TESTE', prompt: 'Instale tudo que o estúdio precisa (leia o PADRAO.md) e me mostre uma prévia do vídeo da ponte.' },
+      fala: 'Por exemplo: instale tudo que o estúdio precisa e me mostre uma prévia do vídeo da ponte. Assim você testa se está tudo funcionando.', destaque: ['teste', 'funcionando'] },
+    { plano: 'tela', tela: { titulo: 'PEDIDOS VISUAIS', prompt: 'Quero a thumb com a pergunta em cima, o elevador no centro e o personagem apontando pra ele.' },
+      fala: 'Você também pode pedir coisas visuais: a thumb com a pergunta em cima, a construção no centro, e o personagem apontando pra ela.', destaque: ['visuais', 'thumb'] },
+    { plano: 'tela', tela: { titulo: 'MUDANDO O RITMO', prompt: 'Coloque cortes mais rápidos e o personagem explicando olhando pra câmera.' },
+      fala: 'Ou mudar o ritmo: coloque cortes mais rápidos, e o personagem explicando olhando pra câmera. Foi assim que os vídeos do canal foram ficando melhores.', destaque: ['ritmo', 'cortes'] },
+    { plano: 'perto', gesto: 'cabeca', expr: 'preocupado', fala: 'E se der erro, não se assuste: copie a mensagem e mande pra IA. Na maioria das vezes, ela mesma resolve.', destaque: ['erro', 'resolve'] },
+    { plano: 'medio', gesto: 'aceno', fala: 'Na última aula: como postar nas três redes e fazer o canal crescer. Te vejo lá!', destaque: ['postar', 'crescer'] },
+  ],
+});

@@ -34,6 +34,7 @@
   const params = new URLSearchParams(location.search);
   const { iniciar } = await import('./motor.js');
   const video = await import(`./videos/${params.get('video')}.js`);
+  if (video.preparar) await video.preparar();
   window.MOTOR = iniciar(video);
   window.PRONTO = true;
 </script>

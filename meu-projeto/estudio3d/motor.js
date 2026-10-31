@@ -191,7 +191,8 @@ export function iniciar(video) {
       })
       .join(' ');
     const k = 0.85 + 0.15 * saida((lt - g.inicio) / 0.12);
-    return `<div class="legenda contorno" style="transform: scale(${k})">${txt}</div>`;
+    const topo = video.config.legendaTopo ? `top:${video.config.legendaTopo}px;` : '';
+    return `<div class="legenda contorno" style="${topo}transform: scale(${k})">${txt}</div>`;
   }
 
   function quadro(t) {

@@ -1,0 +1,38 @@
+// CURSO — Aula 5: Postar e crescer
+import { aula } from '../curso/estudio-aula.js';
+
+export const { config, preparar, criar } = aula({
+  titulo: ['AULA 5:', 'POSTAR E', '*CRESCER*'],
+  blocos: [
+    { plano: 'thumb', gesto: 'lado', tela: { titulo: 'HORA DE POSTAR', imagem: 'thumb-foguete', legenda: 'YouTube • TikTok • Instagram' },
+      fala: 'Vídeo pronto! Agora é postar no YouTube, no TikTok e no Instagram, e fazer o canal crescer. Bora?', destaque: ['postar', 'crescer'] },
+    { plano: 'perto', gesto: 'aponta', fala: 'Primeiro: o mesmo vídeo vai pras três redes, no mesmo dia. Você trabalha uma vez, e aparece em três lugares.', destaque: ['três', 'mesmo'] },
+    { plano: 'tela', tela: { titulo: 'TÍTULO E LEGENDA', itens: ['Título = a pergunta do vídeo', 'Legenda conta a curiosidade do final', 'De 5 a 9 hashtags do tema', '#shorts no YouTube'] },
+      fala: 'O título é a própria pergunta. Na legenda, conte a curiosidade do final, e coloque de cinco a nove hashtags do tema.', destaque: ['título', 'hashtags'] },
+    { plano: 'tela', tela: { titulo: 'RÓTULO DE IA', itens: ['TikTok: ative "conteúdo gerado por IA"', 'Instagram: use o rótulo de IA, se aparecer', 'Seja transparente: isso gera confiança'] },
+      fala: 'Importante: no TikTok, ative a opção de conteúdo gerado por IA. Ser transparente evita problema e passa confiança.', destaque: ['TikTok', 'transparente'] },
+    { plano: 'perto', gesto: 'cabeca', expr: 'serio', fala: 'E não coloque música da biblioteca do aplicativo por cima. O vídeo já tem música própria, e as duas iam brigar.', destaque: ['música', 'brigar'] },
+    { plano: 'tela', tela: { titulo: 'QUANDO POSTAR', itens: ['1 vídeo por dia', 'Entre 18h e 21h', 'No mesmo horário todo dia', 'Constância vence perfeição'] },
+      fala: 'Quando postar? Um vídeo por dia, entre seis e nove da noite. Mais importante que um vídeo perfeito, é postar todo dia.', destaque: ['dia', 'todo'] },
+    { plano: 'tela', tela: { titulo: 'COMENTÁRIO FIXADO', prompt: 'Você já sabia disso? Comenta "EU SABIA" ou "NÃO SABIA"! E o que a gente constrói no próximo vídeo?' },
+      fala: 'Logo depois de postar, fixe um comentário com uma pergunta. Comentário ajuda o vídeo a aparecer pra mais gente, e ainda te dá ideia de tema novo.', destaque: ['fixe', 'comentário'] },
+    { plano: 'tela', tela: { titulo: 'LINK NA BIO', itens: ['Todo vídeo termina chamando pra bio', 'Coloque o seu link nas 3 redes', 'No TikTok, o link pode exigir 1.000 seguidores', 'Até lá, mande o público pro Instagram'] },
+      fala: 'Todo vídeo termina chamando pra bio, então coloque o seu link lá. No TikTok, o link pode exigir mil seguidores. Até lá, mande o pessoal pro Instagram.', destaque: ['bio', 'link'] },
+    { plano: 'perto', gesto: 'aponta', fala: 'E olhe os números: em que segundo as pessoas saem do vídeo? Se saem no começo, melhore a pergunta. Se saem no meio, coloque mais um "mas".', destaque: ['números', 'pergunta', 'mas'] },
+    { plano: 'tela', tela: { titulo: 'NO YOUTUBE', passos: ['Toque em + e "Enviar um vídeo"', 'Título: a pergunta + #shorts', 'Público: "não é para crianças"', 'Publicar'] },
+      fala: 'No YouTube: toque no mais, enviar um vídeo, coloque a pergunta no título com hashtag shorts, marque que não é conteúdo pra crianças, e publique.', destaque: ['YouTube', 'shorts'] },
+    { plano: 'tela', tela: { titulo: 'NO TIKTOK', passos: ['Toque em + e "Carregar"', 'Cole a legenda com as hashtags', 'Capa: o primeiro quadro', 'Mais opções: conteúdo gerado por IA'] },
+      fala: 'No TikTok: toque no mais, carregar, cole a legenda, escolha o primeiro quadro como capa, e ative o rótulo de conteúdo gerado por IA.', destaque: ['TikTok', 'rótulo'] },
+    { plano: 'tela', tela: { titulo: 'NO INSTAGRAM', passos: ['Toque em + e "Reel"', 'Cole a legenda', 'Edite a capa com a thumb', 'Compartilhar também no feed'] },
+      fala: 'No Instagram: mais, reel, cole a legenda, ajuste a capa com a thumb, e deixe marcado pra compartilhar também no feed.', destaque: ['Instagram', 'feed'] },
+    { plano: 'perto', gesto: 'aponta', fala: 'E responda os comentários nas primeiras horas. Isso mostra pra rede que o vídeo está gerando conversa.', destaque: ['responda', 'conversa'] },
+    { plano: 'tela', tela: { titulo: 'IDEIAS INFINITAS', itens: ['Peça temas novos pra IA', 'Use as perguntas dos comentários', 'Faça séries: as coisas da casa, da cidade...'] },
+      fala: 'E nunca vai faltar tema: peça ideias pra IA, use as perguntas dos comentários, e crie séries, tipo: como funcionam as coisas da sua casa.', destaque: ['tema', 'séries'] },
+    { plano: 'tela', tela: { titulo: 'METAS DO 1º MÊS', itens: ['30 vídeos postados', 'Responder todos os comentários', 'Descobrir qual tema foi melhor', 'Fazer mais vídeos parecidos'] },
+      fala: 'Sua meta do primeiro mês: trinta vídeos postados, responder todos os comentários, descobrir qual tema foi melhor, e fazer mais vídeos parecidos com ele.', destaque: ['meta', 'trinta'] },
+    { plano: 'celular', celular: ['thumb-ponte', 'thumb-tunel', 'thumb-agua', 'thumb-elevador', 'thumb-navio', 'thumb-terremoto', 'thumb-descarga', 'thumb-energia', 'thumb-foguete'],
+      fala: 'Com um vídeo por dia, em um mês você tem trinta vídeos no ar. E qualquer um deles pode ser o que viraliza.', destaque: ['trinta', 'viraliza'] },
+    { plano: 'medio', gesto: 'cima', pulo: true, fala: 'Parabéns: você concluiu o curso, e já sabe construir um canal inteiro com inteligência artificial!', destaque: ['parabéns', 'canal'], sons: [{ em: 'parabens', tipo: 'ok' }] },
+    { plano: 'perto', gesto: 'aceno', fala: 'Agora é com você. Escolha o seu primeiro tema, e bora construir. Constrói isso aí!', destaque: ['tema', 'construir'] },
+  ],
+});
