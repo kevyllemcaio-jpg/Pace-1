@@ -3,7 +3,7 @@
 // cabelo castanho-escuro curto repartido de lado. Olha para +z; pés em y = 0.
 //
 // Uso:  const p = criarPersonagem();  cena.add(p);
-//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1 }
+//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1, falando: bool }
 //       p.animar(t)   // a cada quadro
 
 import * as THREE from 'three';
@@ -138,7 +138,10 @@ export function criarPersonagem() {
     else if (ex === 'preocupado') { boca.scale.set(0.8, 1, 1); }
     else if (ex === 'sorriso') { boca.scale.set(1.5, 1.15, 1); }
     else boca.scale.set(1, 1, 1);
+    // falando: a boca abre e fecha (sincronizada com as palavras pelo vídeo)
+    if (e.falando) boca.scale.set(1.15, 1.2 + 2.4 * Math.abs(Math.sin(t * 17)), 1);
     cabeca.rotation.z = Math.sin(t * 1.7) * 0.03;
+    cabeca.rotation.x = e.falando ? Math.sin(t * 6) * 0.04 : 0;
   };
   p.animar(0);
   return p;

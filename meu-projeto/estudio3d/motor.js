@@ -10,6 +10,8 @@
 //   destaque: [...],      palavras da legenda em amarelo
 //   camera: {pos, alvo} | (lt, b) => {pos, alvo},   cameraFim?: {pos, alvo}
 //   transicao?: s,        tempo do movimento de câmera vindo do bloco anterior (padrão 1.4)
+//   corteSeco?: true,     corta direto para a câmera nova (com flash branco), sem deslizar
+// b.falando(lt) -> true enquanto uma palavra está sendo dita (boca do personagem).
 //   corte?: true | (lt, b) => bool,   vista em corte (mostra o subsolo / o interior)
 //   semLegenda?: true,    não mostra a legenda palavra por palavra
 //   aplicar(lt, b),       ajusta o mundo para o instante lt (s) do bloco
@@ -126,7 +128,7 @@ export function iniciar(video) {
   const ctx = {
     THREE, cena, camera, renderer, hemi, sol, corCeu, planoCorte,
     /** Marca um material para sumir na vista em corte. */
-    cortavel(material) { cortaveis.add(material); return material; },
+    cortavel(material) { material.clipShadows = true; cortaveis.add(material); return material; },
   };
   const roteiro = video.criar(ctx);
   const blocos = roteiro.blocos;
@@ -150,6 +152,8 @@ export function iniciar(video) {
         const idx = palavrasTexto.findIndex((p) => p.startsWith(alvo));
         return idx < 0 ? 0 : (idx / Math.max(1, palavrasTexto.length)) * b.dur * 0.85;
       };
+      // true enquanto alguma palavra está sendo dita (para mexer a boca do personagem)
+      b.falando = (lt) => b.palavras.some((p) => lt >= p.inicio + ATRASO_FALA && lt <= p.fim + ATRASO_FALA);
       acc += b.dur;
     });
     return { duracao: acc, inicios: blocos.map((b) => b.inicio) };
@@ -165,7 +169,7 @@ export function iniciar(video) {
   function posicionarCamera(i, lt) {
     const b = blocos[i];
     let pose = poseDoBloco(b, lt);
-    if (i > 0 && !b.semTransicao) {
+    if (i > 0 && !b.semTransicao && !b.corteSeco) {
       const ant = blocos[i - 1];
       const de = poseDoBloco(ant, ant.dur);
       const k = suave(lt / (b.transicao ?? 1.4));
@@ -212,6 +216,7 @@ export function iniciar(video) {
       html += `<div class="titulo contorno" style="opacity:${op}">${linhasComDestaque(video.config.titulo)}</div>`;
     }
     if (b.camada) html += b.camada(lt, b);
+    if (b.corteSeco && i > 0 && lt < 0.14) html += `<div style="position:absolute;inset:0;background:#fff;opacity:${0.85 * (1 - lt / 0.14)}"></div>`;
     camada.innerHTML = html;
   }
 
