@@ -8,9 +8,8 @@ Regras que todo vídeo segue. Quem cria um vídeo novo (pessoa ou IA) começa po
 2. **Escalada**: uma cena por marco (DIA N + número animado), sempre comparando com algo
    que todo mundo conhece (cesta de basquete, prédio, Torre Eiffel, avião, espaço...).
 3. **Virada científica**: "mas a física discorda" / "mas tem um problema" — com o número real.
-4. **Final = vídeo feito 100% com IA** (`cenaFinalIA`): pergunta se a pessoa quer aprender
-   a fazer vídeos assim e manda visitar o perfil e clicar no link, ou assistir o último vídeo.
-   Nada de "se inscreva / deixa o like".
+4. **Final = um texto só** (`cenaFinalIA`): "QUER FAZER VÍDEOS ASSIM COM IA? LINK NA BIO!".
+   Uma única chamada (link da bio). Nada de "se inscreva / deixa o like".
 
 ## Personagem
 - Jaqueta amarela **sem zíper**, calça preta, tênis branco com sola vermelha.

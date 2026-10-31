@@ -130,15 +130,13 @@ function cenaAbertura({ pergunta, legenda = [], desenhar, dur = 2.8, tamanho = 9
   };
 }
 
-/** Encerramento fixo: vídeo feito 100% com IA + chamada para o perfil. */
-function cenaFinalIA({ dur = 6.5 } = {}) {
+/** Encerramento fixo: um único texto — vídeo feito com IA + link na bio. */
+function cenaFinalIA({ dur = 5.5 } = {}) {
   return {
     dur,
     cabecalho: (lt) =>
-      aparecer(texto(['ESSE VÍDEO FOI', 'FEITO *100% COM IA*'], { y: 190, tamanho: 82 }), lt, 540, 190) +
-      aparecer(texto(['Quer aprender a fazer', '*vídeos assim?*'], { y: 450, tamanho: 66 }), lt, 540, 470, 0.9),
-    legenda: ['Visita o *perfil* e clica', 'no *link*, ou assiste', 'o *último vídeo*!'],
-    estiloLegenda: { y: 1640, tamanho: 64 },
+      aparecer(texto(['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'], { y: 330, tamanho: 96 }), lt, 540, 420),
+    legenda: [],
     desenhar: (lt) => {
       let grade = '';
       for (let x = 0; x <= W; x += 90) grade += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#7C9CFF" stroke-width="2" opacity="0.15"/>`;
@@ -149,8 +147,8 @@ function cenaFinalIA({ dur = 6.5 } = {}) {
         `<defs><linearGradient id="fimIA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#160B3A"/><stop offset="1" stop-color="#3B1D8F"/></linearGradient></defs>` +
         `<rect width="${W}" height="${H}" fill="url(#fimIA)"/>` +
         grade +
-        personagem({ x: 540, y: 1460, h: 680, t: lt, expr: legal ? 'confiante' : 'lingua', oculos: legal, pose: legal ? 'aponta' : 'aceno' }) +
-        (lt > 3 ? `<g transform="translate(930 ${1230 - seta})"><path d="M0,-70 L45,0 L15,0 L15,70 L-15,70 L-15,0 L-45,0 Z" fill="#FFD21F" stroke="#111" stroke-width="8" stroke-linejoin="round"/></g>` : '')
+        personagem({ x: 540, y: 1700, h: 900, t: lt, expr: legal ? 'confiante' : 'lingua', oculos: legal, pose: legal ? 'aponta' : 'aceno' }) +
+        (lt > 1 ? `<g transform="translate(930 ${1130 - seta})"><path d="M0,-70 L45,0 L15,0 L15,70 L-15,70 L-15,0 L-45,0 Z" fill="#FFD21F" stroke="#111" stroke-width="8" stroke-linejoin="round"/></g>` : '')
       );
     },
   };
