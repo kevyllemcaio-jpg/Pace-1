@@ -8,6 +8,13 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   faz o movimento suave entre um bloco e outro.
 - **Narração em 2ª pessoa, construindo a coisa passo a passo**:
   1. Abertura com a **pergunta** (título na tela no 1º quadro = thumb) + a situação.
+     **Regra da thumb (1º quadro):** nada de fundo vazio só com letras.
+     - Em cima: a pergunta, grande e com os termos-chave em amarelo.
+     - Embaixo, **centralizado**: uma parte da construção do vídeo já pronta e bem
+       visível (ex.: um trecho da ponte, a boca do túnel, a caixa d'água).
+     - Ao lado: o **personagem apontando para a construção** (`bracos: 'aponta'`), de frente
+       para a câmera, com cara de empolgado.
+     - Câmera parada nesse enquadramento no 1º quadro; o movimento começa só depois.
   2. "Então você põe X…" → mostra X sendo construído.
   3. "Esse/Essa é o/a NOME TÉCNICO."
   4. "Mas…" → um problema novo (com cartão/etiqueta vermelha).
