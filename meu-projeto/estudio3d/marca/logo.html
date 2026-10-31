@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="importmap">
+{ "imports": { "three": "/node_modules/three/build/three.module.js" } }
+</script>
+<style>
+  html, body { margin: 0; width: 1080px; height: 1080px; overflow: hidden; }
+  #fundo { position: absolute; inset: 0;
+           background: radial-gradient(circle at 50% 42%, #7FD0FF 0%, #2E86F0 55%, #1A4FB8 100%); }
+  #raios { position: absolute; inset: 0; }
+  #tela { position: absolute; inset: 0; width: 1080px; height: 1080px; }
+  #nome { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-family: Inter, sans-serif;
+          font-weight: 900; font-size: 128px; letter-spacing: 2px; color: #fff; -webkit-text-stroke: 22px #111; paint-order: stroke fill;
+          line-height: 1; display: none; }
+  #nome span { color: #FFD21F; }
+</style>
+</head>
+<body>
+<div id="fundo"></div>
+<svg id="raios" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+<canvas id="tela"></canvas>
+<div id="nome">ENGENHOCA <span>IA</span></div>
+<script type="module">
+  import * as THREE from 'three';
+  import { criarPersonagem } from '../personagem3d.js';
+  import { mat, malha } from '../mundo.js';
+
+  const params = new URLSearchParams(location.search);
+  const comNome = params.get('nome') === '1';
+  document.getElementById('nome').style.display = comNome ? 'block' : 'none';
+
+  // raios de fundo
+  let raios = '';
+  for (let i = 0; i < 18; i++) {
+    const a = (i / 18) * Math.PI * 2, b = a + Math.PI / 30;
+    raios += `<path d="M540,460 L${540 + 1200 * Math.cos(a)},${460 + 1200 * Math.sin(a)} L${540 + 1200 * Math.cos(b)},${460 + 1200 * Math.sin(b)} Z" fill="#fff" opacity="0.08"/>`;
+  }
+  document.getElementById('raios').innerHTML = raios;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('tela'), antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setSize(1080, 1080, false);
+  renderer.setPixelRatio(1);
+  const cena = new THREE.Scene();
+  cena.add(new THREE.HemisphereLight('#ffffff', '#8a9ac0', 2.4));
+  const sol = new THREE.DirectionalLight('#fff3dd', 2.8);
+  sol.position.set(1.5, 3, 5);
+  cena.add(sol);
+
+  // engrenagem low-poly atrás da cabeça (a "engenhoca")
+  const forma = new THREE.Shape();
+  const dentes = 12, rExt = 1.18, rInt = 0.96;
+  for (let i = 0; i < dentes * 2; i++) {
+    const r = i % 2 ? rInt : rExt;
+    const a0 = (i / (dentes * 2)) * Math.PI * 2, a1 = ((i + 1) / (dentes * 2)) * Math.PI * 2;
+    const p0 = [r * Math.cos(a0 + 0.04), r * Math.sin(a0 + 0.04)], p1 = [r * Math.cos(a1 - 0.04), r * Math.sin(a1 - 0.04)];
+    if (i === 0) forma.moveTo(...p0); else forma.lineTo(...p0);
+    forma.lineTo(...p1);
+  }
+  const furo = new THREE.Path();
+  furo.absarc(0, 0, 0.42, 0, Math.PI * 2, true);
+  forma.holes.push(furo);
+  const engrenagem = malha(new THREE.ExtrudeGeometry(forma, { depth: 0.22, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 1, curveSegments: 6 }), mat('#FFB020'));
+  engrenagem.position.set(0.0, 1.86, -1.3);
+  engrenagem.scale.setScalar(0.78);
+  engrenagem.rotation.z = 0.12;
+  cena.add(engrenagem);
+
+  const voce = criarPersonagem();
+  voce.rotation.y = -0.32;
+  voce.estado = { bracos: 'aceno', expr: 'sorriso' };
+  voce.animar(0.12);
+  cena.add(voce);
+
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 50);
+  if (comNome) { camera.position.set(0.2, 1.75, 4.6); camera.lookAt(0.0, 1.5, 0); }
+  else { camera.position.set(0.18, 1.8, 3.4); camera.lookAt(0.0, 1.72, 0); }
+  renderer.render(cena, camera);
+  window.PRONTO = true;
+</script>
+</body>
+</html>
