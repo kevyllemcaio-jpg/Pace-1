@@ -56,6 +56,10 @@ const SONS = {
   martelo: 'sine=f=180:d=0.35,afade=t=out:st=0.02:d=0.33,volume=1.4',
   tum: 'sine=f=70:d=0.28,afade=t=out:st=0.03:d=0.25,volume=2.6',
   ok: 'sine=f=880:d=0.18,afade=t=out:st=0.05:d=0.13,volume=0.6',
+  descarga: 'anoisesrc=d=2.2:c=pink:a=0.8,bandpass=f=700:w=900,afade=t=in:d=0.1,afade=t=out:st=0.8:d=1.4,volume=1.5',
+  gargalo: 'anoisesrc=d=1.0:c=brown:a=0.9,lowpass=f=450,tremolo=f=9:d=0.95,afade=t=out:st=0.4:d=0.6,volume=1.8',
+  zap: 'sine=f=120:d=0.5,tremolo=f=60:d=1,afade=t=out:st=0.05:d=0.45,volume=1.2',
+  fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 function arquivoSom(tipo) {
   const arq = path.join(pastaVoz, `som-${tipo}.wav`);
