@@ -19,6 +19,13 @@ Regras que todo vídeo segue. Quem cria um vídeo novo (pessoa ou IA) começa po
   `chorando`, `prendendo` + acessórios `oculos`, `suor`.
 - Poses: `normal`, `cima`, `aponta`, `cabeca`, `maosRosto`, `aceno`.
 
+## Narração
+- Cada cena tem uma `fala` (o que a voz diz). A legenda na tela é o resumo curto da fala.
+- Voz automática: `pt-BR-AntonioNeural`, velocidade `+15%` (muda em `criarVideo(..., { voz, velocidade })`).
+- Falas curtas e com piada: o Short ideal fica **abaixo de 60 s**.
+- A cena dura o tempo da fala; o áudio fica em cache em `saida/.voz/`.
+- Para gerar a voz é preciso: `pip install edge-tts`. Para renderizar sem voz: `--sem-voz`.
+
 ## Texto
 - Legendas curtas: no máximo ~22 caracteres por linha. `*palavra*` fica amarela.
 - Números conferidos (comentário no topo de cada arquivo em `videos/`).

@@ -130,6 +130,7 @@ criarVideo(
       pergunta: ['E SE O SEU *PULO*', '*DOBRASSE* TODO DIA?'],
       tamanho: 84,
       legenda: ['Até onde você *chegaria*?'],
+      fala: 'E se o seu pulo dobrasse todo dia? Até onde você chegaria?',
       desenhar: (lt) =>
         gradiente('aberturaPulo', [[0, '#3A86FF'], [0.6, '#8EC5FF'], [1, '#FFE29A']]) +
         nuvem(60, 700, 1.3, 0.9) +
@@ -141,6 +142,7 @@ criarVideo(
     }),
     {
       // Dia 0 — pulinho normal e cara de tédio
+      fala: 'Hoje, você pula cinquenta centímetros. Bem... normal.',
       dur: 3.5,
       dia: 0,
       valor: puloNoDia(0),
@@ -163,6 +165,7 @@ criarVideo(
     },
     {
       // Dia 3 — 4 m: enterrada
+      fala: 'Dia três: quatro metros. Você enterra sem nem tentar.',
       dur: 3.5,
       dia: 3,
       valor: puloNoDia(3),
@@ -187,6 +190,7 @@ criarVideo(
     },
     {
       // Dia 6 — 32 m: por cima de um prédio
+      fala: 'Dia seis: trinta e dois metros. Você pula um prédio. E os pombos não entendem nada.',
       dur: 3.5,
       dia: 6,
       valor: puloNoDia(6),
@@ -204,6 +208,7 @@ criarVideo(
     },
     {
       // Dia 10 — 512 m: Torre Eiffel lá embaixo
+      fala: 'Dia dez: mais de quinhentos metros. A Torre Eiffel fica lá embaixo.',
       dur: 3.5,
       dia: 10,
       valor: puloNoDia(10),
@@ -223,6 +228,7 @@ criarVideo(
     },
     {
       // Dia 15 — 16,4 km: acima dos aviões
+      fala: 'Dia quinze: dezesseis quilômetros. Você dá tchau pros aviões.',
       dur: 3.5,
       dia: 15,
       valor: puloNoDia(15),
@@ -242,6 +248,7 @@ criarVideo(
     },
     {
       // Dia 18 — 131 km: o espaço
+      fala: 'Dia dezoito: você chega ao espaço. Sem roupa espacial. Prende a respiração!',
       dur: 3.5,
       dia: 18,
       valor: puloNoDia(18),
@@ -259,6 +266,7 @@ criarVideo(
     },
     {
       // Dia 20 — 524 km: passa da Estação Espacial
+      fala: 'Dia vinte: você passa da Estação Espacial. Tchau, astronautas!',
       dur: 3.5,
       dia: 20,
       valor: puloNoDia(20),
@@ -276,6 +284,7 @@ criarVideo(
     },
     {
       // Virada: o problema é a volta
+      fala: 'Mas tem um problema: a volta. No dia cinco, você já cairia a sessenta e quatro por hora. Tchau, pernas.',
       dur: 5.5,
       cabecalho: (lt) =>
         aparecer(texto(['MAS TEM UM', '*PROBLEMA...*'], { y: 190, tamanho: 110 }), lt, 540, 200) +
@@ -289,5 +298,5 @@ criarVideo(
     },
     cenaFinalIA(),
   ],
-  { formatar: formatarDistancia }
+  { formatar: formatarDistancia, velocidade: '+15%' }
 );

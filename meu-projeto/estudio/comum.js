@@ -71,18 +71,28 @@ function legenda(linhas, lt, { y = 1690, tamanho = 74 } = {}) {
  * Recebe a lista de cenas e define as globais usadas pelo render.js:
  *   DURACAO, INICIOS, FPS, renderizar(t) -> conteúdo SVG do quadro.
  *
- * Cada cena: { dur, dia?, valor?, cabecalho?(lt), legenda: [...], estiloLegenda?, desenhar(lt, p) }
+ * Cada cena: { dur, fala?, dia?, valor?, cabecalho?(lt), legenda: [...], estiloLegenda?, desenhar(lt, p) }
+ *   fala = texto da narração; com narração, a cena dura pelo menos o tempo da fala.
  * Opções: formatar(valor) -> texto do número no cabeçalho (padrão: formatarAltura).
  */
-function criarVideo(cenas, { formatar = formatarAltura } = {}) {
-  let acc = 0;
-  for (const c of cenas) {
-    c.inicio = acc;
-    acc += c.dur;
-  }
-  window.DURACAO = acc;
-  window.INICIOS = cenas.map((c) => c.inicio);
+function criarVideo(cenas, { formatar = formatarAltura, voz = 'pt-BR-AntonioNeural', velocidade = '+8%' } = {}) {
+  window.CENAS = cenas;
   window.FPS = FPS;
+  window.VOZ = { voz, velocidade };
+  window.FALAS = cenas.map((c) => c.fala || null);
+  // O render.js chama isto depois de gerar a narração, para cada cena durar o tempo da fala.
+  window.definirDuracoes = function (duracoes) {
+    let acc = 0;
+    cenas.forEach((c, i) => {
+      if (duracoes) c.dur = duracoes[i];
+      c.inicio = acc;
+      acc += c.dur;
+    });
+    window.DURACAO = acc;
+    window.INICIOS = cenas.map((c) => c.inicio);
+    return { duracao: acc, inicios: window.INICIOS };
+  };
+  window.definirDuracoes(null);
 
   window.renderizar = function (t) {
     let i = cenas.findIndex((c) => t >= c.inicio && t < c.inicio + c.dur);
@@ -119,9 +129,10 @@ function formatarDistancia(m) {
  * Abertura: a pergunta do vídeo, já completa no primeiro quadro (serve de thumb).
  * @param {string[]} pergunta  linhas da pergunta; *palavra* = destaque amarelo
  */
-function cenaAbertura({ pergunta, legenda = [], desenhar, dur = 2.8, tamanho = 96 }) {
+function cenaAbertura({ pergunta, legenda = [], desenhar, dur = 2.8, tamanho = 96, fala }) {
   return {
     dur,
+    fala,
     abertura: true,
     cabecalho: () => texto(pergunta, { y: 230, tamanho }),
     legenda,
@@ -131,9 +142,10 @@ function cenaAbertura({ pergunta, legenda = [], desenhar, dur = 2.8, tamanho = 9
 }
 
 /** Encerramento fixo: um único texto — vídeo feito com IA + link na bio. */
-function cenaFinalIA({ dur = 5.5 } = {}) {
+function cenaFinalIA({ dur = 5.5, fala = 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Link na bio!' } = {}) {
   return {
     dur,
+    fala,
     cabecalho: (lt) =>
       aparecer(texto(['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'], { y: 330, tamanho: 96 }), lt, 540, 420),
     legenda: [],
