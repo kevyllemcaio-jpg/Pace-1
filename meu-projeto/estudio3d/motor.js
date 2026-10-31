@@ -96,6 +96,7 @@ function poseDoBloco(b, lt) {
 export function iniciar(video) {
   const params = new URLSearchParams(location.search);
   const escala = parseFloat(params.get('escala') || '1');
+  const limpo = params.get('limpo') === '1'; // sem textos por cima (para recortar cenas)
 
   const canvas = document.getElementById('tela');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
@@ -218,7 +219,7 @@ export function iniciar(video) {
     }
     if (b.camada) html += b.camada(lt, b);
     if (b.corteSeco && i > 0 && lt < 0.14) html += `<div style="position:absolute;inset:0;background:#fff;opacity:${0.85 * (1 - lt / 0.14)}"></div>`;
-    camada.innerHTML = html;
+    camada.innerHTML = limpo ? '' : html;
   }
 
   function sons() {

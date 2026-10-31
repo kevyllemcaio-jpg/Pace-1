@@ -6,6 +6,7 @@
 //   node estudio3d/render3d.js ponte --previa   -> um PNG por bloco (rápido, para conferir)
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
+//   --limpo --de=10 --ate=13  recorta só esse trecho, sem textos e sem áudio (saida/clipes/)
 // Música de fundo original entra automaticamente (desligue com config.musica = false no vídeo).
 
 const { chromium } = require('playwright');
@@ -25,6 +26,9 @@ if (!nome) {
 const previa = args.includes('--previa');
 const comVoz = !args.includes('--sem-voz');
 const escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--escala=1.5').split('=')[1]);
+const limpo = args.includes('--limpo');
+const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
+const trechoDe = argNum('de'), trechoAte = argNum('ate'); // recorte de cena (sem áudio)
 const raiz = path.join(__dirname, '..');
 const pastaSaida = path.join(raiz, 'saida');
 const pastaVoz = path.join(pastaSaida, '.voz');
@@ -78,7 +82,7 @@ function arquivoSom(tipo) {
   const page = await browser.newPage({ viewport: { width: 720, height: 1280 }, deviceScaleFactor: 1.5 });
   page.on('pageerror', (e) => console.error('ERRO NA PÁGINA:', e.message));
   page.on('console', (m) => m.type() === 'error' && console.error('console:', m.text()));
-  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}`);
+  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}`);
   await page.waitForFunction(() => window.PRONTO === true, null, { timeout: 60000 });
 
   // 1) Narração: um MP3 + tempos das palavras por bloco (com cache).
@@ -116,6 +120,27 @@ function arquivoSom(tipo) {
     }
     await browser.close();
     servidor.close();
+    return;
+  }
+
+  // Recorte de um trecho (cena limpa, sem áudio) — usado nos criativos de anúncio
+  if (trechoDe != null && trechoAte != null) {
+    const pasta = path.join(pastaSaida, 'clipes');
+    fs.mkdirSync(pasta, { recursive: true });
+    const arq = path.join(pasta, `${nome}_${trechoDe.toFixed(2)}_${trechoAte.toFixed(2)}.mp4`);
+    const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
+      '-vf', 'scale=1080:1920', '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
+    const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
+    for (let f = Math.round(trechoDe * FPS); f < Math.round(trechoAte * FPS); f++) {
+      await desenhar(f / FPS);
+      const img = await page.screenshot({ type: 'jpeg', quality: 92 });
+      if (!ffc.stdin.write(img)) await new Promise((r) => ffc.stdin.once('drain', r));
+    }
+    ffc.stdin.end();
+    await fimC;
+    await browser.close();
+    servidor.close();
+    console.log(arq);
     return;
   }
 

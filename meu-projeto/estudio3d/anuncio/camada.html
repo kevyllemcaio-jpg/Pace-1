@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 720px; height: 1280px; overflow: hidden; background: transparent; }
+  #camada { position: absolute; inset: 0; font-family: Inter, sans-serif; }
+  .contorno { color: #fff; -webkit-text-stroke: 9px #111; paint-order: stroke fill; }
+  .destaque { color: #FFD21F; }
+  .legenda { position: absolute; left: 0; right: 0; top: 1010px; text-align: center; font-weight: 900; font-size: 50px; }
+  .titulo { position: absolute; left: 20px; right: 20px; top: 90px; text-align: center; font-weight: 900; font-size: 58px; line-height: 1.12; }
+  .cartao { position: absolute; left: 50%; top: 330px; background: #fff; border-radius: 18px; padding: 8px 30px 12px;
+            text-align: center; box-shadow: 0 6px 0 rgba(0,0,0,.25); white-space: nowrap; }
+  .cartao .num { color: #E8322B; font-weight: 900; font-size: 58px; line-height: 1.05; }
+  .cartao .sub { color: #222; font-weight: 800; font-size: 17px; letter-spacing: .5px; }
+  .etiqueta { position: absolute; left: 50%; top: 330px; background: #fff; color: #E8322B; border-radius: 999px;
+              padding: 8px 22px 8px 18px; font-weight: 900; font-size: 26px; white-space: nowrap; box-shadow: 0 4px 0 rgba(0,0,0,.25); }
+  .etiqueta::before { content: ''; display: inline-block; width: 13px; height: 13px; border-radius: 50%; background: #E8322B; margin-right: 10px; vertical-align: 3px; }
+  .botao { position: absolute; left: 50%; top: 860px; background: #2DBE60; color: #fff; border-radius: 999px; padding: 18px 46px;
+           font-weight: 900; font-size: 44px; white-space: nowrap; box-shadow: 0 8px 0 #1E8A44; border: 5px solid #fff; }
+  .seta { position: absolute; left: 50%; top: 960px; font-size: 70px; color: #FFD21F; -webkit-text-stroke: 6px #111; paint-order: stroke fill; font-weight: 900; }
+  .marca { position: absolute; right: 16px; top: 16px; color: #fff; font-weight: 900; font-size: 18px; opacity: .85;
+           -webkit-text-stroke: 4px #111; paint-order: stroke fill; }
+</style>
+</head>
+<body><div id="camada"></div></body>
+</html>
