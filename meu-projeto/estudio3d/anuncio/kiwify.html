@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; overflow: hidden; font-family: Inter, sans-serif; }
+  .p { position: relative; overflow: hidden; color: #fff;
+       background: radial-gradient(circle at 50% 30%, #3B5BDB 0%, #1B2350 60%, #120F33 100%); }
+  .raios { position: absolute; inset: -50%; background: repeating-conic-gradient(from 0deg, rgba(255,255,255,.06) 0deg 8deg, transparent 8deg 20deg); }
+  .c { -webkit-text-stroke: 12px #111; paint-order: stroke fill; }
+  .y { color: #FFD21F; }
+  .t { position: absolute; font-weight: 900; line-height: 1.04; }
+  .thumbs { position: absolute; display: flex; gap: 14px; }
+  .thumbs img { border-radius: 18px; border: 5px solid #fff; box-shadow: 0 8px 0 rgba(0,0,0,.35); }
+  .selo { position: absolute; background: #E8322B; color: #fff; font-weight: 900; border-radius: 999px; border: 5px solid #fff;
+          padding: 10px 28px; transform: rotate(-7deg); box-shadow: 0 6px 0 rgba(0,0,0,.3); }
+  .logo { position: absolute; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 8px 0 rgba(0,0,0,.35); }
+  .num { position: absolute; font-weight: 900; color: #FFD21F; -webkit-text-stroke: 10px #111; paint-order: stroke fill; }
+</style>
+</head>
+<body>
+<div id="raiz"></div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const f = q.get('formato');
+  const img = (n, w) => `<img src="../curso/img/${n}.jpg" style="width:${w}px">`;
+  const MOD = {
+    1: ['O QUE VOCÊ', 'VAI *CRIAR*', 'thumb-ponte'],
+    2: ['A *FÓRMULA*', 'DO ROTEIRO', 'thumb-elevador'],
+    3: ['PERSONAGEM', 'E *THUMB*', 'logo'],
+    4: ['GERANDO', 'COM *IA*', 'cena-tatuzao'],
+    5: ['POSTAR E', '*CRESCER*', 'thumb-foguete'],
+  };
+  const hl = (s) => s.replace(/\*([^*]+)\*/g, '<span class="y">$1</span>');
+  let h = '';
+  if (f === 'quadrada') {
+    h = `<div class="p" style="width:1080px;height:1080px"><div class="raios"></div>
+      <div class="t c" style="left:0;right:0;top:50px;text-align:center;font-size:96px">VÍDEOS <span class="y">3D</span><br>COM <span class="y">IA</span></div>
+      <div class="thumbs" style="left:50%;transform:translateX(-50%);top:300px">${['thumb-ponte','thumb-navio','thumb-foguete','thumb-elevador'].map((n) => img(n, 215)).join('')}</div>
+      <div class="selo" style="right:40px;top:290px;font-size:34px">100% IA</div>
+      <img class="logo" src="../curso/img/logo.jpg" style="left:60px;bottom:60px;width:190px">
+      <div class="t" style="left:280px;bottom:150px;font-size:58px">Constrói <span class="y">Isso Aí!</span></div>
+      <div class="t" style="left:280px;bottom:80px;font-size:36px;font-weight:800;opacity:.92">5 aulas + kit do estúdio</div>
+    </div>`;
+  } else if (f === 'banner') {
+    h = `<div class="p" style="width:1920px;height:600px"><div class="raios"></div>
+      <img class="logo" src="../curso/img/logo.jpg" style="left:60px;top:130px;width:330px">
+      <div class="t c" style="left:440px;top:95px;font-size:84px">CRIE VÍDEOS <span class="y">3D</span><br>COM <span class="y">IA</span></div>
+      <div class="t" style="left:444px;top:300px;font-size:32px;font-weight:800;opacity:.95">sem câmera, sem edição e sem saber programar</div>
+      <div class="t" style="left:444px;top:355px;font-size:28px;font-weight:700;opacity:.8">Curso Constrói Isso Aí! — 5 aulas + kit do estúdio</div>
+      <div class="thumbs" style="right:50px;top:70px">${['thumb-navio','thumb-foguete'].map((n) => img(n, 250)).join('')}</div>
+    </div>`;
+  } else {
+    const n = Number(q.get('n'));
+    const [l1, l2, im] = MOD[n];
+    const quadrada = im === 'logo';
+    h = `<div class="p" style="width:1000px;height:1500px"><div class="raios"></div>
+      <div class="num" style="left:60px;top:40px;font-size:150px">${String(n).padStart(2, '0')}</div>
+      <div class="t" style="left:70px;top:230px;font-size:40px;font-weight:800;letter-spacing:3px;opacity:.85">AULA ${n}</div>
+      <div class="t c" style="left:60px;top:290px;font-size:110px">${hl(l1)}<br>${hl(l2)}</div>
+      <img src="../curso/img/${im}.jpg" style="position:absolute;left:50%;transform:translateX(-50%) rotate(${n % 2 ? -3 : 3}deg);top:${quadrada ? 640 : 580}px;width:${quadrada ? 620 : 470}px;border-radius:26px;border:7px solid #fff;box-shadow:0 12px 0 rgba(0,0,0,.35)">
+      <div class="t" style="left:0;right:0;bottom:50px;text-align:center;font-size:40px">Constrói <span class="y">Isso Aí!</span></div>
+    </div>`;
+  }
+  document.getElementById('raiz').innerHTML = h;
+  Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))).then(() => (window.PRONTO = true));
+</script>
+</body>
+</html>
