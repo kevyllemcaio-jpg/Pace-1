@@ -15,6 +15,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
      - Ao lado: o **personagem apontando para a construção** (`bracos: 'aponta'`), de frente
        para a câmera, com cara de empolgado.
      - Câmera parada nesse enquadramento no 1º quadro; o movimento começa só depois.
+     **Atualização (capa "meio"):** use `config.tituloEstilo = 'meio'` → o título fica **mais baixo e
+     centralizado** (meio da tela), com linhas levemente inclinadas e um "pulinho" depois do 1º quadro.
+     A construção fica na **parte de cima** do quadro e o personagem **embaixo**, apontando para ela.
+     No bloco da capa a legenda fica escondida para não brigar com o título.
   2. "Então você põe X…" → mostra X sendo construído.
   3. "Esse/Essa é o/a NOME TÉCNICO."
   4. "Mas…" → um problema novo (com cartão/etiqueta vermelha).

@@ -214,10 +214,17 @@ export function iniciar(video) {
     posicionarCamera(i, lt);
     renderer.render(cena, camera);
 
-    let html = b.semLegenda ? '' : legendaHTML(b, lt);
+    let html = b.semLegenda || (i === 0 && video.config.tituloEstilo === 'meio' && lt < b.dur - 0.6) ? '' : legendaHTML(b, lt);
     if (i === 0 && video.config.titulo) {
       const op = 1 - lim((lt - (b.dur - 0.6)) / 0.4);
-      html += `<div class="titulo contorno" style="opacity:${op}">${linhasComDestaque(video.config.titulo)}</div>`;
+      if (video.config.tituloEstilo === 'meio') {
+        // capa: título mais baixo, centralizado e dinâmico (parado no 1º quadro, depois "respira")
+        const k = lt < 0.5 ? 1 : 1 + 0.035 * Math.sin((lt - 0.5) * 5);
+        const linhas = linhasComDestaque(video.config.titulo).split('<br>').map((l, n) => `<span class="linha l${n % 3}">${l}</span>`).join('<br>');
+        html += `<div class="titulo contorno meio" style="opacity:${op}; transform: scale(${k})">${linhas}</div>`;
+      } else {
+        html += `<div class="titulo contorno" style="opacity:${op}">${linhasComDestaque(video.config.titulo)}</div>`;
+      }
     }
     if (b.camada) html += b.camada(lt, b);
     if (b.corteSeco && i > 0 && lt < 0.14) html += `<div style="position:absolute;inset:0;background:#fff;opacity:${0.85 * (1 - lt / 0.14)}"></div>`;
