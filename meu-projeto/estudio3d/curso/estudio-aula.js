@@ -9,7 +9,7 @@
 //   cartao:  ['27x', 'SUBTÍTULO', 'palavra-gatilho']   etiqueta: ['TEXTO', 'palavra']   ok: 'palavra'
 
 import * as THREE from 'three';
-import { suave, saida, lim, cartao, etiqueta, ok } from '../motor.js';
+import { suave, saida, lim, cartao, etiqueta, ok, HORIZONTAL, linhasComDestaque, salto } from '../motor.js';
 import { mat, caixa, cilindro, malha, arvore } from '../mundo.js';
 import { criarPersonagem } from '../personagem3d.js';
 
@@ -29,6 +29,7 @@ export function imagensDoRoteiro(roteiro) {
   const s = new Set();
   for (const b of roteiro.blocos) {
     if (b.tela && b.tela.imagem) s.add(b.tela.imagem);
+    if (b.tela && b.tela.imagens) b.tela.imagens.forEach((n) => s.add(n));
     (b.celular || []).forEach((n) => s.add(n));
   }
   s.add('logo');
@@ -37,7 +38,7 @@ export function imagensDoRoteiro(roteiro) {
 }
 
 // ---------- desenho dos slides (canvas 2D) ----------
-const TW = 1024, TH = 880;
+const TW = HORIZONTAL ? 1280 : 1024, TH = HORIZONTAL ? 720 : 880;
 function quebrar(ctx2, texto, largura) {
   const palavras = texto.split(' ');
   const linhas = [];
@@ -100,6 +101,36 @@ function desenharSlide(ctx2, tela, k) {
       ctx2.globalAlpha = 1;
     });
   }
+  if (tela.numero) {
+    const vis = lim(k * 2);
+    ctx2.globalAlpha = vis;
+    ctx2.textAlign = 'center';
+    ctx2.fillStyle = '#FFD21F';
+    ctx2.font = `900 ${HORIZONTAL ? 190 : 170}px Inter`;
+    ctx2.fillText(tela.numero, TW / 2, y + (HORIZONTAL ? 170 : 190));
+    ctx2.fillStyle = '#FFFFFF';
+    ctx2.font = '800 54px Inter';
+    quebrar(ctx2, tela.sub || '', TW - 120).forEach((l, i) => ctx2.fillText(l, TW / 2, y + (HORIZONTAL ? 250 : 290) + i * 62));
+    if (tela.fonte) {
+      ctx2.fillStyle = 'rgba(255,255,255,.6)';
+      ctx2.font = '600 28px Inter';
+      ctx2.fillText(tela.fonte, TW / 2, TH - 30);
+    }
+    ctx2.textAlign = 'left';
+    ctx2.globalAlpha = 1;
+  }
+  if (tela.imagens) {
+    const imgs = tela.imagens.map((n) => IMAGENS[n]).filter(Boolean);
+    const gap = 24, hMax = TH - y - 40;
+    const w = Math.min((TW - 100 - gap * (imgs.length - 1)) / imgs.length, hMax * 9 / 16);
+    const h = w * 16 / 9;
+    const x0 = (TW - (w * imgs.length + gap * (imgs.length - 1))) / 2;
+    imgs.forEach((im, i) => {
+      ctx2.globalAlpha = lim(k * imgs.length * 1.3 - i);
+      ctx2.drawImage(im, x0 + i * (w + gap), y, w, h);
+    });
+    ctx2.globalAlpha = 1;
+  }
   if (tela.prompt) {
     ctx2.font = '600 50px "JetBrains Mono", monospace';
     const linhas = tela.prompt.split('\n').flatMap((l) => quebrar(ctx2, l, TW - 170));
@@ -143,11 +174,24 @@ function roundRect(c, x, y, w, h, r) {
 }
 
 // ---------- cenário ----------
-const PX = 1.05, PZ = 0.7;          // professor (na frente, à direita)
-const TX = 0, TY = 3.35, TZ = -1.5, TLARG = 3.3, TALT = 2.84; // telão no alto
-const CX = -1.3, CY = 1.45, CZ = 0.9; // celular no tripé (à esquerda)
+// Layout vertical (Shorts/aulas) ou horizontal (YouTube 16:9)
+const V = {
+  PX: 1.05, PZ: 0.7, TX: 0, TY: 3.35, TZ: -1.5, TLARG: 3.3, TALT: 2.84, CX: -1.3, CY: 1.45, CZ: 0.9,
+};
+const HZ = {
+  PX: 4.0, PZ: 0.5, TX: -0.2, TY: 2.65, TZ: -2.0, TLARG: 6.4, TALT: 3.6, CX: -4.6, CY: 1.45, CZ: 0.7,
+};
+const { PX, PZ, TX, TY, TZ, TLARG, TALT, CX, CY, CZ } = HORIZONTAL ? HZ : V;
 
-const PLANOS = {
+const PLANOS = HORIZONTAL ? {
+  thumb: { pos: [0.6, 2.5, 8.6], alvo: [0.3, 2.45, -1] },
+  perto: { pos: [PX - 0.9, 1.75, PZ + 2.6], alvo: [PX - 0.6, 1.6, PZ] },
+  medio: { pos: [1.3, 2.3, 7.2], alvo: [0.9, 2.2, -1] },
+  tela: { pos: [TX, TY - 0.45, TZ + 5.3], alvo: [TX, TY - 0.45, TZ] },
+  celular: { pos: [CX + 0.5, CY + 0.05, CZ + 2.0], alvo: [CX + 0.3, CY, CZ] },
+  lado: { pos: [7.0, 2.0, 5.0], alvo: [1.5, 2.0, -0.5] },
+  aberto: { pos: [0, 3.0, 12], alvo: [0, 2.4, -1] },
+} : {
   thumb: { pos: [0, 2.75, 7.6], alvo: [0, 2.8, -1] },
   perto: { pos: [PX - 0.2, 1.8, PZ + 2.3], alvo: [PX - 0.05, 1.6, PZ] },
   medio: { pos: [0, 2.75, 7.6], alvo: [0, 2.8, -1] },
@@ -263,6 +307,7 @@ export function criarAula(ctx, roteiro) {
         if (r.cartao) h += cartao(lt, b.palavra(r.cartao[2] || '') || 0.6, r.cartao[0], r.cartao[1]);
         if (r.etiqueta) h += etiqueta(lt, b.palavra(r.etiqueta[1] || '') || 0.6, r.etiqueta[0]);
         if (r.ok) h += ok(lt, b.palavra(r.ok));
+        if (r.texto) h += `<div class="final contorno" style="transform: scale(${Math.max(0.01, salto(lt / 0.35))})">${linhasComDestaque(r.texto)}</div>`;
         return h;
       },
       sons: r.sons || (r.ok ? [{ em: r.ok, tipo: 'ok' }] : []),
@@ -283,6 +328,15 @@ export function criarAula(ctx, roteiro) {
 export function aula(roteiro) {
   return {
     config: { titulo: roteiro.titulo, legendaTopo: 1040, velocidade: '+0%' },
+    preparar: () => carregarImagens(imagensDoRoteiro(roteiro)),
+    criar: (ctx) => criarAula(ctx, roteiro),
+  };
+}
+
+/** Vídeo horizontal para o YouTube no mesmo estúdio: export const { config, preparar, criar } = videoYT(ROTEIRO) */
+export function videoYT(roteiro) {
+  return {
+    config: { titulo: roteiro.titulo, velocidade: roteiro.velocidade || '+4%' },
     preparar: () => carregarImagens(imagensDoRoteiro(roteiro)),
     criar: (ctx) => criarAula(ctx, roteiro),
   };

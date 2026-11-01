@@ -6,6 +6,7 @@
 //   node estudio3d/render3d.js ponte --previa   -> um PNG por bloco (rápido, para conferir)
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
+//   --horizontal  vídeo deitado 1920x1080 (YouTube)
 //   --limpo --de=10 --ate=13  recorta só esse trecho, sem textos e sem áudio (saida/clipes/)
 // Música de fundo original entra automaticamente (desligue com config.musica = false no vídeo).
 
@@ -27,6 +28,8 @@ const previa = args.includes('--previa');
 const comVoz = !args.includes('--sem-voz');
 const escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--escala=1.5').split('=')[1]);
 const limpo = args.includes('--limpo');
+const horizontal = args.includes('--horizontal'); // vídeo deitado 1920x1080 (YouTube)
+const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280, SAIDA = horizontal ? '1920:1080' : '1080:1920';
 const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
 const trechoDe = argNum('de'), trechoAte = argNum('ate'); // recorte de cena (sem áudio)
 const raiz = path.join(__dirname, '..');
@@ -79,10 +82,10 @@ function arquivoSom(tipo) {
   const porta = servidor.address().port;
 
   const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-  const page = await browser.newPage({ viewport: { width: 720, height: 1280 }, deviceScaleFactor: 1.5 });
+  const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 1.5 });
   page.on('pageerror', (e) => console.error('ERRO NA PÁGINA:', e.message));
   page.on('console', (m) => m.type() === 'error' && console.error('console:', m.text()));
-  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}`);
+  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}${horizontal ? '&formato=horizontal' : ''}`);
   await page.waitForFunction(() => window.PRONTO === true, null, { timeout: 60000 });
 
   // 1) Narração: um MP3 + tempos das palavras por bloco (com cache).
@@ -129,7 +132,7 @@ function arquivoSom(tipo) {
     fs.mkdirSync(pasta, { recursive: true });
     const arq = path.join(pasta, `${nome}_${trechoDe.toFixed(2)}_${trechoAte.toFixed(2)}.mp4`);
     const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-vf', 'scale=1080:1920', '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
     const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
     for (let f = Math.round(trechoDe * FPS); f < Math.round(trechoAte * FPS); f++) {
       await desenhar(f / FPS);
@@ -147,7 +150,7 @@ function arquivoSom(tipo) {
   // 2) Quadros -> vídeo
   const semAudio = path.join(pastaSaida, `.${nome}-sem-audio.mp4`);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-    '-vf', 'scale=1080:1920', '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio], { stdio: ['pipe', 'inherit', 'inherit'] });
+    '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio], { stdio: ['pipe', 'inherit', 'inherit'] });
   const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
   const total = Math.round(duracao * FPS);
   const t0 = Date.now();

@@ -50,6 +50,15 @@
       <div class="t" style="left:444px;top:355px;font-size:28px;font-weight:700;opacity:.8">Curso Constrói Isso Aí! — 5 aulas + kit do estúdio</div>
       <div class="thumbs" style="right:50px;top:70px">${['thumb-navio','thumb-foguete'].map((n) => img(n, 250)).join('')}</div>
     </div>`;
+  } else if (f === 'yt') {
+    h = `<div class="p" style="width:1280px;height:720px"><div class="raios"></div>
+      <div class="t c" style="left:40px;top:40px;font-size:96px;line-height:1.0">MILHÕES<br>DE VIEWS<br><span class="y">COM IA</span></div>
+      <div class="selo" style="left:60px;top:470px;font-size:40px">SEM APARECER</div>
+      <div style="position:absolute;right:270px;top:70px;transform:rotate(-6deg)">${img('thumb-foguete', 250)}</div>
+      <div style="position:absolute;right:40px;top:120px;transform:rotate(7deg)">${img('thumb-navio', 250)}</div>
+      <img class="logo" src="../curso/img/logo.jpg" style="left:520px;top:300px;width:330px">
+      <div style="position:absolute;left:470px;top:250px;font-size:120px;font-weight:900;color:#FFD21F;-webkit-text-stroke:10px #111;paint-order:stroke fill;transform:rotate(-20deg)">→</div>
+    </div>`;
   } else {
     const n = Number(q.get('n'));
     const [l1, l2, im] = MOD[n];

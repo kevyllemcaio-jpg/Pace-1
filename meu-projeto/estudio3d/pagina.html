@@ -25,6 +25,15 @@
         border: 6px solid #fff; box-shadow: 0 4px 0 rgba(0,0,0,.25); color: #fff; font-weight: 900; font-size: 50px;
         line-height: 76px; text-align: center; }
   .som { position: absolute; left: 50%; top: 360px; font-weight: 900; font-size: 72px; white-space: nowrap; }
+  /* ---- formato horizontal (YouTube 16:9) ---- */
+  body.horizontal, html.horizontal { width: 1280px; height: 720px; }
+  body.horizontal #tela { width: 1280px; height: 720px; }
+  body.horizontal .legenda { top: 588px; font-size: 42px; }
+  body.horizontal .titulo { top: 34px; font-size: 50px; left: 140px; right: 140px; }
+  body.horizontal .final { top: 60px; font-size: 54px; }
+  body.horizontal .cartao { top: 70px; }
+  body.horizontal .etiqueta, body.horizontal .ok { top: 160px; }
+  body.horizontal .som { top: 200px; }
 </style>
 </head>
 <body>
@@ -32,6 +41,7 @@
 <div id="camada"></div>
 <script type="module">
   const params = new URLSearchParams(location.search);
+  if (params.get('formato') === 'horizontal') { document.body.classList.add('horizontal'); document.documentElement.classList.add('horizontal'); }
   const { iniciar } = await import('./motor.js');
   const video = await import(`./videos/${params.get('video')}.js`);
   if (video.preparar) await video.preparar();

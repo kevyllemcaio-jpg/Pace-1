@@ -22,7 +22,9 @@
 
 import * as THREE from 'three';
 
-export const W = 720, H = 1280;
+// Vertical (padrão) 720x1280 ou horizontal 1280x720 (?formato=horizontal)
+export const HORIZONTAL = new URLSearchParams(location.search).get('formato') === 'horizontal';
+export const W = HORIZONTAL ? 1280 : 720, H = HORIZONTAL ? 720 : 1280;
 export const ATRASO_FALA = 0.2;
 
 export const lim = (x) => Math.min(1, Math.max(0, x));
