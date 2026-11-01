@@ -147,24 +147,42 @@ function arquivoSom(tipo) {
     return;
   }
 
-  // 2) Quadros -> vídeo
+  // 2) Quadros -> vídeo, em PEDAÇOS de 10 s salvos no disco (retomável: se o ambiente
+  //    reiniciar, os pedaços já prontos são reaproveitados e o render continua de onde parou).
   const semAudio = path.join(pastaSaida, `.${nome}-sem-audio.mp4`);
-  const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-    '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio], { stdio: ['pipe', 'inherit', 'inherit'] });
-  const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
   const total = Math.round(duracao * FPS);
+  const PEDACO = FPS * 10;
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios })).digest('hex').slice(0, 10);
+  const pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
+  fs.mkdirSync(pastaPedacos, { recursive: true });
+  const nPedacos = Math.ceil(total / PEDACO);
   const t0 = Date.now();
-  for (let f = 0; f < total; f++) {
-    await desenhar(f / FPS);
-    const img = await page.screenshot({ type: 'jpeg', quality: 92 });
-    if (!ff.stdin.write(img)) await new Promise((r) => ff.stdin.once('drain', r));
-    if (f % FPS === 0) {
-      const resta = ((Date.now() - t0) / (f + 1)) * (total - f) / 1000;
-      process.stdout.write(`\rquadros: ${f}/${total}  (faltam ~${Math.round(resta)} s)   `);
+  let feitos = 0;
+  for (let k = 0; k < nPedacos; k++) {
+    const arq = path.join(pastaPedacos, `p${String(k).padStart(4, '0')}.mp4`);
+    if (fs.existsSync(arq)) continue; // já renderizado antes
+    const tmpArq = arq + '.tmp.mp4';
+    const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', tmpArq], { stdio: ['pipe', 'inherit', 'inherit'] });
+    const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
+    const ini = k * PEDACO, fim = Math.min(total, ini + PEDACO);
+    for (let f = ini; f < fim; f++) {
+      await desenhar(f / FPS);
+      const img = await page.screenshot({ type: 'jpeg', quality: 92 });
+      if (!ff.stdin.write(img)) await new Promise((r) => ff.stdin.once('drain', r));
+      feitos++;
+      if (f % FPS === 0) {
+        const resta = ((Date.now() - t0) / feitos) * (total - f) / 1000;
+        process.stdout.write(`\rquadros: ${f}/${total}  (faltam ~${Math.round(resta)} s)   `);
+      }
     }
+    ff.stdin.end();
+    await fimFF;
+    fs.renameSync(tmpArq, arq); // só vira "pronto" quando o pedaço termina inteiro
   }
-  ff.stdin.end();
-  await fimFF;
+  const listaPedacos = path.join(pastaPedacos, 'lista.txt');
+  fs.writeFileSync(listaPedacos, Array.from({ length: nPedacos }, (_, k) => `file 'p${String(k).padStart(4, '0')}.mp4'`).join('\n'));
+  ffmpeg(['-f', 'concat', '-safe', '0', '-i', listaPedacos, '-c', 'copy', semAudio]);
   console.log(`\rquadros: ${total}/${total}                         `);
 
   // 3) Áudio: narração + efeitos
@@ -186,6 +204,7 @@ function arquivoSom(tipo) {
   fs.rmSync(semAudio);
   if (config.musica === false) fs.copyFileSync(semMusica, path.join(pastaSaida, `${nome}.mp4`));
   else musicar(nome);
+  fs.rmSync(pastaPedacos, { recursive: true, force: true });
   console.log(`Pronto: ${path.join(pastaSaida, `${nome}.mp4`)} (${duracao.toFixed(1)} s)`);
 })().catch((e) => {
   console.error(e);

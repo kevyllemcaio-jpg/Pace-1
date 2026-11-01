@@ -44,6 +44,10 @@ Braços: `normal`, `cima`, `aceno`, `cabeca`, `aponta`. Rosto: `feliz`, `serio`,
 - `personagem3d.js` — o personagem.
 - `videos/<tema>.js` — o roteiro de cada vídeo (falas + o que acontece em cada bloco).
 
+## Renderização retomável
+O `render3d.js` grava o vídeo em pedaços de 10 s em `saida/.pedacos/`. Se o computador/ambiente
+reiniciar no meio, é só rodar o mesmo comando de novo: ele pula os pedaços prontos e continua.
+
 ## Comandos
 - `node estudio3d/render3d.js ponte --previa` → uma imagem por bloco (rápido)
 - `node estudio3d/quadros.js ponte 0,10.5,30` → imagens de instantes exatos
