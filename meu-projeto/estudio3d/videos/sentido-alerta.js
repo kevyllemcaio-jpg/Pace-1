@@ -5,7 +5,6 @@
 import * as THREE from 'three';
 import { cartao, etiqueta, textoFinal, FALA_FINAL } from '../motor.js';
 import { mat, caixa, cilindro, malha, carro } from '../mundo.js';
-import { criarPersonagem } from '../personagem3d.js';
 import { criarRua } from '../cenarios/rua.js';
 
 export const config = {
@@ -18,6 +17,100 @@ const CORES_CENA = { rua: '#9ED8FF', cozinha: '#1F5C5E', campo: '#8ED6FF', quart
 const CALCADA_LONGE = -5.8, CALCADA_PERTO = 5.8; // calçada de cada lado da rua (z)
 const smooth = (x) => { const k = Math.min(1, Math.max(0, x)); return k * k * (3 - 2 * k); };
 
+// ---------- stickman fortinho (estilo deste vídeo) ----------
+const up = new THREE.Vector3(0, 1, 0);
+function segmento(mesh, a, b) {
+  const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b);
+  const d = B.clone().sub(A);
+  mesh.position.copy(A.clone().add(B).multiplyScalar(0.5));
+  mesh.quaternion.setFromUnitVectors(up, d.clone().normalize());
+  mesh.scale.set(1, d.length(), 1);
+}
+const POSES = {
+  normal: { D: [0.36, 0.92, 0.05], E: [-0.36, 0.92, 0.05] },
+  lado: { D: [0.85, 1.2, 0], E: [-0.3, 0.95, 0.05] },
+  aponta: { D: [0.2, 1.25, 0.8], E: [-0.36, 0.92, 0.05] },
+  cima: { D: [0.55, 1.85, 0], E: [-0.55, 1.85, 0] },
+  aceno: { D: [0.6, 1.7, 0.05], E: [-0.36, 0.92, 0.05] },
+  cabeca: { D: [0.3, 1.5, 0.15], E: [-0.3, 1.5, 0.15] },
+};
+function stickman() {
+  const g = new THREE.Group();
+  const corpo = new THREE.Group();
+  g.add(corpo);
+  const preto = mat('#141414', { unico: true });
+  const branco = mat('#FFFFFF', { unico: true });
+  const ombros = { D: [0.22, 1.2, 0], E: [-0.22, 1.2, 0] };
+  const tronco = malha(new THREE.CylinderGeometry(1, 1, 1, 14), preto, { sombra: false });
+  segmento(tronco, [0, 0.82, 0], [0, 1.26, 0]);
+  tronco.scale.x = 0.2; tronco.scale.z = 0.2; // grossura do tronco (escala X/Z)
+  corpo.add(tronco);
+  // cabeça: contorno preto + rosto branco
+  const cab = malha(new THREE.SphereGeometry(0.245, 18, 14), preto, { sombra: false });
+  cab.position.set(0, 1.58, -0.04);
+  const rosto = malha(new THREE.SphereGeometry(0.21, 18, 14), branco, { sombra: false });
+  rosto.position.set(0, 1.58, 0.0);
+  corpo.add(cab, rosto);
+  const olhoE = malha(new THREE.SphereGeometry(0.03, 8, 6), preto, { sombra: false });
+  const olhoD = olhoE.clone();
+  olhoE.position.set(-0.08, 1.62, 0.225); olhoD.position.set(0.08, 1.62, 0.225);
+  const boca = caixa(0.1, 0.03, 0.02, preto, [0, 1.52, 0.225], { sombra: false });
+  corpo.add(olhoE, olhoD, boca);
+  // pernas
+  const pernaE = malha(new THREE.CylinderGeometry(0.09, 0.09, 1, 10), preto, { sombra: false });
+  const pernaD = pernaE.clone();
+  segmento(pernaD, [0.1, 0.84, 0], [0.14, 0.06, 0]);
+  segmento(pernaE, [-0.1, 0.84, 0], [-0.14, 0.06, 0]);
+  corpo.add(pernaD, pernaE);
+  // braços (mãos nas pontas)
+  const bracos = {};
+  for (const k of ['D', 'E']) {
+    const br = malha(new THREE.CylinderGeometry(0.08, 0.08, 1, 10), preto, { sombra: false });
+    const mao = malha(new THREE.SphereGeometry(0.09, 10, 8), preto, { sombra: false });
+    corpo.add(br, mao);
+    bracos[k] = { br, mao };
+  }
+  g.corpo = corpo; g.boca = boca; g.olhos = [olhoE, olhoD]; g.ombros = ombros; g.bracos = bracos;
+  g.estado = { bracos: 'normal', expr: 'feliz' };
+  g.animar = (t) => {
+    const e = g.estado || {};
+    const p = POSES[e.bracos] || POSES.normal;
+    for (const k of ['D', 'E']) {
+      const { br, mao } = g.bracos[k];
+      const m = p[k];
+      segmento(br, ombros[k], m);
+      mao.position.set(...m);
+    }
+    const sobe = e.pulo ? 0.12 * Math.abs(Math.sin(t * 6)) : 0;
+    corpo.position.y = sobe + 0.01 * Math.sin(t * 3);
+    const falando = e.falando ? 1 : 0;
+    const abertura = { feliz: 0.6, sorriso: 0.9, serio: 0.35, surpreso: 2.2, preocupado: 1.3 }[e.expr] || 0.6;
+    boca.scale.y = falando ? abertura * (0.6 + 0.6 * Math.abs(Math.sin(t * 20))) : abertura;
+    g.olhos.forEach((o) => o.scale.setScalar(e.expr === 'surpreso' ? 1.5 : 1));
+  };
+  return g;
+}
+// ---------- carro redondinho ----------
+function carroRedondo(cor) {
+  const g = new THREE.Group();
+  g.add(caixa(4.2, 0.6, 1.9, mat(cor), [0, 0.7, 0]));
+  const cabine = malha(new THREE.SphereGeometry(1, 16, 12), mat(cor), { sombra: false });
+  cabine.scale.set(1.0, 0.55, 0.9);
+  cabine.position.set(-0.2, 1.25, 0);
+  g.add(cabine);
+  const vidro = malha(new THREE.SphereGeometry(1, 14, 10), mat('#9BE3FF'), { sombra: false });
+  vidro.scale.set(0.8, 0.4, 0.78);
+  vidro.position.set(-0.2, 1.3, 0);
+  g.add(vidro);
+  for (const x of [1.3, -1.3]) for (const z of [0.98, -0.98]) {
+    const roda = cilindro(0.42, 0.3, mat('#222222'), [x, 0.42, z], 16);
+    roda.rotation.x = Math.PI / 2;
+    g.add(roda);
+  }
+  g.rodar = () => {};
+  return g;
+}
+
 export function criar(ctx) {
   const { cena } = ctx;
   const ruaG = new THREE.Group(), cozG = new THREE.Group(), campoG = new THREE.Group(), quartoG = new THREE.Group(), corpoG = new THREE.Group();
@@ -25,7 +118,7 @@ export function criar(ctx) {
 
   // ---------- rua (carro e pássaro) ----------
   criarRua({ cena: ruaG, hemi: ctx.hemi, sol: ctx.sol }, { transversal: false, recuo: 16 });
-  const auto = carro('#E8322B');
+  const auto = carroRedondo('#FFB300');
   auto.rotation.y = Math.PI;
   auto.position.set(0, 0.03, -2);
   ruaG.add(auto);
@@ -74,7 +167,7 @@ export function criar(ctx) {
   quartoG.add(caixa(0.35, 0.25, 0.35, mat('#FFD21F', { brilho: true }), [1.8, 1.25, -1.0]));
 
   // ---------- personagem ----------
-  const voce = criarPersonagem();
+  const voce = stickman();
   corpoG.add(voce);
 
   let E;
@@ -190,7 +283,7 @@ export function criar(ctx) {
     { fala: 'Você atravessa a rua.', destaque: ['atravessa'], corteSeco: true, camera: { pos: [1.5, 1.4, 9.5], alvo: [0, 1.2, 2.0] },
       aplicar(lt, b) { setar('rua', 'andar', b.inicio, 'lado', 'feliz'); }, },
     // 2. carro surge
-    { fala: 'E um carro surge da esquina.', destaque: ['carro', 'esquina'], corteSeco: true, camera: { pos: [5.5, 1.3, 9.0], alvo: [9.5, 1.0, -2.0] },
+    { fala: 'E um carro surge da esquina.', destaque: ['carro', 'esquina'], corteSeco: true, camera: { pos: [5.5, 1.3, 9.0], alvo: [13.0, 1.0, -2.0] },
       aplicar(lt, b) { setar('rua', 'parar', b.inicio, 'aponta', 'surpreso'); E.tB = b.inicio; }, sons: [{ em: () => 0.0, tipo: 'motor' }] },
     // 3. pula antes do carro chegar (o carro passa em alta velocidade)
     { fala: 'Seu corpo já pula pra trás, antes de você entender.', destaque: ['pula', 'entender'], corteSeco: true, camera: { pos: [2.5, 1.6, 10.0], alvo: [0.0, 1.1, 4.5] },
