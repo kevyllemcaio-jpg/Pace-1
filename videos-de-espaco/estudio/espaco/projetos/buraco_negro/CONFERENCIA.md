@@ -26,7 +26,7 @@ Análise de 525 quadros a 12 qps (43.8 s).
 | C1.2 | leva oito minutos | luz | luz 100% | ok |
 | C1.3 | pra chegar aqui. | luz, terra | luz 100%, terra 100% | ok |
 | C2.1 | Então, por oito minutos, | luz | luz 100% | ok |
-| C2.2 | o dia continua. | terra, luz | terra 100%, luz 36% | ALERTA |
+| C2.2 | o dia continua. | terra | terra 100% | ok |
 | C3.1 | Depois, | terra | terra 100% | ok |
 | C3.2 | escuridão. | terra | terra 100% | ok |
 | C4.1 | E sem luz, | terra | terra 100% | ok |
@@ -56,13 +56,10 @@ Análise de 525 quadros a 12 qps (43.8 s).
 
 ## Resultado
 
-**1 alerta(s)** (corrija antes de mostrar):
+**Nenhum alerta.**
 
-- C2.2 "o dia continua.": pede "luz" e a tela mostra só 36% do tempo
 
-2 aviso(s) (confira no quadro):
+Nenhum aviso.
 
-- p06: "buraco" fica atrás da legenda (faixa de 58% a 68% da altura) por 2.8 s. Suba a imagem com "compo": {"y": 0.34}, afaste a câmera, ou, se for de propósito, ponha "veu": true (escurece embaixo) ou "faixa": false nesse plano
-- p06: a faixa da legenda fica clara por 1.2 s (mais de 30% dos pixels claros atrás da palavra: água, anéis, um corpo brilhante); a palavra perde contraste. Mude o ângulo, tire o objeto claro de trás da palavra ou use "veu": true
 
 Folha de contato (1 quadro por segundo): `saida/folha.jpg`
