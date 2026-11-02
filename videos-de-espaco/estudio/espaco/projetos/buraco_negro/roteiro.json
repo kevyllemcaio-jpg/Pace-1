@@ -1,0 +1,27 @@
+{
+ "titulo": "E se o Sol virasse um buraco negro?",
+ "pergunta_mae": "E se o Sol virasse um buraco negro agora?",
+ "fontes": [
+  "Fora do corpo, a gravidade de uma massa esférica só depende da massa e da distância (teorema das cascas de Newton; na relatividade, a solução de Schwarzschild vale fora de qualquer corpo esférico). Um buraco negro com a massa do Sol puxaria a Terra igual: a órbita e o ano não mudariam. NASA Science, 'Black Holes': 'If the Sun were replaced by a black hole of the same mass, Earth would continue to orbit as it does now'.",
+  "Raio de Schwarzschild do Sol: 2GM/c² ≈ 2,95 km, uma bola de uns 6 km de diâmetro.",
+  "A luz do Sol leva cerca de 8 minutos e 20 segundos para chegar à Terra (150 milhões de km a 300 mil km/s). A gravidade também viaja à velocidade da luz (LIGO/Virgo, GW170817).",
+  "Sem a luz do Sol, a superfície da Terra esfriaria rápido: a temperatura média cairia abaixo de 0 °C em cerca de uma semana e o mar congelaria na superfície ao longo de meses (o fundo do oceano levaria muito mais). Estimativa ilustrativa, de modelos de balanço de energia.",
+  "O Sol não tem massa para virar buraco negro: vai virar uma anã branca daqui a uns 5 bilhões de anos. Buracos negros estelares nascem de estrelas muito mais pesadas (dezenas de vezes a massa do Sol). NASA, 'Stellar evolution'."
+ ],
+ "voz_guia": { "mac": "Luciana", "taxa": 190 },
+ "voz_final": { "id": "", "modelo": "eleven_multilingual_v2" },
+ "falas": [
+  { "id": "A1", "pausa": 0.3, "pedacos": ["E se o *Sol*|sol,terra", "virasse um *buraco negro* agora?|buraco,terra"] },
+  { "id": "A2", "pausa": 0.5, "pedacos": ["A Terra ia ser|terra,buraco", "*engolida*?|terra,buraco"] },
+  { "id": "A3", "pausa": 0.3, "pedacos": ["Não.|terra,orbita", "Ela continua girando|terra,orbita", "no *mesmo caminho*.|terra,orbita"] },
+  { "id": "B1", "pausa": 0.3, "pedacos": ["O buraco teria|buraco", "a *mesma massa* do Sol,|buraco,puxao", "então puxaria a Terra|puxao,terra", "com a mesma força.|puxao,terra"] },
+  { "id": "B2", "pausa": 0.4, "pedacos": ["Só que o Sol inteiro|buraco", "ia caber numa bola|buraco", "de uns *seis quilômetros*.|buraco,regua"] },
+  { "id": "B3", "pausa": 0.5, "pedacos": ["Mas o problema|terra", "não é o puxão.|terra,puxao"] },
+  { "id": "C1", "pausa": 0.3, "pedacos": ["É que a luz do Sol|luz,terra", "leva *oito minutos*|luz,relogio", "pra chegar aqui.|luz,terra"] },
+  { "id": "C2", "pausa": 0.6, "pedacos": ["Então, por oito minutos,|luz,relogio", "o dia continua.|terra,luz"] },
+  { "id": "C3", "pausa": 0.8, "pedacos": ["Depois,|terra", "*escuridão*.|terra"] },
+  { "id": "C4", "pausa": 0.4, "pedacos": ["E sem luz,|terra", "o mar começa|terra,gelo", "a *congelar*.|terra,gelo"] },
+  { "id": "D1", "pausa": 0.3, "pedacos": ["Calma:|sol,terra", "o Sol é *leve demais*|sol", "pra virar buraco negro.|sol,terra"] },
+  { "id": "Q1", "pausa": 0.2, "pedacos": ["E você,|terra", "ia perceber|terra,relogio", "nos primeiros *oito minutos*?|terra,relogio"] }
+ ]
+}
