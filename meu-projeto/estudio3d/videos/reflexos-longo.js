@@ -307,6 +307,34 @@ export function criar(ctx) {
     bl('Faça o teste dez vezes, com a mão dominante e depois com a outra. A média mostra o seu tempo real.', 'sala', 'nenhum', cam.sala, { destaque: ['dez vezes', 'média'] }),
     bl('Vamos recapitular: o olho vê, o sinal sobe, o cérebro decide, e a mão responde.', 'sala', 'sinal', cam.sinal, { destaque: ['recapitular'] }),
     bl('E existe o atalho do reflexo, que passa pela medula e é mais rápido do que pensar.', 'consultorio', 'reflexo', cam.cons, { pose: 'lado', destaque: ['atalho'] }),
+    // 9. Por que a reação muda
+    bl('Até aqui, você viu a reação mais simples: uma luz, um som, uma régua. Agora vem a parte que muda de pessoa para pessoa.', 'sala', 'nenhum', cam.sala, { destaque: ['mais simples', 'muda'] }),
+    bl('Imagine que você precisa escolher uma resposta entre duas opções. Agora pense em dez opções. O tempo de decisão aumenta.', 'sala', 'nenhum', cam.salaPerto, { destaque: ['duas opções', 'dez opções'] }),
+    bl('Esse efeito tem nome: lei de Hick. Quanto mais opções, mais o cérebro demora para escolher a resposta certa.', 'sala', 'nenhum', cam.salaPerto, { destaque: ['lei de Hick'] }),
+    bl('Por isso, num jogo com muitos botões, a resposta fica mais lenta, mesmo com dedos rápidos.', 'sala', 'nenhum', cam.sala, { destaque: ['muitos botões', 'dedos rápidos'] }),
+    bl('E a idade também pesa. Em geral, a reação tende a ficar mais lenta com o passar dos anos.', 'sala', 'nenhum', cam.salaPerto, { destaque: ['idade', 'mais lenta'] }),
+    bl('Isso não quer dizer que a pessoa perde a capacidade de reagir. O efeito costuma ser gradual, especialmente depois da meia-idade.', 'sala', 'nenhum', cam.sala, { destaque: ['gradual', 'meia-idade'] }),
+    // 10. No dia a dia: cansaço, álcool e distração
+    bl('Agora, o dia a dia. Cansaço, falta de sono e álcool tendem a aumentar o tempo de reação.', 'rua', 'nenhum', cam.carro, { carro: true, destaque: ['cansaço', 'álcool'] }),
+    bl('Isso significa que, numa situação de trânsito, uma reação que parece pequena pode fazer diferença de vários metros.', 'rua', 'nenhum', cam.carro, { destaque: ['vários metros'] }),
+    bl('A distração também pesa. Quando a atenção está no celular, o cérebro divide o foco e demora mais para perceber o perigo.', 'rua', 'nenhum', cam.carro, { destaque: ['distração', 'celular'] }),
+    bl('Por isso, a reação é também uma questão de atenção. O corpo responde melhor quando o cérebro está presente.', 'rua', 'nenhum', cam.carro, { destaque: ['atenção'] }),
+    // 11. Antecipação
+    bl('Tem mais um truque, que é a antecipação. Quem prevê o movimento do outro começa a responder antes do sinal chegar.', 'pista', 'nenhum', cam.pista, { destaque: ['antecipação', 'prevê'] }),
+    bl('Num jogo de bola, um bom jogador olha o ombro e o quadril do adversário, não só a bola.', 'pista', 'nenhum', cam.pista, { destaque: ['ombro', 'quadril'] }),
+    bl('É por isso que atletas treinam com situações parecidas com o jogo real. O treino ensina o cérebro a prever o que vem.', 'pista', 'nenhum', cam.pista, { destaque: ['treinam', 'prever'] }),
+    bl('Mas atenção: prever demais também erra. Se a pessoa se antecipa e o movimento não acontece, a resposta sai atrasada.', 'pista', 'nenhum', cam.pista, { destaque: ['prever demais', 'atrasada'] }),
+    // 12. Teste de decisão na cozinha
+    bl('Vamos fazer um teste de decisão. Uma caneca cai, e você precisa escolher o que fazer: segurar a caneca, ou deixar cair.', 'cozinha', 'nenhum', cam.cozinha, { pose: 'aponta', expr: 'surpreso', caneca: 1.0, destaque: ['teste de decisão'] }),
+    bl('Quanto mais coisas você precisa decidir ao mesmo tempo, mais o corpo hesita. Esse é o custo da escolha.', 'cozinha', 'nenhum', cam.cozinha, { destaque: ['hesita', 'custo'] }),
+    bl('Em situações reais, a melhor resposta costuma ser a mais simples. Ter um caminho claro ajuda o corpo a reagir.', 'cozinha', 'nenhum', cam.cozinha, { destaque: ['mais simples', 'caminho claro'] }),
+    // 13. Resumo do capítulo e pausa
+    bl('Resumindo: a reação depende do estímulo, do caminho do sinal, do número de opções, da idade, do sono e da atenção.', 'sala', 'nenhum', cam.sala, { destaque: ['resumindo', 'atenção'] }),
+    bl('Não existe um número único para todo mundo. O seu tempo muda com o dia, o cansaço e a situação.', 'sala', 'nenhum', cam.salaPerto, { destaque: ['número único'] }),
+    bl('Por isso, o teste da régua só faz sentido se você repetir várias vezes e olhar a média.', 'sala', 'nenhum', cam.sala, { destaque: ['média'] }),
+    bl('Antes de terminar, uma pergunta: você acha que um tempo de reação pode ser treinado até o nível de um atleta?', 'sala', 'nenhum', cam.salaPerto, { destaque: ['treinado', 'atleta'] }),
+    bl('A resposta depende do tipo de reação. Dá pra melhorar muito a resposta a um estímulo conhecido, mas o limite do sinal no nervo continua.', 'sala', 'nenhum', cam.sala, { destaque: ['estímulo conhecido', 'limite'] }),
+    bl('Então, quando alguém disser que tem reflexo sobre-humano, a pergunta certa é: em qual situação?', 'sala', 'nenhum', cam.salaPerto, { destaque: ['sobre-humano', 'situação'] }),
     bl(FALA_FINAL, 'sala', 'nenhum', cam.final, { pose: 'aponta', corte: true, destaque: [] }),
   ];
 
