@@ -36,6 +36,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   abaixa sozinha quando a voz fala. Entra automaticamente no `render3d.js`
   (`node estudio3d/musicar.js <video>` recoloca a música num vídeo já pronto).
 
+## Entrega de cada vídeo
+- Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
+- Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
+
 ## Personagem principal ("você")
 `personagem3d.js`: jaqueta amarela sem zíper, calça preta, tênis branco com sola vermelha,
 cabelo castanho-escuro curto repartido de lado. Aparece na abertura, comemora no
