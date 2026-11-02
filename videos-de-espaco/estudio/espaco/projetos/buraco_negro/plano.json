@@ -1,8 +1,22 @@
 {
- "titulo": "E se o Sol apagasse?",
+ "titulo": "E se o Sol virasse um buraco negro?",
  "estilo": "vivo",
- "cauda": 1.7,
+ "cauda": 1.8,
+ "luz": {
+  "de": "centro"
+ },
  "objetos": {
+  "centro": {
+   "tipo": "brilho",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "raio": 4,
+   "opacidade": 0,
+   "fundo": true
+  },
   "sol": {
    "corpo": "estrelaG",
    "pos": [
@@ -10,155 +24,567 @@
     0,
     0
    ],
-   "raio": 1.6,
-   "halo": 5,
-   "marcador": true,
-   "brilho": [
+   "raio": 4,
+   "halo": 3.5,
+   "fundo": true,
+   "entra": "cresce",
+   "sai": "direto",
+   "mostrar": [
+    [
+     "inicio",
+     "A1:buraco"
+    ],
+    [
+     "B2-0.05",
+     "B2.3"
+    ],
+    [
+     "D1+0.1",
+     null
+    ]
+   ],
+   "escala": [
     {
-     "de": "A1:apagasse",
-     "ate": "A1.fim",
-     "para": 0.08
+     "de": "A1:virasse",
+     "ate": "A1:buraco",
+     "para": 0.12
+    },
+    {
+     "de": "B2-0.1",
+     "ate": "B2-0.05",
+     "para": 1
+    },
+    {
+     "de": "B2.2",
+     "ate": "B2.3",
+     "para": 0.03
+    },
+    {
+     "de": "D1",
+     "ate": "D1+0.05",
+     "para": 1
     }
+   ]
+  },
+  "buraco": {
+   "tipo": "buraco",
+   "raio": 7,
+   "mostrar": [
+    [
+     "A1:buraco",
+     "D1+0.1"
+    ]
    ]
   },
   "terra": {
    "corpo": "terra",
-   "pos": [
-    9,
-    0,
-    4
-   ],
-   "raio": 0.45,
-   "marcador": true
+   "raio": 1.6,
+   "girar": 1,
+   "orbita": {
+    "em": [
+     0,
+     0,
+     0
+    ],
+    "raio": 30,
+    "periodo": 270,
+    "fase": -0.3056
+   }
   },
-  "caminho": {
-   "tipo": "linha",
-   "de": "sol",
-   "para": "terra",
+  "orbita": {
+   "tipo": "orbita",
+   "em": [
+    0,
+    0,
+    0
+   ],
+   "raio": 30,
+   "destaque": true,
+   "opacidade": 0.7,
+   "aparece": "A3"
+  },
+  "puxao": {
+   "tipo": "seta",
+   "de": "terra",
+   "para": [
+    0,
+    0,
+    0
+   ],
    "cor": "#FFD166",
-   "largura": 2,
-   "opacidade": 0.5,
-   "aparece": "A2",
-   "fundo": true
+   "largura": 0.35,
+   "desenha": [
+    "B1.2",
+    "B1.2+0.6"
+   ],
+   "mostrar": [
+    [
+     "B1.2",
+     "B3.fim"
+    ]
+   ],
+   "pos": [
+    -5,
+    0,
+    -14
+   ],
+   "raio": 15
+  },
+  "gelo": {
+   "tipo": "casca",
+   "em": "terra",
+   "raio": 1.7,
+   "cor": "#DDF0FF",
+   "opacidade": 0.85,
+   "mostrar": [
+    [
+     "C4.2",
+     "D1"
+    ]
+   ],
+   "escala": [
+    {
+     "de": "C4.2",
+     "ate": "C4.fim",
+     "para": 1
+    }
+   ],
+   "borda": 1.2
   }
  },
  "planos": [
   {
    "de": "inicio",
-   "novo": "o Sol de perto, brilhando",
-   "heroi": "sol",
+   "novo": "o Sol embaixo e a Terra em cima; o Sol encolhe e vira buraco negro",
+   "longo": true,
    "camera": {
     "de": {
      "enquadrar": [
-      "sol"
-     ],
-     "ocupa": 0.4,
-     "az": -20,
-     "el": 6
-    },
-    "para": {
-     "az": -14
-    },
-    "curva": "meio"
-   }
-  },
-  {
-   "de": "A1:apagasse",
-   "novo": "o Sol apaga",
-   "heroi": "sol",
-   "camera": {
-    "de": {
-     "enquadrar": [
-      "sol"
-     ],
-     "ocupa": 0.42,
-     "az": -14,
-     "el": 6
-    },
-    "para": {
-     "ocupa": 0.36
-    },
-    "curva": "chega"
-   }
-  },
-  {
-   "de": "A2",
-   "novo": "a Terra lá longe, ainda iluminada",
-   "heroi": "terra",
-   "camera": {
-    "de": {
-     "enquadrar": [
+      "centro",
       "terra"
      ],
-     "ocupa": 0.4,
-     "az": -60,
-     "el": 10
+     "ocupa": 0.62,
+     "az": -12,
+     "el": 38,
+     "mm": 35
     },
     "para": {
-     "az": -52
-    }
+     "az": -6,
+     "el": 34,
+     "ocupa": 0.66
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
    }
   },
   {
-   "de": "A2.2",
-   "novo": "a luz que ainda está no caminho",
+   "de": "A3",
+   "continuo": true,
+   "longo": true,
+   "novo": "a órbita aparece e a Terra segue nela",
    "camera": {
     "de": {
      "enquadrar": [
-      "sol",
+      "centro",
+      "terra"
+     ],
+     "ocupa": 0.66,
+     "az": -6,
+     "el": 34,
+     "mm": 35
+    },
+    "para": {
+     "az": 4,
+     "el": 48,
+     "ocupa": 0.6
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
+   }
+  },
+  {
+   "de": "B1",
+   "continuo": true,
+   "longo": true,
+   "novo": "a seta do puxão liga a Terra ao buraco",
+   "camera": {
+    "de": {
+     "enquadrar": [
+      "centro",
       "terra"
      ],
      "ocupa": 0.6,
-     "az": 20,
-     "el": 40
+     "az": 4,
+     "el": 48,
+     "mm": 35
     },
     "para": {
-     "az": 26,
-     "el": 36
-    }
+     "az": 10,
+     "el": 22,
+     "ocupa": 0.7
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
+   }
+  },
+  {
+   "de": "B2",
+   "continuo": true,
+   "longo": true,
+   "novo": "perto do buraco: o Sol inteiro aparece no lugar e encolhe até sumir no centro",
+   "heroi": "buraco",
+   "camera": {
+    "de": {
+     "alvo": [
+      0,
+      0,
+      0
+     ],
+     "dist": 62,
+     "az": 10,
+     "el": 12,
+     "mm": 35
+    },
+    "para": {
+     "dist": 52,
+     "el": 9
+    },
+    "curva": "chega"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.34
+   }
+  },
+  {
+   "de": "B3",
+   "continuo": true,
+   "longo": true,
+   "novo": "recua: a Terra continua lá, iluminada",
+   "camera": {
+    "de": {
+     "alvo": [
+      0,
+      0,
+      0
+     ],
+     "dist": 52,
+     "az": 10,
+     "el": 9,
+     "mm": 35
+    },
+    "para": {
+     "enquadrar": [
+      "centro",
+      "terra"
+     ],
+     "ocupa": 0.7,
+     "az": 0,
+     "el": 26
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
+   }
+  },
+  {
+   "de": "C1",
+   "continuo": true,
+   "longo": true,
+   "novo": "a luz que já tinha saído viaja até a Terra",
+   "camera": {
+    "de": {
+     "enquadrar": [
+      "centro",
+      "terra"
+     ],
+     "ocupa": 0.7,
+     "az": 0,
+     "el": 26,
+     "mm": 35
+    },
+    "para": {
+     "enquadrar": [
+      "terra"
+     ],
+     "ocupa": 0.3,
+     "az": -8,
+     "el": 18
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
+   }
+  },
+  {
+   "de": "C3:escuridao",
+   "continuo": true,
+   "longo": true,
+   "novo": "a última luz chega: a Terra apaga",
+   "heroi": "terra",
+   "camera": {
+    "de": {
+     "alvo": "terra",
+     "dist": 20,
+     "az": -8,
+     "el": 14,
+     "mm": 50
+    },
+    "para": {
+     "dist": 18,
+     "az": -2
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.34
+   }
+  },
+  {
+   "de": "C4",
+   "continuo": true,
+   "longo": true,
+   "novo": "o gelo cobre a Terra escura",
+   "heroi": "terra",
+   "camera": {
+    "de": {
+     "alvo": "terra",
+     "dist": 18,
+     "az": -2,
+     "el": 14,
+     "mm": 50
+    },
+    "para": {
+     "dist": 16.5,
+     "az": 6
+    },
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.34
+   }
+  },
+  {
+   "de": "D1",
+   "continuo": true,
+   "longo": true,
+   "novo": "rebobina: o Sol volta, a Terra acende",
+   "camera": {
+    "de": {
+     "enquadrar": [
+      "centro",
+      "terra"
+     ],
+     "ocupa": 0.66,
+     "az": 6,
+     "el": 30,
+     "mm": 35
+    },
+    "para": {
+     "az": 0,
+     "el": 34,
+     "ocupa": 0.62
+    },
+    "curva": "chega"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
    }
   },
   {
    "de": "Q1",
-   "novo": "a Terra, e a câmera continua chegando",
-   "heroi": "terra",
+   "continuo": true,
+   "longo": true,
+   "novo": "a câmera desce até a Terra, que continua acesa",
    "camera": {
     "de": {
+     "enquadrar": [
+      "centro",
+      "terra"
+     ],
+     "ocupa": 0.62,
+     "az": 0,
+     "el": 34,
+     "mm": 35
+    },
+    "para": {
      "enquadrar": [
       "terra"
      ],
      "ocupa": 0.34,
-     "az": -40,
-     "el": 12
+     "az": -14,
+     "el": 16
     },
-    "para": {
-     "ocupa": 0.42,
-     "az": -30
-    },
-    "curva": "meio"
+    "curva": "suave"
+   },
+   "compo": {
+    "x": 0.5,
+    "y": 0.36
    }
   }
  ],
  "eventos": [
   {
-   "tipo": "pulso",
-   "nome": "luz",
-   "em": "A2.2",
-   "ate": "A2.3",
-   "de": "sol",
-   "para": "terra",
-   "cor": "#fff0c8",
-   "tamanho": 0.35
+   "tipo": "clarao",
+   "em": "A1:buraco",
+   "alvo": [
+    0,
+    0,
+    0
+   ],
+   "forca": 0.6,
+   "dur": 0.5
   },
   {
    "tipo": "som",
-   "em": "A1:apagasse",
+   "em": "A1:buraco",
    "nota": "grave"
   },
   {
    "tipo": "som",
-   "em": "Q1",
+   "em": "B3",
    "nota": "plim"
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C1-0.2",
+   "ate": "C1+1.6",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C1+0.8",
+   "ate": "C1+2.6",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C1+1.8",
+   "ate": "C1+3.6",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C1+2.8",
+   "ate": "C2+1.0",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C2",
+   "ate": "C2+1.9",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C2+1.0",
+   "ate": "C2+2.9",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "pulso",
+   "nome": "luz",
+   "em": "C2+2.0",
+   "ate": "C3:escuridao",
+   "de": [
+    0,
+    0,
+    0
+   ],
+   "para": "terra",
+   "cor": "#FFE6A8",
+   "tamanho": 0.9
+  },
+  {
+   "tipo": "som",
+   "em": "C3:escuridao",
+   "nota": "grave"
+  },
+  {
+   "tipo": "rebobinar",
+   "em": "D1",
+   "ate": "D1+1.2"
+  },
+  {
+   "tipo": "clarao",
+   "em": "D1+0.1",
+   "alvo": [
+    0,
+    0,
+    0
+   ],
+   "forca": 0.4,
+   "dur": 0.4
+  },
+  {
+   "tipo": "som",
+   "em": "Q1",
+   "nota": "tique"
   }
- ]
+ ],
+ "extra": "extra.js"
 }

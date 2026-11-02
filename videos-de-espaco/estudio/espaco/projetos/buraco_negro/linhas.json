@@ -1,0 +1,1087 @@
+{
+ "titulo": "E se o Sol virasse um buraco negro?",
+ "total": 42.186,
+ "linhas": [
+  {
+   "id": "A1",
+   "texto": "E se o Sol virasse um buraco negro agora?",
+   "t0": 0.25,
+   "t1": 3.109,
+   "dur": 2.859,
+   "pausa": 0.3,
+   "arquivo": "voz/A1.wav",
+   "pedacos": [
+    {
+     "texto": "E se o Sol",
+     "bruto": "E se o *Sol*",
+     "ouro": [
+      "Sol"
+     ],
+     "ver": [
+      "sol",
+      "terra"
+     ],
+     "t0": 0.25,
+     "t1": 0.915,
+     "palavras": [
+      {
+       "t": "E",
+       "t0": 0.25,
+       "t1": 0.429
+      },
+      {
+       "t": "se",
+       "t0": 0.429,
+       "t1": 0.566
+      },
+      {
+       "t": "o",
+       "t0": 0.566,
+       "t1": 0.698
+      },
+      {
+       "t": "Sol",
+       "t0": 0.698,
+       "t1": 0.915
+      }
+     ]
+    },
+    {
+     "texto": "virasse um buraco negro agora?",
+     "bruto": "virasse um *buraco negro* agora?",
+     "ouro": [
+      "buraco negro"
+     ],
+     "ver": [
+      "buraco",
+      "terra"
+     ],
+     "t0": 0.915,
+     "t1": 2.775,
+     "palavras": [
+      {
+       "t": "virasse",
+       "t0": 0.915,
+       "t1": 1.343
+      },
+      {
+       "t": "um",
+       "t0": 1.343,
+       "t1": 1.584
+      },
+      {
+       "t": "buraco",
+       "t0": 1.584,
+       "t1": 2
+      },
+      {
+       "t": "negro",
+       "t0": 2,
+       "t1": 2.353
+      },
+      {
+       "t": "agora?",
+       "t0": 2.353,
+       "t1": 2.775
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "A2",
+   "texto": "A Terra ia ser engolida?",
+   "t0": 3.409,
+   "t1": 5.174,
+   "dur": 1.765,
+   "pausa": 0.5,
+   "arquivo": "voz/A2.wav",
+   "pedacos": [
+    {
+     "texto": "A Terra ia ser",
+     "bruto": "A Terra ia ser",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "buraco"
+     ],
+     "t0": 3.409,
+     "t1": 4.235,
+     "palavras": [
+      {
+       "t": "A",
+       "t0": 3.409,
+       "t1": 3.61
+      },
+      {
+       "t": "Terra",
+       "t0": 3.61,
+       "t1": 3.866
+      },
+      {
+       "t": "ia",
+       "t0": 3.866,
+       "t1": 4.016
+      },
+      {
+       "t": "ser",
+       "t0": 4.016,
+       "t1": 4.235
+      }
+     ]
+    },
+    {
+     "texto": "engolida?",
+     "bruto": "*engolida*?",
+     "ouro": [
+      "engolida"
+     ],
+     "ver": [
+      "terra",
+      "buraco"
+     ],
+     "t0": 4.235,
+     "t1": 4.841,
+     "palavras": [
+      {
+       "t": "engolida?",
+       "t0": 4.235,
+       "t1": 4.841
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "A3",
+   "texto": "Não. Ela continua girando no mesmo caminho.",
+   "t0": 5.674,
+   "t1": 8.957,
+   "dur": 3.283,
+   "pausa": 0.3,
+   "arquivo": "voz/A3.wav",
+   "pedacos": [
+    {
+     "texto": "Não.",
+     "bruto": "Não.",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "orbita"
+     ],
+     "t0": 5.674,
+     "t1": 5.974,
+     "palavras": [
+      {
+       "t": "Não.",
+       "t0": 5.674,
+       "t1": 5.974
+      }
+     ]
+    },
+    {
+     "texto": "Ela continua girando",
+     "bruto": "Ela continua girando",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "orbita"
+     ],
+     "t0": 5.974,
+     "t1": 7.702,
+     "palavras": [
+      {
+       "t": "Ela",
+       "t0": 5.974,
+       "t1": 6.561
+      },
+      {
+       "t": "continua",
+       "t0": 6.561,
+       "t1": 7.18
+      },
+      {
+       "t": "girando",
+       "t0": 7.18,
+       "t1": 7.702
+      }
+     ]
+    },
+    {
+     "texto": "no mesmo caminho.",
+     "bruto": "no *mesmo caminho*.",
+     "ouro": [
+      "mesmo caminho"
+     ],
+     "ver": [
+      "terra",
+      "orbita"
+     ],
+     "t0": 7.702,
+     "t1": 8.622,
+     "palavras": [
+      {
+       "t": "no",
+       "t0": 7.702,
+       "t1": 7.849
+      },
+      {
+       "t": "mesmo",
+       "t0": 7.849,
+       "t1": 8.169
+      },
+      {
+       "t": "caminho.",
+       "t0": 8.169,
+       "t1": 8.622
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "B1",
+   "texto": "O buraco teria a mesma massa do Sol, então puxaria a Terra com a mesma força.",
+   "t0": 9.257,
+   "t1": 14.424,
+   "dur": 5.167,
+   "pausa": 0.3,
+   "arquivo": "voz/B1.wav",
+   "pedacos": [
+    {
+     "texto": "O buraco teria",
+     "bruto": "O buraco teria",
+     "ouro": [],
+     "ver": [
+      "buraco"
+     ],
+     "t0": 9.257,
+     "t1": 10.208,
+     "palavras": [
+      {
+       "t": "O",
+       "t0": 9.257,
+       "t1": 9.449
+      },
+      {
+       "t": "buraco",
+       "t0": 9.449,
+       "t1": 9.858
+      },
+      {
+       "t": "teria",
+       "t0": 9.858,
+       "t1": 10.208
+      }
+     ]
+    },
+    {
+     "texto": "a mesma massa do Sol,",
+     "bruto": "a *mesma massa* do Sol,",
+     "ouro": [
+      "mesma massa"
+     ],
+     "ver": [
+      "buraco",
+      "puxao"
+     ],
+     "t0": 10.208,
+     "t1": 11.414,
+     "palavras": [
+      {
+       "t": "a",
+       "t0": 10.208,
+       "t1": 10.36
+      },
+      {
+       "t": "mesma",
+       "t0": 10.36,
+       "t1": 10.675
+      },
+      {
+       "t": "massa",
+       "t0": 10.675,
+       "t1": 10.992
+      },
+      {
+       "t": "do",
+       "t0": 10.992,
+       "t1": 11.145
+      },
+      {
+       "t": "Sol,",
+       "t0": 11.145,
+       "t1": 11.414
+      }
+     ]
+    },
+    {
+     "texto": "então puxaria a Terra",
+     "bruto": "então puxaria a Terra",
+     "ouro": [],
+     "ver": [
+      "puxao",
+      "terra"
+     ],
+     "t0": 11.414,
+     "t1": 12.965,
+     "palavras": [
+      {
+       "t": "então",
+       "t0": 11.414,
+       "t1": 12.02
+      },
+      {
+       "t": "puxaria",
+       "t0": 12.02,
+       "t1": 12.556
+      },
+      {
+       "t": "a",
+       "t0": 12.556,
+       "t1": 12.707
+      },
+      {
+       "t": "Terra",
+       "t0": 12.707,
+       "t1": 12.965
+      }
+     ]
+    },
+    {
+     "texto": "com a mesma força.",
+     "bruto": "com a mesma força.",
+     "ouro": [],
+     "ver": [
+      "puxao",
+      "terra"
+     ],
+     "t0": 12.965,
+     "t1": 14.089,
+     "palavras": [
+      {
+       "t": "com",
+       "t0": 12.965,
+       "t1": 13.256
+      },
+      {
+       "t": "a",
+       "t0": 13.256,
+       "t1": 13.373
+      },
+      {
+       "t": "mesma",
+       "t0": 13.373,
+       "t1": 13.667
+      },
+      {
+       "t": "força.",
+       "t0": 13.667,
+       "t1": 14.089
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "texto": "Só que o Sol inteiro ia caber numa bola de uns seis quilômetros.",
+   "t0": 14.724,
+   "t1": 18.756,
+   "dur": 4.032,
+   "pausa": 0.4,
+   "arquivo": "voz/B2.wav",
+   "pedacos": [
+    {
+     "texto": "Só que o Sol inteiro",
+     "bruto": "Só que o Sol inteiro",
+     "ouro": [],
+     "ver": [
+      "sol",
+      "buraco"
+     ],
+     "t0": 14.724,
+     "t1": 15.908,
+     "palavras": [
+      {
+       "t": "Só",
+       "t0": 14.724,
+       "t1": 15.006
+      },
+      {
+       "t": "que",
+       "t0": 15.006,
+       "t1": 15.138
+      },
+      {
+       "t": "o",
+       "t0": 15.138,
+       "t1": 15.285
+      },
+      {
+       "t": "Sol",
+       "t0": 15.285,
+       "t1": 15.507
+      },
+      {
+       "t": "inteiro",
+       "t0": 15.507,
+       "t1": 15.908
+      }
+     ]
+    },
+    {
+     "texto": "ia caber numa bola",
+     "bruto": "ia caber numa bola",
+     "ouro": [],
+     "ver": [
+      "sol",
+      "buraco"
+     ],
+     "t0": 15.908,
+     "t1": 17.031,
+     "palavras": [
+      {
+       "t": "ia",
+       "t0": 15.908,
+       "t1": 16.113
+      },
+      {
+       "t": "caber",
+       "t0": 16.113,
+       "t1": 16.542
+      },
+      {
+       "t": "numa",
+       "t0": 16.542,
+       "t1": 16.751
+      },
+      {
+       "t": "bola",
+       "t0": 16.751,
+       "t1": 17.031
+      }
+     ]
+    },
+    {
+     "texto": "de uns seis quilômetros.",
+     "bruto": "de uns *seis quilômetros*.",
+     "ouro": [
+      "seis quilômetros"
+     ],
+     "ver": [
+      "buraco"
+     ],
+     "t0": 17.031,
+     "t1": 18.424,
+     "palavras": [
+      {
+       "t": "de",
+       "t0": 17.031,
+       "t1": 17.169
+      },
+      {
+       "t": "uns",
+       "t0": 17.169,
+       "t1": 17.428
+      },
+      {
+       "t": "seis",
+       "t0": 17.428,
+       "t1": 17.734
+      },
+      {
+       "t": "quilômetros.",
+       "t0": 17.734,
+       "t1": 18.424
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "B3",
+   "texto": "Mas o problema não é o puxão.",
+   "t0": 19.156,
+   "t1": 21.177,
+   "dur": 2.021,
+   "pausa": 0.5,
+   "arquivo": "voz/B3.wav",
+   "pedacos": [
+    {
+     "texto": "Mas o problema",
+     "bruto": "Mas o problema",
+     "ouro": [],
+     "ver": [
+      "terra"
+     ],
+     "t0": 19.156,
+     "t1": 20.047,
+     "palavras": [
+      {
+       "t": "Mas",
+       "t0": 19.156,
+       "t1": 19.53
+      },
+      {
+       "t": "o",
+       "t0": 19.53,
+       "t1": 19.598
+      },
+      {
+       "t": "problema",
+       "t0": 19.598,
+       "t1": 20.047
+      }
+     ]
+    },
+    {
+     "texto": "não é o puxão.",
+     "bruto": "não é o puxão.",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "puxao"
+     ],
+     "t0": 20.047,
+     "t1": 20.841,
+     "palavras": [
+      {
+       "t": "não",
+       "t0": 20.047,
+       "t1": 20.272
+      },
+      {
+       "t": "é",
+       "t0": 20.272,
+       "t1": 20.332
+      },
+      {
+       "t": "o",
+       "t0": 20.332,
+       "t1": 20.456
+      },
+      {
+       "t": "puxão.",
+       "t0": 20.456,
+       "t1": 20.841
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C1",
+   "texto": "É que a luz do Sol leva oito minutos pra chegar aqui.",
+   "t0": 21.677,
+   "t1": 25.049,
+   "dur": 3.372,
+   "pausa": 0.3,
+   "arquivo": "voz/C1.wav",
+   "pedacos": [
+    {
+     "texto": "É que a luz do Sol",
+     "bruto": "É que a luz do Sol",
+     "ouro": [],
+     "ver": [
+      "luz",
+      "terra"
+     ],
+     "t0": 21.677,
+     "t1": 22.759,
+     "palavras": [
+      {
+       "t": "É",
+       "t0": 21.677,
+       "t1": 21.933
+      },
+      {
+       "t": "que",
+       "t0": 21.933,
+       "t1": 21.993
+      },
+      {
+       "t": "a",
+       "t0": 21.993,
+       "t1": 22.139
+      },
+      {
+       "t": "luz",
+       "t0": 22.139,
+       "t1": 22.367
+      },
+      {
+       "t": "do",
+       "t0": 22.367,
+       "t1": 22.498
+      },
+      {
+       "t": "Sol",
+       "t0": 22.498,
+       "t1": 22.759
+      }
+     ]
+    },
+    {
+     "texto": "leva oito minutos",
+     "bruto": "leva *oito minutos*",
+     "ouro": [
+      "oito minutos"
+     ],
+     "ver": [
+      "luz"
+     ],
+     "t0": 22.759,
+     "t1": 23.766,
+     "palavras": [
+      {
+       "t": "leva",
+       "t0": 22.759,
+       "t1": 23.039
+      },
+      {
+       "t": "oito",
+       "t0": 23.039,
+       "t1": 23.286
+      },
+      {
+       "t": "minutos",
+       "t0": 23.286,
+       "t1": 23.766
+      }
+     ]
+    },
+    {
+     "texto": "pra chegar aqui.",
+     "bruto": "pra chegar aqui.",
+     "ouro": [],
+     "ver": [
+      "luz",
+      "terra"
+     ],
+     "t0": 23.766,
+     "t1": 24.715,
+     "palavras": [
+      {
+       "t": "pra",
+       "t0": 23.766,
+       "t1": 24.005
+      },
+      {
+       "t": "chegar",
+       "t0": 24.005,
+       "t1": 24.413
+      },
+      {
+       "t": "aqui.",
+       "t0": 24.413,
+       "t1": 24.715
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "texto": "Então, por oito minutos, o dia continua.",
+   "t0": 25.349,
+   "t1": 28.455,
+   "dur": 3.105,
+   "pausa": 0.6,
+   "arquivo": "voz/C2.wav",
+   "pedacos": [
+    {
+     "texto": "Então, por oito minutos,",
+     "bruto": "Então, por oito minutos,",
+     "ouro": [],
+     "ver": [
+      "luz"
+     ],
+     "t0": 25.349,
+     "t1": 26.973,
+     "palavras": [
+      {
+       "t": "Então,",
+       "t0": 25.349,
+       "t1": 25.796
+      },
+      {
+       "t": "por",
+       "t0": 25.796,
+       "t1": 26.256
+      },
+      {
+       "t": "oito",
+       "t0": 26.256,
+       "t1": 26.5
+      },
+      {
+       "t": "minutos,",
+       "t0": 26.5,
+       "t1": 26.973
+      }
+     ]
+    },
+    {
+     "texto": "o dia continua.",
+     "bruto": "o dia continua.",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "luz"
+     ],
+     "t0": 26.973,
+     "t1": 28.123,
+     "palavras": [
+      {
+       "t": "o",
+       "t0": 26.973,
+       "t1": 27.332
+      },
+      {
+       "t": "dia",
+       "t0": 27.332,
+       "t1": 27.505
+      },
+      {
+       "t": "continua.",
+       "t0": 27.505,
+       "t1": 28.123
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "texto": "Depois, escuridão.",
+   "t0": 29.055,
+   "t1": 30.804,
+   "dur": 1.749,
+   "pausa": 0.8,
+   "arquivo": "voz/C3.wav",
+   "pedacos": [
+    {
+     "texto": "Depois,",
+     "bruto": "Depois,",
+     "ouro": [],
+     "ver": [
+      "terra"
+     ],
+     "t0": 29.055,
+     "t1": 29.551,
+     "palavras": [
+      {
+       "t": "Depois,",
+       "t0": 29.055,
+       "t1": 29.551
+      }
+     ]
+    },
+    {
+     "texto": "escuridão.",
+     "bruto": "*escuridão*.",
+     "ouro": [
+      "escuridão"
+     ],
+     "ver": [
+      "terra"
+     ],
+     "t0": 29.551,
+     "t1": 30.468,
+     "palavras": [
+      {
+       "t": "escuridão.",
+       "t0": 29.551,
+       "t1": 30.468
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C4",
+   "texto": "E sem luz, o mar começa a congelar.",
+   "t0": 31.604,
+   "t1": 34.368,
+   "dur": 2.764,
+   "pausa": 0.4,
+   "arquivo": "voz/C4.wav",
+   "pedacos": [
+    {
+     "texto": "E sem luz,",
+     "bruto": "E sem luz,",
+     "ouro": [],
+     "ver": [
+      "terra"
+     ],
+     "t0": 31.604,
+     "t1": 32.324,
+     "palavras": [
+      {
+       "t": "E",
+       "t0": 31.604,
+       "t1": 31.783
+      },
+      {
+       "t": "sem",
+       "t0": 31.783,
+       "t1": 32.131
+      },
+      {
+       "t": "luz,",
+       "t0": 32.131,
+       "t1": 32.324
+      }
+     ]
+    },
+    {
+     "texto": "o mar começa",
+     "bruto": "o mar começa",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "gelo"
+     ],
+     "t0": 32.324,
+     "t1": 33.324,
+     "palavras": [
+      {
+       "t": "o",
+       "t0": 32.324,
+       "t1": 32.683
+      },
+      {
+       "t": "mar",
+       "t0": 32.683,
+       "t1": 32.859
+      },
+      {
+       "t": "começa",
+       "t0": 32.859,
+       "t1": 33.324
+      }
+     ]
+    },
+    {
+     "texto": "a congelar.",
+     "bruto": "a *congelar*.",
+     "ouro": [
+      "congelar"
+     ],
+     "ver": [
+      "terra",
+      "gelo"
+     ],
+     "t0": 33.324,
+     "t1": 34.036,
+     "palavras": [
+      {
+       "t": "a",
+       "t0": 33.324,
+       "t1": 33.46
+      },
+      {
+       "t": "congelar.",
+       "t0": 33.46,
+       "t1": 34.036
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "D1",
+   "texto": "Calma: o Sol é leve demais pra virar buraco negro.",
+   "t0": 34.768,
+   "t1": 38.334,
+   "dur": 3.566,
+   "pausa": 0.3,
+   "arquivo": "voz/D1.wav",
+   "pedacos": [
+    {
+     "texto": "Calma:",
+     "bruto": "Calma:",
+     "ouro": [],
+     "ver": [
+      "sol",
+      "terra"
+     ],
+     "t0": 34.768,
+     "t1": 35.172,
+     "palavras": [
+      {
+       "t": "Calma:",
+       "t0": 34.768,
+       "t1": 35.172
+      }
+     ]
+    },
+    {
+     "texto": "o Sol é leve demais",
+     "bruto": "o Sol é *leve demais*",
+     "ouro": [
+      "leve demais"
+     ],
+     "ver": [
+      "sol"
+     ],
+     "t0": 35.172,
+     "t1": 36.612,
+     "palavras": [
+      {
+       "t": "o",
+       "t0": 35.172,
+       "t1": 35.614
+      },
+      {
+       "t": "Sol",
+       "t0": 35.614,
+       "t1": 35.85
+      },
+      {
+       "t": "é",
+       "t0": 35.85,
+       "t1": 35.92
+      },
+      {
+       "t": "leve",
+       "t0": 35.92,
+       "t1": 36.172
+      },
+      {
+       "t": "demais",
+       "t0": 36.172,
+       "t1": 36.612
+      }
+     ]
+    },
+    {
+     "texto": "pra virar buraco negro.",
+     "bruto": "pra virar buraco negro.",
+     "ouro": [],
+     "ver": [
+      "sol",
+      "terra"
+     ],
+     "t0": 36.612,
+     "t1": 37.999,
+     "palavras": [
+      {
+       "t": "pra",
+       "t0": 36.612,
+       "t1": 36.827
+      },
+      {
+       "t": "virar",
+       "t0": 36.827,
+       "t1": 37.216
+      },
+      {
+       "t": "buraco",
+       "t0": 37.216,
+       "t1": 37.648
+      },
+      {
+       "t": "negro.",
+       "t0": 37.648,
+       "t1": 37.999
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q1",
+   "texto": "E você, ia perceber nos primeiros oito minutos?",
+   "t0": 38.634,
+   "t1": 41.986,
+   "dur": 3.352,
+   "pausa": 0.2,
+   "arquivo": "voz/Q1.wav",
+   "pedacos": [
+    {
+     "texto": "E você,",
+     "bruto": "E você,",
+     "ouro": [],
+     "ver": [
+      "terra"
+     ],
+     "t0": 38.634,
+     "t1": 39.157,
+     "palavras": [
+      {
+       "t": "E",
+       "t0": 38.634,
+       "t1": 38.813
+      },
+      {
+       "t": "você,",
+       "t0": 38.813,
+       "t1": 39.157
+      }
+     ]
+    },
+    {
+     "texto": "ia perceber",
+     "bruto": "ia perceber",
+     "ouro": [],
+     "ver": [
+      "terra",
+      "sol"
+     ],
+     "t0": 39.157,
+     "t1": 40.184,
+     "palavras": [
+      {
+       "t": "ia",
+       "t0": 39.157,
+       "t1": 39.528
+      },
+      {
+       "t": "perceber",
+       "t0": 39.528,
+       "t1": 40.184
+      }
+     ]
+    },
+    {
+     "texto": "nos primeiros oito minutos?",
+     "bruto": "nos primeiros *oito minutos*?",
+     "ouro": [
+      "oito minutos"
+     ],
+     "ver": [
+      "terra",
+      "sol"
+     ],
+     "t0": 40.184,
+     "t1": 41.654,
+     "palavras": [
+      {
+       "t": "nos",
+       "t0": 40.184,
+       "t1": 40.407
+      },
+      {
+       "t": "primeiros",
+       "t0": 40.407,
+       "t1": 40.962
+      },
+      {
+       "t": "oito",
+       "t0": 40.962,
+       "t1": 41.185
+      },
+      {
+       "t": "minutos?",
+       "t0": 41.185,
+       "t1": 41.654
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voz": "guia"
+}
