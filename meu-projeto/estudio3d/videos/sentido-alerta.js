@@ -38,37 +38,47 @@ function stickman() {
   const g = new THREE.Group();
   const corpo = new THREE.Group();
   g.add(corpo);
-  const preto = mat('#141414', { unico: true });
-  const branco = mat('#FFFFFF', { unico: true });
-  const ombros = { D: [0.22, 1.2, 0], E: [-0.22, 1.2, 0] };
-  const tronco = malha(new THREE.CylinderGeometry(1, 1, 1, 14), preto, { sombra: false });
-  segmento(tronco, [0, 0.82, 0], [0, 1.26, 0]);
-  tronco.scale.x = 0.2; tronco.scale.z = 0.2; // grossura do tronco (escala X/Z)
-  corpo.add(tronco);
-  // cabeça: contorno preto + rosto branco
-  const cab = malha(new THREE.SphereGeometry(0.245, 18, 14), preto, { sombra: false });
-  cab.position.set(0, 1.58, -0.04);
-  const rosto = malha(new THREE.SphereGeometry(0.21, 18, 14), branco, { sombra: false });
-  rosto.position.set(0, 1.58, 0.0);
-  corpo.add(cab, rosto);
-  const olhoE = malha(new THREE.SphereGeometry(0.03, 8, 6), preto, { sombra: false });
-  const olhoD = olhoE.clone();
-  olhoE.position.set(-0.08, 1.62, 0.225); olhoD.position.set(0.08, 1.62, 0.225);
-  const boca = caixa(0.1, 0.03, 0.02, preto, [0, 1.52, 0.225], { sombra: false });
-  corpo.add(olhoE, olhoD, boca);
-  // pernas
-  const pernaE = malha(new THREE.CylinderGeometry(0.09, 0.09, 1, 10), preto, { sombra: false });
-  const pernaD = pernaE.clone();
-  segmento(pernaD, [0.1, 0.84, 0], [0.14, 0.06, 0]);
-  segmento(pernaE, [-0.1, 0.84, 0], [-0.14, 0.06, 0]);
-  corpo.add(pernaD, pernaE);
-  // braços (mãos nas pontas)
+  const PELE = '#E8B48A', CABELO = '#3B2416', CAMISA = '#F2B705', CALCA = '#2B4C7E', TENIS = '#F4F4F4', SOLA = '#C62828', OLHO = '#1A1A1A';
+  const esfera = (r, cor, pos, sx = 1, sy = 1, sz = 1) => {
+    const m = malha(new THREE.SphereGeometry(r, 18, 14), mat(cor), { sombra: false });
+    m.position.set(...pos);
+    m.scale.set(sx, sy, sz);
+    corpo.add(m);
+    return m;
+  };
+  // tronco redondo (camisa) e quadril (calça)
+  esfera(0.27, CAMISA, [0, 1.07, 0], 1.0, 1.15, 0.7);
+  esfera(0.2, CALCA, [0, 0.84, 0], 1.0, 0.7, 0.8);
+  // cabeça: pele + cabelo por cima e atrás
+  esfera(0.2, PELE, [0, 1.6, 0.02]);
+  esfera(0.215, CABELO, [0, 1.66, -0.02], 1.02, 0.78, 1.02);
+  const olhoE = esfera(0.028, OLHO, [-0.075, 1.62, 0.19]);
+  const olhoD = esfera(0.028, OLHO, [0.075, 1.62, 0.19]);
+  const boca = caixa(0.09, 0.025, 0.02, mat('#8B2D2D'), [0, 1.54, 0.2], { sombra: false });
+  corpo.add(boca);
+  // pernas e tênis (membros redondos)
+  const membros = [];
+  const membro = (a, b, r, cor) => {
+    const c = malha(new THREE.CylinderGeometry(r, r, 1, 12), mat(cor), { sombra: false });
+    const p1 = esfera(r, cor, a), p2 = esfera(r, cor, b);
+    corpo.add(c);
+    segmento(c, a, b);
+    return { c, p1, p2, a, b };
+  };
+  for (const s of [1, -1]) {
+    membros.push(membro([0.1 * s, 0.8, 0], [0.12 * s, 0.42, 0], 0.085, CALCA));
+    membros.push(membro([0.12 * s, 0.42, 0], [0.13 * s, 0.08, 0], 0.075, CALCA));
+    esfera(0.1, TENIS, [0.14 * s, 0.05, 0.03], 1.1, 0.6, 1.6);
+    esfera(0.06, SOLA, [0.14 * s, 0.02, 0.05], 1.2, 0.3, 1.7);
+  }
+  // braços (manga da camisa) com mãos de pele
+  const ombros = { D: [0.27, 1.2, 0], E: [-0.27, 1.2, 0] };
   const bracos = {};
   for (const k of ['D', 'E']) {
-    const br = malha(new THREE.CylinderGeometry(0.08, 0.08, 1, 10), preto, { sombra: false });
-    const mao = malha(new THREE.SphereGeometry(0.09, 10, 8), preto, { sombra: false });
-    corpo.add(br, mao);
-    bracos[k] = { br, mao };
+    const c = malha(new THREE.CylinderGeometry(0.075, 0.075, 1, 12), mat(CAMISA), { sombra: false });
+    corpo.add(c);
+    const mao = esfera(0.075, PELE, [0, 0, 0]);
+    bracos[k] = { c, mao };
   }
   g.corpo = corpo; g.boca = boca; g.olhos = [olhoE, olhoD]; g.ombros = ombros; g.bracos = bracos;
   g.estado = { bracos: 'normal', expr: 'feliz' };
@@ -76,11 +86,11 @@ function stickman() {
     const e = g.estado || {};
     const p = POSES[e.bracos] || POSES.normal;
     for (const k of ['D', 'E']) {
-      const { br, mao } = g.bracos[k];
-      const m = p[k];
-      segmento(br, ombros[k], m);
-      mao.position.set(...m);
+      const { c, mao } = g.bracos[k];
+      segmento(c, ombros[k], p[k]);
+      mao.position.set(...p[k]);
     }
+    membros.forEach((m) => { segmento(m.c, m.a, m.b); });
     const sobe = e.pulo ? 0.12 * Math.abs(Math.sin(t * 6)) : 0;
     corpo.position.y = sobe + 0.01 * Math.sin(t * 3);
     const falando = e.falando ? 1 : 0;
