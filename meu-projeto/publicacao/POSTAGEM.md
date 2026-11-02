@@ -157,3 +157,19 @@ Uma régua de 30 cm leva cerca de 0,25 s pra você reagir. Por que o corpo é t�
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #reflexo #corpohumano #curiosidades #ciencia #biologia #animacao3d #shorts
+
+---
+
+## Reflexos (vídeo longo, horizontal, `saida/reflexos-longo.mp4`, capa `publicacao/capa-reflexos-longo.png`)
+
+**Título (YouTube):**
+Você é mais rápido que uma régua? A ciência dos reflexos
+
+**Descrição:**
+Uma régua de 30 cm leva cerca de 0,25 s pra você reagir. Neste vídeo, a gente mede esse tempo, entende o caminho que o sinal faz do olho até a mão, e descobre por que o reflexo do joelho é mais rápido que pensar.
+
+Capítulos: abertura · medindo a reação · caminho do sinal · carro a 80 km/h · o atalho do reflexo · largada e falsa largada · o susto · o que muda o tempo de reação · treino e recapitulação
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#comofunciona #reflexo #corpohumano #ciencia #curiosidades #biologia
