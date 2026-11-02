@@ -75,6 +75,12 @@ const SONS = {
   whoosh: 'anoisesrc=d=0.4:c=pink:a=0.9,highpass=f=500,lowpass=f=3500,afade=t=in:d=0.15,afade=t=out:st=0.15:d=0.25,volume=1.6',
   pop: 'aevalsrc=0.6*sin(2*PI*(300+1600*t)*t)*exp(-22*t):d=0.22',
   plim: 'aevalsrc=0.45*sin(2*PI*1568*t)*exp(-14*t)+0.22*sin(2*PI*2349*t)*exp(-18*t):d=0.35',
+  brilho: 'aevalsrc=0.28*sin(2*PI*(800+1800*t)*t)*exp(-3*t):d=0.7',
+  motor: 'anoisesrc=d=2.2:c=brown:a=0.8,lowpass=f=220,tremolo=f=14:d=0.6,afade=t=in:d=0.6,afade=t=out:st=1.6:d=0.6,volume=1.4',
+  passagem: 'anoisesrc=d=0.9:c=pink:a=0.9,bandpass=f=1200:w=900,afade=t=in:d=0.1,afade=t=out:st=0.4:d=0.5,volume=1.8',
+  vidro: 'anoisesrc=d=0.6:c=white:a=0.9,highpass=f=3000,afade=t=out:st=0.05:d=0.55,volume=1.3',
+  replay: 'aevalsrc=0.3*sin(2*PI*(1600-1100*t)*t)*(0.6+0.4*sin(2*PI*16*t)):d=1.1,afade=t=out:st=0.8:d=0.3',
+  asas: 'anoisesrc=d=0.8:c=white:a=0.6,bandpass=f=2500:w=2000,tremolo=f=12:d=1,afade=t=out:st=0.5:d=0.3,volume=1.2',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 function arquivoSom(tipo) {

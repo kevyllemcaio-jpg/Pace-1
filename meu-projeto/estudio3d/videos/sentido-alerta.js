@@ -185,31 +185,31 @@ export function criar(ctx) {
   const blocos = [
     // 0. gancho, olhando para a câmera
     { fala: 'E se você sentisse o perigo antes de ele acontecer?', destaque: ['perigo', 'antes'], corteSeco: true, camera: camRosto,
-      aplicar(lt, b) { setar('rua', 'hook', b.inicio, 'normal', 'surpreso'); }, },
+      aplicar(lt, b) { setar('rua', 'hook', b.inicio, 'normal', 'surpreso'); }, sons: [{ em: () => 0.2, tipo: 'brilho' }] },
     // 1. atravessa
     { fala: 'Você atravessa a rua.', destaque: ['atravessa'], corteSeco: true, camera: { pos: [1.5, 1.4, 9.5], alvo: [0, 1.2, 2.0] },
       aplicar(lt, b) { setar('rua', 'andar', b.inicio, 'lado', 'feliz'); }, },
     // 2. carro surge
     { fala: 'E um carro surge da esquina.', destaque: ['carro', 'esquina'], corteSeco: true, camera: { pos: [5.5, 1.3, 9.0], alvo: [9.5, 1.0, -2.0] },
-      aplicar(lt, b) { setar('rua', 'parar', b.inicio, 'aponta', 'surpreso'); E.tB = b.inicio; }, },
+      aplicar(lt, b) { setar('rua', 'parar', b.inicio, 'aponta', 'surpreso'); E.tB = b.inicio; }, sons: [{ em: () => 0.0, tipo: 'motor' }] },
     // 3. pula antes do carro chegar (o carro passa em alta velocidade)
     { fala: 'Seu corpo já pula pra trás, antes de você entender.', destaque: ['pula', 'entender'], corteSeco: true, camera: { pos: [2.5, 1.6, 10.0], alvo: [0.0, 1.1, 4.5] },
-      aplicar(lt, b) { setar('rua', 'pulo', b.inicio, 'lado', 'surpreso'); E.tC = b.inicio; }, sons: [{ em: () => 0.35, tipo: 'whoosh' }] },
+      aplicar(lt, b) { setar('rua', 'pulo', b.inicio, 'lado', 'surpreso'); E.tC = b.inicio; }, sons: [{ em: () => 0.0, tipo: 'whoosh' }, { em: () => 0.35, tipo: 'passagem' }] },
     // 4. copo cai e quebra
     { fala: 'Um copo escorrega da mesa.', destaque: ['copo', 'escorrega'], corteSeco: true, camera: { pos: [0.6, 2.2, 3.6], alvo: [0.4, 0.9, 0.2] },
-      aplicar(lt, b) { setar('cozinha', 'copo', b.inicio, 'aponta', 'surpreso'); }, sons: [{ em: () => 0.45, tipo: 'tum' }] },
+      aplicar(lt, b) { setar('cozinha', 'copo', b.inicio, 'aponta', 'surpreso'); }, sons: [{ em: () => 0.45, tipo: 'vidro' }] },
     // 5. a cena volta no tempo e a mão pega
     { fala: 'E a sua mão já está embaixo dele.', destaque: ['mão', 'embaixo'], corteSeco: true, camera: { pos: [0.6, 2.2, 3.6], alvo: [0.4, 0.9, 0.2] },
-      aplicar(lt, b) { setar('cozinha', 'copo_volta', b.inicio, 'aponta', 'feliz'); } },
+      aplicar(lt, b) { setar('cozinha', 'copo_volta', b.inicio, 'aponta', 'feliz'); }, camada: (lt) => etiqueta(lt, 0.1, '◀◀ REPLAY'), sons: [{ em: () => 0.0, tipo: 'replay' }, { em: () => 0.9, tipo: 'pop' }] },
     // 6. bola: ele vê de onde ela vem
     { fala: 'Num jogo, você vê de onde a bola vem, antes de ela sair do pé.', destaque: ['jogo', 'bola'], corteSeco: true, camera: { pos: [-3.0, 1.6, 5.0], alvo: [-1.0, 1.0, 0.0] },
-      aplicar(lt, b) { setar('campo', 'bola', b.inicio, 'aponta', 'serio'); } },
+      aplicar(lt, b) { setar('campo', 'bola', b.inicio, 'aponta', 'serio'); }, sons: [{ em: () => 0.8, tipo: 'martelo' }] },
     // 7. o alarme não desliga
     { fala: 'Só que o alarme não desliga.', destaque: ['alarme', 'não desliga'], corteSeco: true, camera: camRosto,
       aplicar(lt, b) { setar('rua', 'parado', b.inicio, 'normal', 'preocupado'); } },
     // 8. dispara com a cidade e com o pássaro
     { fala: 'Ele dispara com o barulho da cidade, e com a sombra de um pássaro.', destaque: ['dispara', 'pássaro'], corteSeco: true, camera: { pos: [0.0, 1.6, 9.0], alvo: [0.0, 1.3, 5.8] },
-      aplicar(lt, b) { setar('rua', 'passaro', b.inicio, 'normal', 'preocupado'); } },
+      aplicar(lt, b) { setar('rua', 'passaro', b.inicio, 'normal', 'preocupado'); }, sons: [{ em: () => 0.6, tipo: 'asas' }] },
     // 9. não dorme direito
     { fala: 'Você não dorme direito, porque o corpo nunca sai do modo alerta.', destaque: ['não dorme', 'alerta'], corteSeco: true, camera: { pos: [0.6, 1.5, 3.0], alvo: [0, 1.3, 0] },
       aplicar(lt, b) { setar('quarto', 'bocejo', b.inicio, 'cabeca', 'serio'); } },
