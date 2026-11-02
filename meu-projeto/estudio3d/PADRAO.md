@@ -25,7 +25,7 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   5. Repete 2–4 três ou quatro vezes.
   6. Uma curiosidade do dia a dia ("É por isso que…").
   7. "Parabéns: você construiu um(a) …!"
-  8. Final padrão: **"QUER FAZER VÍDEOS ASSIM COM IA? ASSISTA AO ÚLTIMO VÍDEO!"** (narração: "…Quer aprender? Assista ao último vídeo do perfil!") (`textoFinal` + `FALA_FINAL`).
+  8. Final padrão: **"QUER APRENDER A FAZER VÍDEOS ASSIM? DEIXA O LIKE E ME SEGUE! LINK NA BIO"** (narração: "Quer aprender a fazer vídeos como esse? Deixa o like, me segue, e acessa o link na bio!" — sem falar que é feito com IA). Trocar só o final de um vídeo pronto: `--so-audio --refazer-final` (~2 min) (`textoFinal` + `FALA_FINAL`).
 - **Legenda palavra por palavra** (até 2 palavras por vez), termos-chave em amarelo.
 - **Cartão** com número grande em vermelho (`cartao`), **etiqueta** vermelha (`etiqueta`),
   selo verde (`ok`) e onomatopeia (`som`).
@@ -42,7 +42,7 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
 
 ## Entrega de cada vídeo
 - Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
-- Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Assista ao último vídeo do perfil!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
+- Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
 
 ## Personagem principal ("você")
 `personagem3d.js`: jaqueta amarela sem zíper, calça preta, tênis branco com sola vermelha,

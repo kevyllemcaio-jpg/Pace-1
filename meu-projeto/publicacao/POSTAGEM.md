@@ -84,7 +84,7 @@ Como o semáforo sabe que você chegou? 🚦 #shorts
 **Legenda / descrição (as 3 redes):**
 Sabe aqueles retângulos cortados no asfalto, logo antes da faixa? Tem um fio enterrado ali que cria um campo magnético. Quando o metal do seu carro para em cima, o semáforo percebe que tem alguém esperando! E a "onda verde"? Os semáforos abrem um depois do outro, no tempo certinho do carro chegar. 🚗💚
 
-🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #semaforo #transito #curiosidades #engenharia #carro #animacao3d #feitocomia #shorts
 
@@ -98,7 +98,7 @@ Como um avião de 70 toneladas fica no ar? ✈️ #shorts
 **Legenda / descrição (as 3 redes):**
 Ele não bate as asas… então como sobe? A asa joga o ar pra baixo, e o ar empurra a asa pra cima. Mas só funciona com MUITO vento: por isso ele corre a uns 280 km/h na pista! E sabe por que a janela do avião é redondinha? Canto reto faz o metal rachar. 😱
 
-🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #aviao #aviacao #curiosidades #fisica #viagem #animacao3d #feitocomia #shorts
 
@@ -112,7 +112,7 @@ Como um pedal para um carro de 1,5 tonelada? 🛑 #shorts
 **Legenda / descrição (as 3 redes):**
 Seu pé sozinho não teria força nem pra segurar a roda. O segredo é o óleo: um pistão pequeno no pedal empurra um pistão GRANDE na roda, e a força é multiplicada! O disco passa de 500 °C 🔥 e o ABS solta e aperta o freio umas 15 vezes por segundo. É por isso que o pedal treme!
 
-🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #freio #carro #mecanica #curiosidades #engenharia #animacao3d #feitocomia #shorts
 
@@ -126,7 +126,7 @@ Como o micro-ondas esquenta sem fogo? 🔥 #shorts
 **Legenda / descrição (as 3 redes):**
 Não tem fogo nenhum lá dentro! As micro-ondas fazem a água da comida chacoalhar bilhões de vezes por segundo, e é esse chacoalho que vira calor. Por isso o prato gira, a porta tem uma telinha de metal… e garfo lá dentro solta faísca! ⚡
 
-🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #microondas #cozinha #curiosidades #ciencia #fisica #animacao3d #feitocomia #shorts
 
@@ -140,6 +140,6 @@ Como a geladeira gela sem ter gelo? ❄️ #shorts
 **Legenda / descrição (as 3 redes):**
 Quando um líquido vira gás, ele rouba calor, e a geladeira usa esse truque o dia inteiro! O gás leva o calor da comida pra grade atrás dela. É por isso que a parte de trás é quente e não pode ficar colada na parede. E a borracha da porta tem ímã! 🧲
 
-🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Link na bio!
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #geladeira #cozinha #curiosidades #ciencia #casa #animacao3d #feitocomia #shorts

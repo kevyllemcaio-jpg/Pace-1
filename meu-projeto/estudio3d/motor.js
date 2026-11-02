@@ -276,15 +276,16 @@ export function iniciar(video) {
 }
 
 // ================= PADRÃO DO CANAL =================
-// ?finalAntigo=1 recria o final antigo ("link na bio") — só para remixar vídeos já renderizados.
+// Final padrão (atual): "Quer aprender a fazer vídeos como esse? Deixa o like e me segue!" + LINK NA BIO.
+// ?finalAntigo=1 recria o final antigo ("link na bio" com IA) — só para remixar vídeos antigos.
 const FINAL_ANTIGO = typeof location !== 'undefined' && new URLSearchParams(location.search).has('finalAntigo');
 export const FALA_FINAL = FINAL_ANTIGO
   ? 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Link na bio!'
-  : 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Assista ao último vídeo do perfil!';
-/** Texto único do final: "QUER FAZER VÍDEOS ASSIM COM IA? ASSISTA AO ÚLTIMO VÍDEO!" */
+  : 'Quer aprender a fazer vídeos como esse? Deixa o like, me segue, e acessa o link na bio!';
+/** Texto do final: "QUER APRENDER A FAZER VÍDEOS ASSIM? DEIXA O LIKE E ME SEGUE! LINK NA BIO" */
 export function textoFinal(lt) {
   const k = Math.max(0.01, salto(lt / 0.35));
   marcar(0, 'pop');
-  const linhas = FINAL_ANTIGO ? ['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'] : ['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', 'ASSISTA AO', '*ÚLTIMO VÍDEO!*'];
+  const linhas = FINAL_ANTIGO ? ['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'] : ['QUER APRENDER A', 'FAZER VÍDEOS ASSIM?', '*DEIXA O LIKE*', '*E ME SEGUE!*', 'LINK NA BIO'];
   return `<div class="final contorno" style="transform: scale(${k}); opacity:${lim(lt / 0.1)}">${linhasComDestaque(linhas)}</div>`;
 }

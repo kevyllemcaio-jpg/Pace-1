@@ -8,6 +8,7 @@
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
 //   --horizontal  vídeo deitado 1920x1080 (YouTube)
 //   --so-audio  refaz só o áudio (voz + efeitos + música) em cima do vídeo já pronto (rápido)
+//   --so-audio --refazer-final  troca só o final (renderiza o último bloco e emenda no vídeo pronto)
 //   --final-antigo  usa o final antigo "link na bio" (para remixar vídeos antigos)
 //   --limpo --de=10 --ate=13  recorta só esse trecho, sem textos e sem áudio (saida/clipes/)
 // Música de fundo original entra automaticamente (desligue com config.musica = false no vídeo).
@@ -32,6 +33,7 @@ const escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--esc
 const limpo = args.includes('--limpo');
 const soAudio = args.includes('--so-audio');
 const finalAntigo = args.includes('--final-antigo');
+const refazerFinal = args.includes('--refazer-final'); // com --so-audio: renderiza de novo só o último bloco
 const horizontal = args.includes('--horizontal'); // vídeo deitado 1920x1080 (YouTube)
 const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280, SAIDA = horizontal ? '1920:1080' : '1080:1920';
 const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
@@ -161,7 +163,27 @@ function arquivoSom(tipo) {
   if (soAudio) {
     const anterior = path.join(pastaSaida, '.sem-musica', `${nome}.mp4`);
     if (!fs.existsSync(anterior)) throw new Error(`não achei ${anterior} (renderize o vídeo inteiro primeiro)`);
-    ffmpeg(['-i', anterior, '-map', '0:v', '-c', 'copy', semAudio]);
+    if (!refazerFinal) ffmpeg(['-i', anterior, '-map', '0:v', '-c', 'copy', semAudio]);
+    else {
+      // renderiza só o último bloco e emenda no vídeo anterior cortado no início dele
+      const ini = inicios[inicios.length - 1];
+      const clipe = path.join(pastaSaida, `.${nome}-final.mp4`);
+      const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
+        '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', clipe], { stdio: ['pipe', 'inherit', 'inherit'] });
+      const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
+      for (let f = Math.round(ini * FPS); f < Math.round(duracao * FPS); f++) {
+        await desenhar(f / FPS);
+        const img = await page.screenshot({ type: 'jpeg', quality: 92 });
+        if (!ffc.stdin.write(img)) await new Promise((r) => ffc.stdin.once('drain', r));
+      }
+      ffc.stdin.end();
+      await fimC;
+      const nIni = Math.round(ini * FPS);
+      ffmpeg(['-i', anterior, '-i', clipe, '-filter_complex',
+        `[0:v]trim=end_frame=${nIni},setpts=PTS-STARTPTS[a];[1:v]setpts=PTS-STARTPTS[b];[a][b]concat=n=2:v=1:a=0[v]`,
+        '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio]);
+      fs.rmSync(clipe);
+    }
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
