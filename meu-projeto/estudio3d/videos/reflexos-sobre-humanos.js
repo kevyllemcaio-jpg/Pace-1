@@ -47,11 +47,18 @@ function stickman() {
     return m;
   };
   // tronco redondo (camisa) e quadril (calça)
-  esfera(0.27, CAMISA, [0, 1.07, 0], 1.0, 1.15, 0.7);
-  esfera(0.19, CALCA, [0, 0.8, 0], 1.0, 0.55, 0.8);
+  const jaqueta = malha(new THREE.CylinderGeometry(0.2, 0.17, 0.5, 28), mat(CAMISA), { sombra: false });
+  jaqueta.position.set(0, 1.03, 0);
+  corpo.add(jaqueta);
+  const quadril = malha(new THREE.CylinderGeometry(0.17, 0.16, 0.2, 28), mat(CALCA), { sombra: false });
+  quadril.position.set(0, 0.8, 0);
+  corpo.add(quadril);
   // cabeça: pele + cabelo por cima e atrás
-  esfera(0.2, PELE, [0, 1.6, 0.04]);
-  esfera(0.2, CABELO, [0, 1.7, -0.07], 1.0, 0.7, 1.0);
+  const pescoco = malha(new THREE.CylinderGeometry(0.075, 0.08, 0.16, 20), mat(PELE), { sombra: false });
+  pescoco.position.set(0, 1.4, 0);
+  corpo.add(pescoco);
+  esfera(0.19, PELE, [0, 1.6, 0.03]);
+  esfera(0.2, CABELO, [0, 1.69, -0.05], 1.0, 0.6, 1.02);
   const olhoE = esfera(0.024, OLHO, [-0.075, 1.6, 0.225]);
   const olhoD = esfera(0.024, OLHO, [0.075, 1.6, 0.225]);
   const boca = caixa(0.09, 0.025, 0.02, mat('#8B2D2D'), [0, 1.53, 0.235], { sombra: false });
@@ -67,6 +74,7 @@ function stickman() {
   // pernas e tênis (membros redondos)
   const membros = [];
   const membro = (a, b, r, cor) => {
+    r = r * 0.85;
     const c = malha(new THREE.CylinderGeometry(r, r, 1, 24), mat(cor), { sombra: false });
     const p1 = esfera(r, cor, a), p2 = esfera(r, cor, b);
     corpo.add(c);
@@ -83,7 +91,7 @@ function stickman() {
   const ombros = { D: [0.27, 1.2, 0], E: [-0.27, 1.2, 0] };
   const bracos = {};
   for (const k of ['D', 'E']) {
-    const c = malha(new THREE.CylinderGeometry(0.075, 0.075, 1, 24), mat(CAMISA), { sombra: false });
+    const c = malha(new THREE.CylinderGeometry(0.062, 0.062, 1, 24), mat(CAMISA), { sombra: false });
     corpo.add(c);
     const mao = esfera(0.075, PELE, [0, 0, 0]);
     bracos[k] = { c, mao };
