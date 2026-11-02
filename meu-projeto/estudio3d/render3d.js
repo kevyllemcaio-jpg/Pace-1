@@ -81,6 +81,7 @@ const SONS = {
   vidro: 'anoisesrc=d=0.6:c=white:a=0.9,highpass=f=3000,afade=t=out:st=0.05:d=0.55,volume=1.3',
   replay: 'aevalsrc=0.3*sin(2*PI*(1600-1100*t)*t)*(0.6+0.4*sin(2*PI*16*t)):d=1.1,afade=t=out:st=0.8:d=0.3',
   asas: 'anoisesrc=d=0.8:c=white:a=0.6,bandpass=f=2500:w=2000,tremolo=f=12:d=1,afade=t=out:st=0.5:d=0.3,volume=1.2',
+  uivo: 'aevalsrc=0.35*sin(2*PI*(280+240*t)*t)*(0.75+0.25*sin(2*PI*5*t))*exp(-0.7*t):d=1.8,afade=t=in:d=0.2,afade=t=out:st=1.3:d=0.5',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 function arquivoSom(tipo) {
