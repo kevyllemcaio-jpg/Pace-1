@@ -1,4 +1,6 @@
 // VÍDEO: "Você consegue pegar uma régua antes dela cair?"
+// Cada bloco tem o cenário do que está sendo falado:
+//   sala (mesa com régua) · consultório (reflexo do joelho) · pista de atletismo (largada) · rua (carro)
 // Fatos conferidos:
 //  - Régua que cai 30 cm: t = raiz(2d/g) ≈ 0,25 s (tempo de reação visual típico: ~0,2 a 0,3 s).
 //  - Largada de corrida: reação abaixo de 0,1 s é falsa largada (regra da World Athletics).
@@ -17,9 +19,9 @@ export const config = {
 };
 
 const REGUA_TOPO = 1.45;   // centro da régua antes de cair
-const REGUA_PEGA = 1.15;   // onde a mão pega (30 cm abaixo)
 const QUEDA_30 = 0.3;
 const G = 9.8;
+const CORES_CENA = { sala: '#F3E3C8', consultorio: '#E6F0F5', pista: '#9ED8FF', rua: '#9ED8FF' };
 
 /** Caminho por pontos: devolve f(u) com u em [0,1) (fecha o ciclo). */
 function curva(pontos) {
@@ -49,15 +51,50 @@ export function criar(ctx) {
   const { cena } = ctx;
   const MED_X = -1.0; // medula (esquema) à esquerda do personagem
 
-  // Duas "cenas" separadas: o corpo (régua, sinal, reflexo) e a rua (carro em câmera lenta).
-  const corpoG = new THREE.Group();
-  cena.add(corpoG);
+  // ---------- grupos de cenário (só um fica visível por vez) ----------
+  const corpoG = new THREE.Group();   // personagem, régua, sinal e esquema (aparece sobre qualquer cenário)
+  const salaG = new THREE.Group();
+  const consG = new THREE.Group();
+  const pistaG = new THREE.Group();
   const ruaG = new THREE.Group();
-  cena.add(ruaG);
+  [corpoG, salaG, consG, pistaG, ruaG].forEach((g) => cena.add(g));
   criarRua({ cena: ruaG, hemi: ctx.hemi, sol: ctx.sol }, { transversal: false, recuo: 11 });
 
-  // ---------- corpo ----------
-  corpoG.add(caixa(60, 0.1, 60, mat('#6CBF47'), [0, -0.05, 0]));
+  const madeira = mat('#B98A5C');
+
+  // sala: mesa de estudo com livros, luminária e janela
+  salaG.add(caixa(6, 0.1, 4, mat('#C9A27A'), [0, -0.05, 0.5]));
+  salaG.add(caixa(6, 3, 0.1, mat('#F7EBD9'), [0, 1.5, -1.5]));
+  salaG.add(caixa(1.0, 1.0, 0.05, mat('#9ED8FF', { brilho: true, emissivo: '#5C8FB0' }), [-1.8, 1.8, -1.44]));
+  salaG.add(caixa(1.1, 0.05, 0.6, madeira, [1.6, 0.78, -0.6]));
+  for (const [x, z] of [[1.1, -0.85], [2.1, -0.85], [1.1, -0.35], [2.1, -0.35]]) salaG.add(caixa(0.05, 0.76, 0.05, madeira, [x, 0.38, z]));
+  salaG.add(caixa(0.5, 0.06, 0.36, mat('#3D6FB0'), [1.45, 0.84, -0.6]));
+  salaG.add(caixa(0.5, 0.06, 0.36, mat('#E8322B'), [1.45, 0.9, -0.6]));
+  salaG.add(caixa(0.42, 0.05, 0.3, mat('#2DBE60'), [1.5, 0.95, -0.62]));
+  salaG.add(cilindro(0.03, 0.5, mat('#2A2D33'), [2.45, 1.03, -1.0], 8));
+  salaG.add(caixa(0.3, 0.2, 0.3, mat('#FFD21F', { brilho: true }), [2.45, 1.38, -1.0]));
+
+  // consultório: parede clara, maca, armário e martelo de reflexo sobre a mesa
+  consG.add(caixa(6, 0.1, 4, mat('#D6E0E6'), [0, -0.05, 0.5]));
+  consG.add(caixa(6, 3, 0.1, mat('#F5FAFC'), [0, 1.5, -1.5]));
+  consG.add(caixa(0.9, 1.9, 0.45, mat('#EEF3F6'), [2.6, 0.95, -1.25]));
+  consG.add(caixa(1.9, 0.08, 0.7, mat('#9CC9E6'), [1.7, 0.8, -0.6]));
+  for (const [x, z] of [[1.1, -0.9], [2.3, -0.9], [1.1, -0.3], [2.3, -0.3]]) consG.add(caixa(0.08, 0.76, 0.08, mat('#8A9AA6', { metal: true }), [x, 0.38, z]));
+  consG.add(caixa(0.05, 0.2, 0.05, mat('#3D434C'), [1.2, 0.93, -0.5]));
+  const cabeca = malha(new THREE.SphereGeometry(0.07, 10, 8), mat('#E8322B'), { sombra: false });
+  cabeca.position.set(1.2, 1.06, -0.5);
+  consG.add(cabeca);
+  consG.add(caixa(0.45, 0.6, 0.02, mat('#3FA7D6'), [2.6, 1.6, -1.27]));
+
+  // pista de atletismo: faixas, linha de partida e bloco de largada
+  pistaG.add(caixa(14, 0.1, 9, mat('#C8553D'), [0, -0.05, -1.5]));
+  for (let k = 0; k < 6; k++) pistaG.add(caixa(14, 0.012, 0.05, mat('#FFFFFF'), [0, 0.01, -4.5 + k * 0.8], { sombra: false }));
+  pistaG.add(caixa(0.1, 0.014, 4.3, mat('#FFFFFF'), [1.3, 0.012, -2.0], { sombra: false }));
+  pistaG.add(caixa(0.6, 0.2, 0.4, mat('#2A2D33'), [1.6, 0.1, -0.5]));
+  pistaG.add(caixa(10, 1.2, 0.6, mat('#8FA3B0'), [0, 0.6, -6]));
+  for (let x = -4; x <= 4; x += 1.2) pistaG.add(caixa(0.5, 0.5, 0.5, mat('#E8322B'), [x, 1.45, -5.6]));
+
+  // ---------- personagem e objetos de cena (sempre no corpoG) ----------
   const voce = criarPersonagem();
   voce.position.set(0, 0.05, 0);
   corpoG.add(voce);
@@ -107,21 +144,21 @@ export function criar(ctx) {
   // caminho pelo cérebro (apagado): joelho -> medula -> cérebro
   const pelaCabeca = trilha(10, '#9AA3B8', curva([JOELHO, MED_B, MED_T, CER]), 0.25);
 
-  // ---------- rua ----------
+  // carro na rua
   const auto = carro('#2F6FE0');
   auto.position.set(-2, 0.03, -2);
   ruaG.add(auto);
 
   let E;
   function inicial() {
-    E = { modo: 'corpo', sinal: 'nenhum', queda: null, carroT0: null };
+    E = { amb: 'sala', sinal: 'nenhum', queda: null, carroT0: null };
     voce.visible = true;
     voce.position.set(0, 0.05, 0);
     voce.rotation.y = 0;
     voce.estado = { bracos: 'lado', expr: 'feliz' };
   }
-  function setar(modo, sinalAtivo) {
-    E.modo = modo;
+  function setar(amb, sinalAtivo) {
+    E.amb = amb;
     E.sinal = sinalAtivo;
   }
   function yRegua(t) {
@@ -130,8 +167,13 @@ export function criar(ctx) {
     return REGUA_TOPO - Math.min(QUEDA_30, 0.5 * G * tau * tau);
   }
   function montar(t) {
-    corpoG.visible = E.modo === 'corpo';
-    ruaG.visible = E.modo === 'rua';
+    const amb = E.amb;
+    salaG.visible = amb === 'sala';
+    consG.visible = amb === 'consultorio';
+    pistaG.visible = amb === 'pista';
+    ruaG.visible = amb === 'rua';
+    corpoG.visible = amb !== 'rua';
+    cena.background.set(CORES_CENA[amb]);
     regua.position.y = yRegua(t);
     schem.visible = E.sinal === 'reflexo';
     sinal.atualiza(t, E.sinal === 'sinal');
@@ -154,9 +196,9 @@ export function criar(ctx) {
     {
       fala: 'Peça pra alguém soltar uma régua entre os seus dedos. Você consegue pegar antes dela cair muito?',
       destaque: ['régua', 'pegar', 'cair'],
-      camera: { pos: [1.6, 1.1, 4.6], alvo: [0.2, 0.95, 0.1] },
+      camera: { pos: [1.5, 1.1, 4.6], alvo: [0.75, 1.0, 0.1] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('sala', 'nenhum');
         E.queda = null;
         apresentar(lt, b, 'aponta', 'surpreso');
       },
@@ -165,9 +207,9 @@ export function criar(ctx) {
       fala: 'Com uma régua de trinta centímetros, a sua reação leva uns vinte e cinco centésimos de segundo. Veja em câmera lenta.',
       destaque: ['trinta', 'vinte e cinco', 'câmera lenta'],
       corteSeco: true,
-      camera: { pos: [1.4, 1.0, 3.6], alvo: [0.3, 1.05, 0.2] },
+      camera: { pos: [1.4, 1.0, 3.6], alvo: [0.7, 1.05, 0.2] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('sala', 'nenhum');
         E.queda = { t0: b.inicio + 0.8, lento: 3 };
         apresentar(lt, b, 'aponta', 'feliz');
       },
@@ -179,7 +221,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [1.9, 1.8, 3.2], alvo: [0.1, 1.3, 0.2] },
       aplicar(lt, b) {
-        setar('corpo', 'sinal');
+        setar('sala', 'sinal');
         apresentar(lt, b, 'aponta', 'serio');
       },
       camada: (lt) => cartao(lt, 2.0, '120 m/s', 'SINAL NO NERVO, NO MÁXIMO'),
@@ -204,7 +246,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [-0.4, 1.5, 3.4], alvo: [-0.4, 1.1, 0.2] },
       aplicar(lt, b) {
-        setar('corpo', 'reflexo');
+        setar('consultorio', 'reflexo');
         apresentar(lt, b, 'lado', 'serio');
       },
       camada: (lt) => etiqueta(lt, 2.0, 'ATALHO NA MEDULA'),
@@ -215,7 +257,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [-0.4, 1.5, 3.4], alvo: [-0.4, 1.1, 0.2] },
       aplicar(lt, b) {
-        setar('corpo', 'reflexo');
+        setar('consultorio', 'reflexo');
         apresentar(lt, b, 'lado', 'feliz');
       },
       camada: (lt) => cartao(lt, 1.0, 'MAIS RÁPIDO', 'SEM PASSAR PELO CÉREBRO'),
@@ -224,9 +266,9 @@ export function criar(ctx) {
       fala: 'E tem um limite: numa largada de corrida, quem sai antes de um décimo de segundo é considerado falsa largada, porque quase ninguém reage tão rápido.',
       destaque: ['limite', 'décimo', 'falsa largada'],
       corteSeco: true,
-      camera: { pos: [1.2, 1.2, 2.0], alvo: [0.4, 1.1, 0.2] },
+      camera: { pos: [1.4, 1.2, 3.0], alvo: [0.4, 1.1, 0.2] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('pista', 'nenhum');
         apresentar(lt, b, 'aponta', 'surpreso');
       },
       camada: (lt) => etiqueta(lt, 3.5, 'FALSA LARGADA ABAIXO DE 0,1 s'),
@@ -237,7 +279,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [0.2, 1.6, 2.8], alvo: [0.0, 1.4, 0.1] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('sala', 'nenhum');
         apresentar(lt, b, 'aponta', 'surpreso');
       },
       camada: (lt) => etiqueta(lt, 1.0, 'ANTES DE PERCEBER'),
@@ -248,7 +290,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [1.8, 1.8, 3.2], alvo: [0, 1.3, 0] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('sala', 'nenhum');
         voce.visible = true;
         voce.position.set(0, 0.05, 0);
         voce.rotation.y = 0;
@@ -261,7 +303,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: { pos: [1.5, 1.0, 4.4], alvo: [0, 0.95, 0] },
       aplicar(lt, b) {
-        setar('corpo', 'nenhum');
+        setar('sala', 'nenhum');
         apresentar(lt, b, lt > 2.4 ? 'aponta' : 'aceno');
       },
       camada: (lt) => textoFinal(lt),
