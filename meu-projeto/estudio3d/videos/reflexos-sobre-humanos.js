@@ -79,7 +79,9 @@ function stickman() {
     esf(0.024, OLHO, [x, 1.6, 0.232]);
   }
   peca(new THREE.BoxGeometry(0.05, 0.011, 0.011), ARMACAO_C, [0, 1.61, 0.225]);
-  const boca = peca(new THREE.BoxGeometry(0.085, 0.02, 0.02), BOCA, [0, 1.52, 0.228]);
+  const boca = peca(new THREE.BoxGeometry(0.12, 0.028, 0.02), BOCA, [0, 1.52, 0.228]); // sorriso mais aberto
+  peca(new THREE.BoxGeometry(0.13, 0.05, 0.06), '#3B2A1E', [0, 1.43, 0.17]); // barba só no queixo
+  peca(new THREE.BoxGeometry(0.1, 0.03, 0.02), '#3B2A1E', [0, 1.5, 0.215]); // bigode
   // ----- pernas e tênis -----
   const pernas = [];
   for (const x of [-0.1, 0.1]) {
