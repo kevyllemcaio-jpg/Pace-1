@@ -143,3 +143,17 @@ Quando um líquido vira gás, ele rouba calor, e a geladeira usa esse truque o d
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #geladeira #cozinha #curiosidades #ciencia #casa #animacao3d #feitocomia #shorts
+
+---
+
+## Reflexo (`saida/reflexo.mp4`, capa `publicacao/capa-reflexo.png`)
+
+**Título (YouTube):**
+Você consegue pegar uma régua antes dela cair? 🤔 #shorts
+
+**Legenda / descrição (as 3 redes):**
+Uma régua de 30 cm leva cerca de 0,25 s pra você reagir. Por que o corpo é tão lento… e mesmo assim tem um atalho? O reflexo passa pela medula, sem o cérebro decidir nada. 🦵 E numa largada de corrida, quem sai antes de 0,1 s é falsa largada. 🏁
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#comofunciona #reflexo #corpohumano #curiosidades #ciencia #biologia #animacao3d #shorts
