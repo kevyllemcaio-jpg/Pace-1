@@ -6,17 +6,16 @@ Este arquivo é seu. As skills do estúdio leem aqui, antes de cada vídeo, **qu
 
 ## 1. Quem aprova
 
-- Aprovador: **você** (escreva o seu nome aqui: ________).
-- Nada é publicado, enviado nem pago por você sem o seu sim.
+- Aprovador: **Kevylle**.
+- Nada é publicado nem enviado sem o sim do Kevylle.
 
 ## 2. O que pede o seu sim, sempre
 
 Antes de acontecer, a skill mostra o que vai fazer (e o custo, se houver) e espera a sua resposta:
 
-1. **Gastar crédito:** voz paga, música, qualquer geração paga. Uma geração, uma variação, e o valor antes.
-2. **Render inteiro em 1080×1920** (`npm run video -- final`). O rascunho leve e os quadros soltos não pedem.
-3. **Publicar ou enviar qualquer coisa,** inclusive página privada. Padrão de visibilidade: não listado.
-4. **Criar uma skill nova ou mudar uma existente.**
+1. **Publicar ou enviar qualquer coisa,** inclusive página privada. Padrão de visibilidade: não listado.
+
+Não pedem sim (decisão do Kevylle): gastar crédito de voz da ElevenLabs, render final em 1080×1920 e criar ou mudar skills. Mesmo assim, a skill **avisa o custo** antes de gastar crédito e gera uma variação por vez.
 
 Apague ou acrescente linhas à vontade.
 
@@ -28,7 +27,7 @@ Apague ou acrescente linhas à vontade.
 ## 4. Voz e música
 
 - Enquanto o vídeo está em construção: voz-guia grátis do sistema (no macOS a Luciana; no Windows a Microsoft Maria; no Linux o espeak-ng).
-- Voz final: ElevenLabs, na **sua** conta, com a chave e a voz no `.env` (`ELEVENLABS_API_KEY` e `ELEVENLABS_VOZ_ID`). Voz escolhida: ________ (em branco: a voz-guia vai até o fim, e o agente pergunta antes da voz final).
+- Voz final: ElevenLabs, na **sua** conta, com a chave e a voz no `.env` (`ELEVENLABS_API_KEY` e `ELEVENLABS_VOZ_ID`). Voz escolhida: a do `ELEVENLABS_VOZ_ID` no `.env` (o Kevylle preenche a chave e a voz direto no arquivo, nunca no chat). Se o `.env` ainda não tiver a chave, a voz-guia vai até o fim.
 - A voz paga entra só no fim, depois do rascunho aprovado.
 - Música: nenhuma (fundo tonal do kit). Para usar a sua, ponha o arquivo na pasta do projeto e `"musica": { "arquivo": "..." }` no plano.
 
