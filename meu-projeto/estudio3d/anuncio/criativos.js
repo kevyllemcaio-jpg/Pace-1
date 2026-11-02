@@ -80,4 +80,48 @@ module.exports = {
       },
     ],
   },
+
+  // C — "mini-aula": entrega valor primeiro (ensina a fórmula em 3 passos) e depois oferece o curso.
+  //     Estrutura gancho (0-3 s) -> ensino/demonstração -> 1 CTA. Sem promessa de ganhos.
+  'anuncio-c': {
+    blocos: [
+      {
+        fala: 'Vou te ensinar em trinta segundos a fórmula desses vídeos que ninguém consegue parar de assistir.',
+        clipes: [['aviao', 29], ['semaforo', 24.5]],
+        titulo: ['A FÓRMULA DOS', 'VÍDEOS *"COMO FUNCIONA"*'],
+        destaque: ['trinta', 'fórmula', 'ninguém'],
+      },
+      {
+        fala: 'Passo um: comece com uma pergunta que todo mundo já se fez. Tipo: como o semáforo sabe que você chegou?',
+        clipes: [['semaforo', 0.3], ['semaforo', 26]],
+        cartao: ['PASSO 1', 'UMA PERGUNTA CURIOSA'],
+        destaque: ['pergunta', 'semáforo'],
+      },
+      {
+        fala: 'Passo dois: construa a resposta peça por peça. Então você põe isso... mas dá um problema... então você resolve.',
+        clipes: [['freio', 19], ['freio', 27], ['microondas', 23]],
+        cartao: ['PASSO 2', 'CONSTRUA PEÇA POR PEÇA'],
+        destaque: ['peça', 'problema', 'resolve'],
+      },
+      {
+        fala: 'Passo três: feche com uma curiosidade. É por isso que a janela do avião é redonda!',
+        clipes: [['aviao', 44], ['aviao', 47.5]],
+        cartao: ['PASSO 3', '"É POR ISSO QUE..."'],
+        destaque: ['curiosidade', 'redonda'],
+      },
+      {
+        fala: 'E o melhor: a inteligência artificial faz o vídeo inteiro com essa fórmula. Roteiro, cenário 3D, narração e música.',
+        clipes: [['aula4', 30], ['geladeira', 30]],
+        etiqueta: 'SEM CÂMERA • SEM EDIÇÃO',
+        destaque: ['inteligência', 'inteiro', '3D'],
+      },
+      {
+        fala: 'No curso Constrói Isso Aí, eu te mostro o passo a passo. Toque em saiba mais e faça o seu primeiro vídeo hoje.',
+        clipes: [['aula2', 27], ['semaforo', 57]],
+        botao: 'SAIBA MAIS',
+        titulo: ['FAÇA O SEU', 'PRIMEIRO *VÍDEO HOJE*'],
+        destaque: ['passo', 'saiba', 'hoje'],
+      },
+    ],
+  },
 };
