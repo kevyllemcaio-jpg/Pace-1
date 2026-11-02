@@ -173,3 +173,17 @@ Capítulos: abertura · medindo a reação · caminho do sinal · carro a 80 km/
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #reflexo #corpohumano #ciencia #curiosidades #biologia
+
+---
+
+## Sentido de alerta (`saida/sentido-alerta.mp4`, capa `publicacao/capa-sentido-alerta.png`)
+
+**Título (YouTube):**
+E se você sentisse o perigo antes de ele acontecer? ⚡ #shorts
+
+**Descrição:**
+Você atravessa a rua, e um carro surge da esquina. Seu corpo já pula pra trás, antes de você entender. Só que o alarme não desliga, e você não dorme direito. Aguentaria ouvir o perigo o tempo todo?
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#comofunciona #reflexo #sentido #ideias #curiosidades #shorts
