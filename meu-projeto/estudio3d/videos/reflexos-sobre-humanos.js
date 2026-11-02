@@ -35,86 +35,89 @@ const POSES = {
   cabeca: { D: [0.3, 1.5, 0.15], E: [-0.3, 1.5, 0.15] },
 };
 function stickman() {
+  // personagem de óculos redondos, com as roupas da casa (camisa amarela sem zíper, calça preta, tênis branco com sola vermelha)
   const g = new THREE.Group();
   const corpo = new THREE.Group();
   g.add(corpo);
-  const PELE = '#E8B48A', CABELO = '#3B2416', CAMISA = '#F2B705', CALCA = '#141414', TENIS = '#F4F4F4', SOLA = '#C62828', OLHO = '#1A1A1A';
-  const esfera = (r, cor, pos, sx = 1, sy = 1, sz = 1) => {
-    const m = malha(new THREE.SphereGeometry(r, 32, 24), mat(cor), { sombra: false });
+  const PELE = '#E8B48A', PELE_SOMBRA = '#D39B70', CABELO = '#3B2416', CABELO_CLARO = '#4E3320', JAQUETA = '#F2B705', GOLA = '#D99A04', CALCA = '#161616', TENIS = '#F4F4F4', SOLA = '#C62828', OLHO = '#1A1A1A', ARMACAO = '#1E1E1E', BOCA = '#8B2D2D';
+  const M = (c) => mat(c, { unico: false });
+  const peca = (geo, cor, pos, rot = null, sc = null) => {
+    const m = malha(geo, M(cor), { sombra: false });
     m.position.set(...pos);
-    m.scale.set(sx, sy, sz);
+    if (rot) m.rotation.set(...rot);
+    if (sc) m.scale.set(...sc);
     corpo.add(m);
     return m;
   };
-  // tronco redondo (camisa) e quadril (calça)
-  const jaqueta = malha(new THREE.CylinderGeometry(0.2, 0.17, 0.5, 28), mat(CAMISA), { sombra: false });
-  jaqueta.position.set(0, 1.03, 0);
-  corpo.add(jaqueta);
-  const quadril = malha(new THREE.CylinderGeometry(0.17, 0.16, 0.2, 28), mat(CALCA), { sombra: false });
-  quadril.position.set(0, 0.8, 0);
-  corpo.add(quadril);
-  // cabeça: pele + cabelo por cima e atrás
-  const pescoco = malha(new THREE.CylinderGeometry(0.075, 0.08, 0.16, 20), mat(PELE), { sombra: false });
-  pescoco.position.set(0, 1.4, 0);
-  corpo.add(pescoco);
-  esfera(0.19, PELE, [0, 1.6, 0.03]);
-  esfera(0.2, CABELO, [0, 1.69, -0.05], 1.0, 0.6, 1.02);
-  const olhoE = esfera(0.024, OLHO, [-0.075, 1.6, 0.225]);
-  const olhoD = esfera(0.024, OLHO, [0.075, 1.6, 0.225]);
-  const boca = caixa(0.09, 0.025, 0.02, mat('#8B2D2D'), [0, 1.53, 0.235], { sombra: false });
-  // óculos redondos
-  const ARMACAO = '#1E1E1E';
+  const esf = (r, cor, pos, sc = [1, 1, 1]) => peca(new THREE.SphereGeometry(r, 28, 20), cor, pos, null, sc);
+  // ----- tronco e quadril -----
+  peca(new THREE.CylinderGeometry(0.2, 0.165, 0.5, 32), JAQUETA, [0, 1.03, 0]);
+  peca(new THREE.CylinderGeometry(0.115, 0.125, 0.06, 24), GOLA, [0, 1.3, 0]);
+  peca(new THREE.CylinderGeometry(0.165, 0.155, 0.2, 32), CALCA, [0, 0.79, 0]);
+  // ----- pescoço, cabeça e rosto -----
+  peca(new THREE.CylinderGeometry(0.075, 0.08, 0.14, 20), PELE_SOMBRA, [0, 1.4, 0]);
+  esf(0.19, PELE, [0, 1.6, 0.02], [0.96, 1.06, 0.96]);
+  esf(0.035, PELE, [-0.19, 1.6, 0], [0.5, 1, 0.9]);
+  esf(0.035, PELE, [0.19, 1.6, 0], [0.5, 1, 0.9]);
+  esf(0.03, PELE, [0, 1.56, 0.205], [0.9, 1.2, 1.1]);
+  // cabelo em camadas: calota, franja e nuca
+  esf(0.21, CABELO, [0, 1.7, -0.03], [1.0, 0.7, 1.04]);
+  esf(0.19, CABELO_CLARO, [0.02, 1.7, 0.1], [0.9, 0.26, 0.5]);
+  esf(0.17, CABELO, [0, 1.56, -0.13], [0.95, 0.55, 0.45]);
+  // sobrancelhas, óculos redondos e hastes
+  peca(new THREE.BoxGeometry(0.07, 0.012, 0.01), CABELO, [-0.075, 1.7, 0.2]);
+  peca(new THREE.BoxGeometry(0.07, 0.012, 0.01), CABELO, [0.075, 1.7, 0.2]);
   for (const x of [-0.075, 0.075]) {
-    const aro = malha(new THREE.TorusGeometry(0.055, 0.012, 10, 24), mat(ARMACAO), { sombra: false });
-    aro.position.set(x, 1.6, 0.235);
-    corpo.add(aro);
+    peca(new THREE.TorusGeometry(0.055, 0.012, 12, 28), ARMACAO, [x, 1.6, 0.225]);
+    esf(0.022, OLHO, [x, 1.6, 0.232]);
   }
-  corpo.add(caixa(0.06, 0.012, 0.012, mat(ARMACAO), [0, 1.61, 0.235], { sombra: false }));
-  corpo.add(boca);
-  // pernas e tênis (membros redondos)
-  const membros = [];
-  const membro = (a, b, r, cor) => {
-    r = r * 0.85;
-    const c = malha(new THREE.CylinderGeometry(r, r, 1, 24), mat(cor), { sombra: false });
-    const p1 = esfera(r, cor, a), p2 = esfera(r, cor, b);
-    corpo.add(c);
-    segmento(c, a, b);
-    return { c, p1, p2, a, b };
-  };
-  for (const s of [1, -1]) {
-    membros.push(membro([0.1 * s, 0.8, 0], [0.12 * s, 0.42, 0], 0.085, CALCA));
-    membros.push(membro([0.12 * s, 0.42, 0], [0.13 * s, 0.08, 0], 0.075, CALCA));
-    esfera(0.1, TENIS, [0.14 * s, 0.05, 0.03], 1.1, 0.6, 1.6);
-    esfera(0.06, SOLA, [0.14 * s, 0.02, 0.05], 1.2, 0.3, 1.7);
+  peca(new THREE.BoxGeometry(0.05, 0.012, 0.012), ARMACAO, [0, 1.61, 0.225]);
+  peca(new THREE.BoxGeometry(0.012, 0.012, 0.15), ARMACAO, [-0.15, 1.61, 0.15]);
+  peca(new THREE.BoxGeometry(0.012, 0.012, 0.15), ARMACAO, [0.15, 1.61, 0.15]);
+  const boca = peca(new THREE.BoxGeometry(0.085, 0.02, 0.02), BOCA, [0, 1.52, 0.228]);
+  // ----- pernas e tênis -----
+  const pernas = [];
+  for (const x of [-0.1, 0.1]) {
+    const coxa = malha(new THREE.CylinderGeometry(0.075, 0.07, 1, 20), M(CALCA), { sombra: false });
+    const canela = malha(new THREE.CylinderGeometry(0.062, 0.05, 1, 20), M(CALCA), { sombra: false });
+    corpo.add(coxa, canela);
+    const pe = peca(new THREE.SphereGeometry(0.1, 20, 14), TENIS, [x + 0.02, 0.07, 0.04], null, [1.0, 0.55, 1.6]);
+    peca(new THREE.SphereGeometry(0.06, 16, 10), SOLA, [x + 0.02, 0.025, 0.05], null, [1.1, 0.2, 1.8]);
+    pernas.push({ coxa, canela, a: [x, 0.78, 0], k: [x * 1.2, 0.42, 0.0], b: [x * 1.1, 0.1, 0.0] });
   }
-  // braços (manga da camisa) com mãos de pele
-  const ombros = { D: [0.27, 1.2, 0], E: [-0.27, 1.2, 0] };
+  // ----- braços: ombro -> cotovelo -> punho, mão com dedos -----
+  const ombros = { D: [0.27, 1.22, 0], E: [-0.27, 1.22, 0] };
   const bracos = {};
   for (const k of ['D', 'E']) {
-    const c = malha(new THREE.CylinderGeometry(0.062, 0.062, 1, 24), mat(CAMISA), { sombra: false });
-    corpo.add(c);
-    const mao = esfera(0.075, PELE, [0, 0, 0]);
-    bracos[k] = { c, mao };
+    const sup = malha(new THREE.CylinderGeometry(0.06, 0.055, 1, 20), M(JAQUETA), { sombra: false });
+    const ant = malha(new THREE.CylinderGeometry(0.055, 0.05, 1, 20), M(JAQUETA), { sombra: false });
+    const cotovelo = esf(0.058, JAQUETA, [0, 0, 0]);
+    const mao = esf(0.07, PELE, [0, 0, 0], [1, 0.9, 0.8]);
+    const polegar = esf(0.028, PELE, [0, 0, 0]);
+    corpo.add(sup, ant);
+    bracos[k] = { sup, ant, cotovelo, mao, polegar };
   }
-  g.corpo = corpo; g.boca = boca; g.olhos = [olhoE, olhoD]; g.ombros = ombros; g.bracos = bracos;
+  g.corpo = corpo; g.boca = boca; g.olhos = []; g.ombros = ombros; g.bracos = bracos; g.pernas = pernas;
   g.estado = { bracos: 'normal', expr: 'feliz' };
-  // sem sombra recebida: evita o padrão de listras ("brigando") na pele e na roupa
   g.traverse((o) => { if (o.isMesh) { o.receiveShadow = false; o.castShadow = false; } });
   g.animar = (t) => {
     const e = g.estado || {};
     const p = POSES[e.bracos] || POSES.normal;
     for (const k of ['D', 'E']) {
-      const { c, mao } = g.bracos[k];
-      segmento(c, ombros[k], p[k]);
-      mao.position.set(...p[k]);
+      const { sup, ant, cotovelo, mao, polegar } = g.bracos[k];
+      const a = ombros[k], m = p[k];
+      const c = [(a[0] + m[0]) / 2 + (k === 'D' ? 0.05 : -0.05), (a[1] + m[1]) / 2 - 0.06, (a[2] + m[2]) / 2 + 0.04];
+      segmento(sup, a, c);
+      segmento(ant, c, m);
+      cotovelo.position.set(...c);
+      mao.position.set(...m);
+      polegar.position.set(m[0] + (k === 'D' ? 0.05 : -0.05), m[1] + 0.03, m[2] + 0.03);
     }
-    membros.forEach((m) => { segmento(m.c, m.a, m.b); });
+    g.pernas.forEach((pn) => { segmento(pn.coxa, pn.a, pn.k); segmento(pn.canela, pn.k, pn.b); });
     const sobe = e.pulo ? 0.12 * Math.abs(Math.sin(t * 6)) : 0;
-    corpo.position.y = sobe + 0.01 * Math.sin(t * 3);
-    const falando = e.falando ? 1 : 0;
+    corpo.position.y = sobe + 0.008 * Math.sin(t * 3);
     const abertura = { feliz: 0.6, sorriso: 0.9, serio: 0.35, surpreso: 2.2, preocupado: 1.3 }[e.expr] || 0.6;
-    boca.scale.y = falando ? abertura * (0.6 + 0.6 * Math.abs(Math.sin(t * 20))) : abertura;
-    g.olhos.forEach((o) => o.scale.setScalar(e.expr === 'surpreso' ? 1.5 : 1));
+    boca.scale.y = e.falando ? abertura * (0.6 + 0.6 * Math.abs(Math.sin(t * 20))) : abertura;
   };
   return g;
 }
