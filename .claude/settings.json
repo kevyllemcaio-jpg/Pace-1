@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "espaco-em-codigo": {
+      "source": {
+        "source": "github",
+        "repo": "paullabs/espaco-em-codigo"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "espaco-em-codigo@espaco-em-codigo": true
+  }
+}
