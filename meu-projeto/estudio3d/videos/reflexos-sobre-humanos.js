@@ -35,11 +35,11 @@ const POSES = {
   cabeca: { D: [0.3, 1.5, 0.15], E: [-0.3, 1.5, 0.15] },
 };
 function stickman() {
-  // personagem do canal: moletom vermelho com zíper, camiseta branca, calça de cargo escura, tênis vermelho e branco, cabelo castanho cacheado
+  // personagem professor: blazer azul-marinho, camisa branca, gravata vermelha, calça escura, óculos redondos, tênis
   const g = new THREE.Group();
   const corpo = new THREE.Group();
   g.add(corpo);
-  const PELE = '#F0BE94', PELE_SOMBRA = '#DCA67C', CABELO = '#5A2E17', CABELO_CLARO = '#7A4324', JAQUETA = '#D7261E', GOLA = '#F4F4F4', CALCA = '#2F2F35', BOLSO = '#24242A', TENIS = '#F7F7F7', SOLA = '#D7261E', OLHO = '#3B2314', ARMACAO = '#1E1E1E', BOCA = '#8B2D2D';
+  const PELE = '#F0BE94', PELE_SOMBRA = '#DCA67C', CABELO = '#5A2E17', CABELO_CLARO = '#7A4324', JAQUETA = '#1F2F4D', GOLA = '#F4F4F4', CALCA = '#2A2A30', BOLSO = '#24242A', GRAVATA = '#C62828', ARMACAO_C = '#222222', TENIS = '#F7F7F7', SOLA = '#D7261E', OLHO = '#3B2314', ARMACAO = '#1E1E1E', BOCA = '#8B2D2D';
   const M = (c) => mat(c, { unico: false });
   const peca = (geo, cor, pos, rot = null, sc = null) => {
     const m = malha(geo, M(cor), { sombra: false });
@@ -53,7 +53,8 @@ function stickman() {
   // ----- tronco e quadril -----
   peca(new THREE.CylinderGeometry(0.2, 0.165, 0.5, 32), JAQUETA, [0, 1.03, 0]);
   peca(new THREE.CylinderGeometry(0.115, 0.125, 0.06, 24), GOLA, [0, 1.3, 0]);
-  peca(new THREE.BoxGeometry(0.014, 0.5, 0.012), GOLA, [0, 1.03, 0.2]); // zíper branco na frente
+  peca(new THREE.BoxGeometry(0.07, 0.3, 0.012), GOLA, [0, 1.12, 0.2]); // camisa branca aparecendo
+  peca(new THREE.BoxGeometry(0.05, 0.24, 0.02), GRAVATA, [0, 1.0, 0.215]); // gravata
   peca(new THREE.BoxGeometry(0.06, 0.035, 0.012), GOLA, [0.0, 1.31, 0.12]);
   peca(new THREE.CylinderGeometry(0.165, 0.155, 0.2, 32), CALCA, [0, 0.79, 0]);
   // ----- pescoço, cabeça e rosto -----
@@ -73,7 +74,11 @@ function stickman() {
   // sobrancelhas, óculos redondos e hastes
   peca(new THREE.BoxGeometry(0.07, 0.012, 0.01), CABELO, [-0.075, 1.7, 0.2]);
   peca(new THREE.BoxGeometry(0.07, 0.012, 0.01), CABELO, [0.075, 1.7, 0.2]);
-  for (const x of [-0.075, 0.075]) esf(0.024, OLHO, [x, 1.6, 0.225]);
+  for (const x of [-0.075, 0.075]) {
+    peca(new THREE.TorusGeometry(0.055, 0.011, 12, 28), ARMACAO_C, [x, 1.6, 0.225]);
+    esf(0.024, OLHO, [x, 1.6, 0.232]);
+  }
+  peca(new THREE.BoxGeometry(0.05, 0.011, 0.011), ARMACAO_C, [0, 1.61, 0.225]);
   const boca = peca(new THREE.BoxGeometry(0.085, 0.02, 0.02), BOCA, [0, 1.52, 0.228]);
   // ----- pernas e tênis -----
   const pernas = [];
