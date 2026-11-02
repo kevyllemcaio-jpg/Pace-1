@@ -254,9 +254,9 @@ export function iniciar(video) {
 }
 
 // ================= PADRÃO DO CANAL =================
-export const FALA_FINAL = 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Link na bio!';
-/** Texto único do final: "QUER FAZER VÍDEOS ASSIM COM IA? LINK NA BIO!" */
+export const FALA_FINAL = 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Assista ao último vídeo do perfil!';
+/** Texto único do final: "QUER FAZER VÍDEOS ASSIM COM IA? ASSISTA AO ÚLTIMO VÍDEO!" */
 export function textoFinal(lt) {
   const k = Math.max(0.01, salto(lt / 0.35));
-  return `<div class="final contorno" style="transform: scale(${k}); opacity:${lim(lt / 0.1)}">${linhasComDestaque(['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'])}</div>`;
+  return `<div class="final contorno" style="transform: scale(${k}); opacity:${lim(lt / 0.1)}">${linhasComDestaque(['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', 'ASSISTA AO', '*ÚLTIMO VÍDEO!*'])}</div>`;
 }
