@@ -47,20 +47,26 @@ export function linhasComDestaque(linhas) {
     .map((l) => l.split(/(\*[^*]+\*)/).filter(Boolean).map((p) => (p.startsWith('*') ? `<span class="destaque">${esc(p.slice(1, -1))}</span>` : esc(p))).join(''))
     .join('<br>');
 }
+// Registro dos símbolos que aparecem (para efeitos sonoros automáticos).
+let registro = null;
+const marcar = (ini, tipo) => { if (registro) registro.push({ ini, tipo }); };
 const pop = (lt, ini) => `transform: translate(-50%, 0) scale(${Math.max(0.01, salto((lt - ini) / 0.3))}); opacity: ${lim((lt - ini) / 0.1)};`;
 
 /** Cartão branco com número vermelho grande (ex.: "27x" / "MENOS ENVERGADURA"). */
 export function cartao(lt, ini, numero, sub) {
+  marcar(ini, 'pop');
   if (lt < ini) return '';
   return `<div class="cartao" style="${pop(lt, ini)}"><div class="num">${esc(numero)}</div><div class="sub">${esc(sub)}</div></div>`;
 }
 /** Etiqueta vermelha (ex.: "● EROSÃO"). */
 export function etiqueta(lt, ini, texto) {
+  marcar(ini, 'plim');
   if (lt < ini) return '';
   return `<div class="etiqueta" style="${pop(lt, ini)}">${esc(texto)}</div>`;
 }
 /** Selo verde de "resolvido". */
 export function ok(lt, ini) {
+  marcar(ini, 'ok');
   if (lt < ini) return '';
   return `<div class="ok" style="${pop(lt, ini)}">✓</div>`;
 }
@@ -239,6 +245,22 @@ export function iniciar(video) {
         lista.push({ t: b.inicio + em + (s.depois || 0), tipo: s.tipo });
       }
     }
+    if (video.config.sonsAuto === false) return lista;
+    // automáticos: corte seco = whoosh; cartão = pop; etiqueta = plim; selo ✓ = ok; texto final = pop
+    const auto = [];
+    blocos.forEach((b, i) => {
+      if (i > 0 && b.corteSeco) auto.push({ t: b.inicio, tipo: 'whoosh' });
+      if (b.camada) {
+        registro = [];
+        try { b.camada(b.dur + 5, b); } catch (e) { /* ignora */ }
+        for (const r of registro) if (isFinite(r.ini)) auto.push({ t: b.inicio + Math.max(0, r.ini), tipo: r.tipo });
+        registro = null;
+      }
+    });
+    for (const a of auto) {
+      const repetido = [...lista, ...auto.filter((x) => x !== a && x.tipo === a.tipo && x.t < a.t)].some((x) => Math.abs(x.t - a.t) < 0.25 && (x.tipo === a.tipo || (a.tipo === 'ok' && x.tipo === 'ok')));
+      if (!repetido) lista.push(a);
+    }
     return lista;
   }
 
@@ -254,9 +276,15 @@ export function iniciar(video) {
 }
 
 // ================= PADRÃO DO CANAL =================
-export const FALA_FINAL = 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Assista ao último vídeo do perfil!';
+// ?finalAntigo=1 recria o final antigo ("link na bio") — só para remixar vídeos já renderizados.
+const FINAL_ANTIGO = typeof location !== 'undefined' && new URLSearchParams(location.search).has('finalAntigo');
+export const FALA_FINAL = FINAL_ANTIGO
+  ? 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Link na bio!'
+  : 'Esse vídeo foi feito cem por cento com inteligência artificial. Quer aprender? Assista ao último vídeo do perfil!';
 /** Texto único do final: "QUER FAZER VÍDEOS ASSIM COM IA? ASSISTA AO ÚLTIMO VÍDEO!" */
 export function textoFinal(lt) {
   const k = Math.max(0.01, salto(lt / 0.35));
-  return `<div class="final contorno" style="transform: scale(${k}); opacity:${lim(lt / 0.1)}">${linhasComDestaque(['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', 'ASSISTA AO', '*ÚLTIMO VÍDEO!*'])}</div>`;
+  marcar(0, 'pop');
+  const linhas = FINAL_ANTIGO ? ['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', '*LINK NA BIO!*'] : ['QUER FAZER VÍDEOS', 'ASSIM COM *IA*?', 'ASSISTA AO', '*ÚLTIMO VÍDEO!*'];
+  return `<div class="final contorno" style="transform: scale(${k}); opacity:${lim(lt / 0.1)}">${linhasComDestaque(linhas)}</div>`;
 }

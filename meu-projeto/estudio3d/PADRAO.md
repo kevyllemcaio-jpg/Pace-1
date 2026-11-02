@@ -36,6 +36,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   abaixa sozinha quando a voz fala. Entra automaticamente no `render3d.js`
   (`node estudio3d/musicar.js <video>` recoloca a música num vídeo já pronto).
 
+## Efeitos sonoros automáticos
+- Todo corte seco ganha um *whoosh*; cartão = *pop*; etiqueta = *plim*; selo ✓ = *ding*; texto final = *pop* (no motor, `sons()`; desligar com `config.sonsAuto = false`).
+- Para refazer só o áudio de um vídeo pronto (≈20 s): `node estudio3d/render3d.js <video> --so-audio` (vídeos antigos com "link na bio": acrescente `--final-antigo`).
+
 ## Entrega de cada vídeo
 - Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
 - Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Vídeo 100% feito com IA. Quer aprender a fazer vídeos assim? Assista ao último vídeo do perfil!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.

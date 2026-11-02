@@ -7,6 +7,8 @@
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
 //   --horizontal  vídeo deitado 1920x1080 (YouTube)
+//   --so-audio  refaz só o áudio (voz + efeitos + música) em cima do vídeo já pronto (rápido)
+//   --final-antigo  usa o final antigo "link na bio" (para remixar vídeos antigos)
 //   --limpo --de=10 --ate=13  recorta só esse trecho, sem textos e sem áudio (saida/clipes/)
 // Música de fundo original entra automaticamente (desligue com config.musica = false no vídeo).
 
@@ -28,6 +30,8 @@ const previa = args.includes('--previa');
 const comVoz = !args.includes('--sem-voz');
 const escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--escala=1.5').split('=')[1]);
 const limpo = args.includes('--limpo');
+const soAudio = args.includes('--so-audio');
+const finalAntigo = args.includes('--final-antigo');
 const horizontal = args.includes('--horizontal'); // vídeo deitado 1920x1080 (YouTube)
 const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280, SAIDA = horizontal ? '1920:1080' : '1080:1920';
 const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
@@ -66,6 +70,9 @@ const SONS = {
   descarga: 'anoisesrc=d=2.2:c=pink:a=0.8,bandpass=f=700:w=900,afade=t=in:d=0.1,afade=t=out:st=0.8:d=1.4,volume=1.5',
   gargalo: 'anoisesrc=d=1.0:c=brown:a=0.9,lowpass=f=450,tremolo=f=9:d=0.95,afade=t=out:st=0.4:d=0.6,volume=1.8',
   zap: 'sine=f=120:d=0.5,tremolo=f=60:d=1,afade=t=out:st=0.05:d=0.45,volume=1.2',
+  whoosh: 'anoisesrc=d=0.4:c=pink:a=0.9,highpass=f=500,lowpass=f=3500,afade=t=in:d=0.15,afade=t=out:st=0.15:d=0.25,volume=1.6',
+  pop: 'aevalsrc=0.6*sin(2*PI*(300+1600*t)*t)*exp(-22*t):d=0.22',
+  plim: 'aevalsrc=0.45*sin(2*PI*1568*t)*exp(-14*t)+0.22*sin(2*PI*2349*t)*exp(-18*t):d=0.35',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 function arquivoSom(tipo) {
@@ -85,7 +92,7 @@ function arquivoSom(tipo) {
   const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 1.5 });
   page.on('pageerror', (e) => console.error('ERRO NA PÁGINA:', e.message));
   page.on('console', (m) => m.type() === 'error' && console.error('console:', m.text()));
-  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}${horizontal ? '&formato=horizontal' : ''}`);
+  await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}${horizontal ? '&formato=horizontal' : ''}${finalAntigo ? '&finalAntigo=1' : ''}`);
   await page.waitForFunction(() => window.PRONTO === true, null, { timeout: 60000 });
 
   // 1) Narração: um MP3 + tempos das palavras por bloco (com cache).
@@ -150,10 +157,16 @@ function arquivoSom(tipo) {
   // 2) Quadros -> vídeo, em PEDAÇOS de 10 s salvos no disco (retomável: se o ambiente
   //    reiniciar, os pedaços já prontos são reaproveitados e o render continua de onde parou).
   const semAudio = path.join(pastaSaida, `.${nome}-sem-audio.mp4`);
+  let pastaPedacos = null;
+  if (soAudio) {
+    const anterior = path.join(pastaSaida, '.sem-musica', `${nome}.mp4`);
+    if (!fs.existsSync(anterior)) throw new Error(`não achei ${anterior} (renderize o vídeo inteiro primeiro)`);
+    ffmpeg(['-i', anterior, '-map', '0:v', '-c', 'copy', semAudio]);
+  } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
   const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios })).digest('hex').slice(0, 10);
-  const pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
+  pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);
   const t0 = Date.now();
@@ -184,9 +197,11 @@ function arquivoSom(tipo) {
   fs.writeFileSync(listaPedacos, Array.from({ length: nPedacos }, (_, k) => `file 'p${String(k).padStart(4, '0')}.mp4'`).join('\n'));
   ffmpeg(['-f', 'concat', '-safe', '0', '-i', listaPedacos, '-c', 'copy', semAudio]);
   console.log(`\rquadros: ${total}/${total}                         `);
+  }
 
   // 3) Áudio: narração + efeitos
   const sons = await page.evaluate(() => MOTOR.sons());
+  console.log('efeitos: ' + sons.map((s) => `${s.tipo}@${s.t.toFixed(1)}`).join(' '));
   await browser.close();
   servidor.close();
   const faixas = []; // [arquivo, início, volume]
@@ -204,7 +219,7 @@ function arquivoSom(tipo) {
   fs.rmSync(semAudio);
   if (config.musica === false) fs.copyFileSync(semMusica, path.join(pastaSaida, `${nome}.mp4`));
   else musicar(nome);
-  fs.rmSync(pastaPedacos, { recursive: true, force: true });
+  if (pastaPedacos) fs.rmSync(pastaPedacos, { recursive: true, force: true });
   console.log(`Pronto: ${path.join(pastaSaida, `${nome}.mp4`)} (${duracao.toFixed(1)} s)`);
 })().catch((e) => {
   console.error(e);
