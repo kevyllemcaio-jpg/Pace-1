@@ -150,6 +150,17 @@
     }
    ],
    "borda": 1.2
+  },
+  "voce": {
+   "tipo": "brilho",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "raio": 0.01,
+   "opacidade": 0,
+   "fundo": true
   }
  },
  "planos": [

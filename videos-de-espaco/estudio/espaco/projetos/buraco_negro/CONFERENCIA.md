@@ -35,7 +35,7 @@ Análise de 525 quadros a 12 qps (43.8 s).
 | D1.1 | Calma: | sol, terra | sol 60%, terra 100% | ok |
 | D1.2 | o Sol é leve demais | sol | sol 100% | ok |
 | D1.3 | pra virar buraco negro. | sol, terra | sol 100%, terra 100% | ok |
-| Q1.1 | E você, | terra | terra 100% | ok |
+| Q1.1 | E você, | voce, terra | voce: ?, terra 100% | ALERTA |
 | Q1.2 | ia perceber | terra, sol | terra 100%, sol 100% | ok |
 | Q1.3 | nos primeiros oito minutos? | terra, sol | terra 100%, sol 100% | ok |
 
@@ -56,8 +56,9 @@ Análise de 525 quadros a 12 qps (43.8 s).
 
 ## Resultado
 
-**Nenhum alerta.**
+**1 alerta(s)** (corrija antes de mostrar):
 
+- Q1.1 "E você,": "voce" não é nome de objeto nem de efeito do plano
 
 Nenhum aviso.
 
