@@ -202,3 +202,18 @@ Um vídeo de animação por dia, durante 30 dias. O YouTube só paga Shorts com 
 _Sem promessa de ganhos: os resultados dependem de constância e de cada canal._
 
 #animação #ia #rendaextra #youtubeshorts #tiktok #criadordeconteudo #shorts
+
+## 7 dias sem dormir (`saida/sem-dormir.mp4`, capa `publicacao/capa-sem-dormir.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+E se você ficasse 7 dias sem dormir? 😵 #shorts
+
+**Descrição:**
+Com 24 horas acordado, seus reflexos já ficam iguais aos de quem bebeu. No dia 3, as paredes começam a se mexer. Em 1964, um estudante de 17 anos ficou 11 dias acordado e chegou a achar que era outra pessoa. Quantas horas você já ficou sem dormir? Comenta aí! 👇
+
+⚠️ Não tente fazer isso: privação de sono é perigosa.
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#sono #curiosidades #cerebro #ciencia #insonia #shorts
