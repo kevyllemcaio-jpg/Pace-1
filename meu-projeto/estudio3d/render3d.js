@@ -95,6 +95,8 @@ const SONS = {
   ofuscar: 'anoisesrc=d=1.2:c=white:a=0.5,highpass=f=2500,afade=t=in:d=0.9,afade=t=out:st=0.9:d=0.3,volume=1.2',
   // tensao: zumbido grave contínuo de suspense (cama sonora do escuro, ~4 s)
   tensao: 'aevalsrc=0.3*sin(2*PI*55*t)*(0.7+0.3*sin(2*PI*0.5*t))+0.12*sin(2*PI*82.5*t):d=4,afade=t=in:d=1,afade=t=out:st=2.8:d=1.2',
+  // moeda: "plim-plim" de dinheiro (duas notas agudas)
+  moeda: 'aevalsrc=0.45*sin(2*PI*1975*t)*exp(-10*t)+0.4*sin(2*PI*2637*t)*exp(-7*(t-0.08))*gt(t\\,0.08):d=0.7',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 function arquivoSom(tipo) {

@@ -187,3 +187,18 @@ Você atravessa a rua, e um carro surge da esquina. Seu corpo já pula pra trás
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #reflexo #sentido #ideias #curiosidades #shorts
+
+## 30 dias postando animação (`saida/dinheiro-animacao.mp4`, capa `publicacao/capa-dinheiro-animacao.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+30 dias postando animação com IA: dá dinheiro? 💸 #shorts
+
+**Descrição:**
+Um vídeo de animação por dia, durante 30 dias. O YouTube só paga Shorts com 1.000 inscritos e 10 milhões de views em 90 dias, o TikTok pede 10 mil seguidores e vídeos de mais de 1 minuto… mas tem um jeito que paga antes disso tudo. Qual seria o tema do seu primeiro vídeo? Comenta aí! 👇
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+_Sem promessa de ganhos: os resultados dependem de constância e de cada canal._
+
+#animação #ia #rendaextra #youtubeshorts #tiktok #criadordeconteudo #shorts
