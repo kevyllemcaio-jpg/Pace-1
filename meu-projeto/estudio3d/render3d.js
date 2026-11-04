@@ -60,35 +60,8 @@ function fimDaFala(arq) {
   return ult && total - ult < 1.5 ? ult : total;
 }
 
-// Efeitos sonoros sintetizados (sem arquivos externos).
-const SONS = {
-  baque: 'anoisesrc=d=0.6:c=brown:a=0.9,lowpass=f=220,afade=t=out:st=0.05:d=0.55,volume=2.2',
-  quebra: 'anoisesrc=d=1.1:c=pink:a=0.9,lowpass=f=900,afade=t=out:st=0.1:d=1.0,volume=1.6',
-  rachando: 'anoisesrc=d=0.7:c=white:a=0.5,highpass=f=1500,tremolo=f=28:d=0.9,afade=t=out:st=0.1:d=0.6,volume=0.7',
-  splash: 'anoisesrc=d=1.2:c=pink:a=0.8,bandpass=f=1800:w=1500,afade=t=in:d=0.05,afade=t=out:st=0.15:d=1.0,volume=1.1',
-  martelo: 'sine=f=180:d=0.35,afade=t=out:st=0.02:d=0.33,volume=1.4',
-  tum: 'sine=f=70:d=0.28,afade=t=out:st=0.03:d=0.25,volume=2.6',
-  ok: 'sine=f=880:d=0.18,afade=t=out:st=0.05:d=0.13,volume=0.6',
-  descarga: 'anoisesrc=d=2.2:c=pink:a=0.8,bandpass=f=700:w=900,afade=t=in:d=0.1,afade=t=out:st=0.8:d=1.4,volume=1.5',
-  gargalo: 'anoisesrc=d=1.0:c=brown:a=0.9,lowpass=f=450,tremolo=f=9:d=0.95,afade=t=out:st=0.4:d=0.6,volume=1.8',
-  zap: 'sine=f=120:d=0.5,tremolo=f=60:d=1,afade=t=out:st=0.05:d=0.45,volume=1.2',
-  whoosh: 'anoisesrc=d=0.4:c=pink:a=0.9,highpass=f=500,lowpass=f=3500,afade=t=in:d=0.15,afade=t=out:st=0.15:d=0.25,volume=1.6',
-  pop: 'aevalsrc=0.6*sin(2*PI*(300+1600*t)*t)*exp(-22*t):d=0.22',
-  plim: 'aevalsrc=0.45*sin(2*PI*1568*t)*exp(-14*t)+0.22*sin(2*PI*2349*t)*exp(-18*t):d=0.35',
-  brilho: 'aevalsrc=0.28*sin(2*PI*(800+1800*t)*t)*exp(-3*t):d=0.7',
-  motor: 'anoisesrc=d=2.2:c=brown:a=0.8,lowpass=f=220,tremolo=f=14:d=0.6,afade=t=in:d=0.6,afade=t=out:st=1.6:d=0.6,volume=1.4',
-  passagem: 'anoisesrc=d=0.9:c=pink:a=0.9,bandpass=f=1200:w=900,afade=t=in:d=0.1,afade=t=out:st=0.4:d=0.5,volume=1.8',
-  vidro: 'anoisesrc=d=0.6:c=white:a=0.9,highpass=f=3000,afade=t=out:st=0.05:d=0.55,volume=1.3',
-  replay: 'aevalsrc=0.3*sin(2*PI*(1600-1100*t)*t)*(0.6+0.4*sin(2*PI*16*t)):d=1.1,afade=t=out:st=0.8:d=0.3',
-  asas: 'anoisesrc=d=0.8:c=white:a=0.6,bandpass=f=2500:w=2000,tremolo=f=12:d=1,afade=t=out:st=0.5:d=0.3,volume=1.2',
-  uivo: 'aevalsrc=0.35*sin(2*PI*(280+240*t)*t)*(0.75+0.25*sin(2*PI*5*t))*exp(-0.7*t):d=1.8,afade=t=in:d=0.2,afade=t=out:st=1.3:d=0.5',
-  fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
-};
-function arquivoSom(tipo) {
-  const arq = path.join(pastaVoz, `som-${tipo}.wav`);
-  if (!fs.existsSync(arq)) ffmpeg(['-f', 'lavfi', '-i', SONS[tipo], '-ar', '44100', '-ac', '1', arq]);
-  return arq;
-}
+const { SONS, arquivoSom: gerarSom } = require('./sons');
+const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
 
 (async () => {
   // Servidor local: o navegador precisa de http:// para carregar módulos (three.js).
@@ -194,7 +167,7 @@ function arquivoSom(tipo) {
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
-  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
   pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);

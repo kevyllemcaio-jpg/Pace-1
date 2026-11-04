@@ -187,3 +187,33 @@ Você atravessa a rua, e um carro surge da esquina. Seu corpo já pula pra trás
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #reflexo #sentido #ideias #curiosidades #shorts
+
+## 30 dias postando animação (`saida/dinheiro-animacao.mp4`, capa `publicacao/capa-dinheiro-animacao.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+30 dias postando animação com IA: dá dinheiro? 💸 #shorts
+
+**Descrição:**
+Um vídeo de animação por dia, durante 30 dias. O YouTube só paga Shorts com 1.000 inscritos e 10 milhões de views em 90 dias, o TikTok pede 10 mil seguidores e vídeos de mais de 1 minuto… mas tem um jeito que paga antes disso tudo. Qual seria o tema do seu primeiro vídeo? Comenta aí! 👇
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+_Sem promessa de ganhos: os resultados dependem de constância e de cada canal._
+
+#animação #ia #rendaextra #youtubeshorts #tiktok #criadordeconteudo #shorts
+
+## 7 dias sem dormir (`saida/sem-dormir.mp4`, capa `publicacao/capa-sem-dormir.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+E se você ficasse 7 dias sem dormir? 😵 #shorts
+
+**Descrição:**
+Com 24 horas acordado, seus reflexos já ficam iguais aos de quem bebeu. No dia 3, as paredes começam a se mexer. Em 1964, um estudante de 17 anos ficou 11 dias acordado e chegou a achar que era outra pessoa. Quantas horas você já ficou sem dormir? Comenta aí! 👇
+
+⚠️ Não tente fazer isso: privação de sono é perigosa.
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#sono #curiosidades #cerebro #ciencia #insonia #shorts

@@ -36,6 +36,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   abaixa sozinha quando a voz fala. Entra automaticamente no `render3d.js`
   (`node estudio3d/musicar.js <video>` recoloca a música num vídeo já pronto).
 
+## Outros formatos
+- **"N dias de…"** (contador de horas + escalada dia a dia, ex.: "7 dias no escuro"): ver `PADRAO-DIAS.md`.
+  Efeitos sonoros desse formato: `impacto`, `dia`, `tique`, `porta`, `ofuscar`, `tensao`.
+
 ## Efeitos sonoros automáticos
 - Todo corte seco ganha um *whoosh*; cartão = *pop*; etiqueta = *plim*; selo ✓ = *ding*; texto final = *pop* (no motor, `sons()`; desligar com `config.sonsAuto = false`).
 - Para refazer só o áudio de um vídeo pronto (≈20 s): `node estudio3d/render3d.js <video> --so-audio` (vídeos antigos com "link na bio": acrescente `--final-antigo`).
