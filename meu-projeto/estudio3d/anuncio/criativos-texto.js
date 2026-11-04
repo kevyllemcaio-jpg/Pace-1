@@ -17,6 +17,7 @@ module.exports = {
         verde: ['dá'],
         vermelho: ['contam'],
         tremer: true,
+        icone: 'play',
         brilho: '#FFD21F',
         extras: [
           { tipo: 'tag', texto: 'VÍDEOS DE ANIMAÇÃO COM IA', em: 0 },
@@ -28,6 +29,7 @@ module.exports = {
         fala: 'O YouTube só paga Shorts depois de mil inscritos e dez milhões de views em noventa dias.',
         destaque: ['youtube', 'mil', 'milhoes'],
         brilho: '#FF4D4D',
+        icone: 'play',
         extras: [
           { tipo: 'numero', ate: 1000, sub: 'INSCRITOS', em: 'mil', topo: 180, tam: 140 },
           { tipo: 'numero', ate: 10, sufixo: ' MI', sub: 'DE VIEWS EM 90 DIAS', em: 'dez', topo: 450, tam: 140, cor: '#FFD21F' },
@@ -39,6 +41,7 @@ module.exports = {
         destaque: ['habilidade', 'vende'],
         verde: ['ganhar'],
         brilho: '#3DDC84',
+        icone: 'loja',
         extras: [
           { tipo: 'grande', linhas: ['VENDER', '*VÍDEOS*'], em: 'vende', topo: 200, tam: 130, cor: '#3DDC84', sub: 'PRA LOJAS • ESCOLAS • CRIADORES' },
         ],
@@ -48,6 +51,7 @@ module.exports = {
         fala: 'Pra isso, você precisa de três coisas: um roteiro que prende, um personagem, e um jeito rápido de produzir.',
         destaque: ['três', 'roteiro', 'personagem', 'rápido'],
         brilho: '#4DA3FF',
+        icone: 'lista',
         semPalavras: false,
         topoPalavras: 960,
         tamPalavras: 60,
@@ -62,6 +66,7 @@ module.exports = {
         fala: 'No curso Constrói Isso Aí, você aprende o método completo, em cinco aulas curtas, com o kit do estúdio pronto.',
         destaque: ['constrói', 'isso', 'aí', 'cinco', 'kit'],
         brilho: '#B57BFF',
+        icone: 'claquete',
         extras: [
           { tipo: 'grande', linhas: ['CONSTRÓI', '*ISSO AÍ!*'], em: 'curso', topo: 170, tam: 120 },
           { tipo: 'grande', linhas: ['5 AULAS + KIT'], em: 'cinco', topo: 480, tam: 70, cor: '#3DDC84' },
@@ -73,6 +78,7 @@ module.exports = {
         destaque: ['português', 'ia'],
         vermelho: ['câmera', 'edição', 'programar'],
         brilho: '#FF8A3D',
+        icone: 'camera',
         extras: [
           { tipo: 'carimbo', texto: 'SEM CÂMERA', em: 'camera', topo: 200 },
           { tipo: 'carimbo', texto: 'SEM EDIÇÃO', em: 'edicao', topo: 330 },
@@ -85,6 +91,9 @@ module.exports = {
         destaque: ['habilidade', 'constância'],
         vermelho: ['fácil'],
         brilho: '#FF4D4D',
+        icone: 'grafico',
+        corIcone: '#FFD21F',
+        topoIcone: 200,
         topoPalavras: 560,
         tamPalavras: 84,
         sons: [{ em: 'nao', tipo: 'dia' }],

@@ -4,7 +4,7 @@
 //
 // Uso:
 //   node estudio3d/anuncio/texto.js anuncio-d            -> saida/anuncio-d.mp4 (1080x1920)
-//   node estudio3d/anuncio/texto.js anuncio-d --previa   -> um PNG por bloco em saida/
+//   node estudio3d/anuncio/texto.js anuncio-d --previa   -> um PNG por bloco em saida/ (--em=0.2: instante do bloco)
 //
 // Os roteiros ficam em estudio3d/anuncio/criativos-texto.js.
 // Requer: npm install, pip install edge-tts.
@@ -20,6 +20,7 @@ const CRIATIVOS = require('./criativos-texto');
 const args = process.argv.slice(2);
 const nome = args.find((a) => !a.startsWith('--'));
 const previa = args.includes('--previa');
+const fracao = parseFloat((args.find((a) => a.startsWith('--em=')) || '--em=0.8').split('=')[1]); // --previa --em=0.2 -> instante do bloco
 if (!nome || !CRIATIVOS[nome]) {
   console.error(`Uso: node estudio3d/anuncio/texto.js <criativo> [--previa]\nCriativos: ${Object.keys(CRIATIVOS).join(', ')}`);
   process.exit(1);
@@ -82,6 +83,30 @@ function palavras(b,lt,topo,tam){
     const c=dest.includes(n)?'am':verm.includes(n)?'vm':verde.includes(n)?'vd':'';
     const k=Math.max(0.01,salto((lt-p.inicio)/0.18));return '<span class="'+c+'" style="transform:scale('+k+')">'+esc(t)+'</span>'}).join(' ');
   return '<div class="pal" style="top:'+topo+'px;font-size:'+tam+'px">'+ws+'</div>'}
+// ícones grandes (SVG) para preencher espaço vazio
+const ICONES={
+ play:c=>'<rect x="20" y="40" width="200" height="140" rx="22" fill="none" stroke="'+c+'" stroke-width="14"/><path d="M98 78 L158 110 L98 142 Z" fill="'+c+'"/><rect x="80" y="196" width="80" height="12" rx="6" fill="'+c+'"/>',
+ moeda:c=>'<circle cx="120" cy="120" r="96" fill="none" stroke="'+c+'" stroke-width="14"/><circle cx="120" cy="120" r="70" fill="'+c+'" opacity=".18"/><text x="120" y="160" text-anchor="middle" font-size="120" font-weight="900" fill="'+c+'">$</text>',
+ lista:c=>[0,1,2].map(i=>'<rect x="30" y="'+(30+i*66)+'" width="46" height="46" rx="10" fill="none" stroke="'+c+'" stroke-width="10"/><path d="M40 '+(53+i*66)+' l10 10 l18 -20" fill="none" stroke="'+c+'" stroke-width="9" stroke-linecap="round"/><rect x="96" y="'+(44+i*66)+'" width="'+(120-i*20)+'" height="18" rx="9" fill="'+c+'"/>').join(''),
+ claquete:c=>'<rect x="30" y="90" width="180" height="120" rx="14" fill="none" stroke="'+c+'" stroke-width="14"/><path d="M30 60 L200 30 L208 70 L38 100 Z" fill="'+c+'"/><path d="M70 52 l20 30 M115 44 l20 30 M160 36 l20 30" stroke="#0A0A0F" stroke-width="10"/><path d="M100 125 L148 150 L100 175 Z" fill="'+c+'"/>',
+ camera:c=>'<rect x="30" y="70" width="180" height="120" rx="18" fill="none" stroke="'+c+'" stroke-width="14"/><rect x="85" y="48" width="70" height="26" rx="8" fill="'+c+'"/><circle cx="120" cy="130" r="36" fill="none" stroke="'+c+'" stroke-width="14"/><path d="M28 28 L212 212" stroke="#FF4D4D" stroke-width="18" stroke-linecap="round"/>',
+ grafico:c=>'<path d="M30 210 H215 M30 210 V25" stroke="'+c+'" stroke-width="10" stroke-linecap="round"/>'+[0,1,2,3].map(i=>'<rect x="'+(55+i*40)+'" y="'+(170-i*35)+'" width="26" height="'+(40+i*35)+'" rx="6" fill="'+c+'" opacity="'+(.4+i*.2)+'"/>').join('')+'<path d="M50 150 L100 115 L140 125 L205 50" fill="none" stroke="#3DDC84" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M178 48 L208 46 L204 76" fill="none" stroke="#3DDC84" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>',
+ loja:c=>'<path d="M30 90 L50 40 H190 L210 90 Z" fill="'+c+'"/><rect x="45" y="90" width="150" height="110" fill="none" stroke="'+c+'" stroke-width="14"/><rect x="100" y="135" width="40" height="65" fill="'+c+'"/>',
+};
+function icone(b,lt){
+  if(!b.icone)return'';
+  // entra no começo do bloco e sai (0,2 s) quando o primeiro extra ocupa o espaço
+  const ts=(b.extras||[]).filter(e=>!['tag','aviso'].includes(e.tipo)).map(e=>b.em(e.em??0)+(e.depois||0));
+  const tOcupa=ts.length?Math.min(...ts):Infinity;
+  const op=Math.min(lim(lt/0.25),1-lim((lt-tOcupa)/0.2));
+  if(op<=0.01)return'';
+  const s=Math.max(0.01,salto(lt/0.35))*(1+0.04*Math.sin(lt*3));const cor=b.corIcone||b.brilho||'#FFD21F';
+  const topo=b.topoIcone??260;
+  return '<svg viewBox="0 0 240 240" style="position:absolute;left:50%;top:'+topo+'px;width:300px;height:300px;margin-left:-150px;opacity:'+op+';transform:translateY('+(8*Math.sin(lt*2.2))+'px) scale('+s+')">'+ICONES[b.icone](cor)+'</svg>'}
+// símbolos pequenos subindo no fundo (o vídeo nunca fica vazio)
+const SIMB=['$','▶','★','+','●','$','▶','✦'];
+function particulas(t,cor){let h='';for(let i=0;i<18;i++){const x=(i*137)%680+20,vel=28+(i%5)*9,y=1280-((t*vel+i*233)%1400);
+  const s=18+(i%4)*10;h+='<div style="position:absolute;left:'+x+'px;top:'+y+'px;font-size:'+s+'px;font-weight:900;color:'+cor+';opacity:'+(0.10+(i%3)*0.04)+';transform:rotate('+((t*20+i*40)%360)+'deg)">'+SIMB[i%SIMB.length]+'</div>'}return h}
 const pop=(lt,ini,d=0.3)=>Math.max(0.01,salto((lt-ini)/d));
 function extra(b,e,lt){
   const ini=b.em(e.em??0)+(e.depois||0);if(lt<ini)return'';const k=pop(lt,ini),u=lt-ini;
@@ -100,9 +125,10 @@ window.quadro=t=>{
   const brilho=b.brilho||'#FFD21F';const flash=i>0?Math.max(0,1-lt/0.12):0;
   const sh=(b.tremer&&lt<0.35)?(Math.sin(lt*90)*10*(1-lt/0.35)):0;
   document.getElementById('fundo').style.background='radial-gradient(circle at 50% '+(45+5*Math.sin(t*0.8))+'%, '+brilho+'33 0%, #0A0A0F 62%)';
-  let h='';
+  let h=particulas(t,brilho);
   const comExtra=(b.extras||[]).some(e=>!['tag','aviso'].includes(e.tipo));
   if(!b.semPalavras)h+=palavras(b,lt,b.topoPalavras??(comExtra?880:520),b.tamPalavras||(comExtra?72:96));
+  h+=icone(b,lt);
   for(const e of b.extras||[])h+=extra(b,e,lt);
   h+='<div class="barra" style="width:'+(720*t/D.total)+'px"></div>';
   if(flash>0)h+='<div style="position:absolute;inset:0;background:#fff;opacity:'+(0.8*flash)+'"></div>';
@@ -139,7 +165,7 @@ window.PRONTO=true;
 
   if (previa) {
     for (const [i, b] of blocos.entries()) {
-      await desenhar(b.inicio + b.dur * 0.8);
+      await desenhar(b.inicio + b.dur * fracao);
       const arq = path.join(pastaSaida, `${nome}-bloco${String(i + 1).padStart(2, '0')}.png`);
       await page.screenshot({ path: arq });
       console.log(arq);
