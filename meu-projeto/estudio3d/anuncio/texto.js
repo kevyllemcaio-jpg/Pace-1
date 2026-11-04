@@ -202,8 +202,19 @@ window.PRONTO=true;
   blocos.forEach((b, i) => {
     faixas.push([b.audio, b.inicio + ATRASO, 1.5]);
     if (i > 0) faixas.push([arquivoSom('whoosh', pastaVoz), Math.max(0, b.inicio - 0.12), 0.45]);
+    // automáticos: pop quando o ícone entra; "trrr" quando um número sobe
+    if (b.icone) faixas.push([arquivoSom('pop', pastaVoz), b.inicio + 0.05, 0.3]);
+    for (const e of b.extras || []) if (e.tipo === 'numero') faixas.push([arquivoSom('contador', pastaVoz), b.inicio + momento(b, e.em ?? 0) + (e.depois || 0), 0.4]);
     for (const s of b.sons || []) if (SONS[s.tipo]) faixas.push([arquivoSom(s.tipo, pastaVoz), b.inicio + momento(b, s.em) + (s.depois || 0), s.vol ?? 0.6]);
   });
+  // batida de fundo leve (bumbo + chimbal, 120 bpm); para nos blocos com `semBatida`
+  if (criativo.batida !== false) {
+    const bed = path.join(pastaVoz, `batida-${total.toFixed(2)}.wav`);
+    if (!fs.existsSync(bed)) ffmpeg(['-f', 'lavfi', '-i', `aevalsrc=0.9*sin(2*PI*(50+60*exp(-30*mod(t\\,0.5)))*mod(t\\,0.5))*exp(-9*mod(t\\,0.5))+0.22*(random(0)-0.5)*exp(-70*mod(t+0.25\\,0.5)):d=${total.toFixed(2)}`, '-ar', '44100', '-ac', '1', bed]);
+    // (dentro de aspas simples o ffmpeg não precisa escapar as vírgulas)
+    const mudos = blocos.filter((b) => b.semBatida).map((b) => `between(t,${b.inicio.toFixed(2)},${(b.inicio + b.dur).toFixed(2)})`);
+    faixas.push([bed, 0, mudos.length ? `'if(${mudos.join('+')},0,${criativo.volBatida ?? 0.16})':eval=frame` : (criativo.volBatida ?? 0.16)]);
+  }
   const entradas = ['-i', semAudio];
   faixas.forEach(([a]) => entradas.push('-i', a));
   const filtro = faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,volume=${vol},adelay=${Math.round(ini * 1000)}:all=1[s${i}]`).join(';')

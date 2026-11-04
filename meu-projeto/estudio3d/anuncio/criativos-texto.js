@@ -1,6 +1,8 @@
 // Roteiros dos criativos SÓ DE TEXTO (renderizados por anuncio/texto.js).
 // Cada bloco: fala (narração), destaque/vermelho/verde (cores das palavras), extras na tela
 // (numero, grande, item, carimbo, botao, tag, aviso — `em` = palavra em que aparece) e sons.
+// Automáticos: whoosh na troca de bloco, pop no ícone, "trrr" nos números, batida de fundo
+// (semBatida: true silencia a batida no bloco; batida: false / volBatida no criativo).
 //
 // Regras de anúncio (Meta): nada de promessa de ganho ou de renda. Fala dos caminhos reais
 // (com os requisitos verdadeiros) e vende a HABILIDADE. Fatos conferidos:
@@ -23,7 +25,7 @@ module.exports = {
           { tipo: 'tag', texto: 'VÍDEOS DE ANIMAÇÃO COM IA', em: 0 },
           { tipo: 'carimbo', texto: 'NÃO DO JEITO QUE TE CONTAM', em: 'mas', topo: 300 },
         ],
-        sons: [{ em: 0, tipo: 'impacto' }, { em: 'da', tipo: 'moeda' }, { em: 'mas', tipo: 'dia' }],
+        sons: [{ em: 0, tipo: 'impacto' }, { em: 0, tipo: 'glitch', vol: 0.5 }, { em: 'da', tipo: 'moeda' }, { em: 'mas', tipo: 'dia' }, { em: 'contam', tipo: 'baque' }],
       },
       {
         fala: 'O YouTube só paga Shorts depois de mil inscritos e dez milhões de views em noventa dias.',
@@ -45,7 +47,7 @@ module.exports = {
         extras: [
           { tipo: 'grande', linhas: ['VENDER', '*VÍDEOS*'], em: 'vende', topo: 200, tam: 130, cor: '#3DDC84', sub: 'PRA LOJAS • ESCOLAS • CRIADORES' },
         ],
-        sons: [{ em: 'vende', tipo: 'moeda' }, { em: 'lojas', tipo: 'pop' }],
+        sons: [{ em: 'vende', tipo: 'caixa' }, { em: 'lojas', tipo: 'pop' }, { em: 'escolas', tipo: 'pop' }, { em: 'criadores', tipo: 'pop' }],
       },
       {
         fala: 'Pra isso, você precisa de três coisas: um roteiro que prende, um personagem, e um jeito rápido de produzir.',
@@ -71,7 +73,7 @@ module.exports = {
           { tipo: 'grande', linhas: ['CONSTRÓI', '*ISSO AÍ!*'], em: 'curso', topo: 170, tam: 120 },
           { tipo: 'grande', linhas: ['5 AULAS + KIT'], em: 'cinco', topo: 480, tam: 70, cor: '#3DDC84' },
         ],
-        sons: [{ em: 'curso', tipo: 'impacto', vol: 0.45 }, { em: 'cinco', tipo: 'plim' }],
+        sons: [{ em: 'curso', tipo: 'impacto', vol: 0.45 }, { em: 'cinco', tipo: 'plim' }, { em: 'kit', tipo: 'brilho' }],
       },
       {
         fala: 'Sem câmera, sem edição, e sem saber programar: você pede em português, e a IA monta o vídeo.',
@@ -84,7 +86,7 @@ module.exports = {
           { tipo: 'carimbo', texto: 'SEM EDIÇÃO', em: 'edicao', topo: 330 },
           { tipo: 'carimbo', texto: 'SEM PROGRAMAR', em: 'programar', topo: 460 },
         ],
-        sons: [{ em: 'camera', tipo: 'baque' }, { em: 'edicao', tipo: 'baque' }, { em: 'programar', tipo: 'baque' }],
+        sons: [{ em: 'camera', tipo: 'baque' }, { em: 'edicao', tipo: 'baque' }, { em: 'programar', tipo: 'baque' }, { em: 'ia', tipo: 'brilho' }],
       },
       {
         fala: 'Não é dinheiro fácil. É uma habilidade, e constância.',
@@ -96,7 +98,8 @@ module.exports = {
         topoIcone: 200,
         topoPalavras: 560,
         tamPalavras: 84,
-        sons: [{ em: 'nao', tipo: 'dia' }],
+        semBatida: true,
+        sons: [{ em: 'nao', tipo: 'dia' }, { em: 'constancia', depois: 0.5, tipo: 'subida', vol: 0.5 }],
       },
       {
         fala: 'Toque em saiba mais, e faça o seu primeiro vídeo hoje.',

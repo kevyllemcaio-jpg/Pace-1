@@ -40,6 +40,15 @@ const SONS = {
   tensao: 'aevalsrc=0.3*sin(2*PI*55*t)*(0.7+0.3*sin(2*PI*0.5*t))+0.12*sin(2*PI*82.5*t):d=4,afade=t=in:d=1,afade=t=out:st=2.8:d=1.2',
   // moeda: "plim-plim" de dinheiro (duas notas agudas)
   moeda: 'aevalsrc=0.45*sin(2*PI*1975*t)*exp(-10*t)+0.4*sin(2*PI*2637*t)*exp(-7*(t-0.08))*gt(t\\,0.08):d=0.7',
+  // --- criativos de texto ---
+  // contador: "trrr" de número girando (ticks rápidos, ~0,9 s)
+  contador: 'aevalsrc=0.35*sin(2*PI*2200*t)*exp(-120*mod(t\\,0.06)):d=0.9,afade=t=out:st=0.6:d=0.3',
+  // caixa: caixa registradora ("ka-ching")
+  caixa: 'aevalsrc=0.4*sin(2*PI*2349*t)*exp(-6*t)+0.35*sin(2*PI*3136*t)*exp(-6*(t-0.12))*gt(t\\,0.12)+0.5*(random(0)-0.5)*exp(-40*t):d=0.9',
+  // subida: tensão subindo antes da chamada final (1,2 s)
+  subida: 'aevalsrc=0.25*sin(2*PI*(200*t+300*t*t))+0.15*(random(0)-0.5)*t:d=1.2,highpass=f=150,afade=t=in:d=0.8,afade=t=out:st=1.1:d=0.1',
+  // glitch: chiado digital picotado
+  glitch: 'aevalsrc=0.4*sin(2*PI*(400+800*gt(mod(t\\,0.08)\\,0.04))*t)*gt(mod(t\\,0.05)\\,0.02):d=0.35',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 
