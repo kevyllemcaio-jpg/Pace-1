@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <!-- Arte estática de anúncio (Stories/Reels 1080x1920). Gerada por estudio3d/anuncio/arte.js.
-     Parâmetros: ?preco=47,90&parcela=ou%20em%20até%204x%20no%20cartão -->
+     Parâmetros: ?preco=47,90 (opcional: &parcela=ou%204x%20de%20R%24%2013,55) -->
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
@@ -113,7 +113,10 @@
   const q = new URLSearchParams(location.search);
   const [reais, cent] = (q.get('preco') || '47,90').split(',');
   document.getElementById('valor').innerHTML = reais + '<small>,' + (cent || '00') + '</small>';
-  document.getElementById('parcela').textContent = q.get('parcela') || 'ou em até 4x no cartão';
+  // parcelamento só aparece se for passado (?parcela=...); sem ele, o preço fica centralizado
+  const parc = q.get('parcela');
+  if (parc) document.getElementById('parcela').textContent = parc;
+  else { document.getElementById('parcela').remove(); document.querySelector('.preco .valor').style.marginTop = '24px'; }
   document.getElementById('cta').textContent = q.get('cta') || 'QUERO APRENDER AGORA →';
 </script>
 </body>
