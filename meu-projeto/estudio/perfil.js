@@ -33,8 +33,20 @@ const f = (a) => fs.readFileSync(path.join(pasta, 'fontes', a)).toString('base64
     // brilhos
     const brilho = (x, y, k) => `<path d="M ${x} ${y - 30 * k} Q ${x + 5 * k} ${y - 5 * k} ${x + 30 * k} ${y} Q ${x + 5 * k} ${y + 5 * k} ${x} ${y + 30 * k} Q ${x - 5 * k} ${y + 5 * k} ${x - 30 * k} ${y} Q ${x - 5 * k} ${y - 5 * k} ${x} ${y - 30 * k} Z" fill="#fff"/>`;
     s += brilho(250, 420, 0.9) + brilho(860, 470, 1.1) + brilho(620, 90, 0.7) + brilho(90, 880, 0.8);
-    // Kevylem: meio corpo, confiante, erguendo um geladinho
-    s += kevylem({ x: 520, y: 1440, esc: 1.72, expr: 'orgulhoso', pose: 'ergue', t: 0.5, olhar: [0.6, -0.3], naMao: geladinho('#E8434F', 0, -50, 12, 1.15) });
+    // Kevylem: meio corpo, confiante, erguendo um maço de dinheiro
+    s += kevylem({ x: 520, y: 1440, esc: 1.72, expr: 'orgulhoso', pose: 'ergue', t: 0.5, olhar: [0.6, -0.3], naMao: maco() });
+    function maco() {
+      // maço de notas verdes com cinta amarela, em leque
+      let m = '<g transform="translate(0 -40) rotate(-12)">';
+      [-22, -11, 0, 11, 22].forEach((a, i) => {
+        m += `<g transform="rotate(${a} 0 60)"><rect x="-48" y="-70" width="96" height="150" rx="8" fill="${i % 2 ? '#5FBF6E' : '#4CAF5E'}" stroke="#1F5E2A" stroke-width="5"/>` +
+          `<rect x="-36" y="-56" width="72" height="122" rx="5" fill="none" stroke="#2E7D3A" stroke-width="3"/>` +
+          `<circle cx="0" cy="5" r="22" fill="#8ED89A" stroke="#2E7D3A" stroke-width="3"/>` +
+          `<text x="0" y="16" text-anchor="middle" font-family="Oswald" font-weight="700" font-size="30" fill="#1F5E2A">$</text></g>`;
+      });
+      m += '<rect x="-52" y="-6" width="104" height="26" fill="#F7C531" stroke="#8A5A0B" stroke-width="4"/>';
+      return m + '</g>';
+    }
     // vinheta suave nas bordas
     s += `<defs><radialGradient id="vin" cx="0.5" cy="0.5" r="0.7"><stop offset="0.7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#7A3A00" stop-opacity="0.35"/></radialGradient></defs><rect width="1080" height="1080" fill="url(#vin)"/>`;
     document.getElementById('tela').innerHTML = s;
