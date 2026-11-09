@@ -101,7 +101,7 @@ function cozinha(t, { noite = true, mesa = true, vapor = true } = {}) {
     const k = ((t * 0.5 + i / 3) % 1);
     s += `<circle cx="${820 + i * 30 + Math.sin(t * 2 + i) * 10}" cy="${930 - k * 160}" r="${14 + k * 16}" fill="#fff" opacity="${0.5 * (1 - k)}"/>`;
   }
-  // porta escura à esquerda (de onde o Theo espia)
+  // porta escura à esquerda (de onde o Kevylem espia)
   s += `<rect x="-10" y="560" width="120" height="900" fill="#2C3346" stroke="#2A2A2A" stroke-width="4"/><rect x="104" y="560" width="22" height="900" fill="#6B4A32" stroke="#2A2A2A" stroke-width="4"/>`;
   // piso xadrez
   s += `<rect y="1350" width="1080" height="570" fill="#BDBDBD"/>`;

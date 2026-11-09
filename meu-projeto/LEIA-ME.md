@@ -1,9 +1,9 @@
-# Theo Vai Ficar Rico! — estúdio da série
+# Kevylem Vai Ficar Rico! — estúdio da série
 
 Série animada vertical (TikTok/Shorts) em que o público decide o próximo episódio.
 
 ## Padrão da série
-- **Personagem:** Theo, 17 anos, escola pública em Salvador. Cabelo cacheado escuro, uniforme
+- **Personagem:** Kevylem, 17 anos, escola pública em Salvador. Cabelo cacheado escuro, uniforme
   branco com gola azul, calça azul-marinho, mochila escura, tênis branco.
 - **Elenco:** mãe (blusa coral, coque), diretora (roxo, óculos, crachá), dono da cantina
   (boné vermelho, bigode, avental), Dona Cida (lenço roxo, carrinho de açaí no portão), alunos.

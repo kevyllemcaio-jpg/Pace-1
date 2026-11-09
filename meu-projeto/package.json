@@ -1,8 +1,8 @@
 {
-  "name": "theo-vai-ficar-rico",
+  "name": "kevylem-vai-ficar-rico",
   "version": "1.0.0",
   "private": true,
-  "description": "Estúdio da série animada Theo Vai Ficar Rico! (vídeos verticais para TikTok/Shorts)",
+  "description": "Estúdio da série animada Kevylem Vai Ficar Rico! (vídeos verticais para TikTok/Shorts)",
   "scripts": {
     "video": "node estudio/render.js",
     "previa": "node estudio/render.js --previa",

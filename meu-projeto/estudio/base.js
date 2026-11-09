@@ -1,4 +1,4 @@
-// Motor da série "Theo Vai Ficar Rico!": animação, textos, HUD, cards, legendas
+// Motor da série "Kevylem Vai Ficar Rico!": animação, textos, HUD, cards, legendas
 // palavra por palavra e a lista de cenas que vira quadros.
 // Roda dentro do navegador (Playwright) — render.js injeta este arquivo.
 

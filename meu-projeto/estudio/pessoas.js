@@ -238,7 +238,7 @@ function pessoa(o) {
 // ---------- elenco ----------
 const UNIFORME = { camisa: '#F5F5F2', calca: '#2B3F78', manga: '#F5F5F2', uniforme: true };
 
-function theo(o) {
+function kevylem(o) {
   return pessoa({ pele: '#8B5A3C', cabelo: { tipo: 'cacheado', cor: '#1E1714' }, roupa: UNIFORME, mochila: true, semente: 3, ...o });
 }
 function mae(o) {
