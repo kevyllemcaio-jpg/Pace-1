@@ -26,3 +26,17 @@ Requisitos: Node + Playwright (Chromium), ffmpeg, Python 3 com `numpy` e `edge-t
 (`pip install edge-tts numpy`). Narração: voz `pt-BR-AntonioNeural`, cache em `saida/.voz/`.
 Fontes Anton e Oswald (SIL OFL) em `estudio/fontes/`. Trilha e efeitos são sintetizados
 (`estudio/sons.py`).
+
+## Capa dos próximos episódios (padrão do perfil)
+A partir do episódio 2, toda capa segue este modelo (referência: grade do perfil @theodecideofc):
+1. **Topo:** "EPISÓDIO" em branco com contorno + **número grande em amarelo**.
+2. Logo abaixo, **pílula escura** com o subtítulo do episódio em 2–3 palavras
+   (ex.: "O GELADINHO", "O EMPREGADO", "O GRUPO").
+3. **Card de dinheiro antes → depois** no meio: valor antigo em vermelho, seta, valor novo em
+   verde, com rótulos pequenos em cima (ex.: "SALDO ANTES R$ 4 → DEPOIS R$ 149";
+   "KEVYLEM GANHA R$ 20 · O DONO FATURA R$ 840").
+4. **Etiqueta amarela inclinada** reforçando o número (ex.: "EM 20 MINUTOS", "42× MAIS").
+5. **Personagens do episódio** em pé no cenário, com expressão marcante, segurando o produto.
+6. **Rodapé fixo:** "RICO ATÉ A **FORMATURA**" (FORMATURA em amarelo) + capelo.
+7. Cenário do episódio ao fundo, mais claro/suave para o texto destacar.
+A capa deve resumir o **conteúdo** do episódio (o número que mais impressiona), não a primeira cena.
