@@ -21,6 +21,7 @@ if (!epArg) {
 }
 const previa = args.includes('--previa');
 const capa = args.includes('--capa');
+const story = args.includes('--story'); // saida/<ep>-story.png (função STORY() do episódio)
 const comVoz = !args.includes('--sem-voz');
 const so = (args.find((a) => a.startsWith('--cena=')) || '').split('=')[1]; // --cena=5 (prévia de uma cena)
 const pastaEstudio = __dirname;
@@ -84,6 +85,14 @@ function duracaoFala(arq, palavras) {
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
   const desenhar = (t) => page.evaluate((t) => { document.getElementById('tela').innerHTML = renderizar(t); }, t);
 
+  if (story) {
+    await page.evaluate(() => { document.getElementById('tela').innerHTML = STORY(); });
+    const arq = path.join(pastaSaida, `${nome}-story.png`);
+    await page.screenshot({ path: arq });
+    console.log(arq);
+    await browser.close();
+    return;
+  }
   if (previa || capa) {
     if (capa) {
       const temCapa = await page.evaluate(() => typeof CAPA === 'function');

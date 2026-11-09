@@ -338,3 +338,28 @@ function capaEpisodio({ numero, subtitulo, rotuloAntes = 'SALDO ANTES', antes, r
   s += `<g transform="translate(940 1800) scale(3.2)">${iconeCapelo(0, 0)}</g>`;
   return s;
 }
+
+// ---------- story de enquete A/B (1080x1920, espaço livre no meio para o adesivo) ----------
+// a/b = { mundo: SVG do cenário com personagens (coordenadas do vídeo), rotulo, y0? (topo da área mostrada) }
+function storyAB({ titulo = 'QUEM VAI GANHAR?', episodio, a, b }) {
+  const painel = (p, y, letra, cor, id) => {
+    const k = 1000 / 1080, y0 = p.y0 ?? 1140;
+    return `<defs><clipPath id="${id}"><rect x="40" y="${y}" width="1000" height="620" rx="36"/></clipPath></defs>` +
+      `<rect x="48" y="${y + 12}" width="1000" height="620" rx="36" fill="#000" opacity="0.35"/>` +
+      `<g clip-path="url(#${id})"><g transform="translate(40 ${y}) scale(${k}) translate(0 ${-y0})">${p.mundo}</g></g>` +
+      `<rect x="40" y="${y}" width="1000" height="620" rx="36" fill="none" stroke="#fff" stroke-width="10"/>` +
+      `<circle cx="120" cy="${y + 80}" r="66" fill="${cor}" stroke="#fff" stroke-width="9"/>` + txt(letra, 120, y + 113, { tam: 92, cor: '#fff', fonte: F_TIT, peso: 400 }) +
+      pilula(p.rotulo, 540, y + 575, { tam: 44 });
+  };
+  let s = `<defs><linearGradient id="stFundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B1F2A"/><stop offset="1" stop-color="#0E1016"/></linearGradient></defs>`;
+  s += `<rect width="1080" height="1920" fill="url(#stFundo)"/>`;
+  for (let i = 0; i < 18; i++) { const r = aleatorio(i + 7); s += `<circle cx="${r() * 1080}" cy="${r() * 1920}" r="${4 + r() * 8}" fill="#FFD21F" opacity="${0.15 + r() * 0.2}"/>`; }
+  if (episodio) s += pilula(episodio, 540, 110, { tam: 40 });
+  s += txt(titulo, 540, 260, { tam: 120, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#000', cw: 16 });
+  s += painel(a, 330, 'A', '#2F6DB5', 'stA');
+  // faixa livre para o adesivo de enquete
+  s += txt('VOTA AQUI 👇', 540, 1035, { tam: 52, cor: '#FFD21F' });
+  s += `<rect x="140" y="1065" width="800" height="150" rx="28" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="18 14" opacity="0.35"/>`;
+  s += painel(b, 1250, 'B', '#D7262B', 'stB');
+  return s;
+}

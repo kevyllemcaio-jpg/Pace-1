@@ -355,3 +355,11 @@ E.push({
 });
 
 criarEpisodio(E, { voz: 'pt-BR-AntonioNeural', velocidade: '+12%' });
+
+// Story de enquete A/B.
+window.STORY = () =>
+  storyAB({
+    episodio: 'EPISÓDIO 1 · KEVYLEM VAI FICAR RICO!',
+    a: { rotulo: 'ACEITA R$ 25 DA CANTINA', mundo: corredor(0.5) + kevylem({ x: 380, y: 1800, esc: 0.62, expr: 'desconfiado', t: 0.5, olhar: [1, 0] }) + donoCantina({ x: 700, y: 1800, esc: 0.66, expr: 'orgulhoso', pose: 'oferece', vira: -1, t: 0.5, olhar: [-1, 0] }) },
+    b: { rotulo: 'VENDE SOZINHO NO PORTÃO', mundo: portao(0.5) + carrinhoAcai(780, 1660, 0.5) + donaCida({ x: 780, y: 1560, esc: 0.6, expr: 'bravo', pose: 'cintura', t: 0.5, olhar: [-1, 0] }) + balcaoAcai(780, 1740, 0.95) + kevylem({ x: 230, y: 1800, esc: 0.62, expr: 'determinado', pose: 'segura', t: 0.5, segura: isopor(0, 0, 0.75) }) },
+  });
