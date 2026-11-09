@@ -269,6 +269,7 @@ criarEpisodio(E, { voz: 'pt-BR-AntonioNeural', velocidade: '+12%' });
 // Story de enquete A/B.
 window.STORY = () =>
   storyAB({
+    enquete: false,
     episodio: 'EPISÓDIO 2 · KEVYLEM VAI FICAR RICO!',
     a: { rotulo: 'SÓCIO DA DONA CIDA · 50%', mundo: pontoCida(0.5, { expr: 'feliz', pose: 'oferece' }) + kevylem({ x: 300, y: 1800, esc: 0.62, expr: 'feliz', pose: 'segura', t: 0.5, segura: isopor(0, 0, 0.75) }) },
     b: { rotulo: 'SOZINHO NO PORTÃO · 100%', mundo: pontoCida(0.5, { expr: 'bravo' }) + kevylem({ x: 230, y: 1800, esc: 0.62, expr: 'determinado', pose: 'cintura', t: 0.5 }) + isopor(330, 1780, 0.9) },

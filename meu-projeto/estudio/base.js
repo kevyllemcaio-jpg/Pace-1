@@ -341,7 +341,7 @@ function capaEpisodio({ numero, subtitulo, rotuloAntes = 'SALDO ANTES', antes, r
 
 // ---------- story de enquete A/B (1080x1920, espaço livre no meio para o adesivo) ----------
 // a/b = { mundo: SVG do cenário com personagens (coordenadas do vídeo), rotulo, y0? (topo da área mostrada) }
-function storyAB({ titulo = 'QUEM VAI GANHAR?', episodio, a, b }) {
+function storyAB({ titulo = 'QUEM VAI GANHAR?', episodio, a, b, enquete = true }) {
   const painel = (p, y, letra, cor, id) => {
     const k = 1000 / 1080, y0 = p.y0 ?? 1140;
     return `<defs><clipPath id="${id}"><rect x="40" y="${y}" width="1000" height="620" rx="36"/></clipPath></defs>` +
@@ -356,10 +356,19 @@ function storyAB({ titulo = 'QUEM VAI GANHAR?', episodio, a, b }) {
   for (let i = 0; i < 18; i++) { const r = aleatorio(i + 7); s += `<circle cx="${r() * 1080}" cy="${r() * 1920}" r="${4 + r() * 8}" fill="#FFD21F" opacity="${0.15 + r() * 0.2}"/>`; }
   if (episodio) s += pilula(episodio, 540, 110, { tam: 40 });
   s += txt(titulo, 540, 260, { tam: 120, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#000', cw: 16 });
-  s += painel(a, 330, 'A', '#2F6DB5', 'stA');
-  // faixa livre para o adesivo de enquete
-  s += txt('VOTA AQUI 👇', 540, 1035, { tam: 52, cor: '#FFD21F' });
-  s += `<rect x="140" y="1065" width="800" height="150" rx="28" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="18 14" opacity="0.35"/>`;
-  s += painel(b, 1250, 'B', '#D7262B', 'stB');
+  if (enquete) {
+    s += painel(a, 330, 'A', '#2F6DB5', 'stA');
+    // faixa livre para o adesivo de enquete
+    s += txt('VOTA AQUI 👇', 540, 1035, { tam: 52, cor: '#FFD21F' });
+    s += `<rect x="140" y="1065" width="800" height="150" rx="28" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="18 14" opacity="0.35"/>`;
+    s += painel(b, 1250, 'B', '#D7262B', 'stB');
+    return s;
+  }
+  // versão sem adesivo: quadros colados com "OU" no meio e chamada para votar
+  s += painel(a, 340, 'A', '#2F6DB5', 'stA');
+  s += painel(b, 1010, 'B', '#D7262B', 'stB');
+  s += `<circle cx="950" cy="985" r="78" fill="#FFD21F" stroke="#111" stroke-width="8"/>` + txt('OU', 950, 1012, { tam: 72, cor: '#111', fonte: F_TIT, peso: 400 });
+  s += txt('RESPONDE A OU B 👇', 540, 1760, { tam: 74, cor: '#FFD21F', fonte: F_TIT, peso: 400, contorno: '#000', cw: 12 });
+  s += txt('NOS COMENTÁRIOS OU NO DIRECT', 540, 1835, { tam: 44, cor: '#fff' });
   return s;
 }
