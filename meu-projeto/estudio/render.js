@@ -4,7 +4,7 @@
 //
 //   node estudio/render.js estudio/episodios/ep01.js            -> saida/ep01.mp4
 //   node estudio/render.js estudio/episodios/ep01.js --previa   -> um PNG por cena
-//   node estudio/render.js estudio/episodios/ep01.js --capa     -> saida/ep01-capa.png (1º quadro com legenda)
+//   node estudio/render.js estudio/episodios/ep01.js --capa     -> saida/ep01-capa.png (função CAPA() do episódio, ou o 1º quadro)
 //   --sem-voz  renderiza sem narração (durações mínimas das cenas)
 
 const { chromium } = require('playwright');
@@ -58,11 +58,12 @@ function duracaoFala(arq, palavras) {
   await page.evaluate(() => document.fonts.ready);
 
   // 1) Narração: um MP3 + tempos das palavras por cena (com cache).
-  const { falas, durs, voz } = await page.evaluate(() => ({ falas: FALAS, durs: CENAS.map((c) => c.dur), voz: VOZ }));
+  const { falas, durs, vozes } = await page.evaluate(() => ({ falas: FALAS, durs: CENAS.map((c) => c.dur), vozes: VOZES }));
   const tempos = [];
   const audios = [];
   for (let i = 0; i < falas.length; i++) {
     const fala = falas[i];
+    const voz = vozes[i];
     if (!fala || !comVoz) {
       tempos.push({ dur: durs[i], palavras: [] });
       audios.push(null);
@@ -85,7 +86,9 @@ function duracaoFala(arq, palavras) {
 
   if (previa || capa) {
     if (capa) {
-      await desenhar(await page.evaluate(() => CENAS[0].capa ?? 1.2));
+      const temCapa = await page.evaluate(() => typeof CAPA === 'function');
+      if (temCapa) await page.evaluate(() => { document.getElementById('tela').innerHTML = CAPA(); });
+      else await desenhar(await page.evaluate(() => CENAS[0].capa ?? 1.2));
       const arq = path.join(pastaSaida, `${nome}-capa.png`);
       await page.screenshot({ path: arq });
       console.log(arq);

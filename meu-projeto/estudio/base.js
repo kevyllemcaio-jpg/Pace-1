@@ -256,6 +256,8 @@ function criarEpisodio(cenas, { voz = 'pt-BR-AntonioNeural', velocidade = '+12%'
   window.FPS = FPS;
   window.VOZ = { voz, velocidade };
   window.FALAS = cenas.map((c) => (c.fala ? semAsterisco(c.fala) : null));
+  // voz por cena: 'mulher' usa uma voz feminina (falas de personagens como a Dona Cida)
+  window.VOZES = cenas.map((c) => (c.voz === 'mulher' ? { voz: 'pt-BR-FranciscaNeural', velocidade: '+6%' } : { voz, velocidade }));
   cenas.forEach((c) => {
     c.toks = c.fala ? tokens(c.fala) : [];
     c.w = (palavra, n = 0, padrao = 0.5) => {
@@ -306,4 +308,33 @@ function renderizar(t) {
   let i = INICIOS.length - 1;
   while (i > 0 && INICIOS[i] > t) i--;
   return quadroDaCena(i, t - INICIOS[i]);
+}
+
+// ---------- capa no padrão do perfil (ver LEIA-ME) ----------
+// fundo = SVG do cenário + personagens; o resto é o texto padrão por cima.
+function capaEpisodio({ numero, subtitulo, rotuloAntes = 'SALDO ANTES', antes, rotuloDepois = 'DEPOIS', depois, etiqueta, fundo }) {
+  let s = fundo;
+  s += `<rect width="1080" height="1920" fill="#FFF8E6" opacity="0.18"/>`;
+  s += `<defs><linearGradient id="capaTopo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0.35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>` +
+    `<linearGradient id="capaBase" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.55"/></linearGradient></defs>`;
+  s += `<rect width="1080" height="560" fill="url(#capaTopo)"/><rect y="1460" width="1080" height="460" fill="url(#capaBase)"/>`;
+  // EPISÓDIO + número
+  s += txt('EPISÓDIO', 470, 300, { tam: 150, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#111', cw: 22 });
+  s += txt(String(numero), 900, 330, { tam: 250, cor: '#FFD21F', fonte: F_TIT, peso: 400, contorno: '#111', cw: 26 });
+  // subtítulo em pílula escura
+  const ws = subtitulo.length * 32 + 90;
+  s += `<rect x="${540 - ws / 2}" y="350" width="${ws}" height="84" rx="14" fill="#1F2430" stroke="#0E1015" stroke-width="5"/>` + txt(subtitulo, 540, 410, { tam: 56, cor: '#fff' });
+  // card antes -> depois
+  s += `<g transform="translate(540 600) rotate(-3)">` + sombra(-380, -105, 760, 210, 26) +
+    `<rect x="-380" y="-105" width="760" height="210" rx="26" fill="#FBF8EF" stroke="#2A2A2A" stroke-width="6"/>` +
+    txt(rotuloAntes, -190, -50, { tam: 30, cor: '#888', ls: 2 }) + txt(rotuloDepois, 190, -50, { tam: 30, cor: '#888', ls: 2 }) +
+    txt(antes, -190, 60, { tam: 110, cor: '#D7262B', fonte: F_TIT, peso: 400 }) +
+    `<path d="M -40 20 L 30 20 M 10 -5 L 40 20 L 10 45" fill="none" stroke="#2A2A2A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>` +
+    txt(depois, 200, 60, { tam: 110, cor: '#1E9E4A', fonte: F_TIT, peso: 400 }) + `</g>`;
+  if (etiqueta) s += `<g transform="translate(780 745) rotate(-6)">` + pilula(etiqueta, 0, 0, { tam: 48 }) + `</g>`;
+  // rodapé fixo
+  s += txt('RICO ATÉ A', 540, 1700, { tam: 140, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#111', cw: 20 });
+  s += txt('FORMATURA', 500, 1850, { tam: 150, cor: '#FFD21F', fonte: F_TIT, peso: 400, contorno: '#111', cw: 22 });
+  s += `<g transform="translate(940 1800) scale(3.2)">${iconeCapelo(0, 0)}</g>`;
+  return s;
 }
