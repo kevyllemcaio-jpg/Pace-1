@@ -1,10 +1,7 @@
-"""Gera a narração de uma fala (pt-BR) com vozes neurais (edge-tts).
+"""Gera a narração de uma fala (pt-BR) com voz neural (edge-tts) + o tempo de cada palavra.
 
 Uso: python3 estudio/voz.py "texto" saida.mp3 [voz] [velocidade] [palavras.json]
-Ex.: python3 estudio/voz.py "Olá!" ola.mp3 pt-BR-AntonioNeural +8% ola.json
-
-Se o 5º argumento for dado, salva o tempo de cada palavra (em segundos):
-  [{"texto": "Olá", "inicio": 0.1, "fim": 0.45}, ...]   -> usado nas legendas palavra por palavra.
+O JSON sai assim: [{"texto": "Esse", "inicio": 0.09, "fim": 0.43}, ...]
 Requer: pip install edge-tts
 """
 import asyncio
@@ -12,7 +9,7 @@ import json
 import os
 import sys
 
-# Neste ambiente a internet passa por um proxy com certificado próprio.
+# Em ambientes com proxy de certificado próprio (ex.: Claude Code na nuvem).
 CA = '/root/.ccr/ca-bundle.crt'
 if os.path.exists(CA):
     import certifi
@@ -21,7 +18,7 @@ if os.path.exists(CA):
 import edge_tts
 
 
-async def main(texto, saida, voz='pt-BR-AntonioNeural', velocidade='+8%', arq_palavras=None):
+async def main(texto, saida, voz='pt-BR-AntonioNeural', velocidade='+12%', arq_palavras=None):
     com = edge_tts.Communicate(texto, voz, rate=velocidade, boundary='WordBoundary')
     palavras = []
     with open(saida, 'wb') as f:

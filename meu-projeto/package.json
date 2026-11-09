@@ -1,19 +1,12 @@
 {
-  "name": "meu-projeto",
+  "name": "theo-vai-ficar-rico",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Estúdio da série animada Theo Vai Ficar Rico! (vídeos verticais para TikTok/Shorts)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
     "video": "node estudio/render.js",
-    "previa": "node estudio/render.js --previa"
+    "previa": "node estudio/render.js --previa",
+    "capa": "node estudio/render.js --capa"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.3.0",
-    "three": "^0.187.0"
-  }
+  "license": "ISC"
 }
