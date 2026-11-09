@@ -40,3 +40,16 @@ A partir do episódio 2, toda capa segue este modelo (referência: grade do perf
 6. **Rodapé fixo:** "RICO ATÉ A **FORMATURA**" (FORMATURA em amarelo) + capelo.
 7. Cenário do episódio ao fundo, mais claro/suave para o texto destacar.
 A capa deve resumir o **conteúdo** do episódio (o número que mais impressiona), não a primeira cena.
+
+## Abertura "No episódio anterior" (a partir do episódio 3)
+Todo episódio novo começa com um resumo curtinho do anterior (uns 6–10 s, no máximo 3–4 cenas):
+- Reaproveita **cenas reais do episódio anterior** (os momentos-chave: o problema, o número
+  principal e a escolha A/B que venceu), mais rápidas que no original.
+- Visual de **lembrança/pensamento**: imagem **pálida e dessaturada**, com uma **neblina** clara
+  nas bordas (vinheta esbranquiçada) e leve desfoque, para ficar claro que é passado.
+- Texto fixo no topo: **"NO EPISÓDIO ANTERIOR..."** (ou variação criativa: "ONDE PARAMOS",
+  "VOCÊ PERDEU?"), com um **ícone de replay (seta circular girando)** ao lado.
+- **Som de replay** (rebobinar/voltar a fita) na entrada do resumo e um "whoosh" de volta ao
+  presente quando acaba; a narração resume em 1–2 frases.
+- Termina com a **escolha vencedora** em destaque ("VOCÊS ESCOLHERAM B") e corta para a cena
+  nova em cores normais.
