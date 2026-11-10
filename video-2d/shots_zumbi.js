@@ -1,0 +1,28 @@
+// Roteiro: apocalipse zumbi, com o menino e a senhora. Mesmo estilo do vídeo do buraco negro.
+window.SHOTS = [
+  { t0: 0.0,  t1: 3.4,  cena: 'alerta',    quem: 'boy', fala: 'Vó, o celular não para de tocar.',
+    cap: 'ALERTA: <em>ZUMBIS</em> NA CIDADE', hud: ['CIDADE', 'EM ALERTA'] },
+  { t0: 3.6,  t1: 6.2,  cena: 'alerta',    quem: 'avo', fala: 'Fecha a janela e puxa a mesa.',
+    cap: 'FECHA A <em>JANELA</em>', hud: ['CIDADE', 'EM ALERTA'] },
+  { t0: 6.4,  t1: 9.4,  cena: 'rua',       quem: 'boy', fala: 'Lá embaixo tem gente correndo.',
+    cap: '<em>GENTE</em> CORRENDO NA RUA', hud: ['INFECTADOS', 'MUITOS'] },
+  { t0: 9.6,  t1: 11.9, cena: 'rua',       quem: 'avo', fala: 'Não olha pra trás, menino.',
+    cap: 'NÃO OLHA PRA <em>TRÁS</em>', hud: ['INFECTADOS', 'MUITOS'] },
+  { t0: 12.1, t1: 15.4, cena: 'barricada', quem: 'boy', fala: 'Mas a gente precisa de comida.',
+    cap: 'PRECISA DE <em>COMIDA</em>', hud: ['ESTOQUE', 'ACABANDO'] },
+  { t0: 15.6, t1: 19.0, cena: 'barricada', quem: 'avo', fala: 'Tem uma padaria a duas quadras daqui.',
+    cap: 'PADARIA A <em>DUAS QUADRAS</em>', hud: ['ESTOQUE', 'ACABANDO'] },
+  { t0: 19.2, t1: 22.6, cena: 'horda',     quem: 'boy', fala: 'Três passos e a gente volta.',
+    cap: 'TRÊS PASSOS E <em>VOLTA</em>', hud: ['INFECTADOS', 'PERTO'] },
+  { t0: 22.9, t1: 26.4, cena: 'horda',     quem: 'avo', fala: 'Zumbi não corre. Ele arrasta os pés.',
+    cap: 'ZUMBI NÃO CORRE, <em>ARRASTA</em>', hud: ['INFECTADOS', 'PERTO'] },
+  { t0: 26.6, t1: 30.2, cena: 'telhado',   quem: 'boy', fala: 'Então a gente corre mais rápido que eles.',
+    cap: 'A GENTE <em>CORRE MAIS RÁPIDO</em>', hud: ['FUGA', 'ATIVA'] },
+  { t0: 30.4, t1: 34.6, cena: 'telhado',   quem: 'avo', fala: 'E o telhado é a nossa rota de saída.',
+    cap: 'O <em>TELHADO</em> É A SAÍDA', hud: ['FUGA', 'ATIVA'] },
+  { t0: 34.8, t1: 38.6, cena: 'amanhecer', quem: 'boy', fala: 'Amanheceu, e eles ainda estão lá embaixo.',
+    cap: 'AMANHECEU, E ELES <em>CONTINUAM</em> LÁ', hud: ['DIA 2', 'SOBREVIVEMOS'] },
+  { t0: 38.8, t1: 43.0, cena: 'amanhecer', quem: 'avo', fala: 'E você, sobreviveria a uma noite dessas?',
+    cap: 'E VOCÊ, <em>SOBREVIVERIA</em> A UMA NOITE DESSAS?', hud: ['DIA 2', 'SOBREVIVEMOS'] },
+];
+window.TOTAL = 45.0;

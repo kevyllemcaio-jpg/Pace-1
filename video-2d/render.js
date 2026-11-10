@@ -64,7 +64,100 @@
 
   function chao(cor) { return `<rect x="0" y="1270" width="${W}" height="650" fill="${cor}"/><rect x="0" y="1262" width="${W}" height="12" fill="${INK}"/>`; }
 
+
+  function zumbi(x, y, sc, t, ph) {
+    const bra = Math.sin(t * 4 + ph) * 6;
+    return `<g transform="translate(${x},${y}) scale(${sc})">
+      <ellipse cx="0" cy="4" rx="60" ry="12" fill="#000" opacity="0.3"/>
+      <rect x="-26" y="-120" width="22" height="118" rx="8" fill="#3d4b3a" ${OUT}/>
+      <rect x="4" y="-120" width="22" height="118" rx="8" fill="#3d4b3a" ${OUT}/>
+      <rect x="-34" y="-240" width="68" height="130" rx="14" fill="#5c4a6e" ${OUT}/>
+      <rect x="-64" y="-226" width="18" height="104" rx="9" fill="#7aa37a" ${OUT} transform="rotate(${-62 + bra} -55 -224)"/>
+      <rect x="46" y="-226" width="18" height="104" rx="9" fill="#7aa37a" ${OUT} transform="rotate(${62 - bra} 55 -224)"/>
+      <circle cx="0" cy="-290" r="48" fill="#7aa37a" ${OUT}/>
+      <path d="M -24 -302 l 12 12 m 0 -12 l -12 12 M 12 -302 l 12 12 m 0 -12 l -12 12" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -40 -330 q 12 -10 24 -2 M 16 -332 q 12 -8 24 2" fill="none" stroke="#3d4b3a" stroke-width="5"/>
+      <ellipse cx="0" cy="-262" rx="15" ry="${(6 + 5 * Math.abs(Math.sin(t * 3 + ph))).toFixed(1)}" fill="#2a0d0d" ${OUT}/>
+    </g>`;
+  }
+
+  function predio(x, w, h, cor) {
+    let janelas = '';
+    for (let yy = 1262 - h + 40; yy < 1240; yy += 70)
+      for (let xx = x + 16; xx < x + w - 30; xx += 46)
+        janelas += `<rect x="${xx}" y="${yy}" width="24" height="30" fill="#ffd21f" opacity="${((xx + yy) % 3 ? 0.9 : 0.25).toFixed(2)}"/>`;
+    return `<rect x="${x}" y="${1262 - h}" width="${w}" height="${h}" fill="${cor}"/>${janelas}`;
+  }
+
+  function cenaZumbi(cena, lt, t) {
+    switch (cena) {
+      case 'alerta': {
+        const piscar = 0.5 + 0.5 * Math.sin(t * 6);
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#1a0c12"/>
+          <rect x="0" y="0" width="${W}" height="1920" fill="#ff2a2a" opacity="${(0.08 * piscar).toFixed(3)}"/>
+          <rect x="250" y="250" width="580" height="700" rx="50" fill="#111" ${OUT}/>
+          <rect x="270" y="270" width="540" height="660" rx="30" fill="#2a0606"/>
+          <text x="540" y="460" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ff3b3b">ALERTA</text>
+          <text x="540" y="560" text-anchor="middle" font-family="Inter" font-weight="800" font-size="46" fill="#fff">MORDIDAS NA</text>
+          <text x="540" y="620" text-anchor="middle" font-family="Inter" font-weight="800" font-size="46" fill="#fff">ZONA CENTRAL</text>
+          <circle cx="540" cy="740" r="${(26 + 6 * piscar).toFixed(1)}" fill="#ff3b3b"/>` + chao('#2b2b36');
+      }
+      case 'rua': {
+        const px = 1 + lt * 60;
+        let zs = '';
+        [0, 1, 2].forEach((i) => { zs += zumbi(((-200 + (i * 380 + t * 90) % 1400)), 1230, 0.55, t, i * 2); });
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#3b2f4f"/>
+          ${predio(0, 300, 620, '#4e4a6b')}${predio(300, 260, 470, '#5b4f78')}${predio(560, 320, 700, '#463f5f')}${predio(860, 240, 560, '#574a72')}
+          ${zs}` + chao('#4a4a55') + `<rect x="0" y="1262" width="${W}" height="12" fill="${INK}"/>`;
+      }
+      case 'barricada': {
+        let zs = '';
+        const n = Math.min(3, 1 + Math.floor(lt * 1.5));
+        for (let i = 0; i < n; i++) zs += zumbi(960 + i * 70, 1240, 0.62, t, i);
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#2c2a33"/>
+          ${predio(40, 260, 500, '#3c3a4a')}${predio(760, 300, 600, '#3c3a4a')}
+          <rect x="60" y="820" width="960" height="34" fill="#8b5a2b" ${OUT}/>
+          ${[120, 300, 480, 660, 840].map((x) => `<rect x="${x}" y="700" width="24" height="560" fill="#6b4420" ${OUT}/>`).join('')}
+          <rect x="60" y="960" width="960" height="26" fill="#8b5a2b" ${OUT}/>
+          <rect x="120" y="1000" width="640" height="26" fill="#a06d36" ${OUT}/>
+          <text x="760" y="1080" text-anchor="middle" font-family="Inter" font-weight="900" font-size="60" fill="#fff" opacity="0.7">PÃO · 2 KM</text>
+          ${zs}` + chao('#4a4a55');
+      }
+      case 'horda': {
+        let zs = '';
+        for (let i = 0; i < 5; i++) {
+          const x = ((i * 230 + lt * 70 + 100) % 1300) - 110;
+          zs += zumbi(x, 1235 - (i % 2) * 20, 0.7, t, i * 1.3);
+        }
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#4a2f3c"/>
+          <circle cx="800" cy="330" r="120" fill="#ffb37a" opacity="0.5"/>
+          ${predio(0, 380, 700, '#3a2a3a')}${predio(380, 320, 520, '#4a3446')}${predio(700, 380, 680, '#3a2a3a')}
+          ${zs}` + chao('#3c3340');
+      }
+      case 'telhado': {
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#0b1433"/>
+          ${estrelas(11, 60, 0, 900)}
+          <circle cx="800" cy="260" r="110" fill="#fff6d6" opacity="0.95"/>
+          <rect x="0" y="1150" width="${W}" height="120" fill="#2a2e44"/>
+          <rect x="120" y="1020" width="170" height="130" fill="#3a3f5c" ${OUT}/>
+          <rect x="520" y="980" width="230" height="170" fill="#3a3f5c" ${OUT}/>
+          <rect x="860" y="1040" width="180" height="110" fill="#3a3f5c" ${OUT}/>
+          <path d="M 240 ${1000 - 0} L 300 880 L 360 1000 Z" fill="#2a2e44"/>` + chao('#2a2e44');
+      }
+      case 'amanhecer': {
+        const k = Math.min(1, lt / 3);
+        const sy = 1000 - 260 * k;
+        return `<defs><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d3f7a"/><stop offset="0.6" stop-color="#ff9e6b"/><stop offset="1" stop-color="#ffd28a"/></linearGradient></defs>
+          <rect x="0" y="0" width="${W}" height="1920" fill="url(#gA)"/>
+          <circle cx="540" cy="${sy}" r="140" fill="#ffd21f" ${OUT}/>
+          ${predio(40, 220, 420, '#2a1f35')}${predio(300, 260, 300, '#2a1f35')}${predio(600, 240, 460, '#2a1f35')}${predio(860, 200, 360, '#2a1f35')}` + chao('#3b2f3f');
+      }
+    }
+    return '';
+  }
+
   function cenaBG(cena, lt, t) {
+    if (window.MODO === 'zumbi') return cenaZumbi(cena, lt, t);
     const cx = 540, cy = 560;
     switch (cena) {
       case 'sol':
