@@ -33,7 +33,20 @@ async def main(texto, saida, voz='pt-BR-AntonioNeural', velocidade='+12%', arq_p
             json.dump(palavras, f, ensure_ascii=False)
 
 
+async def com_tentativas(*args, tentativas=5):
+    # O serviço de voz às vezes não devolve áudio (falha passageira): tenta de novo com espera crescente.
+    for n in range(tentativas):
+        try:
+            return await main(*args)
+        except Exception as e:
+            if n == tentativas - 1:
+                raise
+            espera = 2 ** (n + 1)
+            print(f'(voz falhou: {type(e).__name__}; tentando de novo em {espera}s)', file=sys.stderr)
+            await asyncio.sleep(espera)
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.exit(__doc__)
-    asyncio.run(main(*sys.argv[1:6]))
+    asyncio.run(com_tentativas(*sys.argv[1:6]))
