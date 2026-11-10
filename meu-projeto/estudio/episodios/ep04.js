@@ -1,6 +1,6 @@
 // Kevylem Vai Ficar Rico! — Episódio 4: O DELIVERY
 // Público: "paga a licença e, enquanto ela não sai, vende pelo WhatsApp".
-// Formato curto: gancho no 1º quadro, resumo pálido de ~3 s logo depois, ~55 s no total.
+// Formato normal (igual aos eps. 2 e 3): abre com o resumo pálido do episódio anterior.
 //
 // Contas conferidas (continua do episódio 3):
 //   Fim do ep. 3: dia 5, saldo R$ 410. Formatura: 476 dias.
@@ -58,44 +58,51 @@ function ruaBairro(t) {
   return s;
 }
 
-// ---------- 1 — GANCHO ----------
+// ---------- RESUMO DO EPISÓDIO ANTERIOR (pálido, com neblina e replay) ----------
 E.push({
-  fala: 'Proibido de vender na rua, ele lucrou *801 reais* em 6 dias. Só pelo celular.',
-  capa: 0.05,
-  legendaY: 1060,
+  fala: 'A Dona Cida baixou o picolé pra 2 reais, e o Kevylem atravessou a rua...',
+  lembranca: 'inicio',
+  hud: { dia: 4, saldo: 170, formatura: 477 },
   desenhar(lt, c) {
-    let mundo = quarto(lt) + kevylem({ x: 300, y: 1840, esc: 0.9, expr: 'surpreso', pose: 'segura', t: lt, segura: `<rect x="-26" y="-46" width="52" height="92" rx="10" fill="#22262F" stroke="#2A2A2A" stroke-width="4"/><rect x="-20" y="-36" width="40" height="66" rx="4" fill="#3BD16F"/>`, olhar: [0, 1] });
-    let s = camLenta(mundo, lt, c.dur, { z0: 1.0, z1: 1.06, cy: 1300, soco: false });
-    s += `<rect width="1080" height="900" fill="#000" opacity="0.25"/>`;
-    [['PROIBIDO NA RUA...', '#FFFFFF'], ['LUCROU R$ 801', '#6BEA8E'], ['PELO CELULAR', '#FFD21F']].forEach(([t, cor], i) =>
-      (s += txt(t, 540, 470 + i * 140, { tam: Math.min(130, 960 / (t.length * 0.45)), cor, fonte: F_TIT, peso: 400, contorno: '#111', cw: 20 })));
-    // notificações pulando
-    for (let i = 0; i < 4; i++) s += pulo(notificacao(760 - (i % 2) * 60, 1160 + i * 100, 'NOVO PEDIDO'), lt, 760, 1160 + i * 100, 0.4 + i * 0.35, 0.25);
-    for (let i = 0; i < 4; i++) som('bolha', 0.4 + i * 0.35, 0.8);
-    return s;
+    let mundo = pontoOnibus(lt);
+    [[640, 90], [740, 91], [840, 92], [940, 93]].forEach(([x, sm]) => (mundo += aluno(sm, { x, y: 1720, esc: 0.55, expr: 'surpreso', t: lt, olhar: [-1, 0] })));
+    mundo += kevylem({ x: mix(-120, 360, suave(lt / 1.5)), y: 1840, esc: 0.68, expr: 'sorriso', pose: 'segura', t: lt, anda: lt < 1.5, segura: isopor(0, 0, 0.9) });
+    return camLenta(mundo, lt, c.dur, { z0: 1.0, z1: 1.06, cy: 1300 });
   },
 });
-
-// ---------- 2 — Resumo curto (pálido) ----------
 E.push({
-  fala: 'O fiscal chegou e vocês decidiram: tira a licença e vende pelo WhatsApp.',
-  lembranca: 'inicio',
+  fala: 'fez 410 reais em 1 hora no ponto de ônibus...',
+  lembranca: true,
+  hud: { dia: 4, saldo: 410, formatura: 477 },
+  desenhar(lt, c) {
+    let mundo = pontoOnibus(lt);
+    [[120, 100, 1700], [260, 101, 1660], [700, 102, 1660], [860, 103, 1700]].forEach(([x, sm, y], i) =>
+      (mundo += aluno(sm, { x, y, esc: 0.55, expr: 'sorriso', pose: 'ergue', t: lt, naMao: geladinho(CORES_GELADINHO[i], 0, -40, 0, 0.7) })));
+    mundo += kevylem({ x: 470, y: 1830, esc: 0.7, expr: 'sorriso', pose: 'segura', t: lt, segura: isopor(0, 0, 0.9, false) });
+    return camLenta(mundo, lt, c.dur, { z0: 1.0, z1: 1.06, cy: 1350 }) +
+      card(lt, 0.2, { x: 540, y: 620, w: 480, h: 230, rot: -3, conteudo: txt('R$ 410', 0, 50, { tam: 150, cor: '#2FA45A', fonte: F_TIT, peso: 400 }) });
+  },
+});
+E.push({
+  fala: 'até o fiscal chegar. E vocês escolheram: tirar a licença e vender pelo WhatsApp.',
+  lembranca: true,
   hud: { dia: 5, saldo: 410, formatura: 476 },
   desenhar(lt, c) {
     let mundo = pontoOnibus(lt);
     mundo += kevylem({ x: 330, y: 1840, esc: 0.7, expr: 'preocupado', pose: 'segura', t: lt, segura: isopor(0, 0, 0.9), olhar: [1, 0] });
     mundo += fiscal({ x: 760, y: 1840, esc: 0.74, expr: 'bravo', pose: 'aponta', vira: -1, t: lt, olhar: [-1, 0] });
     let s = camLenta(mundo, lt, c.dur, { z0: 1.2, z1: 1.3, cx: 560, cy: 1400 });
-    s += pulo(`<circle cx="380" cy="680" r="90" fill="#2F6DB5" stroke="#fff" stroke-width="10"/>` + txt('A', 380, 718, { tam: 110, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 380, 680, c.w('licença'));
-    s += pulo(`<circle cx="700" cy="680" r="90" fill="#D7262B" stroke="#fff" stroke-width="10"/>` + txt('B', 700, 718, { tam: 110, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 700, 680, c.w('whatsapp'));
-    s += pulo(txt('+', 540, 715, { tam: 120, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#111', cw: 14 }), lt, 540, 680, c.w('whatsapp'));
+    s += balao(lt, 0.2, { x: 640, y: 560, texto: 'CADÊ A LICENÇA?', tam: 54, ponta: 'dir' });
+    s += pulo(`<circle cx="380" cy="820" r="90" fill="#2F6DB5" stroke="#fff" stroke-width="10"/>` + txt('A', 380, 858, { tam: 110, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 380, 820, c.w('licença'));
+    s += pulo(`<circle cx="700" cy="820" r="90" fill="#D7262B" stroke="#fff" stroke-width="10"/>` + txt('B', 700, 858, { tam: 110, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 700, 820, c.w('whatsapp'));
+    s += pulo(txt('+', 540, 855, { tam: 120, cor: '#fff', fonte: F_TIT, peso: 400, contorno: '#111', cw: 14 }), lt, 540, 820, c.w('whatsapp'));
     return s;
   },
 });
 
 // ---------- 3 — Pagou a licença ----------
 E.push({
-  fala: 'Dia 6. Pagou *150 reais* na licença. Mas ela só sai daqui a *2 semanas*.',
+  fala: 'Dia 6. Ele foi na prefeitura e pagou *150 reais* na licença. Mas ela só sai daqui a *2 semanas*.',
   hud: { dia: 6, saldo: 260, de: 410, formatura: 475, quando: '150' },
   hudNovo: true,
   desenhar(lt, c) {
@@ -109,7 +116,7 @@ E.push({
 
 // ---------- 4 — O delivery ----------
 E.push({
-  fala: 'Então ele montou um delivery: *10 geladinhos por 18 reais*, entregue na porta.',
+  fala: 'Então ele mandou no grupo da rua e no status: combo família, *10 geladinhos por 18 reais*, entregue na porta.',
   hud: { dia: 6, saldo: 260, formatura: 475 },
   passo: 'NOVO JEITO · DELIVERY',
   passoNovo: true,
@@ -123,7 +130,7 @@ E.push({
 
 // ---------- 5 — 22 pedidos ----------
 E.push({
-  fala: 'Na primeira noite: *22 pedidos*.',
+  fala: 'O celular não parou. Na primeira noite: *22 pedidos*.',
   hud: { dia: 6, saldo: 260, formatura: 475 },
   desenhar(lt, c) {
     const n = Math.floor(lim((lt - 0.2) / 1.3) * 7);
@@ -137,7 +144,7 @@ E.push({
 
 // ---------- 6 — O freezer da mãe ----------
 E.push({
-  fala: 'Só que o freezer da mãe só cabe *80 geladinhos* por dia.',
+  fala: 'Só que tinha um problema. O freezer da mãe só cabe *80 geladinhos* por dia.',
   hud: { dia: 6, saldo: 260, formatura: 475 },
   desenhar(lt, c) {
     let mundo = cozinha(lt, { noite: true, vapor: false });
@@ -183,7 +190,7 @@ E.push({
 
 // ---------- 9 — 70 pedidos recusados ----------
 E.push({
-  fala: 'Mas ele teve que recusar *70 pedidos*. Faltou freezer.',
+  fala: 'Mas ele teve que recusar *70 pedidos*. Não tinha onde congelar.',
   hud: { dia: 12, saldo: 1061, formatura: 469 },
   desenhar(lt, c) {
     let mundo = cozinha(lt, { noite: true, vapor: false }) + freezerMae(820, 1600, 1.2) + kevylem({ x: 380, y: 1820, esc: 0.8, expr: 'triste', pose: 'segura', t: lt, segura: `<rect x="-26" y="-46" width="52" height="92" rx="10" fill="#22262F" stroke="#2A2A2A" stroke-width="4"/><rect x="-20" y="-36" width="40" height="66" rx="4" fill="#E0393E"/>` });
@@ -207,7 +214,7 @@ function painel4B(lt) {
   return s + pilula('ALUGA O DA VIZINHA · R$ 15/DIA', 520, 1110, { tam: 36 });
 }
 E.push({
-  fala: 'A: compra um freezer usado de 600 reais. B: aluga o freezer da vizinha por 15 reais por dia.',
+  fala: 'E agora? A: compra um freezer usado de 600 reais. B: aluga o freezer da vizinha por 15 reais por dia.',
   legendaY: 975,
   desenhar(lt, c) {
     let s = `<rect width="1080" height="1920" fill="#111"/>`;
@@ -217,15 +224,25 @@ E.push({
   },
 });
 
-// ---------- 11 — Chamada final ----------
+// ---------- Comenta A ou B ----------
 E.push({
-  fala: 'Comenta *A* ou *B*. Você decide o próximo episódio.',
+  fala: 'Comenta *A* ou *B*. O que o Kevylem faz?',
+  desenhar(lt, c) {
+    let s = camLenta(cozinha(lt, { noite: true, vapor: false }) + freezerMae(820, 1600, 1.2) + kevylem({ x: 420, y: 1880, esc: 1.15, expr: 'preocupado', t: lt, olhar: [Math.sin(lt * 1.5), 0] }), lt, c.dur, { z0: 1.1, z1: 1.2, cy: 1400 });
+    return s + `<rect width="1080" height="1920" fill="#E8E4DA" opacity="0.45"/>`;
+  },
+});
+
+// ---------- Episódio 5: você decide ----------
+E.push({
+  fala: 'A mais votada vira o episódio 5.',
   semLegenda: true,
+  dur: 3,
   desenhar(lt, c) {
     let s = `<rect width="1080" height="1920" fill="#0F1116"/>`;
-    s += pulo(txt('A OU B?', 540, 880, { tam: 200, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 540, 820, 0.05);
-    s += pulo(txt('VOCÊ DECIDE', 540, 1020, { tam: 110, cor: '#FFD21F', fonte: F_TIT, peso: 400 }), lt, 540, 980, 0.4);
-    s += pulo(txt('COMENTA 👇', 540, 1160, { tam: 64, cor: '#AEB4C2' }), lt, 540, 1140, 0.8);
+    s += pulo(txt('EPISÓDIO 5', 540, 900, { tam: 150, cor: '#fff', fonte: F_TIT, peso: 400 }), lt, 540, 850, 0.1);
+    s += pulo(txt('VOCÊ DECIDE', 540, 1030, { tam: 110, cor: '#FFD21F', fonte: F_TIT, peso: 400 }), lt, 540, 990, 0.45);
+    s += pulo(txt('COMENTA  A  OU  B', 540, 1180, { tam: 54, cor: '#AEB4C2' }), lt, 540, 1160, 0.9);
     return s;
   },
 });
@@ -246,4 +263,4 @@ window.STORY = () =>
     b: { rotulo: 'ALUGA O DA VIZINHA · R$ 15/DIA', mundo: ruaBairro(0.5) + kevylem({ x: 300, y: 1820, esc: 0.72, expr: 'feliz', pose: 'oferece', t: 0.5 }) + vizinha({ x: 760, y: 1820, esc: 0.8, expr: 'feliz', t: 0.5 }) },
   });
 
-criarEpisodio(E, { voz: 'pt-BR-AntonioNeural', velocidade: '+18%' });
+criarEpisodio(E, { voz: 'pt-BR-AntonioNeural', velocidade: '+12%' });
