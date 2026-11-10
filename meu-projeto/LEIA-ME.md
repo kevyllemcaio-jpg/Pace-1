@@ -41,7 +41,8 @@ A partir do episódio 2, toda capa segue este modelo (referência: grade do perf
 7. Cenário do episódio ao fundo, mais claro/suave para o texto destacar.
 A capa deve resumir o **conteúdo** do episódio (o número que mais impressiona), não a primeira cena.
 
-## Abertura "No episódio anterior" (a partir do episódio 3)
+## Abertura "No episódio anterior" (a partir do episódio 3 — já implementada)
+No código: cenas com `lembranca: 'inicio'` (a primeira, toca o replay) e `lembranca: true`. Ver ep03.js.
 Todo episódio novo começa com um resumo curtinho do anterior (uns 6–10 s, no máximo 3–4 cenas):
 - Reaproveita **cenas reais do episódio anterior** (os momentos-chave: o problema, o número
   principal e a escolha A/B que venceu), mais rápidas que no original.

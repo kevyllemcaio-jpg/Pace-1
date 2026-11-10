@@ -10,12 +10,6 @@
 
 const CHAO = 1770;
 
-// Cenário do portão com o carrinho da Dona Cida (reaproveitado em várias cenas).
-function pontoCida(lt, { expr = 'desconfiado', pose = 'cintura', fala = false } = {}) {
-  return portao(lt) + carrinhoAcai(780, 1660, lt) +
-    donaCida({ x: 780, y: 1560, esc: 0.6, expr, pose, t: lt, olhar: [-1, 0], fala }) + balcaoAcai(780, 1740, 0.95);
-}
-
 const E = [];
 
 // 1 — Recapitulação: vocês escolheram B

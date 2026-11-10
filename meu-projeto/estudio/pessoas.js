@@ -253,6 +253,14 @@ function donoCantina(o) {
 function donaCida(o) {
   return pessoa({ pele: '#5E3B25', cabelo: { tipo: 'curto', cor: '#1A1210' }, roupa: { camisa: '#F29A38', calca: '#3A2F5A' }, saia: '#3A2F5A', avental: '#6A2C8A', chapeu: { tipo: 'lenco', cor: '#7B2E9E' }, brinco: true, semente: 17, ...o });
 }
+function fiscal(o) {
+  return pessoa({ pele: '#B57A52', cabelo: { tipo: 'careca', cor: '#2A1E18' }, roupa: { camisa: '#CFE3F2', calca: '#3A3F4A', mangaLonga: true }, avental: '#F28C28', cracha: true, bigode: true, semente: 19, ...o });
+}
+function prancheta() {
+  return `<g transform="rotate(-8)"><rect x="-40" y="-50" width="80" height="104" rx="6" fill="#8A5A3C" stroke="${TRACO}" stroke-width="4"/><rect x="-32" y="-38" width="64" height="84" fill="#fff"/>` +
+    [-24, -8, 8, 24].map((y) => `<line x1="-24" y1="${y}" x2="24" y2="${y}" stroke="#AAA" stroke-width="4"/>`).join('') + `<rect x="-14" y="-56" width="28" height="12" rx="3" fill="#888"/></g>`;
+}
+
 // Aluno aleatório (mas sempre igual para a mesma semente).
 function aluno(semente, o) {
   const r = aleatorio(semente * 97 + 5);

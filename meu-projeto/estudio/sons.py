@@ -65,6 +65,24 @@ def saida():
     return 0.4 * np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * env(0.4, 0.01, 7) * 0.6
 
 
+def replay():
+    """Fita rebobinando: chiado com tom descendo rápido e trepidando, e um clique no fim."""
+    d = 0.9
+    x = t(d)
+    f = 2400 * np.exp(-x * 2.2) + 250
+    trem = 0.6 + 0.4 * np.sign(np.sin(2 * np.pi * 28 * x))
+    tom = np.sin(2 * np.pi * np.cumsum(f) / SR) * trem
+    r = np.random.default_rng(5).normal(0, 1, len(x))
+    y = np.zeros_like(r)
+    for i in range(1, len(r)):
+        y[i] = y[i - 1] + 0.3 * (r[i] - y[i - 1])
+    s = (0.35 * tom + 0.5 * y * trem) * np.minimum(1, x / 0.03) * np.minimum(1, (d - x) / 0.1)
+    clique = np.zeros_like(x)
+    k = int((d - 0.06) * SR)
+    clique[k:k + 400] = np.hanning(400) * 0.9
+    return s * 0.8 + clique
+
+
 def whoosh():
     x = t(0.45)
     r = np.random.default_rng(2).normal(0, 1, len(x))
@@ -118,6 +136,6 @@ def trilha(dur):
 if __name__ == '__main__':
     pasta, dur = sys.argv[1], float(sys.argv[2])
     os.makedirs(pasta, exist_ok=True)
-    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh)]:
+    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay)]:
         salvar(os.path.join(pasta, nome + '.wav'), f())
     salvar(os.path.join(pasta, 'trilha.wav'), trilha(dur))

@@ -300,6 +300,7 @@ function quadroDaCena(i, lt) {
   let s = c.desenhar(lt, c);
   if (c.passo) s += pulo(pilula(c.passo, 540, 262), lt + (c.passoNovo ? 0 : 10), 540, 262, 0.2);
   s += hud(c, lt);
+  if (c.lembranca) s = lembranca(s, lt, c);
   s += legenda(c, lt);
   return s;
 }
@@ -370,5 +371,32 @@ function storyAB({ titulo = 'QUEM VAI GANHAR?', episodio, a, b, enquete = true }
   s += `<circle cx="950" cy="985" r="78" fill="#FFD21F" stroke="#111" stroke-width="8"/>` + txt('OU', 950, 1012, { tam: 72, cor: '#111', fonte: F_TIT, peso: 400 });
   s += txt('RESPONDE A OU B 👇', 540, 1760, { tam: 74, cor: '#FFD21F', fonte: F_TIT, peso: 400, contorno: '#000', cw: 12 });
   s += txt('NOS COMENTÁRIOS OU NO DIRECT', 540, 1835, { tam: 44, cor: '#fff' });
+  return s;
+}
+
+// ---------- "No episódio anterior": cena pálida, com neblina e replay ----------
+// Cena com { lembranca: true }. A primeira do resumo usa { lembranca: 'inicio' } (toca o som de replay).
+function lembranca(conteudo, lt, c) {
+  if (c.lembranca === 'inicio') som('replay', 0, 1.2);
+  let s = `<defs><filter id="lembF" x="0" y="0" width="1" height="1"><feColorMatrix type="saturate" values="0.18"/><feGaussianBlur stdDeviation="1.8"/></filter>` +
+    `<radialGradient id="lembN" cx="0.5" cy="0.52" r="0.72"><stop offset="0.38" stop-color="#F3F0EA" stop-opacity="0"/><stop offset="1" stop-color="#F3F0EA" stop-opacity="0.97"/></radialGradient>` +
+    `<filter id="lembB"><feGaussianBlur stdDeviation="40"/></filter></defs>`;
+  s += `<g filter="url(#lembF)">${conteudo}</g>`;
+  s += `<rect width="1080" height="1920" fill="#EDE7DA" opacity="0.38"/>`;
+  // nuvens de neblina passando
+  s += `<g filter="url(#lembB)" opacity="0.75">`;
+  for (let i = 0; i < 6; i++) {
+    const r = aleatorio(i + 90);
+    const y = 200 + r() * 1500, w = 300 + r() * 300, v = 30 + r() * 50;
+    const x = ((r() * 1400 + (c.inicio + lt) * v) % 1600) - 300;
+    s += `<ellipse cx="${x}" cy="${y}" rx="${w}" ry="${w * 0.35}" fill="#FFFFFF"/>`;
+  }
+  s += `</g><rect width="1080" height="1920" fill="url(#lembN)"/>`;
+  // faixa "NO EPISÓDIO ANTERIOR..." + seta de replay girando
+  const ang = -((c.inicio + lt) * 260) % 360;
+  const seta = `<g transform="translate(150 330) rotate(${ang})"><path d="M 0 -42 A 42 42 0 1 1 -40 -13" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>` +
+    `<path d="M -58 -30 L -38 -2 L -24 -32 Z" fill="#fff"/></g>`;
+  s += `<rect x="70" y="262" width="940" height="136" rx="68" fill="#22262F" opacity="0.88"/>` + seta +
+    txt('NO EPISÓDIO ANTERIOR...', 590, 355, { tam: 72, cor: '#fff', fonte: F_TIT, peso: 400 });
   return s;
 }

@@ -251,3 +251,41 @@ function balcaoAcai(x, y, esc = 1) {
   for (const cx of [-160, 160]) s += `<circle cx="${cx}" cy="0" r="40" fill="#333" stroke="#2A2A2A" stroke-width="5"/><circle cx="${cx}" cy="0" r="14" fill="#999"/>`;
   return s + `</g>`;
 }
+
+// Portão com o carrinho e a Dona Cida (usado em vários episódios). placa = texto extra no carrinho.
+function pontoCida(lt, { expr = 'desconfiado', pose = 'cintura', fala = false, placa = null } = {}) {
+  let s = portao(lt) + carrinhoAcai(780, 1660, lt) +
+    donaCida({ x: 780, y: 1560, esc: 0.6, expr, pose, t: lt, olhar: [-1, 0], fala }) + balcaoAcai(780, 1740, 0.95);
+  if (placa) s += plaquinha(560, 1420, placa, -6);
+  return s;
+}
+
+// Plaquinha de papelão escrita à mão.
+function plaquinha(x, y, texto, rot = 0) {
+  const w = texto.length * 26 + 60;
+  return `<g transform="translate(${x} ${y}) rotate(${rot})"><line x1="0" y1="40" x2="0" y2="190" stroke="#6B4A2E" stroke-width="12"/>` +
+    `<rect x="${-w / 2}" y="-50" width="${w}" height="100" rx="6" fill="#D9B07A" stroke="#2A2A2A" stroke-width="4"/>` +
+    txt(texto, 0, 18, { tam: 50, cor: '#B3261E' }) + `</g>`;
+}
+
+// ---------- PONTO DE ÔNIBUS (rua em frente ao colégio, sol forte) ----------
+function pontoOnibus(t) {
+  let s = ceu('#6FB8EC', '#D6EEF8', 'ceuPonto');
+  s += `<circle cx="900" cy="230" r="90" fill="#FFD43B" stroke="#E0A800" stroke-width="5"/>`;
+  s += casario(-20, 1100, 1120, { semente: 55, alt: [160, 480] });
+  // muro do colégio do outro lado da rua (ao fundo)
+  s += `<rect y="1050" width="1080" height="150" fill="#F2E5BE" stroke="#2A2A2A" stroke-width="4"/>` + txt('COLÉGIO ESTADUAL', 300, 1120, { tam: 40, cor: '#2F5F9E' });
+  s += `<rect y="1200" width="1080" height="130" fill="#3A3A42"/>`;
+  for (let x = -40; x < 1080; x += 180) s += `<rect x="${x}" y="1258" width="100" height="14" fill="#F2C230"/>`;
+  s += `<rect y="1330" width="1080" height="590" fill="#D6D0C2"/><rect y="1330" width="1080" height="16" fill="#B9B2A2"/>`;
+  // abrigo do ponto
+  s += `<rect x="560" y="1000" width="440" height="40" rx="8" fill="#2F5FA8" stroke="#2A2A2A" stroke-width="4"/>` +
+    `<rect x="580" y="1040" width="14" height="560" fill="#7A7F88" stroke="#2A2A2A" stroke-width="3"/><rect x="966" y="1040" width="14" height="560" fill="#7A7F88" stroke="#2A2A2A" stroke-width="3"/>` +
+    `<rect x="600" y="1060" width="360" height="300" fill="#BFE3F5" opacity="0.45" stroke="#2A2A2A" stroke-width="3"/>`;
+  // placa de ônibus
+  s += `<rect x="120" y="980" width="12" height="620" fill="#7A7F88" stroke="#2A2A2A" stroke-width="3"/>` +
+    `<circle cx="126" cy="960" r="56" fill="#2F5FA8" stroke="#2A2A2A" stroke-width="4"/>` + txt('PONTO', 126, 975, { tam: 34, cor: '#fff' });
+  // calor
+  s += `<g opacity="0.25">` + [0, 1, 2].map((i) => `<path d="M ${220 + i * 280} ${860 + Math.sin(t * 3 + i) * 10} q 30 -30 0 -60 q -30 -30 0 -60" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`).join('') + `</g>`;
+  return s;
+}
