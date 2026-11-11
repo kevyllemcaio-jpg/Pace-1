@@ -22,6 +22,8 @@ Série animada vertical (TikTok/Shorts) em que o público decide o próximo epis
 3. `npm run video -- estudio/episodios/ep02.js` → `saida/ep02.mp4` (1080×1920, 30 fps).
 4. `npm run capa -- estudio/episodios/ep02.js` → `saida/ep02-capa.png`.
 
+Voz padrão dos vídeos novos: `de-DE-FlorianMultilingualNeural` (+8%) com `window.TRATAR_VOZ = true` (tratamento de áudio).
+
 Requisitos: Node + Playwright (Chromium), ffmpeg, Python 3 com `numpy` e `edge-tts`
 (`pip install edge-tts numpy`). Narração: voz `pt-BR-AntonioNeural`, cache em `saida/.voz/`.
 Fontes Anton e Oswald (SIL OFL) em `estudio/fontes/`. Trilha e efeitos são sintetizados

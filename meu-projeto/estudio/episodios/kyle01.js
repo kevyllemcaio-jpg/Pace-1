@@ -271,4 +271,5 @@ window.CAPA = () => {
   return s;
 };
 
-criarEpisodio(E, { voz: 'pt-BR-AntonioNeural', velocidade: '+12%' });
+window.TRATAR_VOZ = true;
+criarEpisodio(E, { voz: 'de-DE-FlorianMultilingualNeural', velocidade: '+8%' });

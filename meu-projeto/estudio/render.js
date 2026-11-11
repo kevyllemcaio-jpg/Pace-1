@@ -81,7 +81,13 @@ function duracaoFala(arq, palavras) {
     const palavras = JSON.parse(fs.readFileSync(js, 'utf8'));
     const ATRASO = await page.evaluate(() => ATRASO_FALA + PAUSA_FALA);
     tempos.push({ dur: Math.max(durs[i], duracaoFala(mp3, palavras) + ATRASO), palavras });
-    audios.push(mp3);
+    // Tratamento da voz (grave mais quente, compressão leve, ambiente): soa mais humano.
+    let final = mp3;
+    if (await page.evaluate(() => !!window.TRATAR_VOZ)) {
+      final = mp3.replace(/\.mp3$/, '-trat.wav');
+      if (!fs.existsSync(final)) ffmpeg(['-i', mp3, '-af', 'highpass=f=70,equalizer=f=180:t=q:w=1:g=3,equalizer=f=3500:t=q:w=1.5:g=2,acompressor=threshold=-18dB:ratio=3:attack=10:release=120,aecho=0.8:0.5:35:0.12,loudnorm=I=-16', final]);
+    }
+    audios.push(final);
   }
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
   const desenhar = (t) => page.evaluate((t) => { document.getElementById('tela').innerHTML = renderizar(t); }, t);
@@ -143,7 +149,7 @@ function duracaoFala(arq, palavras) {
   const faixas = [[path.join(pastaSons, 'trilha.wav'), 0, 0.22]];
   inicios.slice(1).forEach((s) => faixas.push([path.join(pastaSons, 'whoosh.wav'), Math.max(0, s - 0.12), 0.35]));
   sons.forEach((e) => faixas.push([path.join(pastaSons, `${e.s}.wav`), e.t, 0.45 * e.vol]));
-  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + 0.2, 1.7]));
+  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + 0.2, a.endsWith('-trat.wav') ? 1.2 : 1.7]));
   const entradas = ['-i', semAudio];
   faixas.forEach(([a]) => entradas.push('-i', a));
   const filtro =
