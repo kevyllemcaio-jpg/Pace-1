@@ -73,7 +73,7 @@ function luzCelH() {
 }
 function tituloH(linhas) {
   return `<rect width="1080" height="${120 + linhas.length * 120}" fill="#0E1430" opacity="0.6"/>` +
-    linhas.map(([t, cor], i) => `<text x="540" y="${190 + i * 120}" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="${Math.min(100, 1550 / t.length)}" fill="${cor || '#fff'}" stroke="#15131A" stroke-width="14" paint-order="stroke">${esc(t)}</text>`).join('');
+    linhas.map(([t, cor], i) => `<text x="540" y="${190 + i * 120}" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="${Math.min(112, 1850 / t.length)}" fill="${cor || '#fff'}" stroke="#15131A" stroke-width="14" paint-order="stroke">${esc(t)}</text>`).join('');
 }
 function relogioH(hora, lt, vermelho = false, y = 110) {
   return pulo(`<rect x="330" y="${y}" width="420" height="116" rx="58" fill="#15131A" stroke="${vermelho ? '#E8344B' : '#fff'}" stroke-width="6"/>` +
@@ -182,7 +182,7 @@ function capaH({ fundo: f = 'quarto', expr = 'panico', l1, l2, cor2 = '#F7C531',
     let s = fundo(f, 0.4) + kyleClose({ x: 540, y: 1220, esc: 1.6, expr, suor: true, t: 0.4 });
     if (extra) s += extra();
     s += `<text x="540" y="300" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="${Math.min(150, 1700 / l1.length)}" fill="#fff" stroke="#15131A" stroke-width="18" paint-order="stroke">${esc(l1)}</text>`;
-    s += `<text x="540" y="430" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="${Math.min(100, 1500 / l2.length)}" fill="${cor2}" stroke="#15131A" stroke-width="14" paint-order="stroke">${esc(l2)}</text>`;
+    s += `<text x="540" y="430" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="${Math.min(100, 1750 / l2.length)}" fill="${cor2}" stroke="#15131A" stroke-width="14" paint-order="stroke">${esc(l2)}</text>`;
     if (etiqueta) s += etiquetaH(etiqueta);
     return s;
   };
