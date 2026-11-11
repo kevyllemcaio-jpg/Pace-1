@@ -172,8 +172,8 @@ function pessoa(o) {
     for (const [lx, k] of [[-28, anda], [28, -anda]]) {
       const dy = Math.max(0, k) * -14;
       s += `<rect x="${lx - 22}" y="-250" width="44" height="${232 + dy}" fill="${roupa.calca}" stroke="${TRACO}" stroke-width="4"/>`;
-      s += `<g transform="translate(0 ${dy})"><path d="M ${lx - 30} -6 Q ${lx - 32} -32 ${lx - 6} -32 L ${lx + 18} -30 Q ${lx + 40} -26 ${lx + 38} -6 Z" fill="#F6F6F4" stroke="${TRACO}" stroke-width="4" stroke-linejoin="round"/>` +
-        `<rect x="${lx - 30}" y="-10" width="68" height="8" rx="4" fill="#B9BCC2" stroke="${TRACO}" stroke-width="3"/></g>`;
+      s += `<g transform="translate(0 ${dy})"><path d="M ${lx - 30} -6 Q ${lx - 32} -32 ${lx - 6} -32 L ${lx + 18} -30 Q ${lx + 40} -26 ${lx + 38} -6 Z" fill="${o.tenis || '#F6F6F4'}" stroke="${TRACO}" stroke-width="4" stroke-linejoin="round"/>` +
+        `<rect x="${lx - 30}" y="-10" width="68" height="8" rx="4" fill="${o.sola || '#B9BCC2'}" stroke="${TRACO}" stroke-width="3"/></g>`;
     }
   }
 
@@ -204,6 +204,7 @@ function pessoa(o) {
     corpo += `<path d="M -26 -400 L 0 -320 L 26 -400" fill="none" stroke="#1F4FA0" stroke-width="5"/>` +
       `<rect x="-16" y="-322" width="32" height="40" rx="4" fill="#fff" stroke="${TRACO}" stroke-width="3"/><rect x="-10" y="-314" width="20" height="10" fill="#7FA6D8"/>`;
   }
+  if (o.sobreTronco) corpo += o.sobreTronco; // detalhes de roupa por cima do tronco (antes dos braços)
   if (o.segura) corpo += `<g transform="translate(0 -300)">${o.segura}</g>`;
   corpo += braco(ombroE, pe[0], pe[1], manga, pele, roupa.mangaLonga);
   corpo += braco(ombroD, pdAnim[0], pdAnim[1], manga, pele, roupa.mangaLonga);
@@ -229,6 +230,7 @@ function pessoa(o) {
   const falando = o.fala && Math.sin(t * 17) > 0;
   cabeca += boca(falando ? 'fala' : ex.boca);
   if (o.bigode) cabeca += `<path d="M -34 -476 Q -18 -492 0 -482 Q 18 -492 34 -476 Q 18 -478 0 -474 Q -18 -478 -34 -476 Z" fill="${cab.cor}" stroke="${TRACO}" stroke-width="3"/>`;
+  if (o.sobreCabeca) cabeca += o.sobreCabeca; // máscara, capacete etc.
   if (o.suor) cabeca += `<path d="M 86 -590 Q 96 -570 86 -560 Q 76 -570 86 -590 Z" fill="#9FD8F5" stroke="${TRACO}" stroke-width="3"/>`;
 
   s += `<g transform="translate(0 ${resp})">${corpo}${cabeca}</g>`;

@@ -2,9 +2,10 @@
 
 **Título na tela:** E SE VOCÊ TIVESSE PODERES DE ARANHA POR 1 DIA?
 
-E se você acordasse com poderes de aranha... só por 24 horas? 🕷️
+E se você acordasse com poderes de aranha... e um traje pra usar? Só por 24 horas. 🕷️
 
 🕕 grudado no teto
+🦾 traje com luvas que grudam, visor noturno e teia no pulso
 👀 8 olhos, visão quase 360°
 🦘 pulo de 85 metros
 🕸️ teia mais forte que aço (peso por peso)
