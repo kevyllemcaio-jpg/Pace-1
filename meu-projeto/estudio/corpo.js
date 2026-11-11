@@ -9,7 +9,9 @@
 
 const CONT = '#24201E';
 const PELE_REAL = '#C68E62';
-const VEIA = '#FF8A1F';
+const VEIA_PADRAO = '#FF8A1F';
+const corEnergia = () => (typeof window !== 'undefined' && window.COR_ENERGIA) || VEIA_PADRAO;
+const corEnergiaClara = () => (typeof window !== 'undefined' && window.COR_ENERGIA_CLARA) || '#FFE2A6';
 
 // ---------- geometria ----------
 function ik(a, alvo, l1, l2, lado, preferencia = 'fora') {
@@ -108,8 +110,8 @@ function rostoReal(c, r, expr, t, olhar, energia, m, semente) {
     if (piscar) { s += `<path d="M ${x - r * 0.15} ${ey} Q ${x} ${ey + 6} ${x + r * 0.15} ${ey}" fill="none" stroke="${CONT}" stroke-width="4"/>`; continue; }
     s += `<path d="${elipse(x, ey, r * 0.17, r * 0.11)}" fill="#fff" stroke="${CONT}" stroke-width="3.5"/>`;
     const brilha = energia > 0.55;
-    s += `<circle cx="${x + olhar[0] * r * 0.06}" cy="${ey + olhar[1] * r * 0.04}" r="${r * 0.085}" fill="${brilha ? VEIA : '#3A2A20'}"/>`;
-    if (brilha) s += `<circle cx="${x}" cy="${ey}" r="${r * 0.2}" fill="${VEIA}" opacity="${0.35 * energia}" filter="url(#brilhoVeia)"/>`;
+    s += `<circle cx="${x + olhar[0] * r * 0.06}" cy="${ey + olhar[1] * r * 0.04}" r="${r * 0.085}" fill="${brilha ? corEnergia() : '#3A2A20'}"/>`;
+    if (brilha) s += `<circle cx="${x}" cy="${ey}" r="${r * 0.2}" fill="${corEnergia()}" opacity="${0.35 * energia}" filter="url(#brilhoVeia)"/>`;
     s += `<circle cx="${x + olhar[0] * r * 0.06}" cy="${ey + olhar[1] * r * 0.04}" r="${r * 0.04}" fill="${CONT}"/>`;
     s += `<path d="M ${x - r * 0.18} ${ey - r * 0.04} Q ${x} ${ey - r * 0.16} ${x + r * 0.18} ${ey - r * 0.04}" fill="none" stroke="${CONT}" stroke-width="3"/>`;
   }
@@ -132,9 +134,9 @@ function veias(caminhos, energia, t) {
   if (energia <= 0.02) return '';
   const pulso = energia * (0.75 + 0.25 * Math.sin(t * 9));
   const d = caminhos.join(' ');
-  return `<path d="${d}" fill="none" stroke="${VEIA}" stroke-width="16" stroke-linecap="round" opacity="${0.55 * pulso}" filter="url(#brilhoVeia)"/>` +
-    `<path d="${d}" fill="none" stroke="${VEIA}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="${pulso}"/>` +
-    `<path d="${d}" fill="none" stroke="#FFE2A6" stroke-width="2" stroke-linecap="round" opacity="${pulso}"/>`;
+  return `<path d="${d}" fill="none" stroke="${corEnergia()}" stroke-width="16" stroke-linecap="round" opacity="${0.55 * pulso}" filter="url(#brilhoVeia)"/>` +
+    `<path d="${d}" fill="none" stroke="${corEnergia()}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="${pulso}"/>` +
+    `<path d="${d}" fill="none" stroke="${corEnergiaClara()}" stroke-width="2" stroke-linecap="round" opacity="${pulso}"/>`;
 }
 function zigue(a, b, n = 4, amp = 6, sem = 1) {
   let s = `M ${P(a)}`;
@@ -185,7 +187,7 @@ function corpo(o) {
     // tênis
     const tx = p[0] + lado * 8;
     s += `<path d="M ${tx - 34} ${p[1] - 2} Q ${tx - 36} ${p[1] - 34} ${tx - 6} ${p[1] - 34} L ${tx + 20} ${p[1] - 30} Q ${tx + 44} ${p[1] - 24} ${tx + 42} ${p[1] - 2} Z" fill="${roupa === 'shorts' ? '#14161C' : '#F6F6F4'}" stroke="${CONT}" stroke-width="4" stroke-linejoin="round"/>` +
-      `<rect x="${tx - 36}" y="${p[1] - 9}" width="80" height="9" rx="4" fill="${roupa === 'shorts' ? VEIA : '#B9BCC2'}" stroke="${CONT}" stroke-width="3"/>`;
+      `<rect x="${tx - 36}" y="${p[1] - 9}" width="80" height="9" rx="4" fill="${roupa === 'shorts' ? corEnergia() : '#B9BCC2'}" stroke="${CONT}" stroke-width="3"/>`;
   }
 
   // shorts (tubos sobre as coxas) / cós da calça
@@ -195,7 +197,7 @@ function corpo(o) {
     s += grupo([...tubos, quad], '#16181E');
     for (const [q, j, l] of [[qE, jE, -1], [qD, jD, 1]]) {
       const a = [q[0] + l * mix(30, 52, m), q[1] - 20], b = [ponto(q, j, 0.5)[0] + l * mix(26, 46, m), ponto(q, j, 0.5)[1]];
-      s += `<path d="M ${P(a)} L ${P(b)}" stroke="${VEIA}" stroke-width="7" stroke-linecap="round"/>`;
+      s += `<path d="M ${P(a)} L ${P(b)}" stroke="${corEnergia()}" stroke-width="7" stroke-linecap="round"/>`;
     }
     s += `<rect x="${qE[0] - M.hw * 0.8}" y="${quadril[1] - 40}" width="${(qD[0] - qE[0]) + M.hw * 1.6}" height="16" rx="6" fill="#0E0F13" stroke="${CONT}" stroke-width="4"/>`;
   } else {

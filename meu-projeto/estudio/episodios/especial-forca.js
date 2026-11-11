@@ -1,6 +1,6 @@
 // ESPECIAL — "E se você tivesse SUPERFORÇA por 1 dia?" (fora da série)
 // Personagem original desenhado com corpo.js (proporções humanas, músculos, cinemática inversa).
-// Forma normal: moletom. Forma forte: pele normal, veias de energia laranja, shorts preto com faixa laranja. Formato curto: gancho no 1º quadro, um fato por hora.
+// Forma normal: moletom. Forma forte: pele normal, veias de energia verde neon, shorts preto com faixa laranja. Formato curto: gancho no 1º quadro, um fato por hora.
 //
 // Números usados:
 //   - Recorde mundial de levantamento terra: 501 kg (2020).
@@ -10,7 +10,10 @@
 //   - Formiga: carrega até ~50 vezes o próprio peso.
 
 const E = [];
-const LARANJA = '#FF8A1F';
+// Energia verde neon (pele normal, veias e olhos verdes).
+const LARANJA = '#3DFF6E';
+window.COR_ENERGIA = '#3DFF6E';
+window.COR_ENERGIA_CLARA = '#D9FFE3';
 
 // ---------- personagem ----------
 function voce(o) {
