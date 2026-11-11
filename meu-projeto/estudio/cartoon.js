@@ -6,7 +6,7 @@ const TK = '#1F1A24';
 const PELE_K = '#E2A77E', PELE_K2 = '#C98A62';
 
 // ---------- cabeça (centro em 0,0; ~ 330 x 420) ----------
-function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, vergonha = 0, fala = false, semente = 4, barba = true } = {}) {
+function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, vergonha = 0, fala = false, semente = 4, barba = true, semDente = false } = {}) {
   const E = {
     neutro: { lid: 0.15, bi: 0, be: 0, boca: 'reta' },
     sono: { lid: 0.55, bi: 6, be: 4, boca: 'reta' },
@@ -18,6 +18,8 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
     determinado: { lid: 0.3, bi: 14, be: -6, boca: 'firme' },
     sonhador: { lid: 0.4, bi: -10, be: -8, boca: 'sorri' },
     triste: { lid: 0.3, bi: -16, be: 10, boca: 'triste' },
+    janelinha: { lid: 0.1, bi: -10, be: -6, boca: 'janela' },
+    sem_graca: { lid: 0.25, bi: -14, be: 8, boca: 'janela' },
   }[expr] || {};
   const piscar = ((t + semente * 0.73) % 3.8) < 0.11;
   let s = '';
@@ -27,13 +29,14 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   s += `<path d="M -156 -40 Q -170 -230 0 -236 Q 170 -230 156 -40 Q 160 100 96 160 Q 40 205 0 205 Q -40 205 -96 160 Q -160 100 -156 -40 Z" fill="${PELE_K}" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>`;
   // barba por fazer (sombra)
   if (barba) {
-  s += `<path d="M -138 60 Q -120 160 -40 192 Q 0 204 40 192 Q 120 160 138 60 Q 110 120 60 128 Q 0 138 -60 128 Q -110 120 -138 60 Z" fill="#7A6A72" opacity="0.28"/>`;
+  s += `<path d="M -138 60 Q -120 160 -40 192 Q 0 204 40 192 Q 120 160 138 60 Q 110 120 60 128 Q 0 138 -60 128 Q -110 120 -138 60 Z" fill="#5E4E58" opacity="0.48"/>`;
+  s += `<path d="M -70 108 Q -40 96 0 102 Q 40 96 70 108 Q 40 116 0 112 Q -40 116 -70 108 Z" fill="#5E4E58" opacity="0.5"/>`;
   const r = aleatorio(semente * 11);
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 120; i++) {
     const a = r() * Math.PI, rr = 120 + r() * 60;
     const x = Math.cos(a) * rr * 0.85, y = 70 + Math.sin(a) * rr * 0.62;
     if (Math.abs(x) < 34 && y < 150) continue;
-    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="${TK}" opacity="0.45"/>`;
+    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${TK}" opacity="0.55"/>`;
   }
   }
   // cabelo bagunçado (tufos)
@@ -67,9 +70,10 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   const my = 136;
   const L = `fill="none" stroke="${TK}" stroke-width="8" stroke-linecap="round"`;
   const b = fala && Math.sin(t * 16) > 0 ? 'fala' : E.boca;
-  if (b === 'sorri') s += `<path d="M -54 ${my - 10} Q 0 ${my + 30} 54 ${my - 10}" ${L}/>`;
-  else if (b === 'aberta') s += `<path d="M -66 ${my - 16} Q 0 ${my + 66} 66 ${my - 16} Z" fill="#6E2430" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M -56 ${my - 12} L 56 ${my - 12} L 50 ${my + 6} L -50 ${my + 6} Z" fill="#fff"/><path d="${elipse(0, my + 34, 26, 12)}" fill="#E06070"/>`;
-  else if (b === 'grito') s += `<path d="M -50 ${my - 18} Q 0 ${my - 26} 50 ${my - 18} Q 56 ${my + 50} 0 ${my + 58} Q -56 ${my + 50} -50 ${my - 18} Z" fill="#6E2430" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M -42 ${my - 16} L 42 ${my - 16} L 38 ${my - 2} L -38 ${my - 2} Z" fill="#fff"/>`;
+  if (b === 'janela') s += `<path d="M -60 ${my - 12} Q 0 ${my + 40} 60 ${my - 12} Q 0 ${my + 4} -60 ${my - 12} Z" fill="#6E2430" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M -50 ${my - 9} Q 0 ${my + 8} 50 ${my - 9} L 46 ${my + 6} Q 0 ${my + 20} -46 ${my + 6} Z" fill="#fff"/>` + (semDente ? `<rect x="4" y="${my - 6}" width="22" height="22" fill="#3A0E16"/>` : '') + `<path d="M -60 ${my - 12} Q 0 ${my + 40} 60 ${my - 12}" fill="none" stroke="${TK}" stroke-width="8"/>`;
+  else if (b === 'sorri') s += `<path d="M -54 ${my - 10} Q 0 ${my + 30} 54 ${my - 10}" ${L}/>`;
+  else if (b === 'aberta') s += `<path d="M -66 ${my - 16} Q 0 ${my + 66} 66 ${my - 16} Z" fill="#6E2430" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M -56 ${my - 12} L 56 ${my - 12} L 50 ${my + 6} L -50 ${my + 6} Z" fill="#fff"/>${semDente ? `<rect x="6" y="${my - 13}" width="22" height="20" fill="#3A0E16"/><line x1="6" y1="${my - 13}" x2="6" y2="${my + 6}" stroke="${TK}" stroke-width="3"/><line x1="28" y1="${my - 13}" x2="28" y2="${my + 6}" stroke="${TK}" stroke-width="3"/>` : ''}<path d="${elipse(0, my + 34, 26, 12)}" fill="#E06070"/>`;
+  else if (b === 'grito') s += `<path d="M -50 ${my - 18} Q 0 ${my - 26} 50 ${my - 18} Q 56 ${my + 50} 0 ${my + 58} Q -56 ${my + 50} -50 ${my - 18} Z" fill="#6E2430" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M -42 ${my - 16} L 42 ${my - 16} L 38 ${my - 2} L -38 ${my - 2} Z" fill="#fff"/>${semDente ? `<rect x="4" y="${my - 17}" width="18" height="16" fill="#3A0E16"/>` : ''}`;
   else if (b === 'o') s += `<path d="${elipse(0, my + 6, 22, 30)}" fill="#6E2430" stroke="${TK}" stroke-width="8"/>`;
   else if (b === 'onda') s += `<path d="M -46 ${my} Q -23 ${my - 14} 0 ${my} Q 23 ${my + 14} 46 ${my}" ${L}/>`;
   else if (b === 'firme') s += `<path d="M -40 ${my} L 40 ${my - 6}" ${L}/>`;
