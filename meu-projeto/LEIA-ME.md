@@ -54,3 +54,9 @@ Todo episódio novo começa com um resumo curtinho do anterior (uns 6–10 s, no
   presente quando acaba; a narração resume em 1–2 frases.
 - Termina com a **escolha vencedora** em destaque ("VOCÊS ESCOLHERAM B") e corta para a cena
   nova em cores normais.
+
+## Especiais "E se..." — personagem realista (estudio/corpo.js)
+Os especiais usam `corpo()`: proporções humanas, músculos (`musculo` 0 = normal de moletom, 1 = brutamontes),
+`energia` (veias laranja brilhando) e braços/pernas com cinemática inversa. As poses são animadas com
+`animar([[tempo, pose], ...], lt, poseBase(m))`, `passo()` para andar e `tremor()` para impacto.
+Ver `estudio/episodios/especial-forca.js`. A série do Kevylem continua no estilo original.

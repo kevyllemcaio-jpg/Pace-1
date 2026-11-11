@@ -5,7 +5,7 @@
 E se você acordasse com superforça... só por 24 horas? 💪
 
 🚪 a porta sai inteira na sua mão
-📏 você cresce pra 2,5 m (e ganha um traje de treino)
+📏 você cresce pra 2,5 m e as veias acendem 🔥
 🏋️ o recorde mundial é 501 kg — você levanta com 1 mão
 🚗 carro de 1 tonelada como se fosse mochila
 🪲 o besouro-rinoceronte levanta 850× o próprio peso: no seu tamanho, 4 ônibus
