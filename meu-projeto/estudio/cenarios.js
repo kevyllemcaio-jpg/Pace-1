@@ -55,14 +55,14 @@ function cartaz(x, y, linhas, rot = -2) {
 }
 
 // ---------- QUARTO (noite) ----------
-function quarto(t, { luz = 1 } = {}) {
+function quarto(t, { luz = 1, cartazLinhas = [['META:', '#C33A3A'], ['SAIR', '#2A2A2A'], ['RICO', '#2A2A2A']] } = {}) {
   let s = `<rect width="1080" height="1920" fill="#4B5B8F"/>`;
   s += `<rect y="1460" width="1080" height="460" fill="#3A4670"/><rect y="1452" width="1080" height="16" fill="#2E3860"/>`;
   s += janela(560, 300, 380, 520, { noite: true, semente: 8 });
   // cortina
   s += `<path d="M 520 270 L 600 270 Q 590 600 610 880 L 540 880 Q 520 600 520 270 Z" fill="#C94848" stroke="#2A2A2A" stroke-width="4"/>`;
   s += `<rect x="500" y="262" width="480" height="14" rx="6" fill="#5A3A28"/>`;
-  s += cartaz(250, 520, [['META:', '#C33A3A'], ['SAIR', '#2A2A2A'], ['RICO', '#2A2A2A']]);
+  if (cartazLinhas) s += cartaz(250, 520, cartazLinhas);
   // prateleira com livros
   s += `<rect x="90" y="830" width="330" height="18" fill="#7A4E32" stroke="#2A2A2A" stroke-width="3"/>`;
   [['#E0B23A', 40, 90], ['#3BB273', 34, 100], ['#2F6DB5', 30, 84], ['#C04A8E', 38, 96], ['#E06A3A', 30, 70]].forEach(([c, w, h], i, a) => {

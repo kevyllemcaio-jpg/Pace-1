@@ -229,12 +229,13 @@ function legenda(c, lt) {
     .join('');
   const chars = partes.reduce((a, p) => a + p.texto.length + 1, 0);
   const tam = Math.min(104, 980 / (chars * 0.47));
-  const y = c.legendaY || 905;
+  const y = c.legendaY || window.LEGENDA_Y || 905;
+  const fonteLeg = window.FONTE_LEGENDA || F_TIT;
   const k = 0.82 + 0.18 * salto((lt - b.ini) / 0.16);
   return (
     `<g transform="translate(540 ${y}) scale(${k}) translate(-540 ${-y})">` +
-    `<text x="545" y="${y + 9}" text-anchor="middle" font-family="${F_TIT}" font-size="${tam}" fill="#000" opacity="0.45">${esc(partes.map((p) => p.texto.toUpperCase().replace(/[.,:;…]+$/, '')).join(' '))}</text>` +
-    `<text x="540" y="${y}" text-anchor="middle" font-family="${F_TIT}" font-size="${tam}" stroke="#111" stroke-width="${tam * 0.17}" stroke-linejoin="round" paint-order="stroke">${conteudo}</text>` +
+    `<text x="545" y="${y + 9}" text-anchor="middle" font-family="${fonteLeg}" font-weight="800" font-size="${tam}" fill="#000" opacity="0.45">${esc(partes.map((p) => p.texto.toUpperCase().replace(/[.,:;…]+$/, '')).join(' '))}</text>` +
+    `<text x="540" y="${y}" text-anchor="middle" font-family="${fonteLeg}" font-weight="800" font-size="${tam}" stroke="#111" stroke-width="${tam * 0.17}" stroke-linejoin="round" paint-order="stroke">${conteudo}</text>` +
     `</g>`
   );
 }

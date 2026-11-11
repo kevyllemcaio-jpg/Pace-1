@@ -60,3 +60,10 @@ Os especiais usam `corpo()`: proporções humanas, músculos (`musculo` 0 = norm
 `energia` (veias laranja brilhando) e braços/pernas com cinemática inversa. As poses são animadas com
 `animar([[tempo, pose], ...], lt, poseBase(m))`, `passo()` para andar e `tremor()` para impacto.
 Ver `estudio/episodios/especial-forca.js`. A série do Kevylem continua no estilo original.
+
+## Série do Kyle (estilo turma chibi) — estudio/chibi.js
+Personagens originais: Kyle (óculos redondos, cabelo castanho bagunçado com topete, camiseta verde-água com
+aviãozinho de papel), Lara (cacheada, tiara amarela, saia roxa), Rafa (camisa vermelha 7), mãe e alunos.
+Visual: contorno branco de adesivo (`filtroAdesivo()`), fundos vermelho/azul na diagonal (`fundoDiagonal`),
+fonte arredondada Baloo (`tituloRed`, `pilulaRed`), legendas em Baloo (`window.FONTE_LEGENDA`).
+Contador: "DIA N · FALTAM X DIAS" pro baile. Episódio 1: `estudio/episodios/kyle01.js`.

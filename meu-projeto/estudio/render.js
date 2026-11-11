@@ -37,7 +37,8 @@ function fonteCss() {
   return (
     `@font-face{font-family:Anton;src:url(data:font/woff2;base64,${f('anton.woff2')}) format('woff2');font-weight:400 900}` +
     `@font-face{font-family:Oswald;src:url(data:font/woff2;base64,${f('oswald-700.woff2')}) format('woff2');font-weight:600 900}` +
-    `@font-face{font-family:Oswald;src:url(data:font/woff2;base64,${f('oswald-400.woff2')}) format('woff2');font-weight:100 500}`
+    `@font-face{font-family:Oswald;src:url(data:font/woff2;base64,${f('oswald-400.woff2')}) format('woff2');font-weight:100 500}` +
+    `@font-face{font-family:Baloo;src:url(data:font/woff2;base64,${f('baloo-800.woff2')}) format('woff2');font-weight:100 900}`
   );
 }
 
@@ -54,7 +55,7 @@ function duracaoFala(arq, palavras) {
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
       '<body><svg id="tela" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
