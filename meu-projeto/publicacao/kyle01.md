@@ -1,18 +1,16 @@
-# Kyle — Episódio 1: A CARTA — legenda
+# Kyle — Episódio 1: A LIGAÇÃO — legenda
 
-**Título na tela:** LERAM MINHA CARTA NO MICROFONE DA ESCOLA 😳
+**Título na tela:** LIGUEI SEM QUERER 📱
 
-Ele escreveu 3 páginas pra Lara... e colocou no armário errado. 💌
+2 da manhã. O dedão escorregou e o Kyle fez uma chamada de vídeo pra Manu, da escola. 😳
 
-O Rafa, camisa 7, leu tudo no microfone do intervalo. A escola inteira riu.
+Ela lembra dele como o cara do violão, o mais estiloso da sala.
+Ela volta de Lisboa em 30 dias pro reencontro da turma.
+Ele disse "vou sim".
 
-Agora o Kyle tem 30 dias pra chegar no baile irreconhecível.
-Dia 1: pele. ✅
+Hoje ele tá 4% parecido com o Kyle de 2015.
 
-Amanhã, quem decide é você:
-🅰️ corta o cabelo
-🅱️ troca os óculos
+Comenta UMA palavra 👇
+✂️ CABELO ou 🎸 VIOLÃO
 
-Comenta A ou B 👇 A mais votada vira o episódio 2.
-
-#kyle #glowup #baile #escola #vocedecide
+#kyle #glowup #reencontro #vocedecide #animacao

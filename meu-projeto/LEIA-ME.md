@@ -67,3 +67,8 @@ aviãozinho de papel), Lara (cacheada, tiara amarela, saia roxa), Rafa (camisa v
 Visual: contorno branco de adesivo (`filtroAdesivo()`), fundos vermelho/azul na diagonal (`fundoDiagonal`),
 fonte arredondada Baloo (`tituloRed`, `pilulaRed`), legendas em Baloo (`window.FONTE_LEGENDA`).
 Contador: "DIA N · FALTAM X DIAS" pro baile. Episódio 1: `estudio/episodios/kyle01.js`.
+
+### Kyle adulto (estudio/cartoon.js) — formato close + celular
+Episódio 1 refeito no formato: closes grandes do rosto (`kyleClose`) com o quarto desfocado, telas de celular
+genéricas (`celularUI`: feed, chamada, chat) com o dedo (`dedo`), corpo inteiro centralizado (`kyleCorpo`),
+contador `hudReencontro(dias, pct)` e votação em tela dividida ("COMENTE UMA PALAVRA").
