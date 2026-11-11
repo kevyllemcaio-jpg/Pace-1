@@ -263,7 +263,79 @@
     return '';
   }
 
+
+  function beto(x, talk, t, mood) {
+    const open = talk ? 0.35 + 0.65 * Math.abs(Math.sin(t * 18)) : 0;
+    const SK = '#d9a27a';
+    const boca = talk
+      ? `<ellipse cx="0" cy="-400" rx="26" ry="${(8 + 12 * open).toFixed(1)}" fill="#7a1f1f" ${OUT}/><rect x="-18" y="-408" width="36" height="12" fill="#fff"/>`
+      : `<path d="M -26 -404 Q 0 -382 26 -404" fill="none" stroke="${INK}" stroke-width="7" stroke-linecap="round"/><rect x="-16" y="-400" width="32" height="12" fill="#fff"/>`;
+    const olhos = mood === 'surpreso'
+      ? `<circle cx="-30" cy="-440" r="25" fill="#fff" ${OUT} stroke-width="5"/><circle cx="30" cy="-440" r="25" fill="#fff" ${OUT} stroke-width="5"/>
+         <circle cx="-30" cy="-440" r="9" fill="#111"/><circle cx="30" cy="-440" r="9" fill="#111"/>
+         <path d="M -58 -478 Q -30 -492 -4 -474 M 4 -474 Q 30 -492 58 -478" fill="none" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>
+         <path d="M 74 -470 q 10 18 0 28 q -10 -10 0 -28 z" fill="#6fc3ff" ${OUT} stroke-width="3"/>`
+      : `<ellipse cx="-30" cy="-440" rx="20" ry="18" fill="#fff" ${OUT} stroke-width="5"/><ellipse cx="30" cy="-440" rx="20" ry="18" fill="#fff" ${OUT} stroke-width="5"/>
+         <circle cx="-26" cy="-438" r="8" fill="#111"/><circle cx="34" cy="-438" r="8" fill="#111"/>
+         <path d="M -54 -470 Q -30 -480 -6 -468 M 6 -468 Q 30 -480 54 -470" fill="none" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>`;
+    const bob = Math.sin(t * 5) * 3;
+    return `<g transform="translate(${x},${1830 + bob}) scale(1)">
+      <ellipse cx="0" cy="6" rx="130" ry="24" fill="#000" opacity="0.25"/>
+      <rect x="-40" y="-190" width="34" height="180" rx="12" fill="#4a5a78" ${OUT}/>
+      <rect x="6" y="-190" width="34" height="180" rx="12" fill="#4a5a78" ${OUT}/>
+      <rect x="-50" y="-16" width="46" height="24" rx="12" fill="#f4f4f4" ${OUT}/>
+      <rect x="4" y="-16" width="46" height="24" rx="12" fill="#f4f4f4" ${OUT}/>
+      <rect x="-72" y="-370" width="144" height="200" rx="28" fill="#f2f2ee" ${OUT}/>
+      <circle cx="0" cy="-300" r="26" fill="none" stroke="#c4413b" stroke-width="10"/>
+      <rect x="-104" y="-362" width="36" height="150" rx="16" fill="#f2f2ee" ${OUT}/>
+      <rect x="68" y="-362" width="36" height="150" rx="16" fill="#f2f2ee" ${OUT}/>
+      <circle cx="-86" cy="-210" r="20" fill="${SK}" ${OUT}/>
+      <circle cx="86" cy="-210" r="20" fill="${SK}" ${OUT}/>
+      <rect x="-22" y="-392" width="44" height="30" fill="#b9825a"/>
+      <circle cx="0" cy="-450" r="84" fill="${SK}" ${OUT}/>
+      <path d="M -70 -470 Q -40 -440 -20 -430 Q 0 -420 22 -432 Q 52 -446 72 -468 Q 60 -400 0 -380 Q -60 -400 -70 -470 Z" fill="#4a2c1a" ${OUT} stroke-width="5"/>
+      <path d="M -34 -414 Q 0 -388 34 -414 Q 26 -370 0 -364 Q -26 -370 -34 -414 Z" fill="#4a2c1a" ${OUT} stroke-width="5"/>
+      <path d="M -88 -470 Q -80 -560 0 -562 Q 82 -560 88 -470 Q 60 -500 0 -498 Q -60 -500 -88 -470 Z" fill="#c4413b" ${OUT}/>
+      <rect x="-40" y="-520" width="80" height="26" rx="8" fill="#fff" ${OUT} stroke-width="4"/>
+      <path d="M -84 -470 Q -40 -478 0 -474 Q 40 -478 86 -470 L 92 -458 Q 40 -466 0 -462 Q -40 -466 -92 -458 Z" fill="#8f2a25"/>
+      ${olhos}
+      <path d="M -18 -446 Q -12 -432 -4 -440" fill="none" stroke="${INK}" stroke-width="4"/>
+      ${boca}
+    </g>`;
+  }
+
+  function cenaQuarto(cena, lt, t) {
+    switch (cena) {
+      case 'quarto':
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#7d93a8"/>
+          <rect x="0" y="0" width="${W}" height="1920" fill="url(#pq)" opacity="0.5"/>
+          <rect x="650" y="220" width="300" height="360" fill="#e7f0f8" ${OUT}/>
+          <rect x="650" y="220" width="300" height="360" fill="#bcd4e6" opacity="0.5"/>
+          <path d="M 620 210 L 690 580 L 690 210 Z M 980 210 L 910 580 L 910 210 Z" fill="#c4413b" ${OUT} stroke-width="5"/>
+          <rect x="130" y="250" width="200" height="260" fill="#e3b53d" ${OUT}/>
+          <rect x="150" y="270" width="160" height="90" fill="#2e7d4f"/>
+          <rect x="740" y="1010" width="250" height="90" fill="#8c5a33" ${OUT}/>
+          <rect x="760" y="1100" width="16" height="170" fill="#5b3a22"/><rect x="960" y="1100" width="16" height="170" fill="#5b3a22"/>
+          <rect x="100" y="960" width="260" height="36" rx="10" fill="#f0f0f0" ${OUT}/>
+          <ellipse cx="520" cy="1226" rx="330" ry="56" fill="#b8473c" ${OUT}/>
+          <ellipse cx="520" cy="1226" rx="270" ry="40" fill="none" stroke="#e1a25d" stroke-width="6"/>` + chao('#c9a882');
+      case 'rua': {
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#8fd3ff"/>
+          <rect x="0" y="0" width="${W}" height="1920" fill="url(#pq)" opacity="0.2"/>
+          <circle cx="880" cy="300" r="80" fill="#ffd21f" ${OUT}/>
+          <rect x="0" y="380" width="360" height="880" fill="#f4a261" ${OUT}/>
+          <rect x="360" y="520" width="360" height="740" fill="#e76f51" ${OUT}/>
+          <rect x="720" y="420" width="360" height="840" fill="#f6d55c" ${OUT}/>
+          <rect x="40" y="520" width="90" height="110" fill="#fff" opacity="0.8"/>
+          <rect x="420" y="640" width="90" height="110" fill="#fff" opacity="0.8"/>
+          <rect x="800" y="560" width="90" height="110" fill="#fff" opacity="0.8"/>` + chao('#7b7f8e');
+      }
+    }
+    return '';
+  }
+
   function cenaBG(cena, lt, t) {
+    if (window.MODO === 'quarto') return cenaQuarto(cena, lt, t);
     if (window.MODO === 'teo') return cenaTeo(cena, lt, t);
     if (window.MODO === 'zumbi') return cenaZumbi(cena, lt, t);
     const cx = 540, cy = 560;
@@ -408,8 +480,11 @@
     }
     const ativo = t >= s.t0 && t < s.t1;
     const lt = Math.max(0, t - s.t0);
-    document.getElementById('bg').innerHTML = cenaBG(s.cena, lt, t);
-    document.getElementById('chars').innerHTML = window.MODO === 'teo' ? teoFig(560, ativo, t) : (menino(300, ativo && s.quem === 'boy', t) + avo(790, ativo && s.quem === 'avo', t));
+    document.getElementById('bg').innerHTML = `<defs><pattern id="pq" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="none"/><circle cx="20" cy="20" r="1.6" fill="#000" opacity="0.08"/></pattern></defs>` + cenaBG(s.cena, lt, t);
+    const cam = document.getElementById('cam');
+    if (s.zoom) { cam.style.transformOrigin = s.zoom.x + 'px ' + s.zoom.y + 'px'; cam.style.transform = 'scale(' + s.zoom.z + ')'; }
+    else { cam.style.transform = 'none'; }
+    document.getElementById('chars').innerHTML = window.MODO === 'quarto' ? beto(540, ativo, t, s.mood) : (window.MODO === 'teo' ? teoFig(560, ativo, t) : (menino(300, ativo && s.quem === 'boy', t) + avo(790, ativo && s.quem === 'avo', t)));
     const hudKey = JSON.stringify(s.hud);
     if (hudKey !== ultimoHud) { ultimoHud = hudKey; document.getElementById('hud').innerHTML = barraTopo(s.hud); }
     const cap = document.getElementById('cap');
@@ -419,8 +494,9 @@
     if (ativo) {
       const boy = s.quem === 'boy';
       const teo = window.MODO === 'teo';
-      const left = teo ? 300 : (boy ? 40 : 610);
-      const tx = teo ? 260 : (boy ? 300 - 40 : 790 - 610);
+      const quarto = window.MODO === 'quarto';
+      const left = quarto ? 300 : (teo ? 300 : (boy ? 40 : 610));
+      const tx = quarto ? 240 : (teo ? 260 : (boy ? 300 - 40 : 790 - 610));
       b.innerHTML = `<div class="bubble" style="left:${left}px;top:1235px;--tx:${tx}px">${s.fala}</div>`;
     } else b.innerHTML = '';
     const fx = document.getElementById('fx');

@@ -1,0 +1,25 @@
+// História original em estrutura parecida: foto antiga postada, mudança de visual, reação de quem vê,
+// revelação no fim e pergunta para comentar. Personagem e cenário são novos (quarto e rua).
+window.SHOTS = [
+  { t0: 0.0,  t1: 3.0,  cena: 'quarto', quem: 'beto', fala: 'Minha prima postou uma foto minha de dois mil e quinze.',
+    cap: 'POSTARAM UMA <em>FOTO ANTIGA</em>', hud: ['QUARTO', 'NOTÍCIA'], zoom: null },
+  { t0: 3.2,  t1: 5.6,  cena: 'quarto', quem: 'beto', fala: 'E ninguém parava de comentar.',
+    cap: 'NINGUÉM PAROU DE <em>COMENTAR</em>', hud: ['QUARTO', 'NOTÍCIA'], zoom: { z: 2.3, x: 560, y: 900 }, mood: 'surpreso' },
+  { t0: 5.8,  t1: 8.8,  cena: 'quarto', quem: 'beto', fala: 'Então tirei o boné e marquei uma barbearia.',
+    cap: 'TIREI O BONÉ E <em>MARQUEI</em>', hud: ['VISUAL', 'MUDANDO'], zoom: null },
+  { t0: 9.0,  t1: 11.6, cena: 'quarto', quem: 'beto', fala: 'Saí de lá com outro visual.',
+    cap: 'SAÍ COM OUTRO <em>VISUAL</em>', hud: ['VISUAL', 'NOVO'], zoom: { z: 2.1, x: 560, y: 900 }, mood: 'feliz' },
+  { t0: 11.8, t1: 15.0, cena: 'rua',    quem: 'beto', fala: 'Desci pro bairro pra mostrar pra todo mundo.',
+    cap: 'DESCI PRO BAIRRO PRA <em>MOSTRAR</em>', hud: ['BAIRRO', 'MOVIMENTO'], zoom: null },
+  { t0: 15.2, t1: 17.8, cena: 'rua',    quem: 'beto', fala: 'Ninguém me reconheceu.',
+    cap: 'NINGUÉM ME <em>RECONHECEU</em>', hud: ['BAIRRO', 'MOVIMENTO'], zoom: { z: 2.3, x: 560, y: 900 }, mood: 'surpreso' },
+  { t0: 18.0, t1: 21.2, cena: 'rua',    quem: 'beto', fala: 'Aí alguém gritou meu nome lá do outro lado.',
+    cap: 'ALGUÉM GRITOU MEU <em>NOME</em>', hud: ['BAIRRO', 'MOVIMENTO'], zoom: null },
+  { t0: 21.4, t1: 23.8, cena: 'rua',    quem: 'beto', fala: 'Era ela.',
+    cap: 'ERA <em>ELA</em>', hud: ['BAIRRO', 'MOVIMENTO'], zoom: { z: 2.5, x: 560, y: 900 }, mood: 'feliz' },
+  { t0: 24.0, t1: 28.0, cena: 'rua',    quem: 'beto', fala: 'Você teria coragem de mudar tudo assim?',
+    cap: 'VOCÊ TERIA <em>CORAGEM</em>?', hud: ['ENQUETE', 'ABERTA'], zoom: null },
+  { t0: 28.2, t1: 31.0, cena: 'rua',    quem: 'beto', fala: 'Comenta a sua escolha.',
+    cap: 'COMENTA A SUA <em>ESCOLHA</em>', hud: ['ENQUETE', 'ABERTA'], zoom: null },
+];
+window.TOTAL = 33.0;

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E se o Sol virasse um buraco negro?</title>
+<style>
+  html,body{margin:0;background:#000}
+  #stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#0d1530;font-family:Inter,"DejaVu Sans",sans-serif}
+  svg{position:absolute;inset:0}
+  .hud{position:absolute;top:40px;height:96px;border-radius:26px;background:#fff;border:6px solid #1b1b1b;display:flex;align-items:center;gap:14px;padding:0 22px;box-sizing:border-box;font-weight:900;color:#1b1b1b}
+  .hud small{display:block;font-size:20px;letter-spacing:.5px;color:#777;font-weight:800}
+  .hud b{display:block;font-size:34px;line-height:1}
+  .ico{width:52px;height:52px;border-radius:14px;border:4px solid #1b1b1b;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;font-weight:900}
+  .cap{position:absolute;left:60px;right:60px;top:960px;text-align:center;font-weight:900;font-size:84px;line-height:1.04;text-transform:uppercase;color:#fff;
+       text-shadow:-6px -6px 0 #111,6px -6px 0 #111,-6px 6px 0 #111,6px 6px 0 #111,0 8px 0 #111}
+  .cap em{font-style:normal;color:#ffd21f}
+  .bubble{position:absolute;background:#fff;border:6px solid #1b1b1b;border-radius:46px;padding:22px 30px;font-weight:800;font-size:40px;line-height:1.15;color:#1b1b1b;text-align:center;width:420px;box-sizing:border-box}
+  .bubble:after{content:"";position:absolute;left:var(--tx,50%);bottom:-36px;margin-left:-18px;border:18px solid transparent;border-top:24px solid #1b1b1b;border-bottom:0}
+  .bubble:before{content:"";position:absolute;left:var(--tx,50%);bottom:-26px;margin-left:-12px;border:12px solid transparent;border-top:18px solid #fff;border-bottom:0;z-index:2}
+  .tag{position:absolute;left:50%;transform:translateX(-50%);background:#fff;border:6px solid #1b1b1b;border-radius:30px;padding:12px 30px;font-weight:900;font-size:50px;color:#1b1b1b;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="cam" style="position:absolute;inset:0"><svg id="bg" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+  <div id="hud"></div>
+  <div id="fx"></div>
+  <div id="cap" class="cap"></div>
+  <svg id="chars" viewBox="0 0 1080 1920" width="1080" height="1920"></svg></div>
+  <div id="bubbles"></div>
+</div>
+<script>window.MODO="quarto";</script><script src="shots_quarto.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
