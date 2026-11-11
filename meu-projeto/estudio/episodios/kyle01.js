@@ -184,7 +184,11 @@ E.push({
   fala: 'Barba de três semanas, um dente a menos... e o violão *virou cabide*.',
   desenhar(lt, c) {
     let s = fundoTela();
-    const kyle2015 = `<g transform="translate(170 250) scale(0.62)">${kyleCabeca({ expr: 'feliz', t: 0.5, semente: 99, barba: false })}</g>` + violao(255, 420, 0.5, 25);
+    // Kyle de 2015 CENSURADO: borrado + "?" amarelo (mistério para revelar depois)
+    const kyle2015 = `<defs><filter id="censura"><feGaussianBlur stdDeviation="16"/></filter></defs>` +
+      `<g filter="url(#censura)"><g transform="translate(170 250) scale(0.62)">${kyleCabeca({ expr: 'feliz', t: 0.5, semente: 99, barba: false })}</g>${violao(255, 420, 0.5, 25)}</g>` +
+      `<circle cx="170" cy="170" r="112" fill="#F7C531" stroke="#15131A" stroke-width="10"/>` +
+      `<text x="170" y="232" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="190" fill="#15131A">?</text>`;
     const kyleHoje = `<g transform="translate(170 250) scale(0.62)">${kyleCabeca({ expr: 'sem_graca', t: lt, semente: 4, semDente: true })}</g>`;
     s += pulo(`<g transform="translate(300 560) scale(1.15) translate(-300 -560)">${polaroid(300, 560, -6, kyle2015, 'KYLE · 2015')}</g>`, lt, 300, 560, 0.1);
     s += pulo(`<g transform="translate(780 860) scale(1.15) translate(-780 -860)">${polaroid(780, 860, 5, kyleHoje, 'KYLE · HOJE')}</g>`, lt, 780, 860, 0.5);
