@@ -2,7 +2,7 @@
 historia({ visual: { pele: '#E8B48C', pele2: '#C99470', cabelo: '#8A4A20', camisa: '#2BA59A' } });
 const LUCAS = { pele: '#6E452C', pele2: '#56351F', cabelo: '#1E1612', camisa: '#F2C230', oculos: true };
 const prova = (lt, c, palavra, nota) => cardH(lt, c, { palavra, texto: `NOTA: ${nota}`, emoji: '📝', cor: nota === '0' ? '#E8344B' : '#1E9E4A' });
-H.push(
+HS.push(
   ganchoH('Ele colou a prova inteira do colega. E o colega errou *tudo de propósito*.', [['COLEI A PROVA INTEIRA'], ['E O COLEGA ERROU'], ['TUDO DE PROPÓSITO', '#F7C531']], { fundo: 'patio' }),
   corpoH('Prova final de matemática. Quem tirar menos de cinco *repete o ano*.', { fundo: 'patio', pose: 'cabeca', expr: 'panico' }),
   closeH('O Enzo sentou atrás do Lucas, o melhor aluno da sala. E copiou *tudo*.', { fundo: 'patio', expr: 'determinado', troca: { palavra: 'tudo', expr: 'sorrisao' } }),

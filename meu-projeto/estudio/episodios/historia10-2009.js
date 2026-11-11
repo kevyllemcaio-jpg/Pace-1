@@ -1,7 +1,7 @@
 // HISTÓRIA 10 — ACORDOU EM 2009
 historia({ visual: { pele: '#E8B48C', pele2: '#C99470', cabelo: '#2B1D16', camisa: '#F28C28' } });
 const quarto2009 = (lt) => quarto(lt, { cartazLinhas: [['ROCK', '#2A2A2A'], ['2009', '#C33A3A']] });
-H.push(
+HS.push(
   ganchoH('Ele dormiu com trinta anos... e acordou com *quinze*. Em *dois mil e nove*. Sabendo tudo que vai acontecer.', [['DORMI COM 30 ANOS'], ['E ACORDEI'], ['EM 2009', '#F7C531']]),
   closeH('O Rafa foi dormir cansado, numa terça qualquer.', { expr: 'sono', relogio: '23:40' }),
   corpoH('Acordou no quarto de quando era adolescente. Pôster de banda, *celular de flip*...', { fundo: quarto2009, pose: 'cabeca', expr: 'surpreso', extra: (lt, c) => cardH(lt, c, { palavra: 'celular', texto: 'CELULAR DE FLIP', emoji: '📱' }) }),

@@ -7,7 +7,7 @@ const cartaVelha = (lt, c, palavra) => {
     [-120, -60, 0, 60, 120].map((y) => `<line x1="-200" y1="${y}" x2="200" y2="${y}" stroke="#B5A07A" stroke-width="5"/>`).join('') +
     `<text x="0" y="-140" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="48" fill="#6B4228">11/11 · MATHEUS</text></g>`, lt, 540, 600, t0);
 };
-H.push(
+HS.push(
   ganchoH('Ele achou uma carta enterrada no quintal. Endereçada a ele. Com a data de *hoje*.', [['ACHEI UMA CARTA DE 1998'], ['ENDEREÇADA A MIM'], ['COM A DATA DE HOJE', '#F7C531']], { fundo: 'quintal' }),
   corpoH('O Matheus cavou o quintal pra plantar uma árvore. A pá bateu numa *lata*.', { fundo: 'quintal', pose: 'base', expr: 'determinado', troca: { palavra: 'lata', expr: 'surpreso' } }),
   closeH('Dentro, uma carta de mil novecentos e noventa e oito. Ele nasceu em *dois mil*.', { fundo: 'quintal', expr: 'surpreso', extra: (lt, c) => cartaVelha(lt, c, 'dentro') }),

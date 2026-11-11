@@ -1,6 +1,6 @@
 // HISTÓRIA 9 — O VÍDEO DA FESTA
 historia({ visual: { pele: '#6E452C', pele2: '#56351F', cabelo: '#1E1612', camisa: '#E24B4B' } });
-H.push(
+HS.push(
   ganchoH('Ele acordou com *dois milhões de views*... num vídeo dançando que ele *não lembra* de ter gravado.', [['ACORDEI COM 2 MILHÕES'], ['DE VIEWS NUM VÍDEO'], ['QUE EU NÃO LEMBRO', '#F7C531']], { extra: () => luzCelH() }),
   closeH('Domingo, meio-dia. O celular do Thiago *não para de vibrar*.', { expr: 'sono', troca: { palavra: 'vibrar', expr: 'surpreso', tremer: true }, relogio: '12:00', luz: true }),
   chatH('Doze mil seguidores novos. O vídeo dele *viralizou*.', { nome: 'notificações', hora: '12:01', msgs: [{ de: 'ela', txt: '+12.000 novos seguidores' }, { de: 'ela', txt: 'seu vídeo viralizou 🔥 2,1 mi', em: 'viralizou' }] }),

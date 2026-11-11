@@ -1,6 +1,6 @@
 // HISTÓRIA 11 — O ESPELHO ATRASADO
 historia({ visual: { pele: '#C68E62', pele2: '#A8714C', cabelo: '#1E1612', camisa: '#5B6475' } });
-H.push(
+HS.push(
   ganchoH('O reflexo dele tá *três segundos atrasado*. E hoje... o reflexo *piscou primeiro*.', [['MEU REFLEXO TÁ'], ['3 SEGUNDOS'], ['ATRASADO', '#F7C531']], { fundo: 'banheiro' }),
   corpoH('Seis da manhã. O Bruno escova os dentes, olha no espelho... e o reflexo *demora*.', { fundo: 'banheiro', pose: 'base', expr: 'sono', troca: { palavra: 'demora', expr: 'surpreso' }, relogio: '06:00' }),
   closeH('Ele levanta a mão. Um... dois... três... *e aí o reflexo levanta*.', { fundo: 'banheiro', expr: 'surpreso', troca: { palavra: 'levanta', expr: 'panico', suor: true } }),

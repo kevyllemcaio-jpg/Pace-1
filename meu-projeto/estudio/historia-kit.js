@@ -1,19 +1,19 @@
 // historia-kit.js — cenas prontas para as histórias curtas (usa cartoon.js, cenarios.js, chibi.js).
-// Cada história: historia({ visual }) + H.push(...cenas) + fecharHistoria({ capa }).
+// Cada história: historia({ visual }) + HS.push(...cenas) + fecharHistoria({ capa }).
 
-let H = [];
+let HS = [];
 function historia({ visual = {}, voz = 'de-DE-FlorianMultilingualNeural', velocidade = '+8%' } = {}) {
   window.FONTE_LEGENDA = 'Baloo, sans-serif';
   window.LEGENDA_Y = 1500;
   window.TRATAR_VOZ = true;
   window.VISUAL = { oculos: false, fone: false, estampa: false, ...visual };
   window._VOZ_H = { voz, velocidade };
-  H = [];
-  return H;
+  HS = [];
+  return HS;
 }
 function fecharHistoria({ capa }) {
   if (capa) window.CAPA = capa;
-  criarEpisodio(H, window._VOZ_H);
+  criarEpisodio(HS, window._VOZ_H);
 }
 
 // ---------- fundos ----------

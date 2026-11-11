@@ -11,7 +11,7 @@ function cachorro(x, y, esc = 1, expr = 'neutro', t = 0) {
   return s + `</g>`;
 }
 const cenaCachorro = (fala, { fundo: f = 'quartoN', expr = 'neutro', extra } = {}) => ({ fala, desenhar(lt, c) { let s = fundo(f, lt) + cachorro(540, 1000 + Math.sin(lt * 3) * 8, 1.6, expr, lt); if (extra) s += extra(lt, c); return s; } });
-H.push(
+HS.push(
   ganchoH('Ele acordou no corpo do *cachorro*. E o cachorro foi trabalhar *no lugar dele*.', [['ACORDEI NO CORPO'], ['DO MEU CACHORRO'], ['E ELE FOI TRABALHAR', '#F7C531']], { close: false, pose: 'comemora', expr: 'sorrisao', fundo: 'quartoN', extra: (lt) => cachorro(820, 1650, 0.7, 'panico', lt) }),
   cenaCachorro('O Henrique acordou, foi falar bom dia... e saiu um *latido*.', { expr: 'panico', extra: (lt, c) => cardH(lt, c, { palavra: 'latido', texto: 'AU AU?!', emoji: '🐶', cor: '#E8344B' }) }),
   corpoH('No espelho, o corpo dele tava de gravata, tomando café... e *abanando o braço* igual rabo.', { pose: 'comemora', expr: 'sorrisao' }),

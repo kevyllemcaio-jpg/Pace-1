@@ -1,7 +1,7 @@
 // HISTÓRIA 7 — O MATCH É A PROFESSORA
 historia({ visual: { pele: '#C98B62', pele2: '#A8714C', cabelo: '#3A2418', camisa: '#9B59B6' } });
 const JULIA = { pele: '#F0C9A6', pele2: '#D9AA86', cabelo: '#8A4A20', camisa: '#F2C230' };
-H.push(
+HS.push(
   ganchoH('Ele mandou oi, linda no aplicativo... e hoje ela entrou na sala. É a *professora nova*.', [['MANDEI "OI, LINDA"'], ['NO APLICATIVO...'], ['ERA MINHA PROFESSORA', '#F7C531']], { fundo: 'patio' }),
   chatH('Domingo à noite, o Pedro deu match com a Júlia. Ela respondeu. Ele chamou pra sair *sexta*.', { nome: 'júlia, 26', hora: '22:40', msgs: [{ de: 'eu', txt: 'oi linda 😏' }, { de: 'ela', txt: 'oi kkk tudo bem?', em: 'respondeu' }, { de: 'eu', txt: 'bora sair sexta?', em: 'sexta' }] }),
   corpoH('Segunda, oito da manhã. Aula de física.', { fundo: 'patio', pose: 'base', expr: 'sono', relogio: '08:00' }),

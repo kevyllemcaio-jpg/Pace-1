@@ -1,7 +1,7 @@
 // HISTÓRIA 12 — O AVÔ INFLUENCER
 historia({ visual: { pele: '#E2A77E', pele2: '#C98A62', cabelo: '#3A2418', camisa: '#2BA59A' } });
 const AVO = { pele: '#E8B48C', pele2: '#C99470', cabelo: '#E6E6EA', camisa: '#7A9A5A', oculos: true };
-H.push(
+HS.push(
   ganchoH('O avô dele, de *oitenta e dois anos*, ganhou *um milhão de seguidores* numa noite. E não sabe como.', [['MEU AVÔ DE 82 ANOS'], ['GANHOU 1 MILHÃO'], ['DE SEGUIDORES', '#F7C531']], { fundo: 'cozinha' }),
   outroH('Esse é o Seu Antônio. Oitenta e dois anos. Ontem ele aprendeu a *postar vídeo*.', AVO, { fundo: 'cozinha', expr: 'sorrisao' }),
   outroH('O primeiro vídeo: ele tentando esquentar o pão com o *ferro de passar*.', AVO, { fundo: 'cozinha', expr: 'determinado', falando: false, extra: (lt, c) => cardH(lt, c, { palavra: 'ferro', texto: 'PÃO NO FERRO', emoji: '🍞' }) }),

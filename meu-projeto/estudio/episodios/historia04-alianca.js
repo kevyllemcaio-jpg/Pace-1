@@ -1,7 +1,7 @@
 // HISTÓRIA 4 — A ALIANÇA NO BOLO
 historia({ visual: { pele: '#C68E62', pele2: '#A8714C', cabelo: '#2B1D16', camisa: '#2A2A3A' } });
 const SOGRA = { pele: '#E8B48C', pele2: '#C99470', cabelo: '#9A9AA2', camisa: '#B5452F' };
-H.push(
+HS.push(
   ganchoH('Ele escondeu a aliança no bolo... e a *sogra comeu* o pedaço.', [['ESCONDI A ALIANÇA NO BOLO'], ['E A SOGRA'], ['COMEU O PEDAÇO', '#F7C531']], { fundo: 'festa' }),
   corpoH('Aniversário de namoro. O Rafael escondeu a aliança dentro de uma fatia de bolo de chocolate.', { fundo: 'festa', pose: 'cintura', expr: 'sorrisao', extra: (lt, c) => cardH(lt, c, { palavra: 'aliança', texto: 'NA FATIA DO BOLO', emoji: '💍' }) }),
   closeH('Só que a Dona Célia, a sogra, pegou *justo aquela fatia*.', { fundo: 'festa', expr: 'feliz', troca: { palavra: 'justo', expr: 'panico', suor: true, tremer: true } }),

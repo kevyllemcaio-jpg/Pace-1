@@ -1,6 +1,6 @@
 // HISTÓRIA 6 — O PIX ERRADO
 historia({ visual: { pele: '#E8B48C', pele2: '#C99470', cabelo: '#6B4226', camisa: '#4A90E2' } });
-H.push(
+HS.push(
   ganchoH('Ele errou um zero no Pix e mandou *dez mil reais* pra ex. Ela *visualizou*... e não respondeu.', [['ERREI UM ZERO NO PIX'], ['MANDEI R$ 10 MIL'], ['PRA MINHA EX', '#F7C531']], { extra: () => luzCelH() }),
   corpoH('O Lucas ia pagar mil reais de aluguel. Digitou rápido... e saiu um *zero a mais*.', { pose: 'celular', celular: true, expr: 'sono', troca: { palavra: 'zero', expr: 'panico' } }),
   chatH('E a chave salva era a da Camila. *A ex*. Que terminou com ele em março.', { nome: 'Banco • Pix', hora: '10:03', msgs: [{ de: 'eu', txt: 'Pix enviado: R$ 10.000,00 ✅' }, { de: 'eu', txt: 'Para: Camila R.', em: 'camila' }] }),
