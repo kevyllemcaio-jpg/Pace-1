@@ -156,7 +156,115 @@
     return '';
   }
 
+
+  function teoFig(x, talk, t) {
+    const open = talk ? 0.35 + 0.65 * Math.abs(Math.sin(t * 18)) : 0;
+    const boca = talk
+      ? `<ellipse cx="0" cy="-404" rx="16" ry="${(6 + 9 * open).toFixed(1)}" fill="#7a1f1f" ${OUT}/>`
+      : `<path d="M -20 -410 Q 0 -392 20 -410" fill="none" ${OUT}/>`;
+    const bob = Math.sin(t * 5) * 3;
+    const SK = '#e0b08a', HOOD = '#3f8f6b';
+    return `<g transform="translate(${x},${1830 + bob}) scale(0.85)">
+      <ellipse cx="0" cy="6" rx="120" ry="22" fill="#000" opacity="0.25"/>
+      <rect x="-30" y="-200" width="24" height="190" rx="10" fill="#3d4f7a" ${OUT}/>
+      <rect x="6" y="-200" width="24" height="190" rx="10" fill="#3d4f7a" ${OUT}/>
+      <ellipse cx="-18" cy="-8" rx="30" ry="14" fill="#d64b3c" ${OUT}/>
+      <ellipse cx="18" cy="-8" rx="30" ry="14" fill="#d64b3c" ${OUT}/>
+      <rect x="-62" y="-372" width="124" height="180" rx="30" fill="${HOOD}" ${OUT}/>
+      <rect x="-34" y="-256" width="68" height="46" rx="10" fill="#2f7354" ${OUT}/>
+      <rect x="-88" y="-360" width="28" height="170" rx="14" fill="${HOOD}" ${OUT}/>
+      <rect x="60" y="-360" width="28" height="170" rx="14" fill="${HOOD}" ${OUT}/>
+      <circle cx="-74" cy="-190" r="19" fill="${SK}" ${OUT}/>
+      <circle cx="74" cy="-190" r="19" fill="${SK}" ${OUT}/>
+      <rect x="-16" y="-392" width="32" height="30" fill="#c99270"/>
+      <circle cx="-72" cy="-440" r="14" fill="${SK}" ${OUT}/>
+      <circle cx="72" cy="-440" r="14" fill="${SK}" ${OUT}/>
+      <circle cx="0" cy="-440" r="72" fill="${SK}" ${OUT}/>
+      <path d="M -76 -452 Q -82 -520 0 -524 Q 82 -520 76 -452 Z" fill="#ffd21f" ${OUT}/>
+      <path d="M -76 -462 Q 0 -478 76 -462" fill="none" stroke="${INK}" stroke-width="6"/>
+      <circle cx="0" cy="-526" r="17" fill="#ffd21f" ${OUT}/>
+      <circle cx="-25" cy="-440" r="21" fill="#fff" stroke="${INK}" stroke-width="5"/>
+      <circle cx="25" cy="-440" r="21" fill="#fff" stroke="${INK}" stroke-width="5"/>
+      <circle cx="-25" cy="-438" r="8" fill="#111"/>
+      <circle cx="25" cy="-438" r="8" fill="#111"/>
+      <line x1="-4" y1="-440" x2="4" y2="-440" stroke="${INK}" stroke-width="6"/>
+      <circle cx="-44" cy="-414" r="9" fill="#e0633a" opacity="0.4"/>
+      <circle cx="44" cy="-414" r="9" fill="#e0633a" opacity="0.4"/>
+      <circle cx="-34" cy="-420" r="2.5" fill="#7a4a2b"/><circle cx="-26" cy="-416" r="2.5" fill="#7a4a2b"/>
+      <circle cx="30" cy="-422" r="2.5" fill="#7a4a2b"/><circle cx="38" cy="-416" r="2.5" fill="#7a4a2b"/>
+      ${boca}
+    </g>`;
+  }
+
+  function cenaTeo(cena, lt, t) {
+    switch (cena) {
+      case 'celular': {
+        const cai = Math.min(1, lt / 0.4);
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#16182b"/>
+          ${estrelas(21, 40, 0, 900)}
+          <rect x="300" y="${260 + (1 - cai) * -60}" width="480" height="820" rx="60" fill="#0b0b10" ${OUT}/>
+          <rect x="324" y="${286 + (1 - cai) * -60}" width="432" height="768" rx="36" fill="#f4f6fb"/>
+          <rect x="350" y="${320 + (1 - cai) * -60}" width="380" height="110" rx="26" fill="#2b6fe0"/>
+          <text x="540" y="${390 + (1 - cai) * -60}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="40" fill="#fff">CURTIU SUA FOTO</text>
+          <path d="M 540 ${600} c -70 -70 -120 -20 -60 40 l 60 52 l 60 -52 c 60 -60 10 -110 -60 -40 z" fill="#e0393e" opacity="${cai.toFixed(2)}"/>` + chao('#2a2d48');
+      }
+      case 'barbearia': {
+        let azulejos = '';
+        for (let x = 0; x < W; x += 90) azulejos += `<rect x="${x}" y="0" width="90" height="1200" fill="${(x / 90) % 2 ? '#e7f3f3' : '#d8ebea'}" stroke="#bcd4d3" stroke-width="3"/>`;
+        return `${azulejos}
+          <rect x="260" y="180" width="560" height="660" rx="30" fill="#c9d6e3" ${OUT}/>
+          <rect x="280" y="200" width="520" height="620" rx="20" fill="#dfe9f4"/>
+          <rect x="380" y="930" width="320" height="160" rx="30" fill="#b5462f" ${OUT}/>
+          <rect x="440" y="1080" width="200" height="60" rx="14" fill="#8b5a2b" ${OUT}/>` + chao('#c8b9a6');
+      }
+      case 'espelho': {
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#2a2440"/>
+          <rect x="240" y="200" width="600" height="700" rx="260" fill="#cfe3f5" ${OUT}/>
+          <rect x="268" y="228" width="544" height="644" rx="240" fill="#e9f5ff"/>
+          <path d="M 790 280 l 16 40 l 40 6 l -30 26 l 8 40 l -34 -20 l -34 20 l 8 -40 l -30 -26 l 40 -6 z" fill="#ffd21f" opacity="${(0.6 + 0.4 * Math.sin(t * 7)).toFixed(2)}"/>` + chao('#4b3f5e');
+      }
+      case 'cafe': {
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#8fd3ff"/>
+          <circle cx="880" cy="260" r="80" fill="#ffd21f" ${OUT}/>
+          <rect x="60" y="560" width="960" height="60" rx="14" fill="#c04d3b" ${OUT}/>
+          <rect x="100" y="620" width="16" height="650" fill="#6b4420"/><rect x="964" y="620" width="16" height="650" fill="#6b4420"/>
+          <rect x="130" y="800" width="170" height="260" fill="#f4e7cf" ${OUT}/>
+          <rect x="780" y="800" width="170" height="260" fill="#f4e7cf" ${OUT}/>
+          <text x="540" y="700" text-anchor="middle" font-family="Inter" font-weight="900" font-size="54" fill="#fff">CAFÉ</text>` + chao('#d7b98e');
+      }
+      case 'porta': {
+        const bate = Math.sin(t * 22) > 0.8 ? 6 : 0;
+        const cachorro = lt > 3.2;
+        const dog = cachorro ? `<g transform="translate(560,1250)">
+            <ellipse cx="0" cy="-70" rx="150" ry="90" fill="#b7875a" ${OUT}/>
+            <circle cx="120" cy="-170" r="70" fill="#b7875a" ${OUT}/>
+            <rect x="60" y="-236" width="120" height="30" rx="14" fill="#ffd21f" ${OUT}/>
+            <circle cx="186" cy="-240" r="16" fill="#ffd21f" ${OUT}/>
+            <circle cx="150" cy="-180" r="10" fill="#111"/>
+            <rect x="-120" y="-30" width="30" height="110" rx="14" fill="#b7875a" ${OUT}/>
+            <rect x="80" y="-30" width="30" height="110" rx="14" fill="#b7875a" ${OUT}/>
+          </g>` : '';
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#2a2d48"/>
+          <rect x="250" y="260" width="580" height="860" fill="#5a3d2e" ${OUT}/>
+          <rect x="290" y="300" width="500" height="790" fill="#7a5340"/>
+          <circle cx="750" cy="720" r="16" fill="#ffd21f" ${OUT}/>
+          <g transform="translate(${bate},0)">${dog}</g>` + chao('#3a3f5e');
+      }
+      case 'enquete': {
+        return `<rect x="0" y="0" width="${W}" height="1920" fill="#ffb300"/>
+          <rect x="540" y="0" width="540" height="1920" fill="#e0393e"/>
+          <line x1="540" y1="0" x2="540" y2="1920" stroke="#fff" stroke-width="10"/>
+          <text x="270" y="560" text-anchor="middle" font-family="Inter" font-weight="900" font-size="120" fill="#1b1b1b">CORTE</text>
+          <text x="810" y="560" text-anchor="middle" font-family="Inter" font-weight="900" font-size="120" fill="#fff">BARBA</text>
+          <circle cx="540" cy="660" r="70" fill="#fff" ${OUT}/>
+          <text x="540" y="682" text-anchor="middle" font-family="Inter" font-weight="900" font-size="60" fill="#1b1b1b">OU</text>` + chao('#2b2b36');
+      }
+    }
+    return '';
+  }
+
   function cenaBG(cena, lt, t) {
+    if (window.MODO === 'teo') return cenaTeo(cena, lt, t);
     if (window.MODO === 'zumbi') return cenaZumbi(cena, lt, t);
     const cx = 540, cy = 560;
     switch (cena) {
@@ -301,7 +409,7 @@
     const ativo = t >= s.t0 && t < s.t1;
     const lt = Math.max(0, t - s.t0);
     document.getElementById('bg').innerHTML = cenaBG(s.cena, lt, t);
-    document.getElementById('chars').innerHTML = menino(300, ativo && s.quem === 'boy', t) + avo(790, ativo && s.quem === 'avo', t);
+    document.getElementById('chars').innerHTML = window.MODO === 'teo' ? teoFig(560, ativo, t) : (menino(300, ativo && s.quem === 'boy', t) + avo(790, ativo && s.quem === 'avo', t));
     const hudKey = JSON.stringify(s.hud);
     if (hudKey !== ultimoHud) { ultimoHud = hudKey; document.getElementById('hud').innerHTML = barraTopo(s.hud); }
     const cap = document.getElementById('cap');
@@ -310,8 +418,9 @@
     const b = document.getElementById('bubbles');
     if (ativo) {
       const boy = s.quem === 'boy';
-      const left = boy ? 40 : 610;
-      const tx = boy ? 300 - 40 : 790 - 610;
+      const teo = window.MODO === 'teo';
+      const left = teo ? 300 : (boy ? 40 : 610);
+      const tx = teo ? 260 : (boy ? 300 - 40 : 790 - 610);
       b.innerHTML = `<div class="bubble" style="left:${left}px;top:1235px;--tx:${tx}px">${s.fala}</div>`;
     } else b.innerHTML = '';
     const fx = document.getElementById('fx');
