@@ -146,8 +146,8 @@ E.push({
   desenhar(lt, c) {
     let s = floresta(lt, { cam: 560 + lt * 40, neblina: 0.8 });
     s += `<g transform="translate(${180 + lt * 140} 1560)"><ellipse cx="0" cy="0" rx="30" ry="20" fill="#8A5A3C"/><path d="M -20 0 Q -60 -40 -40 -70" fill="none" stroke="#8A5A3C" stroke-width="18" stroke-linecap="round"/></g>`;
-    s += drone(620, 1560, 1.2, lt);
-    s += lanterna(560, 900, 80, 800, 12);
+    s += drone(600, 1250, 1.6, lt);
+    s += lanterna(560, 700, 82, 700, 12);
     return s;
   },
 });
@@ -189,7 +189,7 @@ E.push({
   dur: 2.2,
   desenhar(lt, c) {
     let s = floresta(lt, { cam: 620, neblina: 1 }) + loboClose(540, 900, 1.6, lt);
-    s += impacto('GRRRAAAH', lt, 0.3, { y: 1550, tam: 170, cor: '#D8E8FF' });
+    s += impacto('GRRRAAAH', lt, 0.3, { y: 380, tam: 170, cor: '#D8E8FF' });
     som('carimbo', 0.3, 1.2);
     return tremor(s, lt, 0.3, 26, 1.2);
   },
