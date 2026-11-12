@@ -133,9 +133,43 @@ def trilha(dur):
     return s * 0.9
 
 
+def trilha_calma(dur):
+    """Piano suave (~66 bpm): arpejos lentos de acordes com cauda longa, sem bateria."""
+    bpm = 66
+    nota = 60 / bpm / 2
+    n = int(dur * SR) + SR * 3
+    s = np.zeros(n)
+    acordes = [[57, 60, 64, 69], [53, 57, 60, 65], [48, 52, 55, 60], [55, 59, 62, 67]]  # Am F C G
+    hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+    total = int(dur / nota) + 1
+    for k in range(total):
+        i0 = int(k * nota * SR)
+        acorde = acordes[(k // 8) % 4]
+        m = acorde[[0, 2, 1, 3, 2, 1, 3, 2][k % 8]] + (12 if k % 8 in (3, 6) else 0)
+        x = t(3.0)
+        f = hz(m)
+        p = (np.sin(2 * np.pi * f * x) + 0.35 * np.sin(4 * np.pi * f * x) + 0.12 * np.sin(6 * np.pi * f * x)) * np.exp(-x * 1.6) * np.minimum(1, x / 0.01) * 0.12
+        fim = min(len(p), n - i0)
+        s[i0:i0 + fim] += p[:fim]
+        if k % 8 == 0:  # baixo longo
+            b = np.sin(2 * np.pi * hz(acorde[0] - 12) * t(4.0)) * np.exp(-t(4.0) * 0.8) * 0.12
+            fim = min(len(b), n - i0)
+            s[i0:i0 + fim] += b[:fim]
+    # 'reverb' simples: ecos curtos somados
+    rev = np.copy(s)
+    for d, g in [(0.07, 0.35), (0.13, 0.25), (0.21, 0.18), (0.33, 0.12)]:
+        k = int(d * SR)
+        rev[k:] += s[:-k] * g
+    s = rev[: int(dur * SR)]
+    fade = int(2 * SR)
+    s[-fade:] *= np.linspace(1, 0, fade)
+    return s * 0.9
+
+
 if __name__ == '__main__':
     pasta, dur = sys.argv[1], float(sys.argv[2])
+    estilo = sys.argv[3] if len(sys.argv) > 3 else 'alegre'
     os.makedirs(pasta, exist_ok=True)
     for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay)]:
         salvar(os.path.join(pasta, nome + '.wav'), f())
-    salvar(os.path.join(pasta, 'trilha.wav'), trilha(dur))
+    salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha(dur))

@@ -38,7 +38,10 @@ function fonteCss() {
     `@font-face{font-family:Anton;src:url(data:font/woff2;base64,${f('anton.woff2')}) format('woff2');font-weight:400 900}` +
     `@font-face{font-family:Oswald;src:url(data:font/woff2;base64,${f('oswald-700.woff2')}) format('woff2');font-weight:600 900}` +
     `@font-face{font-family:Oswald;src:url(data:font/woff2;base64,${f('oswald-400.woff2')}) format('woff2');font-weight:100 500}` +
-    `@font-face{font-family:Baloo;src:url(data:font/woff2;base64,${f('baloo-800.woff2')}) format('woff2');font-weight:100 900}`
+    `@font-face{font-family:Baloo;src:url(data:font/woff2;base64,${f('baloo-800.woff2')}) format('woff2');font-weight:100 900}` +
+    `@font-face{font-family:Caveat;src:url(data:font/woff2;base64,${f('caveat.woff2')}) format('woff2');font-weight:100 900}` +
+    `@font-face{font-family:Playfair;src:url(data:font/woff2;base64,${f('playfair.woff2')}) format('woff2');font-weight:100 900}` +
+    `@font-face{font-family:Playfair;font-style:italic;src:url(data:font/woff2;base64,${f('playfair-italic.woff2')}) format('woff2');font-weight:100 900}`
   );
 }
 
@@ -126,7 +129,8 @@ function duracaoFala(arq, palavras) {
 
   // Efeitos e trilha antes dos quadros (falha cedo se algo der errado).
   const pastaSons = path.join(pastaSaida, '.sons');
-  execFileSync('python3', [path.join(pastaEstudio, 'sons.py'), pastaSons, String(duracao)], { stdio: 'inherit' });
+  const estiloTrilha = await page.evaluate(() => window.TRILHA || 'alegre');
+  execFileSync('python3', [path.join(pastaEstudio, 'sons.py'), pastaSons, String(duracao), estiloTrilha], { stdio: 'inherit' });
 
   // 2) Vídeo sem áudio: quadros em JPEG direto para o ffmpeg.
   const semAudio = path.join(pastaSaida, `.${nome}-sem-audio.mp4`);
@@ -146,8 +150,8 @@ function duracaoFala(arq, palavras) {
   console.log(`\rquadros: ${total}/${total}`);
 
   // 3) Áudio: trilha + whoosh nos cortes + efeitos + narração.
-  const faixas = [[path.join(pastaSons, 'trilha.wav'), 0, 0.22]];
-  inicios.slice(1).forEach((s) => faixas.push([path.join(pastaSons, 'whoosh.wav'), Math.max(0, s - 0.12), 0.35]));
+  const faixas = [[path.join(pastaSons, 'trilha.wav'), 0, estiloTrilha === 'calma' ? 0.32 : 0.22]];
+  inicios.slice(1).forEach((s) => faixas.push([path.join(pastaSons, 'whoosh.wav'), Math.max(0, s - 0.12), estiloTrilha === 'calma' ? 0.08 : 0.35]));
   sons.forEach((e) => faixas.push([path.join(pastaSons, `${e.s}.wav`), e.t, 0.45 * e.vol]));
   audios.forEach((a, i) => a && faixas.push([a, inicios[i] + 0.2, a.endsWith('-trat.wav') ? 1.2 : 1.7]));
   const entradas = ['-i', semAudio];
