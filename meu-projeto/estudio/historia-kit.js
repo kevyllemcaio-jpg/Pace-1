@@ -2,7 +2,7 @@
 // Cada história: historia({ visual }) + HS.push(...cenas) + fecharHistoria({ capa }).
 
 let HS = [];
-function historia({ visual = {}, voz = 'de-DE-FlorianMultilingualNeural', velocidade = '+8%' } = {}) {
+function historia({ visual = {}, voz = 'en-US-AndrewMultilingualNeural', velocidade = '+8%' } = {}) {
   window.FONTE_LEGENDA = 'Baloo, sans-serif';
   window.LEGENDA_Y = 1500;
   window.TRATAR_VOZ = true;
