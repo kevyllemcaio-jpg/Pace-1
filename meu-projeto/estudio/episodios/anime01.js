@@ -5,11 +5,11 @@
 
 window.LEGENDA_Y = 1580;
 window.TRATAR_VOZ = true;
-const REN = { cabelo: { tipo: 'espetado', cor: '#1C2340', luz: '#7FA0FF' }, olhos: '#3A7BD5', id: 'ren' };
-const AIKO = { cabelo: { tipo: 'longo', cor: '#E86A9A', luz: '#FFD0E0' }, olhos: '#C04A8A', id: 'aiko', gravata: '#2A6AC8', farda: '#2A2440' };
+const REN = { cabelo: { tipo: 'espetado', cor: '#22305E', sombra: '#141C3C', luz: '#8FB0FF' }, olhos: '#2E6FD8', olhos2: '#A8E0FF', id: 'ren' };
+const AIKO = { cabelo: { tipo: 'longo', cor: '#EE7AA6', sombra: '#C04F80', luz: '#FFE0EC', sobrancelha: '#B04070' }, olhos: '#B03A80', olhos2: '#FFB0D8', id: 'aiko', gravata: '#2A6AC8', farda: '#2A2440', farda2: '#1C1830' };
 const E = [];
 
-const salaCristal = (lt) => linhasVelocidade(lt, { fundo: '#0E1A33', cor: '#7FE8FF', n: 40 }) + `<rect width="1080" height="1920" fill="#0E1A33" opacity="0.55"/>`;
+const salaCristal = (lt) => salaoCristal(lt);
 function risadas(lt, t0) {
   if (lt < t0) return '';
   let s = '';
@@ -53,7 +53,7 @@ E.push({
   desenhar(lt, c) {
     const t0 = c.w('noventa');
     let s = lt > t0 ? linhasVelocidade(lt, { fundo: '#2A1030', cor: '#FFD24A' }) : salaCristal(lt);
-    s += animeBusto({ ...AIKO, x: 540, y: 900, esc: 1.35, expr: lt > t0 ? 'sorriso' : 'determinado', t: lt });
+    s += animeBusto({ ...AIKO, x: 540, y: 900, esc: 1.35, expr: lt > t0 ? 'sorriso' : 'determinado', t: lt, rim: '#FFE27A' });
     if (lt > t0) s += pulo(nivel(540, 330, '99', '#FFD24A', lt), lt, 540, 280, t0);
     s += flashBranco(lt, t0, 0.3, '#FFF2B0');
     som('carimbo', t0, 0.8);
@@ -67,7 +67,7 @@ E.push({
   desenhar(lt, c) {
     let s = salaCristal(lt);
     s += cristal(540, 700, 0.55, { t: lt });
-    s += animeBusto({ ...REN, x: 540, y: 1080, esc: 1.15, expr: 'determinado', t: lt, olhar: [0, -1] });
+    s += animeBusto({ ...REN, x: 540, y: 1080, esc: 1.15, expr: 'determinado', t: lt, olhar: [0, -1], rim: '#7FE8FF' });
     if (lt > c.w('silêncio')) s += `<rect width="1080" height="1920" fill="#000" opacity="${0.4 * lim((lt - c.w('silêncio')) / 0.6)}"/>`;
     return s;
   },
@@ -78,7 +78,7 @@ E.push({
   fala: 'O Cristal ficou cinza. Rachou. Nível... *zero*. E a escola inteira riu.',
   desenhar(lt, c) {
     const tz = c.w('zero');
-    let s = `<rect width="1080" height="1920" fill="#1A1A22"/>`;
+    let s = salaoCristal(lt) + `<rect width="1080" height="1920" fill="#000" opacity="0.45"/>`;
     s += cristal(540, 760, 0.7, { estado: lt > c.w('cinza') ? 'cinza' : 'vivo', t: lt });
     if (lt > tz) s += pulo(nivel(540, 330, '0', '#9A9AA6', lt), lt, 540, 280, tz);
     s += textoImpacto('NÍVEL ZERO', lt, tz, { y: 1260, cor: '#C8C8D0', tam: 150 });
@@ -94,8 +94,7 @@ E.push({
   desenhar(lt, c) {
     let s = noiteChuva(lt);
     s += animeBusto({ ...REN, x: 540, y: 900, esc: 1.35, expr: 'triste', t: lt, olhar: [0, 1] });
-    const r = aleatorio(19);
-    for (let i = 0; i < 60; i++) { const x0 = r() * 1200, v = 1800 + r() * 600, y0 = ((r() * 2000 + lt * v) % 2100) - 100; s += `<line x1="${x0}" y1="${y0}" x2="${x0 - 14}" y2="${y0 + 60}" stroke="#B8CCF0" stroke-width="3" opacity="0.55"/>`; }
+    s += chuvaAnime(lt + 3, 70);
     return s;
   },
 });
@@ -118,7 +117,7 @@ E.push({
   fala: 'Mas ele veio direto no Ren. O nível zero. *Por quê*?',
   desenhar(lt, c) {
     let s = linhasVelocidade(lt, { fundo: '#140814', cor: '#FF3050' });
-    s += animeBusto({ ...REN, x: 540, y: 900, esc: 1.35, expr: 'surpreso', t: lt });
+    s += animeBusto({ ...REN, x: 540, y: 900, esc: 1.35, expr: 'surpreso', t: lt, rim: '#FF3050' });
     return tremor(s, lt, 0.2, 10, 0.5);
   },
 });
@@ -189,4 +188,5 @@ window.CAPA = () => {
   return s;
 };
 
+E.forEach((c) => { const d = c.desenhar; c.desenhar = (lt, cc) => d(lt, cc) + acabamento('#000', 0.5); });
 criarEpisodio(E, { voz: 'en-US-AndrewMultilingualNeural', velocidade: '+8%' });
