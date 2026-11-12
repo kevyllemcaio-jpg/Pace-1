@@ -206,7 +206,7 @@ function duploH(fala, visualB, { fundo: f = 'quarto', exprA = 'surpreso', exprB 
     desenhar(lt, c) {
       let s = fundo(f, lt);
       s += `<g transform="translate(-250 0)">${kyleClose({ x: 540, y: 1150, esc: 1.0, expr: exprA, t: lt })}</g>`;
-      s += `<g transform="translate(250 0)">${kyleClose({ x: 540, y: 1150, esc: 1.0, expr: exprB, t: lt + 1.3, visual: { oculos: false, fone: false, estampa: false, ...visualB } })}</g>`;
+      s += `<g transform="translate(250 0)">${kyleClose({ x: 540, y: 1150, esc: 1.0, expr: exprB, t: lt + 1.3, barba: !visualB.longo, visual: { oculos: false, fone: false, estampa: false, ...visualB } })}</g>`;
       if (extra) s += extra(lt, c);
       return s;
     },

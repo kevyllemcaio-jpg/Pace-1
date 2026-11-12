@@ -27,6 +27,9 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   }[expr] || {};
   const piscar = ((t + semente * 0.73) % 3.8) < 0.11;
   let s = '';
+  // cabelo comprido atrás da cabeça: náufrago (cabeludo) ou feminino (longo)
+  if (VZ.cabeludo) s += `<path d="M -175 -120 Q -260 60 -230 300 Q -200 330 -170 290 Q -180 380 -120 330 Q -60 260 -150 120 Z M 175 -120 Q 260 60 230 300 Q 200 330 170 290 Q 180 380 120 330 Q 60 260 150 120 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`;
+  if (VZ.longo) s += `<path d="M -170 -150 Q -230 100 -210 360 L 210 360 Q 230 100 170 -150 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`;
   // orelhas
   for (const l of [-1, 1]) s += `<path d="${elipse(l * 158, 10, 30, 44)}" fill="${VZ.pele}" stroke="${TK}" stroke-width="8"/><path d="M ${l * 160} -6 Q ${l * 146} 10 ${l * 160} 28" fill="none" stroke="${TK}" stroke-width="5" opacity="0.5"/>`;
   // rosto
@@ -43,9 +46,24 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
     s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${TK}" opacity="0.55"/>`;
   }
   }
-  // cabelo bagunçado (tufos)
+  if (VZ.barbao) {
+    s += `<path d="M -150 20 Q -170 140 -110 230 Q -60 300 0 310 Q 60 300 110 230 Q 170 140 150 20 Q 120 100 70 110 Q 40 92 0 96 Q -40 92 -70 110 Q -120 100 -150 20 Z" fill="${VZ.corBarba || '#3A2A22'}" stroke="${TK}" stroke-width="7" stroke-linejoin="round"/>`;
+    for (let i = 0; i < 14; i++) { const x = -110 + i * 17, y = 160 + Math.sin(i * 1.7) * 50; s += `<path d="M ${x} ${y} q 8 26 -4 44" fill="none" stroke="#1E1612" stroke-width="4" opacity="0.6"/>`; }
+  }
+  // cabelo: arrumado, longo (fem.), cabeludo (náufrago) ou bagunçado (padrão)
+  if (VZ.penteado === 'arrumado') {
+    s += `<path d="M -160 -70 Q -170 -230 -40 -250 Q 120 -262 166 -120 Q 168 -90 160 -70 Q 120 -170 -20 -170 Q -60 -150 -90 -168 Q -140 -150 -160 -70 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M -40 -246 Q -20 -200 -20 -170" fill="none" stroke="${TK}" stroke-width="5" opacity="0.5"/><path d="M 20 -240 Q 80 -230 120 -200" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.25"/>`;
+  } else if (VZ.longo) {
+    s += `<path d="M -166 -40 Q -180 -250 0 -262 Q 180 -250 166 -40 Q 150 -150 60 -170 Q 10 -110 -80 -120 Q -140 -110 -166 -40 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M -60 -230 Q 20 -250 100 -210" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.3"/>`;
+  } else if (VZ.cabeludo) {
+    s += `<path d="M -180 0 Q -230 -160 -170 -240 Q -180 -300 -100 -300 Q -70 -350 0 -320 Q 70 -360 110 -300 Q 190 -310 180 -230 Q 240 -150 180 0 Q 170 -80 140 -120 Q 150 -60 120 -40 Q 110 -110 70 -130 Q 60 -70 20 -60 Q 10 -120 -30 -130 Q -50 -60 -90 -50 Q -90 -110 -130 -120 Q -150 -60 -180 0 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M -120 -250 q 30 -20 60 0 M 30 -280 q 40 -10 70 20 M -150 -150 q 20 30 0 60" fill="none" stroke="#5A4A3A" stroke-width="7" stroke-linecap="round"/>`;
+  } else {
   s += `<path d="M -166 -60 Q -190 -150 -150 -205 Q -170 -250 -110 -262 Q -100 -305 -40 -290 Q -10 -330 40 -300 Q 90 -320 116 -270 Q 175 -270 162 -205 Q 196 -160 166 -60 Q 150 -130 110 -150 Q 120 -110 92 -100 Q 70 -150 30 -158 Q 26 -120 -6 -112 Q -18 -158 -60 -150 Q -66 -110 -100 -104 Q -110 -146 -138 -136 Q -150 -100 -166 -60 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`;
   s += `<path d="M -90 -250 Q -60 -268 -30 -258 M 30 -276 Q 60 -284 84 -262" fill="none" stroke="#4A4250" stroke-width="7" stroke-linecap="round"/>`;
+  }
   // sobrancelhas
   for (const l of [-1, 1]) s += `<path d="M ${l * 22} ${-96 + (E.bi || 0)} Q ${l * 64} ${-118 + ((E.bi || 0) + (E.be || 0)) / 2} ${l * 112} ${-100 + (E.be || 0)}" fill="none" stroke="${VZ.cabelo}" stroke-width="16" stroke-linecap="round"/>`;
   // olhos
@@ -86,6 +104,11 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   else if (b === 'triste') s += `<path d="M -44 ${my + 12} Q 0 ${my - 14} 44 ${my + 12}" ${L}/>`;
   else if (b === 'fala') s += `<path d="${elipse(0, my + 4, 30, 20)}" fill="#6E2430" stroke="${TK}" stroke-width="8"/>`;
   else s += `<path d="M -36 ${my} L 36 ${my}" ${L}/>`;
+  if (VZ.olheira) for (const l of [-1, 1]) s += `<path d="M ${l * 64 - 36} 6 Q ${l * 64} 26 ${l * 64 + 36} 6" fill="none" stroke="#7A5A6A" stroke-width="9" stroke-linecap="round" opacity="0.6"/>`;
+  if (VZ.cilios) for (const l of [-1, 1]) s += `<path d="M ${l * 64 + l * 36} -70 l ${l * 22} -16 M ${l * 64 + l * 20} -84 l ${l * 14} -20" stroke="${TK}" stroke-width="6" stroke-linecap="round"/>`;
+  if (VZ.batom) s += `<path d="M -30 132 Q 0 148 30 132" fill="none" stroke="#D9476A" stroke-width="10" stroke-linecap="round" opacity="0.7"/>`;
+  if (VZ.sujo) { const r2 = aleatorio(77); for (let i = 0; i < 9; i++) { const x = -120 + r2() * 240, y = -180 + r2() * 260; if (Math.abs(x) > 30 || y < -100) s += `<ellipse cx="${x}" cy="${y}" rx="${10 + r2() * 16}" ry="${6 + r2() * 10}" fill="#6A5040" opacity="0.35"/>`; } }
+  if (VZ.moscas) for (let i = 0; i < 3; i++) { const a = t * (3 + i) + i * 2; const x = Math.cos(a) * (190 + i * 20), y = -200 + Math.sin(a * 1.3) * 80; s += `<g transform="translate(${x} ${y})"><circle r="7" fill="${TK}"/><ellipse cx="-6" cy="-7" rx="7" ry="4" fill="#fff" opacity="0.7"/><ellipse cx="6" cy="-7" rx="7" ry="4" fill="#fff" opacity="0.7"/></g>`; }
   // traços de lobo (0..1): costeletas de pelo, olhos prateados, presas, orelhas pontudas
   if (lobo > 0) {
     const k = Math.min(1, lobo);
@@ -107,10 +130,12 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
 
 // Fone gamer no pescoço + ombros da camiseta (para o close).
 function kyleOmbros() {
-  return `<path d="M -330 520 Q -320 320 -150 280 L 150 280 Q 320 320 330 520 Z" fill="${VZ.camisa}" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>` +
+  return (VZ.rasgado ? '' : '') + `<path d="M -330 520 Q -320 320 -150 280 L 150 280 Q 320 320 330 520 Z" fill="${VZ.camisa}" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>` +
     `<path d="M -70 270 L 70 270 L 60 300 Q 0 330 -60 300 Z" fill="${VZ.pele}" stroke="${TK}" stroke-width="8"/>` +
     (VZ.fone ? `<path d="M -150 300 Q 0 380 150 300" fill="none" stroke="#2BA59A" stroke-width="22" stroke-linecap="round"/><path d="M -150 300 Q 0 380 150 300" fill="none" stroke="${TK}" stroke-width="6" stroke-dasharray="0 0" opacity="0.6"/>` +
-    [-1, 1].map((l) => `<rect x="${l * 165 - 36}" y="262" width="72" height="92" rx="26" fill="#2BA59A" stroke="${TK}" stroke-width="8"/>`).join('') : '');
+    [-1, 1].map((l) => `<rect x="${l * 165 - 36}" y="262" width="72" height="92" rx="26" fill="#2BA59A" stroke="${TK}" stroke-width="8"/>`).join('') : '') +
+    (VZ.rasgado ? `<path d="M -230 420 l 30 40 l -20 30 l 40 10" fill="none" stroke="${TK}" stroke-width="6"/><ellipse cx="-180" cy="450" rx="40" ry="26" fill="#2A2420" opacity="0.6"/><rect x="140" y="380" width="80" height="70" fill="#8A6A4A" stroke="${TK}" stroke-width="5" transform="rotate(10 180 415)"/><path d="M 150 390 l 60 50 M 210 390 l -60 50" stroke="${TK}" stroke-width="3" opacity="0.5"/><ellipse cx="60" cy="480" rx="34" ry="20" fill="#6A5040" opacity="0.5"/>` : '') +
+    (VZ.gola ? `<path d="M -70 270 L -130 320 L -40 360 L 0 300 L 40 360 L 130 320 L 70 270" fill="${VZ.gola}" stroke="${TK}" stroke-width="6" stroke-linejoin="round"/>${[0, 1, 2].map((i) => `<circle cx="0" cy="${390 + i * 50}" r="8" fill="${TK}" opacity="0.6"/>`).join('')}` : '');
 }
 
 // Close: cabeça grande centralizada (cx, cy = centro do rosto).
