@@ -258,7 +258,13 @@ function criarEpisodio(cenas, { voz = 'pt-BR-AntonioNeural', velocidade = '+12%'
   window.VOZ = { voz, velocidade };
   window.FALAS = cenas.map((c) => (c.fala ? semAsterisco(c.fala) : null));
   // voz por cena: 'mulher' usa uma voz feminina (falas de personagens como a Dona Cida)
-  window.VOZES = cenas.map((c) => (c.voz === 'mulher' ? { voz: 'pt-BR-FranciscaNeural', velocidade: '+6%' } : { voz, velocidade }));
+  // voz por cena: 'mulher', um id de voz (ex.: 'en-US-BrianMultilingualNeural') ou { voz, velocidade }
+  window.VOZES = cenas.map((c) => {
+    if (c.voz === 'mulher') return { voz: 'pt-BR-FranciscaNeural', velocidade: '+6%' };
+    if (typeof c.voz === 'string') return { voz: c.voz, velocidade };
+    if (c.voz && c.voz.voz) return { velocidade, ...c.voz };
+    return { voz, velocidade };
+  });
   cenas.forEach((c) => {
     c.toks = c.fala ? tokens(c.fala) : [];
     c.w = (palavra, n = 0, padrao = 0.5) => {

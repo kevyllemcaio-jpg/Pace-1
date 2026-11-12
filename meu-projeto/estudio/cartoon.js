@@ -9,7 +9,7 @@ let VZ = VISUAL_PADRAO;
 const usarVisual = (o = {}) => (VZ = { ...VISUAL_PADRAO, ...(window.VISUAL || {}), ...(o.visual || {}) });
 
 // ---------- cabeça (centro em 0,0; ~ 330 x 420) ----------
-function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, vergonha = 0, fala = false, semente = 4, barba = true, semDente = false, visual } = {}) {
+function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, vergonha = 0, fala = false, semente = 4, barba = true, semDente = false, visual, lobo = 0 } = {}) {
   usarVisual({ visual });
   const E = {
     neutro: { lid: 0.15, bi: 0, be: 0, boca: 'reta' },
@@ -86,6 +86,17 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   else if (b === 'triste') s += `<path d="M -44 ${my + 12} Q 0 ${my - 14} 44 ${my + 12}" ${L}/>`;
   else if (b === 'fala') s += `<path d="${elipse(0, my + 4, 30, 20)}" fill="#6E2430" stroke="${TK}" stroke-width="8"/>`;
   else s += `<path d="M -36 ${my} L 36 ${my}" ${L}/>`;
+  // traços de lobo (0..1): costeletas de pelo, olhos prateados, presas, orelhas pontudas
+  if (lobo > 0) {
+    const k = Math.min(1, lobo);
+    for (const l of [-1, 1]) {
+      s += `<path d="M ${l * 150} -60 L ${l * (150 + 30 * k)} 0 L ${l * 146} 10 L ${l * (152 + 34 * k)} 60 L ${l * 136} 70 L ${l * (140 + 26 * k)} 120 L ${l * 110} 110 Z" fill="#4A4048" stroke="${TK}" stroke-width="6" stroke-linejoin="round" opacity="${k}"/>`;
+      if (k > 0.5) s += `<path d="M ${l * 120} -190 L ${l * (150 + 50 * k)} ${-300 - 40 * k} L ${l * 175} -150 Z" fill="#4A4048" stroke="${TK}" stroke-width="7" stroke-linejoin="round"/>`;
+    }
+    for (const l of [-1, 1]) s += `<circle cx="${l * 64}" cy="-38" r="${30 + 8 * k}" fill="#D8E8FF" opacity="${0.35 * k}" filter="url(#brilhoLobo)"/><circle cx="${l * 64}" cy="-32" r="15" fill="#E6F0FF" opacity="${0.9 * k}"/>`;
+    s = `<defs><filter id="brilhoLobo" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="8"/></filter></defs>` + s;
+    if (k > 0.3) for (const l of [-1, 1]) s += `<path d="M ${l * 20} 126 L ${l * 28} ${150 + 20 * k} L ${l * 36} 126 Z" fill="#fff" stroke="${TK}" stroke-width="3"/>`;
+  }
   if (suor) {
     const k = (t * 0.9) % 1;
     s += `<path d="M 150 ${-150 + k * 60} Q 168 ${-120 + k * 60} 150 ${-100 + k * 60} Q 132 ${-120 + k * 60} 150 ${-150 + k * 60} Z" fill="#8FD3F5" stroke="${TK}" stroke-width="6" opacity="${1 - k * 0.6}"/>` +
