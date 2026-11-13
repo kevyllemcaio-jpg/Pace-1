@@ -17,7 +17,7 @@ function quartoGamer(t, { luz = 1 } = {}) {
   s += `<rect x="620" y="160" width="300" height="380" fill="#141A3A" stroke="${GK}" stroke-width="10"/><line x1="770" y1="160" x2="770" y2="540" stroke="${GK}" stroke-width="8"/><line x1="620" y1="350" x2="920" y2="350" stroke="${GK}" stroke-width="8"/>`;
   s += `<path d="M 840 220 a 40 40 0 1 0 30 70 a 32 32 0 1 1 -30 -70 Z" fill="#F4F0D8"/>`;
   for (let i = 0; i < 10; i++) { const r = aleatorio(i + 3); s += `<circle cx="${630 + r() * 280}" cy="${170 + r() * 360}" r="2.5" fill="#fff" opacity="0.7"/>`; }
-  s += `<rect x="580" y="140" width="40" height="440" fill="#5A4E7A" stroke="${GK}" stroke-width="6"/><rect x="920" y="140" width="40" height="440" fill="#5A4E7A" stroke="${GK}" stroke-width="6"/>`;
+  s += `<path d="M 570 130 Q 610 360 580 590 L 640 590 Q 650 360 620 130 Z" fill="#6A6A9A" stroke="${GK}" stroke-width="6"/><path d="M 920 130 Q 950 360 920 590 L 980 590 Q 990 360 960 130 Z" fill="#6A6A9A" stroke="${GK}" stroke-width="6"/><rect x="560" y="120" width="440" height="16" rx="8" fill="#3A3A4A"/>`;
   // pôster rasgado e estante
   s += `<g transform="translate(150 260) rotate(-4)"><rect x="-110" y="-150" width="220" height="300" fill="#5A7AB0" stroke="${GK}" stroke-width="7"/><path d="M -60 -80 L 0 -120 L 60 -80 L 40 60 L -40 60 Z" fill="#8AB0E0" stroke="${GK}" stroke-width="5"/><path d="M 110 100 L 70 150 L 110 150 Z" fill="#454A6E"/></g>`;
   s += `<rect x="330" y="300" width="230" height="20" fill="#6A4A30" stroke="${GK}" stroke-width="5"/>` + [0, 1, 2, 3, 4].map((i) => `<rect x="${340 + i * 40}" y="${230 + (i % 2) * 10}" width="30" height="${70 - (i % 2) * 10}" fill="${['#C84A3A', '#3A7AC8', '#E8B83A', '#4AA05A', '#8A5AC8'][i]}" stroke="${GK}" stroke-width="4"/>`).join('');
@@ -27,8 +27,10 @@ function quartoGamer(t, { luz = 1 } = {}) {
   s += `<rect x="880" y="560" width="120" height="260" rx="8" fill="#1A1C22" stroke="${GK}" stroke-width="7"/>`;
   const hue = (t * 120) % 360;
   s += `<rect x="896" y="580" width="12" height="220" fill="hsl(${hue},90%,60%)" opacity="${0.8 * luz}"/><circle cx="950" cy="640" r="28" fill="none" stroke="hsl(${(hue + 120) % 360},90%,60%)" stroke-width="8" opacity="${0.8 * luz}"/><circle cx="950" cy="730" r="28" fill="none" stroke="hsl(${(hue + 240) % 360},90%,60%)" stroke-width="8" opacity="${0.8 * luz}"/>`;
-  // cadeira gamer
-  s += `<path d="M 600 900 Q 600 820 680 820 L 760 820 Q 840 820 840 900 L 830 1130 L 610 1130 Z" fill="#2A2E3A" stroke="${GK}" stroke-width="8"/><rect x="700" y="1130" width="40" height="80" fill="#1A1C22"/><path d="M 620 1220 L 820 1220" stroke="#1A1C22" stroke-width="16" stroke-linecap="round"/>`;
+  // cama bagunçada (esquerda)
+  s += `<rect x="-40" y="1010" width="380" height="240" rx="20" fill="#2E4A80" stroke="${GK}" stroke-width="8"/><path d="M -40 1040 Q 120 980 340 1050 L 340 1120 Q 160 1080 -40 1110 Z" fill="#3A5A9A" stroke="${GK}" stroke-width="6"/><path d="M 40 1060 Q 160 1100 260 1050 Q 220 1140 120 1130 Z" fill="#5A7A5A" stroke="${GK}" stroke-width="6"/><rect x="-40" y="900" width="60" height="350" fill="#5A3E2A" stroke="${GK}" stroke-width="7"/>`;
+  // cadeira de escritório azul
+  s += `<path d="M 640 860 Q 640 790 700 790 L 790 790 Q 850 790 850 860 L 840 1010 L 650 1010 Z" fill="#2E4A80" stroke="${GK}" stroke-width="8"/><rect x="630" y="1010" width="230" height="40" rx="14" fill="#2A3E6A" stroke="${GK}" stroke-width="7"/><rect x="730" y="1050" width="30" height="110" fill="#1A1C22"/><path d="M 640 1170 L 850 1170 M 745 1160 L 745 1200" stroke="#1A1C22" stroke-width="14" stroke-linecap="round"/><circle cx="650" cy="1200" r="14" fill="#1A1C22"/><circle cx="840" cy="1200" r="14" fill="#1A1C22"/>`;
   // bagunça: roupas, caixa de pizza, latinhas, fios
   s += `<path d="M 40 1500 Q 120 1420 240 1460 Q 320 1430 360 1520 Q 260 1560 120 1550 Z" fill="#5A7A5A" stroke="${GK}" stroke-width="6"/><path d="M 120 1460 Q 180 1480 220 1520" stroke="#3A5A3A" stroke-width="6" fill="none"/>`;
   s += `<g transform="translate(860 1560) rotate(-8)"><rect x="-130" y="-30" width="260" height="60" fill="#D8B888" stroke="${GK}" stroke-width="6"/><path d="M -130 -30 L -60 -110 L 190 -100 L 130 -30 Z" fill="#E8C898" stroke="${GK}" stroke-width="6"/><circle cx="40" cy="-70" r="22" fill="#C8503A" opacity="0.7"/></g>`;
@@ -174,7 +176,7 @@ function calendario(lt, dias) {
 function missao(lt, t0, t1) {
   let s = '';
   if (lt > t0) { som('ding', t0, 0.8); s += pulo(`<path d="M 120 100 L 960 100 L 1000 160 L 960 220 L 120 220 Z" fill="#F7C531" stroke="${GK}" stroke-width="7"/><text x="540" y="182" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="64" fill="${GK}">NOVA MISSÃO!</text>`, lt, 540, 160, t0); }
-  if (lt > t1) s += pulo(`<rect x="80" y="250" width="920" height="200" rx="20" fill="#141826" stroke="#F7C531" stroke-width="5"/><text x="120" y="320" font-family="Baloo, sans-serif" font-weight="800" font-size="44" fill="#F7C531">FICAR IGUAL AO</text><text x="120" y="375" font-family="Baloo, sans-serif" font-weight="800" font-size="44" fill="#F7C531">PRÓPRIO AVATAR</text><rect x="120" y="398" width="30" height="30" fill="none" stroke="#fff" stroke-width="4"/><text x="166" y="424" font-family="Oswald, sans-serif" font-size="28" fill="#fff">0/1</text>` + `<g transform="translate(900 350) scale(0.13)">${avatarHeroi(0, 700, 1, lt)}</g>`, lt, 540, 350, t1);
+  if (lt > t1) s += pulo(`<rect x="80" y="250" width="920" height="200" rx="20" fill="#141826" stroke="#F7C531" stroke-width="5"/><text x="120" y="320" font-family="Baloo, sans-serif" font-weight="800" font-size="44" fill="#F7C531">FICAR IGUAL AO</text><text x="120" y="375" font-family="Baloo, sans-serif" font-weight="800" font-size="44" fill="#F7C531">PRÓPRIO AVATAR</text><rect x="120" y="398" width="30" height="30" fill="none" stroke="#fff" stroke-width="4"/><text x="166" y="424" font-family="Oswald, sans-serif" font-size="28" fill="#fff">0/1</text>` + `<g transform="translate(900 430) scale(0.13)">${heroiCorpo(0, 0, 1, lt)}</g>`, lt, 540, 350, t1);
   return s;
 }
 // Saldo + barra "parecido com o avatar".
