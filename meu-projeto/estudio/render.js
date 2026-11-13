@@ -58,7 +58,7 @@ function duracaoFala(arq, palavras) {
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
       '<body><svg id="tela" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
@@ -150,8 +150,8 @@ function duracaoFala(arq, palavras) {
   console.log(`\rquadros: ${total}/${total}`);
 
   // 3) Áudio: trilha + whoosh nos cortes + efeitos + narração.
-  const faixas = [[path.join(pastaSons, 'trilha.wav'), 0, estiloTrilha === 'calma' ? 0.32 : 0.22]];
-  inicios.slice(1).forEach((s) => faixas.push([path.join(pastaSons, 'whoosh.wav'), Math.max(0, s - 0.12), estiloTrilha === 'calma' ? 0.08 : 0.35]));
+  const faixas = [[path.join(pastaSons, 'trilha.wav'), 0, estiloTrilha === 'calma' ? 0.32 : estiloTrilha === 'terror' ? 0.5 : 0.22]];
+  inicios.slice(1).forEach((s) => faixas.push([path.join(pastaSons, 'whoosh.wav'), Math.max(0, s - 0.12), estiloTrilha === 'calma' || estiloTrilha === 'terror' ? 0.06 : 0.35]));
   sons.forEach((e) => faixas.push([path.join(pastaSons, `${e.s}.wav`), e.t, 0.45 * e.vol]));
   audios.forEach((a, i) => a && faixas.push([a, inicios[i] + 0.2, a.endsWith('-trat.wav') ? 1.2 : 1.7]));
   const entradas = ['-i', semAudio];

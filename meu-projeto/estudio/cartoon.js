@@ -25,7 +25,7 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
     janelinha: { lid: 0.1, bi: -10, be: -6, boca: 'janela' },
     sem_graca: { lid: 0.25, bi: -14, be: 8, boca: 'janela' },
   }[expr] || {};
-  const piscar = ((t + semente * 0.73) % 3.8) < 0.11;
+  const piscar = !VZ.naoPisca && ((t + semente * 0.73) % 3.8) < 0.11;
   let s = '';
   // cabelo comprido atrás da cabeça: náufrago (cabeludo) ou feminino (longo)
   if (VZ.cabeludo) s += `<path d="M -175 -120 Q -260 60 -230 300 Q -200 330 -170 290 Q -180 380 -120 330 Q -60 260 -150 120 Z M 175 -120 Q 260 60 230 300 Q 200 330 170 290 Q 180 380 120 330 Q 60 260 150 120 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`;

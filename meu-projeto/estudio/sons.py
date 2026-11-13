@@ -83,6 +83,18 @@ def replay():
     return s * 0.8 + clique
 
 
+def batida():
+    """Três batidas secas de nó de dedo na porta de madeira."""
+    d = 1.0
+    out = np.zeros(int(SR * d))
+    for k, t0 in enumerate([0.0, 0.28, 0.56]):
+        x = t(0.18)
+        b = (np.sin(2 * np.pi * (180 - 80 * x) * x) * 0.9 + np.random.default_rng(k).normal(0, 1, len(x)) * 0.35) * np.exp(-x * 28)
+        i0 = int(t0 * SR)
+        out[i0:i0 + len(b)] += b
+    return out * 0.9
+
+
 def whoosh():
     x = t(0.45)
     r = np.random.default_rng(2).normal(0, 1, len(x))
@@ -166,10 +178,31 @@ def trilha_calma(dur):
     return s * 0.9
 
 
+def trilha_terror(dur):
+    """Drone grave e pulsante, com chiado baixo e um batimento lento."""
+    n = int(dur * SR)
+    x = np.arange(n) / SR
+    drone = (np.sin(2 * np.pi * 55 * x) + 0.5 * np.sin(2 * np.pi * 58.3 * x) + 0.3 * np.sin(2 * np.pi * 110.7 * x)) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.07 * x))
+    r = np.random.default_rng(4).normal(0, 1, n)
+    y = np.zeros(n)
+    for i in range(1, n):
+        y[i] = y[i - 1] + 0.02 * (r[i] - y[i - 1])
+    s = drone * 0.12 + y * 0.6
+    for b in np.arange(0, dur, 1.6):
+        i0 = int(b * SR)
+        k = t(0.3)
+        p = np.sin(2 * np.pi * 48 * k) * np.exp(-k * 14) * 0.35
+        s[i0:i0 + len(p)] += p[: max(0, min(len(p), n - i0))]
+    fade = int(2 * SR)
+    s[-fade:] *= np.linspace(1, 0, fade)
+    s[:fade] *= np.linspace(0, 1, fade)
+    return s
+
+
 if __name__ == '__main__':
     pasta, dur = sys.argv[1], float(sys.argv[2])
     estilo = sys.argv[3] if len(sys.argv) > 3 else 'alegre'
     os.makedirs(pasta, exist_ok=True)
-    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay)]:
+    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay), ('batida', batida)]:
         salvar(os.path.join(pasta, nome + '.wav'), f())
-    salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha(dur))
+    salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha_terror(dur) if estilo == 'terror' else trilha(dur))
