@@ -88,14 +88,18 @@ function duracaoFala(arq, palavras) {
     tempos.push({ dur: Math.max(durs[i], duracaoFala(mp3, palavras) + ATRASO), palavras });
     // Tratamento da voz (grave mais quente, compressão leve, ambiente): soa mais humano.
     let final = mp3;
-    if (await page.evaluate(() => !!window.TRATAR_VOZ)) {
-      final = mp3.replace(/\.mp3$/, '-trat.wav');
-      if (!fs.existsSync(final)) ffmpeg(['-i', mp3, '-af', 'highpass=f=70,equalizer=f=180:t=q:w=1:g=3,equalizer=f=3500:t=q:w=1.5:g=2,acompressor=threshold=-18dB:ratio=3:attack=10:release=120,aecho=0.8:0.5:35:0.12,loudnorm=I=-16', final]);
+    const trat = await page.evaluate(() => window.TRATAR_VOZ || false);
+    if (trat) {
+      // 'seco': só equalização e compressão (sem o eco de ambiente)
+      const seco = trat === 'seco';
+      final = mp3.replace(/\.mp3$/, seco ? '-seco-trat.wav' : '-trat.wav');
+      if (!fs.existsSync(final)) ffmpeg(['-i', mp3, '-af', `highpass=f=70,equalizer=f=180:t=q:w=1:g=${seco ? 2 : 3},equalizer=f=3500:t=q:w=1.5:g=2,acompressor=threshold=-18dB:ratio=3:attack=10:release=120,${seco ? '' : 'aecho=0.8:0.5:35:0.12,'}loudnorm=I=-16`, final]);
     }
     audios.push(final);
   }
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
   if (!quadrosArg) console.log(`duração: ${duracao.toFixed(1)} s · ${inicios.length} cenas`);
+  if (args.includes('--tempos')) tempos.forEach((x, i) => console.log(`${i}\t${durs[i]}\tfala ${x.palavras.length ? (x.palavras[x.palavras.length - 1].fim).toFixed(2) : '-'}\t${falas[i] ? falas[i].slice(0, 50) : ''}`));
   const desenhar = (t) => page.evaluate((t) => { document.getElementById('tela').innerHTML = renderizar(t); }, t);
 
   if (story) {
