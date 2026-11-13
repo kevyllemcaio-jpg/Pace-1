@@ -6,7 +6,7 @@ const TPo = '#15131A';
 
 function andando(visual, t, x, y, esc, o = {}) {
   const anda = o.parado ? {} : andarP(t, o.vel || 8, 34);
-  return kyleCorpo({ x, y, esc, t, expr: o.expr || 'neutro', pose: o.pose || 'base', fala: o.fala, olhar: o.olhar || [0, 0], vira: o.vira, barba: !!o.barba, celular: o.celular,
+  return kyleCorpo({ x, y, esc, t, expr: o.expr || 'neutro', pose: o.pose || 'base', fala: o.fala, olhar: o.olhar || [0, 0], vira: o.vira, barba: !!o.barba, celular: o.celular, lobo: o.lobo || 0,
     p: { ...anda, ...(o.p || {}) }, visual: { oculos: false, fone: false, estampa: false, ...visual } });
 }
 function carroPosto(x, y, esc = 1, cor = '#2F6DB5', farol = true) {
