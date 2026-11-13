@@ -1,6 +1,6 @@
 // KYLE — Episódio 2: O DENTE (~40 s, gancho nos 2 primeiros segundos)
-// Escolha: DENTISTA. Custa R$ 300, ele tem R$ 47. Vende o violão por R$ 250 + o que tem. Dente novo: 2% -> 15%.
-// Reviravolta: a Manu pede pra ouvir ele tocar violão no reencontro. Votação: RECOMPRA x VIZINHO.
+// Escolha: DENTISTA. Custa R$ 300, ele tem R$ 47. Vende o videogame por R$ 250 + o que tem. Dente novo: 2% -> 15%.
+// Reviravolta: a Manu pede foto do look; ele só tem camiseta de jogo. Votação: BRECHÓ x CABELO.
 
 window.FONTE_LEGENDA = 'Baloo, sans-serif';
 window.LEGENDA_Y = 1500;
@@ -11,6 +11,10 @@ function luz() { return `<defs><radialGradient id="luzCel" cx="0.5" cy="0.62" r=
 function violao(x, y, esc = 1, rot = 0) {
   return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${esc})"><rect x="-14" y="-330" width="28" height="240" fill="#6B4228" stroke="#1F1A24" stroke-width="6"/><rect x="-24" y="-370" width="48" height="56" rx="8" fill="#4A2E1C" stroke="#1F1A24" stroke-width="6"/>` +
     `<path d="M 0 -110 C -110 -120 -110 -20 -60 0 C -130 30 -110 150 0 150 C 110 150 130 30 60 0 C 110 -20 110 -120 0 -110 Z" fill="#D9923A" stroke="#1F1A24" stroke-width="7"/><circle cx="0" cy="10" r="32" fill="#3A2418" stroke="#1F1A24" stroke-width="5"/></g>`;
+}
+function videogame(x, y, esc = 1) {
+  return `<g transform="translate(${x} ${y}) scale(${esc})"><rect x="-170" y="-60" width="340" height="120" rx="18" fill="#22262F" stroke="#1F1A24" stroke-width="7"/><rect x="-150" y="-40" width="180" height="16" rx="6" fill="#3A3F4A"/><circle cx="120" cy="0" r="14" fill="#2FA4E8"/>` +
+    `<g transform="translate(40 150)"><path d="M -110 -30 Q -140 -30 -150 20 Q -160 70 -120 70 Q -100 70 -80 40 L 80 40 Q 100 70 120 70 Q 160 70 150 20 Q 140 -30 110 -30 Z" fill="#2A2E36" stroke="#1F1A24" stroke-width="7"/><path d="M -95 5 L -65 5 M -80 -10 L -80 20" stroke="#fff" stroke-width="8"/><circle cx="75" cy="-2" r="10" fill="#E8344B"/><circle cx="100" cy="18" r="10" fill="#2FA45A"/></g></g>`;
 }
 function titulo(linhas) {
   return `<rect width="1080" height="${120 + linhas.length * 120}" fill="#0E1430" opacity="0.6"/>` +
@@ -48,12 +52,12 @@ E.push({
     return tremor(s, lt, c.w('nem'), 12, 0.4);
   },
 });
-// 4 — o violão
+// 4 — o videogame
 E.push({
-  fala: 'Aí ele olhou pro violão encostado no canto. E anunciou: *vende-se, trezentos reais*.',
+  fala: 'Aí ele olhou pro videogame. Companheiro de oito anos. E anunciou: *vende-se, trezentos reais*.',
   desenhar(lt, c) {
-    let s = quarto(lt, { cartazLinhas: [['LEVEL', '#2A2A2A'], ['UP', '#C33A3A']] }) + violao(300, 1500, 1.0, -8);
-    s += kyleCorpo({ x: 680, y: 1700, esc: 0.95, pose: lt > c.w('vende') ? 'celular' : 'aponta', celular: lt > c.w('vende'), expr: 'triste', semDente: true, t: lt });
+    let s = quarto(lt, { cartazLinhas: [['LEVEL', '#2A2A2A'], ['UP', '#C33A3A']] }) + videogame(290, 1520, 0.9);
+    s += kyleCorpo({ x: 700, y: 1700, esc: 0.95, pose: lt > c.w('vende') ? 'celular' : 'aponta', celular: lt > c.w('vende'), expr: 'triste', semDente: true, t: lt });
     return s + etiqueta('VENDE-SE · R$ 300', lt, c.w('vende'), '#E8344B', 560);
   },
 });
@@ -89,23 +93,34 @@ E.push({
 });
 // 8 — a reviravolta
 E.push({
-  fala: 'Aí chegou mensagem da Manu: *você ainda toca violão, né? Quero ouvir no reencontro*.',
+  fala: 'Aí chegou mensagem da Manu: *manda uma foto do seu look de hoje*.',
   desenhar(lt, c) {
-    som('bolha', c.w('você') - 0.1, 0.9);
-    let s = fundoTela() + celularUI({ tela: 'chat', nome: 'manu.reis', hora: '21:02', msgs: lt > c.w('você') - 0.1 ? [{ de: 'ela', txt: 'vc ainda toca violão né??' }, { de: 'ela', txt: 'quero ouvir no reencontro 🎸' }] : [] });
-    return tremor(s, lt, c.w('reencontro'), 10, 0.4);
+    som('bolha', c.w('manda') - 0.1, 0.9);
+    let s = fundoTela() + celularUI({ tela: 'chat', nome: 'manu.reis', hora: '21:02', msgs: lt > c.w('manda') - 0.1 ? [{ de: 'ela', txt: 'amei o sorriso novo 😍' }, { de: 'ela', txt: 'manda foto do seu look de hoje 👀' }] : [] });
+    return tremor(s, lt, c.w('look'), 10, 0.4);
+  },
+});
+// 8b — o guarda-roupa
+E.push({
+  fala: 'Ele abriu o guarda-roupa. Doze camisetas de jogo. E *nenhuma roupa de verdade*.',
+  desenhar(lt, c) {
+    let s = `<rect width="1080" height="1920" fill="#8A5A3C"/><rect x="90" y="200" width="900" height="1400" rx="16" fill="#5E3B24" stroke="#1F1A24" stroke-width="10"/><rect x="130" y="300" width="820" height="16" fill="#9AA3AD"/>`;
+    const cores = ['#7B4FB3', '#2BA59A', '#22262F', '#D93A3A', '#4A90E2', '#7B4FB3', '#22262F', '#F2C230', '#2BA59A', '#7B4FB3', '#22262F', '#D93A3A'];
+    cores.forEach((cor, i) => { const x = 170 + i * 66; s += `<path d="M ${x} 330 l -40 40 l 18 30 l 12 -10 l 0 180 l 60 0 l 0 -180 l 12 10 l 18 -30 l -40 -40 Z" fill="${cor}" stroke="#1F1A24" stroke-width="4"/><circle cx="${x + 10}" cy="430" r="10" fill="#fff" opacity="0.6"/>`; });
+    s += kyleCorpo({ x: 540, y: 1800, esc: 0.85, pose: 'cabeca', expr: lt > c.w('nenhuma') ? 'panico' : 'surpreso', suor: true, t: lt });
+    return s + etiqueta('12 CAMISETAS DE JOGO', lt, c.w('doze'), '#7B4FB3', 680);
   },
 });
 // 9 — votação (estilo do ep. 1)
 E.push({
-  fala: 'E o violão... *já foi vendido*. Comenta uma palavra: *recompra* ou *vizinho*?',
+  fala: 'Comenta uma palavra: *brechó*, pra montar um look barato... ou *cabelo*, pra mudar o visual primeiro?',
   legendaY: 1560,
   desenhar(lt, c) {
     let s = `<rect width="1080" height="1920" fill="#E8344B"/><path d="M 0 0 L 600 0 L 480 1920 L 0 1920 Z" fill="#F2B233"/><path d="M 600 0 L 480 1920" stroke="#fff" stroke-width="12"/>`;
     s += hudReencontro(27, 15, lt);
     s += `<rect x="300" y="250" width="480" height="84" rx="16" fill="#15131A" stroke="#fff" stroke-width="4"/><text x="540" y="308" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="38" fill="#fff">COMENTE UMA PALAVRA</text>`;
-    [[280, 'RECOMPRA', 'O DELE DE VOLTA', '💸', c.w('recompra')], [810, 'VIZINHO', 'PEDE EMPRESTADO', '🏠', c.w('vizinho')]].forEach(([x, t1, t2, ic, t0]) => {
-      s += pulo(`<text x="${x}" y="470" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="88" fill="#fff" stroke="#15131A" stroke-width="12" paint-order="stroke">${t1}</text>` +
+    [[280, 'BRECHÓ', 'LOOK NOVO BARATO', '👕', c.w('brechó')], [810, 'CABELO', 'MUDA O VISUAL', '✂️', c.w('cabelo')]].forEach(([x, t1, t2, ic, t0]) => {
+      s += pulo(`<text x="${x}" y="470" text-anchor="middle" font-family="Baloo, sans-serif" font-weight="800" font-size="100" fill="#fff" stroke="#15131A" stroke-width="12" paint-order="stroke">${t1}</text>` +
         `<text x="${x}" y="522" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="34" fill="#fff">${t2}</text>` +
         `<text x="${x}" y="680" text-anchor="middle" font-size="110">${ic}</text>` +
         `<g transform="translate(${x} 1080) scale(0.78)">${kyleCabeca({ expr: 'sorrisao', t: lt, semente: x })}</g>`, lt, x, 800, t0);

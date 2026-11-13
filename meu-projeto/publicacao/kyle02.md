@@ -5,12 +5,13 @@
 Vocês escolheram DENTISTA. Só que custa R$ 300... e o Kyle tem R$ 47.
 E a Manu pediu uma selfie atual. 😳
 
-Ele vendeu o violão. Dente novo. Parecido com o Kyle de 2015: 2% → 15%.
+Ele vendeu o videogame. Dente novo. Parecido com o Kyle de 2015: 2% → 15%.
 
-Aí ela mandou: "vc ainda toca violão né? quero ouvir no reencontro 🎸"
+Aí ela mandou: "manda foto do seu look de hoje 👀"
+E ele só tem 12 camisetas de jogo.
 
 Comenta UMA palavra 👇
-💸 RECOMPRA ou 🏠 VIZINHO
+👕 BRECHÓ ou ✂️ CABELO
 
 Segue pra ver o episódio 3.
 #kyle #glowup #reencontro #parte2 #vocedecide
