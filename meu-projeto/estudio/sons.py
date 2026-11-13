@@ -95,6 +95,16 @@ def batida():
     return out * 0.9
 
 
+def ding():
+    """Sininho da porta automática (dois tons)."""
+    x = t(0.9)
+    a = np.sin(2 * np.pi * 1318 * x) * np.exp(-x * 5) * 0.4
+    b = np.zeros_like(x)
+    k = int(0.18 * SR)
+    b[k:] = np.sin(2 * np.pi * 1046 * x[: len(x) - k]) * np.exp(-x[: len(x) - k] * 5) * 0.4
+    return a + b
+
+
 def whoosh():
     x = t(0.45)
     r = np.random.default_rng(2).normal(0, 1, len(x))
@@ -203,6 +213,6 @@ if __name__ == '__main__':
     pasta, dur = sys.argv[1], float(sys.argv[2])
     estilo = sys.argv[3] if len(sys.argv) > 3 else 'alegre'
     os.makedirs(pasta, exist_ok=True)
-    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay), ('batida', batida)]:
+    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay), ('batida', batida), ('ding', ding)]:
         salvar(os.path.join(pasta, nome + '.wav'), f())
     salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha_terror(dur) if estilo == 'terror' else trilha(dur))

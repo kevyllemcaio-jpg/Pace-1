@@ -109,6 +109,12 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   if (VZ.batom) s += `<path d="M -30 132 Q 0 148 30 132" fill="none" stroke="#D9476A" stroke-width="10" stroke-linecap="round" opacity="0.7"/>`;
   if (VZ.sujo) { const r2 = aleatorio(77); for (let i = 0; i < 9; i++) { const x = -120 + r2() * 240, y = -180 + r2() * 260; if (Math.abs(x) > 30 || y < -100) s += `<ellipse cx="${x}" cy="${y}" rx="${10 + r2() * 16}" ry="${6 + r2() * 10}" fill="#6A5040" opacity="0.35"/>`; } }
   if (VZ.moscas) for (let i = 0; i < 3; i++) { const a = t * (3 + i) + i * 2; const x = Math.cos(a) * (190 + i * 20), y = -200 + Math.sin(a * 1.3) * 80; s += `<g transform="translate(${x} ${y})"><circle r="7" fill="${TK}"/><ellipse cx="-6" cy="-7" rx="7" ry="4" fill="#fff" opacity="0.7"/><ellipse cx="6" cy="-7" rx="7" ry="4" fill="#fff" opacity="0.7"/></g>`; }
+  if (VZ.capacete) {
+    s += `<path d="M -200 40 Q -215 -340 0 -350 Q 215 -340 200 40 Q 190 210 0 230 Q -190 210 -200 40 Z" fill="#111216" stroke="${TK}" stroke-width="9"/>` +
+      `<path d="M -150 -90 Q 0 -140 150 -90 L 140 60 Q 0 90 -140 60 Z" fill="#1E2430" stroke="#000" stroke-width="7"/>` +
+      `<path d="M -110 -80 Q -60 -100 -20 -96" fill="none" stroke="#7A8AA8" stroke-width="10" stroke-linecap="round" opacity="0.7"/>` +
+      `<path d="M -60 140 L 60 140" stroke="#2A2E38" stroke-width="10" stroke-linecap="round"/>`;
+  }
   // traços de lobo (0..1): costeletas de pelo, olhos prateados, presas, orelhas pontudas
   if (lobo > 0) {
     const k = Math.min(1, lobo);
