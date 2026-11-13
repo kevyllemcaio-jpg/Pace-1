@@ -59,12 +59,13 @@ const entra = (lt, c, s = 0.4) => `<rect width="1080" height="1920" fill="#000" 
 const sai = (lt, c, s = 0.5) => `<rect width="1080" height="1920" fill="#000" opacity="${(1 - lim((c.dur - lt) / s)).toFixed(3)}"/>`;
 
 const ESC = (lt) => ikEscola(lt);
-const ESCb = (lt) => `<defs><filter id="bE"><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#bE)">${ikEscola(lt)}</g>`;
+const borrado = (id, lt, fn, d = 6) => fundoCache(id, lt, (t) => `<defs><filter id="b${id}"><feGaussianBlur stdDeviation="${d}"/></filter></defs><g filter="url(#b${id})">${fn(t)}</g>`);
+const ESCb = (lt) => borrado('esc', lt, (t) => ikEscola(t));
 const CAM = (lt) => ikCaminho(lt);
-const CAMb = (lt) => `<defs><filter id="bC"><feGaussianBlur stdDeviation="6"/></filter></defs><g filter="url(#bC)">${ikCaminho(lt)}</g>`;
-const RUI = (forca) => (lt) => `<defs><filter id="bR"><feGaussianBlur stdDeviation="4"/></filter></defs><g filter="url(#bR)">${ikRuinaDentro(lt, { forca })}</g>`;
-const MUN = (lt) => `<defs><filter id="bM"><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#bM)">${ikMundo(lt)}</g>`;
-const FLO = (escuro = 0) => (lt) => `<defs><filter id="bF"><feGaussianBlur stdDeviation="5"/></filter></defs><g filter="url(#bF)">${ikFloresta(lt, { escuro })}</g>`;
+const CAMb = (lt) => borrado('cam', lt, (t) => ikCaminho(t));
+const RUI = (forca) => (lt) => borrado('rui' + forca, lt, (t) => ikRuinaDentro(t, { forca }), 4);
+const MUN = (lt) => borrado('mun', lt, (t) => ikMundo(t), 5);
+const FLO = (escuro = 0) => (lt) => borrado('flo' + escuro, lt, (t) => ikFloresta(t, { escuro }), 5);
 const POR = '#FFB070', VERDE = '#7FFFE0', BRANCO = '#FFFFFF', ROXO = '#B890FF';
 
 // ================= CENA 1 — A ESCOLA =================

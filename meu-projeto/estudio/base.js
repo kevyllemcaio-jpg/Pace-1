@@ -337,6 +337,43 @@ function quadroDaCena(i, lt) {
   return s;
 }
 
+// ---------- cache de fundos (render mais rápido) ----------
+// fundoCache(chave, lt, fn, passo): desenha fn(t) como imagem só a cada `passo` segundos e reusa a imagem
+// nos quadros seguintes. Ideal para fundos desfocados (atrás dos personagens): o desfoque é o que mais pesa.
+const CACHE_FUNDO = new Map();
+let FUNDOS_PEND = [];
+function fundoCache(chave, lt, fn, passo = 0.25) {
+  const n = Math.floor(lt / passo), k = chave + '|' + n;
+  const url = CACHE_FUNDO.get(k);
+  if (url) return `<image href="${url}" x="0" y="0" width="1080" height="1920"/>`;
+  if (REG) return '';
+  if (!FUNDOS_PEND.find((p) => p.k === k)) FUNDOS_PEND.push({ k, svg: fn(n * passo) });
+  return fn(lt);
+}
+async function rasterizarFundo({ k, svg }) {
+  const doc = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">${svg}</svg>`;
+  const img = new Image();
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(doc);
+  await img.decode();
+  const cv = document.createElement('canvas');
+  cv.width = 1080; cv.height = 1920;
+  cv.getContext('2d').drawImage(img, 0, 0);
+  const blob = await new Promise((ok) => cv.toBlob(ok, 'image/jpeg', 0.93));
+  CACHE_FUNDO.set(k, URL.createObjectURL(blob));
+  // guarda só os mais recentes
+  while (CACHE_FUNDO.size > 24) { const [k0, u0] = CACHE_FUNDO.entries().next().value; URL.revokeObjectURL(u0); CACHE_FUNDO.delete(k0); }
+}
+async function renderizarAsync(t) {
+  let s = renderizar(t);
+  if (FUNDOS_PEND.length) {
+    const pend = FUNDOS_PEND; FUNDOS_PEND = [];
+    for (const p of pend) await rasterizarFundo(p);
+    s = renderizar(t);
+    FUNDOS_PEND = [];
+  }
+  return s;
+}
+
 function renderizar(t) {
   let i = INICIOS.length - 1;
   while (i > 0 && INICIOS[i] > t) i--;

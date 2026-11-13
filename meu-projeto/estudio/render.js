@@ -109,7 +109,12 @@ function duracaoFala(arq, palavras) {
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
   if (!quadrosArg) console.log(`duração: ${duracao.toFixed(1)} s · ${inicios.length} cenas`);
   if (args.includes('--tempos')) tempos.forEach((x, i) => console.log(`${i}\t${durs[i]}\tfala ${x.palavras.length ? (x.palavras[x.palavras.length - 1].fim).toFixed(2) : '-'}\t${falas[i] ? falas[i].slice(0, 50) : ''}`));
-  const desenhar = (t) => page.evaluate((t) => { document.getElementById('tela').innerHTML = renderizar(t); }, t);
+  const desenhar = (t) => page.evaluate(async (t) => {
+    document.getElementById('tela').innerHTML = await renderizarAsync(t);
+    // espera as imagens dos fundos em cache estarem prontas antes da captura
+    const imgs = [...document.querySelectorAll('#tela image')];
+    if (imgs.length) await Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : null)));
+  }, t);
 
   if (story) {
     await page.evaluate(() => { document.getElementById('tela').innerHTML = STORY(); });
