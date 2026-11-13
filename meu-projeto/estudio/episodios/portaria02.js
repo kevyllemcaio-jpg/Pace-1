@@ -11,9 +11,9 @@ window.TRATAR_VOZ = 'seco';
 window.TRILHA = 'terror';
 
 const EU = (velocidade = '+8%', tom = '+0Hz') => ({ voz: 'pt-BR-AntonioNeural', velocidade, tom });
-const V_LURDES = { voz: 'pt-BR-FranciscaNeural', velocidade: '-14%', tom: '-8Hz' };
-const V_CLARA = { voz: 'pt-BR-ThalitaMultilingualNeural', velocidade: '+8%', tom: '+0Hz' };
-const V_ENTREGA = { voz: 'en-US-BrianMultilingualNeural', velocidade: '+10%', tom: '+0Hz' };
+const V_LURDES = { voz: 'pt-BR-FranciscaNeural', velocidade: '-6%', tom: '-3Hz' };
+const V_CLARA = { voz: 'pt-BR-ThalitaMultilingualNeural', velocidade: '+8%' };
+const V_ENTREGA = { voz: 'pt-BR-AntonioNeural', velocidade: '+16%', tom: '+5Hz' };
 const AZUL = '#7FC8FF', LARANJA = '#FFB04A';
 const CLARA = { pele: '#E8B48C', pele2: '#C99470', cabelo: '#3A2418', camisa: '#C8504A', longo: true, cilios: true };
 const ENTREGADOR = { pele: '#C68E62', pele2: '#A8714C', cabelo: '#2A1E18', camisa: '#D93A3A' };
@@ -73,7 +73,7 @@ cena({
   desenhar: (lt) => guarita(lt, { apto: '507', maoD: 'interfone' }) + HD('00:14'),
 });
 cena({
-  fala: 'Só pra ela. Pra mais ninguém.', voz: { ...V_LURDES, velocidade: '-20%' }, ...INTERFONE,
+  fala: 'Só pra ela. Pra mais ninguém.', voz: { ...V_LURDES, velocidade: '-8%' }, ...INTERFONE,
   desenhar: (lt) => guarita(lt, { apto: '507', maoD: 'interfone', luzRua: 0.8 }) + HD('00:14'),
 });
 // grupo do condomínio
@@ -126,7 +126,7 @@ cena({
   },
 });
 cena({
-  fala: 'Vazio...? Então quem me ligou do 507?', voz: EU('-6%', '-4Hz'),
+  fala: 'Vazio? Então quem me ligou do 507?', voz: EU('+0%'),
   desenhar: (lt) => { som('coracao', 0, 0.6); return guarita(lt, { visitante: clara(lt, { expr: 'neutro' }) }) + vinheta(0.6) + HD('00:18'); },
 });
 
@@ -140,11 +140,11 @@ cena({
   desenhar: (lt) => guarita(lt, { apto: '507', maoD: 'interfone', luzRua: 0.7, visitante: clara(lt, { expr: 'neutro' }) }) + pisca(lt, 0.3) + HD('00:18'),
 });
 cena({
-  fala: 'Dona Lurdes... a senhora não tinha se mudado?', voz: EU('+4%'),
+  fala: 'Dona Lurdes, a senhora não tinha se mudado?', voz: EU('+4%'),
   desenhar: (lt) => guarita(lt, { apto: '507', maoD: 'interfone', luzRua: 0.7, visitante: clara(lt, { expr: 'neutro' }) }) + HD('00:18'),
 });
 cena({
-  fala: 'Não abre pra ninguém, moço.', voz: { ...V_LURDES, velocidade: '-22%', tom: '-14Hz' }, ...INTERFONE,
+  fala: 'Não abre pra ninguém, moço.', voz: { ...V_LURDES, velocidade: '-10%', tom: '-5Hz' }, ...INTERFONE,
   desenhar: (lt) => guarita(lt, { apto: '507', maoD: 'interfone', luzRua: 0.6, visitante: clara(lt, { expr: 'neutro' }) }) + pisca(lt, 0.4) + HD('00:19'),
 });
 cena({
@@ -154,7 +154,7 @@ cena({
 
 // ---------- 4 · as câmeras ----------
 cena({
-  fala: 'A câmera da entrada... tem alguém atrás dela.', voz: EU('-8%', '-6Hz'),
+  fala: 'A câmera da entrada. Tem alguém atrás dela.', voz: EU('+0%'),
   desenhar: (lt, c) => { som('suspense', 0.2, 0.5); return camEntrada(lt, '00:19:42', lim((lt - c.w('alguém')) / 0.4)) + HD('00:19'); },
 });
 cena({
@@ -166,15 +166,15 @@ cena({
   },
 });
 cena({
-  fala: '...Eu já atendi.', voz: EU('-12%', '-8Hz'),
+  fala: 'Eu já atendi.', voz: EU('-4%'),
   desenhar: (lt) => guarita(lt, { luzRua: 0.6, visitante: clara(lt, { expr: 'neutro', olhar: [0, 0] }) }) + vinheta(0.7) + HD('00:20'),
 });
 cena({
-  fala: 'Tô descendo. Fica longe da porta.', voz: { ...V_LURDES, velocidade: '-18%', tom: '-12Hz' }, ...INTERFONE,
+  fala: 'Tô descendo. Fica longe da porta.', voz: { ...V_LURDES, velocidade: '-8%', tom: '-5Hz' }, ...INTERFONE,
   desenhar: (lt, c) => camElevador(lt, lt < c.dur * 0.35 ? 5 : lt < c.dur * 0.7 ? 4 : 3, '00:20:15') + HD('00:20'),
 });
 cena({
-  fala: 'Abre! Tem alguém atrás de mim! Abre essa porta!', voz: { ...V_CLARA, velocidade: '+16%', tom: '+4Hz' }, rotulo: 'MOÇA NA PORTA', corLegenda: LARANJA,
+  fala: 'Abre! Tem alguém atrás de mim! Abre essa porta!', voz: { ...V_CLARA, velocidade: '+14%' }, rotulo: 'MOÇA NA PORTA', corLegenda: LARANJA,
   desenhar(lt) {
     som('batida', 0.1, 1); som('batida', 1.2, 1);
     const tr = Math.sin(lt * 50) * 8;
