@@ -31,12 +31,44 @@ function quartoGamer(t, { luz = 1 } = {}) {
   s += `<rect x="-40" y="1010" width="380" height="240" rx="20" fill="#2E4A80" stroke="${GK}" stroke-width="8"/><path d="M -40 1040 Q 120 980 340 1050 L 340 1120 Q 160 1080 -40 1110 Z" fill="#3A5A9A" stroke="${GK}" stroke-width="6"/><path d="M 40 1060 Q 160 1100 260 1050 Q 220 1140 120 1130 Z" fill="#5A7A5A" stroke="${GK}" stroke-width="6"/><rect x="-40" y="900" width="60" height="350" fill="#5A3E2A" stroke="${GK}" stroke-width="7"/>`;
   // cadeira de escritório azul
   s += `<path d="M 640 860 Q 640 790 700 790 L 790 790 Q 850 790 850 860 L 840 1010 L 650 1010 Z" fill="#2E4A80" stroke="${GK}" stroke-width="8"/><rect x="630" y="1010" width="230" height="40" rx="14" fill="#2A3E6A" stroke="${GK}" stroke-width="7"/><rect x="730" y="1050" width="30" height="110" fill="#1A1C22"/><path d="M 640 1170 L 850 1170 M 745 1160 L 745 1200" stroke="#1A1C22" stroke-width="14" stroke-linecap="round"/><circle cx="650" cy="1200" r="14" fill="#1A1C22"/><circle cx="840" cy="1200" r="14" fill="#1A1C22"/>`;
-  // bagunça: roupas, caixa de pizza, latinhas, fios
-  s += `<path d="M 40 1500 Q 120 1420 240 1460 Q 320 1430 360 1520 Q 260 1560 120 1550 Z" fill="#5A7A5A" stroke="${GK}" stroke-width="6"/><path d="M 120 1460 Q 180 1480 220 1520" stroke="#3A5A3A" stroke-width="6" fill="none"/>`;
-  s += `<g transform="translate(860 1560) rotate(-8)"><rect x="-130" y="-30" width="260" height="60" fill="#D8B888" stroke="${GK}" stroke-width="6"/><path d="M -130 -30 L -60 -110 L 190 -100 L 130 -30 Z" fill="#E8C898" stroke="${GK}" stroke-width="6"/><circle cx="40" cy="-70" r="22" fill="#C8503A" opacity="0.7"/></g>`;
-  for (const [x, y, c] of [[420, 1640, '#C83A3A'], [470, 1660, '#3A7AC8'], [980, 1380, '#3AA05A'], [140, 1700, '#E8B83A']]) s += `<g transform="translate(${x} ${y}) rotate(80)"><rect x="-22" y="-40" width="44" height="80" rx="8" fill="${c}" stroke="${GK}" stroke-width="5"/></g>`;
-  s += `<path d="M 900 1230 Q 860 1400 700 1440 Q 560 1480 600 1600" fill="none" stroke="#1A1C22" stroke-width="7"/>`;
+  // bagunça pesada: manchas, roupas, pizzas, latinhas, papéis, pratos, meias, salgadinhos, garrafas, saco de lixo, fios
+  s += quartoBagunca(t);
   s += `<rect width="1080" height="1920" fill="#101430" opacity="${0.25 + (1 - luz) * 0.4}"/>`;
+  return s;
+}
+function quartoBagunca(t) {
+  let s = '';
+  const r = aleatorio(77);
+  // manchas no chão
+  for (let i = 0; i < 9; i++) s += `<ellipse cx="${r() * 1080}" cy="${1300 + r() * 600}" rx="${40 + r() * 70}" ry="${12 + r() * 20}" fill="#2A2420" opacity="0.35"/>`;
+  // em cima da mesa: latinhas empilhadas, copos, pacote de salgadinho, papéis
+  for (let i = 0; i < 7; i++) { const x = 480 + i * 22 + (i > 3 ? 300 : 0), c = ['#C83A3A', '#3A7AC8', '#3AA05A', '#E8B83A'][i % 4]; s += `<rect x="${x}" y="${770 - (i % 2) * 6}" width="20" height="48" rx="5" fill="${c}" stroke="${GK}" stroke-width="4"/>`; }
+  s += `<rect x="455" y="740" width="70" height="80" rx="8" fill="#F2F0E8" stroke="${GK}" stroke-width="5"/><path d="M 455 760 L 525 760" stroke="#C88A50" stroke-width="8"/>`;
+  s += `<path d="M 900 800 L 1000 800 L 990 760 L 910 750 Z" fill="#E86A2A" stroke="${GK}" stroke-width="5"/><text x="950" y="790" text-anchor="middle" font-family="Anton, sans-serif" font-size="22" fill="#FFE07A">CHIPS</text>`;
+  // roupa pendurada na cadeira e na estante
+  s += `<path d="M 650 800 Q 700 760 760 790 L 780 900 Q 720 930 660 880 Z" fill="#C85A5A" stroke="${GK}" stroke-width="6"/><path d="M 400 320 Q 430 380 410 450 L 440 450 Q 460 380 440 320 Z" fill="#E8D8A0" stroke="${GK}" stroke-width="5"/>`;
+  // cama: lençol revirado e roupas em cima
+  s += `<path d="M 30 1000 Q 120 950 200 1010 Q 160 1050 60 1040 Z" fill="#8A6AB8" stroke="${GK}" stroke-width="6"/><path d="M 180 990 Q 260 960 320 1010 L 300 1050 Q 240 1030 190 1040 Z" fill="#E8E0D0" stroke="${GK}" stroke-width="6"/>`;
+  // pilhas de roupa no chão
+  for (const [x, y, k, c1, c2] of [[150, 1500, 1.2, '#5A7A5A', '#3A5A3A'], [960, 1470, 1.0, '#3A5A9A', '#2A3E6A'], [420, 1760, 0.9, '#8A5A3A', '#6A3E22'], [80, 1820, 1.1, '#C85A5A', '#9A3A3A'], [880, 1800, 1.0, '#6A6A7A', '#4A4A5A'], [300, 1350, 0.8, '#E8C870', '#C8A040']]) s += `<g transform="translate(${x} ${y}) scale(${k})"><path d="M -130 20 Q -110 -60 -20 -50 Q 40 -90 110 -40 Q 150 0 120 30 Q 0 50 -130 20 Z" fill="${c1}" stroke="${GK}" stroke-width="6"/><path d="M -60 -30 Q 0 -10 50 -40 M -20 10 Q 40 20 90 -10" fill="none" stroke="${c2}" stroke-width="7"/><path d="M 80 20 L 150 60 L 130 80 L 70 40 Z" fill="${c1}" stroke="${GK}" stroke-width="5"/></g>`;
+  // caixas de pizza (uma aberta com fatia e mosca)
+  s += `<g transform="translate(860 1590) rotate(-8)"><rect x="-140" y="-30" width="280" height="64" fill="#D8B888" stroke="${GK}" stroke-width="6"/><path d="M -140 -30 L -70 -120 L 200 -110 L 140 -30 Z" fill="#E8C898" stroke="${GK}" stroke-width="6"/><path d="M -80 -10 L 40 -20 L -10 20 Z" fill="#F2C060" stroke="${GK}" stroke-width="5"/><circle cx="-20" cy="-6" r="8" fill="#C8503A"/></g>`;
+  s += `<g transform="translate(240 1680) rotate(10)"><rect x="-120" y="-24" width="240" height="48" fill="#D8B888" stroke="${GK}" stroke-width="6"/><rect x="-110" y="-56" width="220" height="40" fill="#C8A878" stroke="${GK}" stroke-width="5"/><circle cx="0" cy="-36" r="14" fill="#C8503A" opacity="0.6"/></g>`;
+  // prato sujo com moscas
+  s += `<ellipse cx="620" cy="1860" rx="90" ry="28" fill="#E8E8F0" stroke="${GK}" stroke-width="6"/><ellipse cx="610" cy="1856" rx="40" ry="12" fill="#B87A3A" opacity="0.8"/>` + [0, 1, 2].map((i) => { const a = t * (4 + i) + i * 2; return `<circle cx="${620 + Math.cos(a) * 60}" cy="${1800 + Math.sin(a * 1.4) * 26}" r="6" fill="${GK}"/>`; }).join('');
+  // latinhas espalhadas (deitadas e amassadas)
+  for (let i = 0; i < 14; i++) { const x = 40 + r() * 1000, y = 1320 + r() * 580, c = ['#C83A3A', '#3A7AC8', '#3AA05A', '#E8B83A', '#B0B0C0'][i % 5], rot = r() * 180; s += `<g transform="translate(${x} ${y}) rotate(${rot})"><rect x="-18" y="-34" width="36" height="68" rx="7" fill="${c}" stroke="${GK}" stroke-width="5"/><rect x="-18" y="-34" width="36" height="10" fill="#D8D8E0" stroke="${GK}" stroke-width="3"/></g>`; }
+  // papéis amassados, meias, salgadinhos, garrafas
+  for (let i = 0; i < 12; i++) { const x = r() * 1080, y = 1300 + r() * 600; const k = 0.8 + r() * 0.6; s += `<g transform="translate(${x} ${y}) scale(${k}) rotate(${r() * 360})"><path d="M -20 -6 L -12 -20 L 4 -16 L 18 -22 L 22 -4 L 16 12 L 2 20 L -14 16 L -22 4 Z" fill="#F2F0E8" stroke="${GK}" stroke-width="4" stroke-linejoin="round"/><path d="M -12 -8 L 2 2 L -4 14 M 2 2 L 14 -6" fill="none" stroke="#9A988C" stroke-width="3"/></g>`; }
+  for (const [x, y, rot] of [[700, 1700, 30], [990, 1700, -40], [40, 1400, 60]]) s += `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M -10 -50 L 14 -50 L 14 10 Q 14 30 40 30 L 40 50 Q -10 50 -10 10 Z" fill="#F2F0E8" stroke="${GK}" stroke-width="5"/><rect x="-10" y="-50" width="24" height="12" fill="#C83A3A"/></g>`;
+  for (const [x, y, rot] of [[520, 1500, -30], [1010, 1880, 20]]) s += `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M -40 -30 L 40 -30 L 46 30 L -46 30 Z" fill="#E86A2A" stroke="${GK}" stroke-width="5"/><circle cx="-60" cy="20" r="9" fill="#F2B040" stroke="${GK}" stroke-width="3"/><circle cx="-80" cy="34" r="8" fill="#F2B040" stroke="${GK}" stroke-width="3"/></g>`;
+  for (const [x, y, rot] of [[380, 1880, 75], [760, 1420, -70]]) s += `<g transform="translate(${x} ${y}) rotate(${rot})"><rect x="-16" y="-60" width="32" height="110" rx="10" fill="#7AC8A8" stroke="${GK}" stroke-width="5" opacity="0.9"/><rect x="-8" y="-80" width="16" height="22" fill="#3A7A5A" stroke="${GK}" stroke-width="4"/></g>`;
+  // saco de lixo cheio no canto
+  s += `<g transform="translate(1010 1300)"><path d="M -90 120 Q -110 0 -50 -50 L -20 -90 L 20 -90 L 50 -50 Q 110 0 90 120 Z" fill="#22262E" stroke="${GK}" stroke-width="7"/><path d="M -20 -90 L -30 -120 M 20 -90 L 34 -118" stroke="#22262E" stroke-width="10" stroke-linecap="round"/><path d="M -40 0 Q -20 40 -40 90" stroke="#4A4E58" stroke-width="6" fill="none"/></g>`;
+  // fios enrolados
+  s += `<path d="M 900 1230 Q 860 1400 700 1440 Q 560 1480 600 1600 Q 640 1700 500 1720 Q 380 1740 420 1820" fill="none" stroke="#1A1C22" stroke-width="7"/><path d="M 960 1230 Q 1040 1500 900 1700" fill="none" stroke="#1A1C22" stroke-width="6"/><rect x="410" y="1810" width="40" height="26" rx="4" fill="#E8E8F0" stroke="${GK}" stroke-width="4"/>`;
+  // livros caídos
+  s += `<g transform="translate(560 1330) rotate(-12)"><rect x="-60" y="-14" width="120" height="28" fill="#3A7AC8" stroke="${GK}" stroke-width="5"/><rect x="-50" y="-40" width="110" height="26" fill="#C84A3A" stroke="${GK}" stroke-width="5" transform="rotate(8)"/></g>`;
   return s;
 }
 const quartoGamerBorrado = (t) => fundoCache('qgb', t, (tt) => `<defs><filter id="qgbF"><feGaussianBlur stdDeviation="12"/></filter></defs><g filter="url(#qgbF)">${quartoGamer(tt)}</g><rect width="1080" height="1920" fill="#0E1430" opacity="0.3"/>`);
