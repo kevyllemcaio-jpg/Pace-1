@@ -364,9 +364,59 @@ def trilha_misterio(dur):
     return rev
 
 
+def trilha_epica(dur):
+    """Aventura/fantasia: cordas sustentadas, arpejo, tambores graves (taiko) e metais nas viradas."""
+    n = int(dur * SR)
+    hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+    s = np.zeros(n)
+    bpm = 92
+    bt = 60 / bpm
+    acordes = [[50, 57, 62, 65], [46, 53, 58, 62], [48, 55, 60, 64], [45, 52, 57, 61]]  # Dm Bb C A
+    compasso = bt * 4
+    for k in range(int(dur / compasso) + 1):
+        i0 = int(k * compasso * SR)
+        a = acordes[k % 4]
+        xx = t(compasso + 1)
+        e = np.minimum(1, xx / 0.4) * np.minimum(1, (compasso + 1 - xx) / 0.8)
+        cordas = sum(np.sin(2 * np.pi * hz(m) * xx + 0.3 * np.sin(2 * np.pi * 5 * xx)) + 0.3 * np.sin(4 * np.pi * hz(m) * xx) for m in a) * e * 0.035
+        fim = min(len(cordas), n - i0)
+        if fim > 0:
+            s[i0:i0 + fim] += cordas[:fim]
+        for j in range(8):  # arpejo em colcheias
+            i1 = int((k * compasso + j * bt / 2) * SR)
+            m = a[[0, 1, 2, 3, 2, 1, 2, 3][j]] + 12
+            x2 = t(0.5)
+            p = (np.sin(2 * np.pi * hz(m) * x2) + 0.4 * np.sin(4 * np.pi * hz(m) * x2)) * np.exp(-x2 * 6) * 0.04
+            fim = min(len(p), n - i1)
+            if fim > 0:
+                s[i1:i1 + fim] += p[:fim]
+        for j, g in [(0, 1.0), (1.5, 0.6), (2, 0.9), (3, 0.5), (3.5, 0.7)]:  # tambores
+            i1 = int((k * compasso + j * bt) * SR)
+            x2 = t(0.6)
+            d = np.sin(2 * np.pi * (60 + 50 * np.exp(-x2 * 20)) * x2) * np.exp(-x2 * 7) * 0.32 * g
+            d += np.random.default_rng(k * 10 + int(j * 2)).normal(0, 1, len(x2)) * np.exp(-x2 * 40) * 0.05 * g
+            fim = min(len(d), n - i1)
+            if fim > 0:
+                s[i1:i1 + fim] += d[:fim]
+        if k % 4 == 3:  # metais
+            i1 = int((k * compasso + 2 * bt) * SR)
+            x2 = t(bt * 2)
+            br = sum(np.sign(np.sin(2 * np.pi * hz(m) * x2)) * 0.5 + np.sin(2 * np.pi * hz(m) * x2) for m in [a[0] + 12, a[2] + 12]) * np.minimum(1, x2 / 0.05) * np.exp(-x2 * 1.2) * 0.025
+            fim = min(len(br), n - i1)
+            if fim > 0:
+                s[i1:i1 + fim] += br[:fim]
+    rev = np.copy(s)
+    for dd, g in [(0.08, 0.3), (0.17, 0.2), (0.29, 0.14)]:
+        k = int(dd * SR)
+        rev[k:] += s[:-k] * g
+    fade = int(2 * SR)
+    rev[-fade:] *= np.linspace(1, 0, fade)
+    return rev
+
+
 def trilha_trechos(dur, trechos):
     """Trilha que muda de estilo em instantes dados ('t=estilo,...'), com transição de 1,5 s."""
-    gera = {'terror': trilha_terror, 'calma': lambda d: trilha_calma(d) * 1.4, 'misterio': lambda d: trilha_misterio(d) * 2.2, 'silencio': lambda d: np.zeros(int(d * SR)), 'alegre': trilha}
+    gera = {'terror': trilha_terror, 'calma': lambda d: trilha_calma(d) * 1.4, 'misterio': lambda d: trilha_misterio(d) * 2.2, 'silencio': lambda d: np.zeros(int(d * SR)), 'alegre': trilha, 'epica': lambda d: trilha_epica(d) * 1.6}
     pts = sorted((float(a), b) for a, b in (p.split('=') for p in trechos.split(',')))
     n = int(dur * SR)
     x = np.arange(n) / SR

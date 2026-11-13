@@ -60,7 +60,7 @@ function duracaoFala(arq, palavras) {
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
       '<body><canvas id="gl" width="1080" height="1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px"></canvas><svg id="tela" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js', 'silvermoon.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js', 'silvermoon.js', 'isekai.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
@@ -83,18 +83,27 @@ function duracaoFala(arq, palavras) {
       execFileSync('python3', [path.join(pastaEstudio, 'voz.py'), fala, mp3, voz.voz, voz.velocidade, js, voz.tom || '+0Hz'], { stdio: 'inherit' });
       console.log('ok');
     }
-    const palavras = JSON.parse(fs.readFileSync(js, 'utf8'));
+    let palavras = JSON.parse(fs.readFileSync(js, 'utf8'));
     const ATRASO = await page.evaluate(() => ATRASO_FALA + PAUSA_FALA);
-    tempos.push({ dur: Math.max(durs[i], duracaoFala(mp3, palavras) + ATRASO), palavras });
     // Tratamento da voz (grave mais quente, compressão leve, ambiente): soa mais humano.
     let final = mp3;
     const trat = await page.evaluate(() => window.TRATAR_VOZ || false);
+    const encurtar = await page.evaluate(() => !!window.ENCURTAR_PAUSAS);
     if (trat) {
       // 'seco': só equalização e compressão (sem o eco de ambiente)
       const seco = trat === 'seco';
-      final = mp3.replace(/\.mp3$/, seco ? '-seco-trat.wav' : '-trat.wav');
-      if (!fs.existsSync(final)) ffmpeg(['-i', mp3, '-af', `highpass=f=70,equalizer=f=180:t=q:w=1:g=${seco ? 2 : 3},equalizer=f=3500:t=q:w=1.5:g=2,acompressor=threshold=-18dB:ratio=3:attack=10:release=120,${seco ? '' : 'aecho=0.8:0.5:35:0.12,'}loudnorm=I=-16`, final]);
+      final = mp3.replace(/\.mp3$/, (seco ? '-seco' : '') + (encurtar ? '-curto' : '') + '-trat.wav');
+      // encurtar: pausas longas entre frases viram ~0,3 s (a voz sintética para demais no ponto final)
+      const pausas = encurtar ? 'silenceremove=stop_periods=-1:stop_duration=0.25:stop_threshold=-34dB:stop_silence=0.22,' : '';
+      if (!fs.existsSync(final)) ffmpeg(['-i', mp3, '-af', `${pausas}highpass=f=70,equalizer=f=180:t=q:w=1:g=${seco ? 2 : 3},equalizer=f=3500:t=q:w=1.5:g=2,acompressor=threshold=-18dB:ratio=3:attack=10:release=120,${seco ? '' : 'aecho=0.8:0.5:35:0.12,'}loudnorm=I=-16`, final]);
+      if (encurtar && palavras.length) {
+        // a fala termina ~0,3 s antes do fim do arquivo novo (o silêncio final também vira 0,3 s)
+        const durNova = parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', final]).toString());
+        const k = Math.min(1, Math.max(0.5, (durNova - 0.2) / palavras[palavras.length - 1].fim));
+        palavras = palavras.map((p) => ({ ...p, inicio: p.inicio * k, fim: p.fim * k }));
+      }
     }
+    tempos.push({ dur: Math.max(durs[i], duracaoFala(mp3, palavras) + ATRASO), palavras });
     audios.push(final);
   }
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
