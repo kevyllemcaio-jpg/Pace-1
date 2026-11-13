@@ -52,13 +52,13 @@ function duracaoFala(arq, palavras) {
 }
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.setContent(
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
-      '<body><svg id="tela" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
+      '<body><canvas id="gl" width="1080" height="1920" style="position:absolute;left:0;top:0"></canvas><svg id="tela" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
