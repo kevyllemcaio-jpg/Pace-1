@@ -64,6 +64,16 @@ function kyleCabeca({ expr = 'neutro', t = 0, olhar = [0, 0], suor = false, verg
   s += `<path d="M -166 -60 Q -190 -150 -150 -205 Q -170 -250 -110 -262 Q -100 -305 -40 -290 Q -10 -330 40 -300 Q 90 -320 116 -270 Q 175 -270 162 -205 Q 196 -160 166 -60 Q 150 -130 110 -150 Q 120 -110 92 -100 Q 70 -150 30 -158 Q 26 -120 -6 -112 Q -18 -158 -60 -150 Q -66 -110 -100 -104 Q -110 -146 -138 -136 Q -150 -100 -166 -60 Z" fill="${VZ.cabelo}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`;
   s += `<path d="M -90 -250 Q -60 -268 -30 -258 M 30 -276 Q 60 -284 84 -262" fill="none" stroke="#4A4250" stroke-width="7" stroke-linecap="round"/>`;
   }
+  // boné (aba virada pro lado, com texto na frente)
+  if (VZ.bone) {
+    const C = VZ.boneCor || '#8A8A7A', A = VZ.boneAba || '#5E5E52';
+    s += `<path d="M -176 -96 Q -186 -330 0 -334 Q 186 -330 176 -96 Q 0 -140 -176 -96 Z" fill="${C}" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>` +
+      `<path d="M -176 -100 Q -270 -110 -310 -60 Q -220 -40 -130 -96 Z" fill="${A}" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M 0 -334 L 0 -130 M -90 -318 Q -110 -220 -96 -122 M 90 -318 Q 110 -220 96 -122" fill="none" stroke="${TK}" stroke-width="4" opacity="0.35"/>` +
+      `<circle cx="0" cy="-332" r="12" fill="${A}" stroke="${TK}" stroke-width="5"/>` +
+      `<text x="0" y="-188" text-anchor="middle" font-family="Anton, sans-serif" font-size="78" fill="#F4F0E0" stroke="${TK}" stroke-width="5" paint-order="stroke" transform="rotate(-5 0 -200)">${VZ.boneTexto || 'PRO'}</text>` +
+      `<ellipse cx="-60" cy="-260" rx="40" ry="16" fill="#5A4A3A" opacity="0.25"/><ellipse cx="80" cy="-150" rx="30" ry="12" fill="#5A4A3A" opacity="0.25"/>`;
+  }
   // sobrancelhas
   for (const l of [-1, 1]) s += `<path d="M ${l * 22} ${-96 + (E.bi || 0)} Q ${l * 64} ${-118 + ((E.bi || 0) + (E.be || 0)) / 2} ${l * 112} ${-100 + (E.be || 0)}" fill="none" stroke="${VZ.cabelo}" stroke-width="16" stroke-linecap="round"/>`;
   // olhos
