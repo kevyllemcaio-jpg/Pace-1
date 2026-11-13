@@ -137,7 +137,7 @@ function duracaoFala(arq, palavras) {
     const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
     for (let f = de; f < ate; f++) {
       await desenhar(f / 30);
-      const quadro = await page.screenshot({ type: 'jpeg', quality: 92 });
+      const quadro = await page.screenshot({ type: 'jpeg', quality: 92, timeout: 0 });
       if (!ff.stdin.write(quadro)) await new Promise((r) => ff.stdin.once('drain', r));
       if (f % 30 === 0) process.stdout.write(`\rquadros: ${f - de}/${ate - de}`);
     }
