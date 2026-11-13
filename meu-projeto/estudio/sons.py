@@ -150,7 +150,7 @@ def trilha(dur):
         p = sum(np.sin(2 * np.pi * hz(m) * x) + 0.3 * np.sin(4 * np.pi * hz(m) * x) for m in acorde) * np.exp(-x * 9) * 0.07
         s[j:j + len(p)] += p[: max(0, min(len(p), n - j))]
     s = s[: int(dur * SR)]
-    fade = int(1.5 * SR)
+    fade = min(len(s), int(1.5 * SR))
     s[-fade:] *= np.linspace(1, 0, fade)
     return s * 0.9
 
@@ -209,10 +209,186 @@ def trilha_terror(dur):
     return s
 
 
+def _lp(r, a):
+    y = np.zeros_like(r)
+    a = np.broadcast_to(a, r.shape)
+    for i in range(1, len(r)):
+        y[i] = y[i - 1] + a[i] * (r[i] - y[i - 1])
+    return y
+
+
+def uivo():
+    """Uivo longo de lobo: tom que sobe, segura e cai, com vibrato e harmônicos."""
+    d = 3.2
+    x = t(d)
+    f = 340 + 260 * np.sin(np.pi * np.minimum(1, x / 1.2) / 2) - 220 * np.maximum(0, x - 2.2)
+    f = f * (1 + 0.012 * np.sin(2 * np.pi * 5.5 * x))
+    fase = 2 * np.pi * np.cumsum(f) / SR
+    s = np.sin(fase) + 0.35 * np.sin(2 * fase) + 0.12 * np.sin(3 * fase)
+    s += 0.15 * _lp(np.random.default_rng(11).normal(0, 1, len(x)), 0.15)
+    e = np.minimum(1, x / 0.35) * np.minimum(1, (d - x) / 0.9)
+    out = s * e * 0.35
+    rev = np.copy(out)
+    for dd, g in [(0.09, 0.4), (0.17, 0.3), (0.29, 0.22), (0.45, 0.15)]:
+        k = int(dd * SR)
+        rev[k:] += out[:-k] * g
+    return rev
+
+
+def rosnado():
+    """Rosnado grave e áspero."""
+    d = 1.8
+    x = t(d)
+    f = 70 + 15 * np.sin(2 * np.pi * 3 * x)
+    tom = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * 0.5
+    r = _lp(np.random.default_rng(12).normal(0, 1, len(x)), 0.08) * 3
+    am = 0.6 + 0.4 * np.abs(np.sin(2 * np.pi * 11 * x))
+    return (tom * 0.4 + r * 0.6) * am * np.minimum(1, x / 0.2) * np.minimum(1, (d - x) / 0.4) * 0.6
+
+
+def rugido():
+    """Rugido forte (ataque da criatura)."""
+    d = 1.6
+    x = t(d)
+    f = 120 + 160 * np.exp(-x * 2)
+    tom = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR))
+    r = _lp(np.random.default_rng(13).normal(0, 1, len(x)), 0.25) * 2
+    return np.clip((tom * 0.5 + r * 0.7) * np.minimum(1, x / 0.05) * np.exp(-x * 1.4), -1, 1) * 0.8
+
+
+def galho():
+    """Galho quebrando: estalo seco."""
+    x = t(0.25)
+    r = np.random.default_rng(14).normal(0, 1, len(x))
+    s = r * np.exp(-x * 60)
+    s[int(0.04 * SR):] += r[: len(x) - int(0.04 * SR)] * np.exp(-x[: len(x) - int(0.04 * SR)] * 80) * 0.6
+    return s * 0.8
+
+
+def folhas():
+    """Arbustos mexendo."""
+    d = 1.4
+    x = t(d)
+    r = np.random.default_rng(15).normal(0, 1, len(x))
+    r = r - _lp(r, 0.1)
+    am = np.abs(np.sin(2 * np.pi * 2.3 * x)) * np.sin(np.pi * x / d)
+    return r * am * 0.35
+
+
+def coracao():
+    """Batimento cardíaco acelerado (8 batidas)."""
+    d = 4.0
+    out = np.zeros(int(SR * d))
+    for k in range(8):
+        for dd, g in [(0, 1), (0.16, 0.7)]:
+            x = t(0.15)
+            b = np.sin(2 * np.pi * (60 - 20 * x) * x) * np.exp(-x * 25) * g
+            i0 = int((k * 0.5 + dd) * SR)
+            out[i0:i0 + len(b)] += b[: max(0, min(len(b), len(out) - i0))]
+    return out * 0.9
+
+
+def grilos():
+    """Ambiente noturno: grilos (10 s)."""
+    d = 10.0
+    x = t(d)
+    s = np.zeros_like(x)
+    for f0, ritmo, fase in [(4200, 2.1, 0), (4700, 1.7, 0.4), (3900, 2.6, 1.1)]:
+        trem = (np.sin(2 * np.pi * 30 * x) > 0) * (np.sin(2 * np.pi * ritmo * x + fase) > 0.3)
+        s += np.sin(2 * np.pi * f0 * x) * trem * 0.05
+    return s
+
+
+def porta():
+    """Porta batendo."""
+    x = t(0.6)
+    b = np.sin(2 * np.pi * (85 - 30 * x) * x) * np.exp(-x * 9)
+    r = np.random.default_rng(16).normal(0, 1, len(x)) * np.exp(-x * 30) * 0.5
+    return (b + r) * 0.8
+
+
+def sino():
+    """Sinal da escola."""
+    x = t(1.6)
+    tr = (np.sin(2 * np.pi * 18 * x) > 0) * 0.6 + 0.4
+    return np.sin(2 * np.pi * 980 * x) * tr * np.minimum(1, x / 0.02) * np.minimum(1, (1.6 - x) / 0.2) * 0.25
+
+
+def impacto():
+    """Batida grave de corte (cinema)."""
+    x = t(2.5)
+    s = np.sin(2 * np.pi * (45 + 40 * np.exp(-x * 6)) * x) * np.exp(-x * 1.6)
+    r = _lp(np.random.default_rng(17).normal(0, 1, len(x)), 0.05) * np.exp(-x * 2.5) * 3
+    return np.clip(s * 0.9 + r * 0.5, -1, 1)
+
+
+def suspense():
+    """Riser de suspense (3 s): ruído e tom subindo."""
+    d = 3.0
+    x = t(d)
+    f = 200 + 600 * (x / d) ** 2
+    s = np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.3 + _lp(np.random.default_rng(18).normal(0, 1, len(x)), 0.05 + 0.3 * x / d) * 0.8
+    return s * (x / d) ** 1.5 * 0.7
+
+
+def trilha_misterio(dur):
+    """Pads escuros e um arpejo lento em menor (mistério/romance sobrenatural)."""
+    n = int(dur * SR)
+    x = np.arange(n) / SR
+    hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+    s = np.zeros(n)
+    acordes = [[45, 52, 57, 60], [41, 48, 53, 57], [43, 50, 55, 59], [40, 47, 52, 56]]  # Am F G E
+    seg = 6.0
+    for k in range(int(dur / seg) + 1):
+        i0 = int(k * seg * SR)
+        a = acordes[k % 4]
+        xx = t(seg + 2)
+        e = np.minimum(1, xx / 1.5) * np.minimum(1, (seg + 2 - xx) / 2)
+        p = sum(np.sin(2 * np.pi * hz(m) * xx) + 0.2 * np.sin(2 * np.pi * hz(m) * 1.003 * xx) for m in a) * e * 0.05
+        fim = min(len(p), n - i0)
+        if fim > 0:
+            s[i0:i0 + fim] += p[:fim]
+        for j, m in enumerate([a[1] + 12, a[2] + 12, a[3] + 12, a[2] + 12]):
+            i1 = int((k * seg + j * 1.5) * SR)
+            xx = t(2.5)
+            p = np.sin(2 * np.pi * hz(m) * xx) * np.exp(-xx * 2) * 0.05
+            fim = min(len(p), n - i1)
+            if fim > 0:
+                s[i1:i1 + fim] += p[:fim]
+    rev = np.copy(s)
+    for dd, g in [(0.11, 0.35), (0.23, 0.25), (0.37, 0.18)]:
+        k = int(dd * SR)
+        rev[k:] += s[:-k] * g
+    fade = int(2 * SR)
+    rev[-fade:] *= np.linspace(1, 0, fade)
+    return rev
+
+
+def trilha_trechos(dur, trechos):
+    """Trilha que muda de estilo em instantes dados ('t=estilo,...'), com transição de 1,5 s."""
+    gera = {'terror': trilha_terror, 'calma': lambda d: trilha_calma(d) * 1.4, 'misterio': lambda d: trilha_misterio(d) * 2.2, 'silencio': lambda d: np.zeros(int(d * SR)), 'alegre': trilha}
+    pts = sorted((float(a), b) for a, b in (p.split('=') for p in trechos.split(',')))
+    n = int(dur * SR)
+    x = np.arange(n) / SR
+    out = np.zeros(n)
+    cache = {}
+    for i, (ini, est) in enumerate(pts):
+        fim = pts[i + 1][0] if i + 1 < len(pts) else dur + 5
+        if est not in cache:
+            y = gera[est](dur)
+            cache[est] = np.pad(y, (0, max(0, n - len(y))))[:n]
+        m = np.clip((x - ini + 0.75) / 1.5, 0, 1) * np.clip((fim + 0.75 - x) / 1.5, 0, 1)
+        out += cache[est] * m
+    return out
+
+
 if __name__ == '__main__':
     pasta, dur = sys.argv[1], float(sys.argv[2])
     estilo = sys.argv[3] if len(sys.argv) > 3 else 'alegre'
     os.makedirs(pasta, exist_ok=True)
-    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay), ('batida', batida), ('ding', ding)]:
+    for nome, f in [('pop', pop), ('bolha', bolha), ('carimbo', carimbo), ('caixa', caixa), ('saida', saida), ('whoosh', whoosh), ('replay', replay), ('batida', batida), ('ding', ding), ('uivo', uivo), ('rosnado', rosnado), ('rugido', rugido), ('galho', galho), ('folhas', folhas), ('coracao', coracao), ('grilos', grilos), ('porta', porta), ('sino', sino), ('impacto', impacto), ('suspense', suspense)]:
         salvar(os.path.join(pasta, nome + '.wav'), f())
-    salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha_terror(dur) if estilo == 'terror' else trilha(dur))
+    if len(sys.argv) > 4 and sys.argv[4]:
+        salvar(os.path.join(pasta, 'trilha.wav'), trilha_trechos(dur, sys.argv[4]))
+    else:
+      salvar(os.path.join(pasta, 'trilha.wav'), trilha_calma(dur) if estilo == 'calma' else trilha_terror(dur) if estilo == 'terror' else trilha(dur))

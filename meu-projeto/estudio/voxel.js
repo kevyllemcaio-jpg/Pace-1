@@ -11,12 +11,13 @@ function iniciar3D() {
   if (R3) return R3;
   const canvas = document.getElementById('gl');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
-  renderer.setSize(1080, 1920, false);
+  const k = window.RES3D || 1;
+  renderer.setSize(Math.round(1080 * k), Math.round(1920 * k), false);
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = window.SOMBRA_SUAVE ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = window.EXPOSICAO || 1.2;
   const camera = new THREE.PerspectiveCamera(38, 1080 / 1920, 0.05, 400);
   R3 = { renderer, camera, cenas: {} };
   return R3;
@@ -24,6 +25,7 @@ function iniciar3D() {
 // Desenha a cena e devolve '' (a sobreposição SVG fica por cima do canvas).
 function render3D(scene, cam) {
   const r = iniciar3D();
+  if (cam && cam.tremor) { const k = cam.tremor, tt = (cam.t || 0) * 37; cam = { ...cam, pos: [cam.pos[0] + Math.sin(tt) * k, cam.pos[1] + Math.sin(tt * 1.3 + 1) * k, cam.pos[2]] }; }
   if (cam) { r.camera.position.set(...cam.pos); r.camera.lookAt(...cam.alvo); if (cam.fov) { r.camera.fov = cam.fov; r.camera.updateProjectionMatrix(); } }
   r.renderer.render(scene, r.camera);
   return '';
@@ -69,6 +71,7 @@ function caixa(w, h, d, mats) {
 // ---------- rosto (16x16) ----------
 // st: { expr: neutro|sorriso|triste|surpreso|bravo|apaixonado|medo, piscar, fala, lobo (0..1) }
 function desenhaRosto(g, C, st) {
+  if (C.rosto) return C.rosto(g, st);
   const P = C.pele, Ps = C.peleSombra || sombrear(C.pele, 0.85);
   px(g, 0, 0, P, 16, 16);
   // sombra suave no queixo e laterais
@@ -175,9 +178,10 @@ function criarPersonagem(C) {
   (C.blocosCorpo || []).forEach(([x, y, z, w, h, d, cor]) => { const b = caixa(w, h, d, matCor(cor)); b.position.set(x * U, y * U, z * U); quadril.add(b); });
   // olhos brilhando (lobo)
   const brilho = new THREE.Group(); cabeca.add(brilho);
-  for (const lx of [-2.5, 2.5]) { const b = new THREE.Mesh(new THREE.BoxGeometry(1.6 * U, 0.8 * U, 0.2 * U), matCor('#FFD23A', { emissivo: '#FFB800' })); b.position.set(lx * U, -0.5 * U, 4.12 * U); brilho.add(b); }
+  for (const lx of [-(C.brilhoX ?? 1.75), C.brilhoX ?? 1.75]) { const b = new THREE.Mesh(new THREE.BoxGeometry(1.5 * U, (C.brilhoH ?? 1) * U, 0.2 * U), matCor(C.corBrilho || '#FFD23A', { emissivo: C.corBrilho || '#FFB800' })); b.position.set(lx * U, (C.brilhoY ?? -0.5) * U, (C.brilhoZ ?? 4.12) * U); brilho.add(b); }
   brilho.visible = false;
   raiz.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  if (C.escala) raiz.scale.setScalar(C.escala);
   return { C, raiz, quadril, tronco, pescoco, cabeca, bracoE, bracoD, pernaE, pernaD, brilho, st: '' };
 }
 // Pose/animação. o: { t, x, z, rot (graus), andar (velocidade 0..1), correr, olhar: [yaw, pitch] graus,
@@ -237,35 +241,56 @@ function blocos(tipo, posicoes, o = {}) {
   return m;
 }
 function chao(raio, tipo = 'grama', y = -0.5) {
-  const pos = [];
-  for (let x = -raio; x <= raio; x++) for (let z = -raio; z <= raio; z++) pos.push([x, y, z]);
-  return blocos(tipo, pos, { sombra: false });
+  // um plano só com a textura repetida (muito mais leve que milhares de cubos)
+  const base = texBloco(tipo);
+  const t = base.clone(); t.needsUpdate = true;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(raio * 2 + 1, raio * 2 + 1);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(raio * 2 + 1, raio * 2 + 1), new THREE.MeshStandardMaterial({ map: t, roughness: 0.95 }));
+  m.rotation.x = -Math.PI / 2; m.position.y = y + 0.5; m.receiveShadow = true;
+  return m;
 }
-function arvore(x, z, h = 5, semente = 1) {
-  const g = new THREE.Group();
-  const tr = []; for (let y = 0; y < h; y++) tr.push([x, y + 0.5, z]);
-  g.add(blocos('tronco', tr));
-  const r = aleatorio(semente), fl = [];
+// Copa e tronco de uma árvore como listas de posições (juntadas depois num só InstancedMesh).
+function posArvore(x, z, h, semente, tr, fl) {
+  for (let y = 0; y < h; y++) tr.push([x, y + 0.5, z]);
+  const r = aleatorio(semente), cel = new Set(), lst = [];
   for (let dx = -2; dx <= 2; dx++) for (let dz = -2; dz <= 2; dz++) for (let dy = 0; dy < 3; dy++) {
     if (Math.abs(dx) + Math.abs(dz) + dy > 4 || (Math.abs(dx) === 2 && Math.abs(dz) === 2 && r() < 0.7)) continue;
-    fl.push([x + dx, h - 0.5 + dy, z + dz]);
+    cel.add(dx + ',' + dy + ',' + dz); lst.push([dx, dy, dz]);
   }
-  g.add(blocos('folha', fl));
+  // só os blocos da casca (os de dentro nunca aparecem)
+  const tem = (a, b, c) => cel.has(a + ',' + b + ',' + c) || (a === 0 && c === 0 && b < 0);
+  lst.forEach(([dx, dy, dz]) => {
+    if (tem(dx + 1, dy, dz) && tem(dx - 1, dy, dz) && tem(dx, dy + 1, dz) && tem(dx, dy - 1, dz) && tem(dx, dy, dz + 1) && tem(dx, dy, dz - 1)) return;
+    fl.push([x + dx, h - 0.5 + dy, z + dz]);
+  });
+}
+function arvores(lista) {
+  // agrupa em blocos de 12x12 para a câmera (e a sombra) ignorarem o que está fora do quadro
+  const g = new THREE.Group(), grupos = {};
+  lista.forEach(([x, z, h, sem]) => {
+    const k = Math.floor(x / 12) + ',' + Math.floor(z / 12);
+    const q = grupos[k] || (grupos[k] = { tr: [], fl: [] });
+    posArvore(x, z, h, sem, q.tr, q.fl);
+  });
+  Object.values(grupos).forEach(({ tr, fl }) => {
+    for (const m of [blocos('tronco', tr), blocos('folha', fl)]) { m.computeBoundingSphere(); g.add(m); }
+  });
   return g;
 }
+function arvore(x, z, h = 5, semente = 1) { return arvores([[x, z, h, semente]]); }
 function floresta3D(raio, densidade = 0.06, semente = 3, vazio = 3) {
-  const g = new THREE.Group(), r = aleatorio(semente);
+  const r = aleatorio(semente), lista = [];
   for (let x = -raio; x <= raio; x += 3) for (let z = -raio; z <= raio; z += 3) {
     if (Math.abs(x) < vazio && Math.abs(z) < vazio) continue;
-    if (r() < densidade * 9) g.add(arvore(x + Math.floor(r() * 2), z + Math.floor(r() * 2), 4 + Math.floor(r() * 4), Math.floor(r() * 1000)));
+    if (r() < densidade * 9) lista.push([x + Math.floor(r() * 2), z + Math.floor(r() * 2), 4 + Math.floor(r() * 4), Math.floor(r() * 1000)]);
   }
-  return g;
+  return arvores(lista);
 }
 function lua3D(cor = '#FFF4D6', pos = [-20, 28, -60], tam = 6) {
   const g = new THREE.Group();
-  const m = new THREE.Mesh(new THREE.BoxGeometry(tam, tam, 0.5), new THREE.MeshBasicMaterial({ color: cor }));
+  const m = new THREE.Mesh(new THREE.BoxGeometry(tam, tam, 0.5), new THREE.MeshBasicMaterial({ color: cor, fog: false }));
   m.position.set(...pos); g.add(m);
-  const halo = new THREE.Mesh(new THREE.PlaneGeometry(tam * 3, tam * 3), new THREE.MeshBasicMaterial({ color: cor, transparent: true, opacity: 0.12 }));
+  const halo = new THREE.Mesh(new THREE.PlaneGeometry(tam * 3, tam * 3), new THREE.MeshBasicMaterial({ color: cor, transparent: true, opacity: 0.12, fog: false }));
   halo.position.set(pos[0], pos[1], pos[2] - 0.5); g.add(halo);
   return g;
 }
@@ -273,7 +298,7 @@ function estrelas(n = 400, semente = 7) {
   const r = aleatorio(semente), p = [];
   for (let i = 0; i < n; i++) { const a = r() * Math.PI * 2, e = 0.15 + r() * 1.2; p.push(Math.cos(a) * 120 * Math.cos(e), 120 * Math.sin(e), Math.sin(a) * 120 * Math.cos(e)); }
   const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
-  return new THREE.Points(geo, new THREE.PointsMaterial({ color: '#ffffff', size: 0.5, sizeAttenuation: true }));
+  return new THREE.Points(geo, new THREE.PointsMaterial({ color: '#ffffff', size: 0.5, sizeAttenuation: true, fog: false }));
 }
 // Casa simples em blocos (paredes de madeira/tijolo, telhado, janelas iluminadas e porta).
 function casa3D(x, z, { w = 7, d = 6, h = 4, parede = 'madeira', luz = true, rot = 0 } = {}) {
@@ -289,20 +314,20 @@ function casa3D(x, z, { w = 7, d = 6, h = 4, parede = 'madeira', luz = true, rot
   g.add(blocos(parede, par));
   g.add(blocos('telhado', tel));
   if (vid.length) g.add(blocos('vidro', vid, { emissivo: luz ? '#FFC870' : undefined }));
-  if (luz) { const l = new THREE.PointLight('#FFB860', 3, 8); l.position.set(0, 2, -d / 2 - 0.5); g.add(l); }
+  if (luz && window.LUZ_CASAS) { const l = new THREE.PointLight('#FFB860', 3, 8); l.position.set(0, 2, -d / 2 - 0.5); g.add(l); }
   g.position.set(x, 0, z); g.rotation.y = rot;
   return g;
 }
 // Cena-base com céu, neblina e luzes. hora: 'noite'|'por'|'dia'|'luaSangue'
 function cenaBase(hora = 'noite') {
   const sc = new THREE.Scene();
-  const C = { noite: ['#0B1230', '#3A5AA8', '#C8D8FF', 0.6], por: ['#F2A65A', '#FFD0A0', '#FFF0D8', 1.4], dia: ['#8CCBF0', '#FFFFFF', '#FFF8E8', 1.8], luaSangue: ['#2A0810', '#A0303A', '#FF7A7A', 0.9] }[hora];
+  const C = { noite: ['#141C40', '#8098E0', '#B8C8FF', 1.7], por: ['#F2A65A', '#FFD0A0', '#FFF0D8', 1.4], dia: ['#8CCBF0', '#FFFFFF', '#FFF8E8', 1.8], luaSangue: ['#2A0810', '#C0404A', '#FF7A7A', 1.4] }[hora];
   sc.background = new THREE.Color(C[0]);
   sc.fog = new THREE.FogExp2(C[0], hora === 'dia' ? 0.01 : hora === 'por' ? 0.014 : 0.025);
-  sc.add(new THREE.HemisphereLight(C[1], '#1A1410', hora === 'dia' ? 1.1 : 0.55));
+  sc.add(new THREE.HemisphereLight(C[1], hora === 'dia' ? '#1A1410' : '#2A2A3A', hora === 'dia' ? 1.1 : hora === 'por' ? 0.55 : 1.05));
   const sol = new THREE.DirectionalLight(C[2], C[3]);
   sol.position.set(-12, 20, 10); sol.castShadow = true;
-  sol.shadow.mapSize.set(2048, 2048); Object.assign(sol.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20, near: 1, far: 80 });
+  sol.shadow.mapSize.set(window.SOMBRA3D || 2048, window.SOMBRA3D || 2048); Object.assign(sol.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20, near: 1, far: 80 });
   sol.shadow.bias = -0.0005;
   sc.add(sol);
   if (hora !== 'dia') sc.add(estrelas());

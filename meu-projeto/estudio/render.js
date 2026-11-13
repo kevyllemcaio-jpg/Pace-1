@@ -23,6 +23,8 @@ const previa = args.includes('--previa');
 const capa = args.includes('--capa');
 const story = args.includes('--story'); // saida/<ep>-story.png (função STORY() do episódio)
 const comVoz = !args.includes('--sem-voz');
+const quadrosArg = (args.find((a) => a.startsWith('--quadros=')) || '').split('=')[1]; // uso interno: faixa de quadros a:b
+const paralelo = parseInt((args.find((a) => a.startsWith('--paralelo=')) || '=1').split('=')[1], 10); // N navegadores ao mesmo tempo
 const so = (args.find((a) => a.startsWith('--cena=')) || '').split('=')[1]; // --cena=5 (prévia de uma cena)
 const pastaEstudio = __dirname;
 const pastaSaida = path.join(pastaEstudio, '..', 'saida');
@@ -56,9 +58,9 @@ function duracaoFala(arq, palavras) {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.setContent(
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
-      '<body><canvas id="gl" width="1080" height="1920" style="position:absolute;left:0;top:0"></canvas><svg id="tela" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
+      '<body><canvas id="gl" width="1080" height="1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px"></canvas><svg id="tela" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js', 'silvermoon.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
@@ -93,6 +95,7 @@ function duracaoFala(arq, palavras) {
     audios.push(final);
   }
   const { duracao, inicios, sons } = await page.evaluate((t) => definirTempos(t), tempos);
+  if (!quadrosArg) console.log(`duração: ${duracao.toFixed(1)} s · ${inicios.length} cenas`);
   const desenhar = (t) => page.evaluate((t) => { document.getElementById('tela').innerHTML = renderizar(t); }, t);
 
   if (story) {
@@ -127,26 +130,56 @@ function duracaoFala(arq, palavras) {
     return;
   }
 
+  const total = Math.round(duracao * 30);
+  const gravarQuadros = async (de, ate, arq) => {
+    const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-c:v', 'mjpeg', '-i', '-',
+      '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
+    const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
+    for (let f = de; f < ate; f++) {
+      await desenhar(f / 30);
+      const quadro = await page.screenshot({ type: 'jpeg', quality: 92 });
+      if (!ff.stdin.write(quadro)) await new Promise((r) => ff.stdin.once('drain', r));
+      if (f % 30 === 0) process.stdout.write(`\rquadros: ${f - de}/${ate - de}`);
+    }
+    ff.stdin.end();
+    await fimFF;
+  };
+  // Processo auxiliar do modo paralelo: só grava a sua faixa de quadros.
+  if (quadrosArg) {
+    const [de, ate, arq] = quadrosArg.split(':');
+    await gravarQuadros(+de, Math.min(total, +ate), arq);
+    await browser.close();
+    return;
+  }
+
   // Efeitos e trilha antes dos quadros (falha cedo se algo der errado).
   const pastaSons = path.join(pastaSaida, '.sons');
   const estiloTrilha = await page.evaluate(() => window.TRILHA || 'alegre');
-  execFileSync('python3', [path.join(pastaEstudio, 'sons.py'), pastaSons, String(duracao), estiloTrilha], { stdio: 'inherit' });
+  const trechos = await page.evaluate(() => (window.TRILHA_CENAS ? Object.entries(TRILHA_CENAS).map(([i, e]) => `${INICIOS[+i].toFixed(2)}=${e}`).join(',') : ''));
+  execFileSync('python3', [path.join(pastaEstudio, 'sons.py'), pastaSons, String(duracao), estiloTrilha, trechos], { stdio: 'inherit' });
 
-  // 2) Vídeo sem áudio: quadros em JPEG direto para o ffmpeg.
+  // 2) Vídeo sem áudio: quadros em JPEG direto para o ffmpeg (em N partes simultâneas, se pedido).
   const semAudio = path.join(pastaSaida, `.${nome}-sem-audio.mp4`);
-  const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-c:v', 'mjpeg', '-i', '-',
-    '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio], { stdio: ['pipe', 'inherit', 'inherit'] });
-  const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
-  const total = Math.round(duracao * 30);
-  for (let f = 0; f < total; f++) {
-    await desenhar(f / 30);
-    const quadro = await page.screenshot({ type: 'jpeg', quality: 92 });
-    if (!ff.stdin.write(quadro)) await new Promise((r) => ff.stdin.once('drain', r));
-    if (f % 30 === 0) process.stdout.write(`\rquadros: ${f}/${total}`);
+  if (paralelo > 1) {
+    await browser.close();
+    const tam = Math.ceil(total / paralelo);
+    const partes = [];
+    await Promise.all(Array.from({ length: paralelo }, (_, k) => {
+      const arq = path.join(pastaSaida, `.${nome}-parte${k}.mp4`);
+      partes.push(arq);
+      return new Promise((ok, erro) => {
+        const pr = spawn('node', [__filename, epArg, `--quadros=${k * tam}:${(k + 1) * tam}:${arq}`, ...(comVoz ? [] : ['--sem-voz'])], { stdio: ['ignore', k === 0 ? 'inherit' : 'ignore', 'inherit'] });
+        pr.on('close', (c) => (c === 0 ? ok() : erro(new Error(`parte ${k} saiu com ${c}`))));
+      });
+    }));
+    const lista = path.join(pastaSaida, `.${nome}-partes.txt`);
+    fs.writeFileSync(lista, partes.map((a) => `file '${a}'`).join('\n'));
+    ffmpeg(['-f', 'concat', '-safe', '0', '-i', lista, '-c', 'copy', semAudio]);
+    partes.forEach((a) => fs.rmSync(a)); fs.rmSync(lista);
+  } else {
+    await gravarQuadros(0, total, semAudio);
+    await browser.close();
   }
-  ff.stdin.end();
-  await fimFF;
-  await browser.close();
   console.log(`\rquadros: ${total}/${total}`);
 
   // 3) Áudio: trilha + whoosh nos cortes + efeitos + narração.
