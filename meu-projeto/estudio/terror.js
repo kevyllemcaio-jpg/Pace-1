@@ -101,3 +101,46 @@ function tituloTerror(linhas, y0 = 170) {
   return `<rect width="1080" height="${y0 + linhas.length * 120 - 40}" fill="#000" opacity="0.7"/>` +
     linhas.map(([t, cor], i) => `<text x="540" y="${y0 + i * 120}" text-anchor="middle" font-family="Anton, sans-serif" font-size="${Math.min(110, 1800 / t.length)}" fill="${cor || '#fff'}" stroke="#000" stroke-width="10" paint-order="stroke">${esc(t)}</text>`).join('');
 }
+
+// ---------- versão "cenário normal" (iluminado) ----------
+// Sala do apartamento vista pelo protagonista: abajur, sofá, TV, janela, cozinha e a porta na parede.
+function salaPOV(t, { luzCorredor = 1, sombra = true, tremer = 0, desfoque = 0, tv = true } = {}) {
+  let s = `<defs><radialGradient id="abajur" cx="0.15" cy="0.45" r="0.6"><stop offset="0" stop-color="#FFE2A6" stop-opacity="0.55"/><stop offset="1" stop-color="#FFE2A6" stop-opacity="0"/></radialGradient>${desfoque ? `<filter id="dsfT"><feGaussianBlur stdDeviation="${desfoque}"/></filter>` : ''}</defs>`;
+  let g = `<rect width="1080" height="1920" fill="#D9C2A0"/><rect y="1460" width="1080" height="460" fill="#8A5E3C"/>`;
+  for (let i = 0; i < 9; i++) g += `<line x1="0" y1="${1480 + i * 52}" x2="1080" y2="${1480 + i * 52}" stroke="#6E4A2E" stroke-width="3" opacity="0.5"/>`;
+  g += `<rect y="1440" width="1080" height="26" fill="#F4EBDC"/>`;
+  // janela com a cidade à noite
+  g += `<rect x="40" y="280" width="340" height="520" fill="#1A2244" stroke="#F4EBDC" stroke-width="20"/><circle cx="300" cy="360" r="30" fill="#F4F1E0"/>`;
+  { const r = aleatorio(5); let x = 50; while (x < 370) { const w = 30 + r() * 40, h = 120 + r() * 260; g += `<rect x="${x}" y="${790 - h}" width="${w}" height="${h}" fill="#2A3460"/>`; for (let j = 0; j < 4; j++) if (r() > 0.4) g += `<rect x="${x + 6 + r() * (w - 14)}" y="${790 - h + 14 + r() * (h - 30)}" width="6" height="9" fill="#FFD27A"/>`; x += w + 3; } }
+  g += `<line x1="210" y1="280" x2="210" y2="800" stroke="#F4EBDC" stroke-width="10"/><path d="M 20 260 Q 60 540 30 830 L 90 830 Q 110 540 80 260 Z" fill="#B85A4A" opacity="0.9"/>`;
+  // quadro
+  g += `<rect x="880" y="360" width="160" height="200" fill="#F4EBDC" stroke="#5A4030" stroke-width="10"/><path d="M 900 520 L 950 440 L 990 500 L 1020 470 L 1030 520 Z" fill="#7FA6D8"/>`;
+  // porta na parede
+  g += `<rect x="455" y="470" width="360" height="1000" fill="#5A4030"/><rect x="470" y="485" width="330" height="985" fill="#6B4A32" stroke="#3A2A1E" stroke-width="6"/>`;
+  for (const [x, y, w, h] of [[500, 520, 120, 360], [650, 520, 120, 360], [500, 930, 120, 500], [650, 930, 120, 500]]) g += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#4A3426" stroke-width="7"/>`;
+  g += `<circle cx="635" cy="760" r="12" fill="#C9A24A" stroke="#3A2A1E" stroke-width="4"/><circle cx="770" cy="990" r="18" fill="#C9A24A" stroke="#3A2A1E" stroke-width="4"/>`;
+  for (let i = 0; i < 5; i++) g += `<ellipse cx="${690 + i * 14}" cy="${900 + Math.sin(i / 4 * Math.PI) * 16}" rx="7" ry="5" fill="none" stroke="#C8C8D0" stroke-width="3"/>`;
+  g += `<rect x="470" y="1462" width="330" height="10" fill="#FFE8B0" opacity="${0.9 * luzCorredor}"/>`;
+  const temSombra = sombra === 'pisca' ? Math.sin(t * 7) > 0.2 : sombra;
+  if (temSombra && luzCorredor > 0.1) for (const x of [580, 660]) g += `<rect x="${x}" y="1462" width="34" height="10" fill="#2A1E16"/>`;
+  // TV (luz azul piscando na parede direita)
+  if (tv) g += `<rect x="900" y="980" width="200" height="140" rx="8" fill="#15131A" stroke="#000" stroke-width="6"/><rect x="912" y="992" width="188" height="116" fill="${['#3A6AB0', '#5A8AD0', '#2A4A90'][Math.floor(t * 3) % 3]}"/><ellipse cx="960" cy="1100" rx="260" ry="320" fill="#5A8AD0" opacity="0.08"/>`;
+  // abajur e sofá (primeiro plano)
+  g += `<rect x="120" y="980" width="10" height="460" fill="#3A2A1E"/><path d="M 60 980 L 190 980 L 160 880 L 90 880 Z" fill="#F4E2B8" stroke="#3A2A1E" stroke-width="5"/>`;
+  g += `<rect width="1080" height="1920" fill="url(#abajur)"/>`;
+  g += `<path d="M -40 1560 Q -40 1420 80 1420 L 420 1420 Q 520 1420 520 1520 L 520 1760 L -40 1760 Z" fill="#4A6A5A" stroke="#2A3A30" stroke-width="8"/><rect x="-40" y="1560" width="560" height="200" fill="#3A5A4A"/>`;
+  g += `<rect x="560" y="1640" width="380" height="40" rx="8" fill="#6B4A32" stroke="#3A2A1E" stroke-width="6"/><rect x="600" y="1600" width="200" height="40" rx="4" fill="#E8C48A" stroke="#3A2A1E" stroke-width="4"/><circle cx="700" cy="1620" r="10" fill="#D9473F"/>`;
+  if (tremer) g = tremor(g, t, 0, tremer, 99);
+  return s + (desfoque ? `<g filter="url(#dsfT)">${g}</g>` : g);
+}
+// Porta em close, versão iluminada (parede clara, piso de madeira).
+function portaClara(t, o = {}) {
+  return portaPOV(t, o).replace('<rect width="1080" height="1920" fill="#1A1714"/>', '<rect width="1080" height="1920" fill="#D9C2A0"/>').replace('<rect x="150" y="80" width="780" height="1660" fill="#0E0C0A"/>', '<rect x="150" y="80" width="780" height="1660" fill="#5A4030"/>').replace('<rect y="1726" width="1080" height="194" fill="#100E0C"/>', '<rect y="1726" width="1080" height="194" fill="#8A5E3C"/>');
+}
+// Olho mágico com corredor claro e borda de madeira em vez de preto.
+function olhoClaro(t, conteudo, { luz = 1 } = {}) {
+  return olhoMagico(t, conteudo, { luz }).replace('fill="#2A3A5A" opacity="0.18"', 'fill="#FFF2D0" opacity="0.14"').replace('stop-opacity="0.95"', 'stop-opacity="0.75"').replace('<rect width="1080" height="1920" fill="#000"/>', '<rect width="1080" height="1920" fill="#4A3426"/>' + Array.from({ length: 14 }, (_, i) => `<path d="M 0 ${i * 140} Q 540 ${i * 140 + 30} 1080 ${i * 140}" fill="none" stroke="#3A2A1E" stroke-width="6" opacity="0.6"/>`).join(''));
+}
+function acabamentoClaro(t, { pisc = 0 } = {}) {
+  return (pisc ? pisca(t, pisc) : '') + vinheta(0.45) + granulado(t, 0.06);
+}

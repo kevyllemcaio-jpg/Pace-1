@@ -220,7 +220,32 @@ function montarLegenda(c) {
   }));
 }
 
+// Modo "frase inteira" (window.LEGENDA_FRASE): a fala toda em 2–3 linhas, na cor do personagem
+// (c.corLegenda) e com etiqueta opcional (c.rotulo), como nos vídeos POV de terror.
+function legendaFrase(c, lt) {
+  if (!c.fala || c.semLegenda || lt < 0.1) return '';
+  const txt = c.fala.replace(/\*/g, '');
+  const pal = txt.split(/\s+/);
+  const linhas = [];
+  let at = '';
+  for (const w of pal) { if ((at + ' ' + w).trim().length > 20 && at) { linhas.push(at); at = w; } else at = (at + ' ' + w).trim(); }
+  if (at) linhas.push(at);
+  // até 3 linhas por vez: divide a fala em páginas acompanhando o tempo da narração
+  const pags = [];
+  for (let i = 0; i < linhas.length; i += 3) pags.push(linhas.slice(i, i + 3));
+  const pg = Math.min(pags.length - 1, Math.floor(lim(lt / Math.max(0.1, c.dur - 0.3)) * pags.length));
+  const ls = pags[pg];
+  const tam = 64, y0 = (c.legendaY || window.LEGENDA_Y || 1450) - (ls.length - 1) * tam * 0.55;
+  const cor = c.corLegenda || '#FFFFFF';
+  const k = 0.85 + 0.15 * salto((lt - 0.1) / 0.18);
+  let s = `<g transform="translate(540 ${y0}) scale(${k}) translate(-540 ${-y0})">`;
+  if (c.rotulo) { const w = c.rotulo.length * 17 + 50; s += `<rect x="${540 - w / 2}" y="${y0 - tam - 34}" width="${w}" height="40" rx="20" fill="#0E1A2A" stroke="${cor}" stroke-width="3"/><text x="540" y="${y0 - tam - 6}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="26" fill="${cor}" letter-spacing="2">${esc(c.rotulo)}</text>`; }
+  ls.forEach((l, i) => (s += `<text x="540" y="${y0 + i * tam * 1.08}" text-anchor="middle" font-family="${window.FONTE_LEGENDA || 'Baloo, sans-serif'}" font-weight="800" font-size="${tam}" fill="${cor}" stroke="#0E0D14" stroke-width="12" stroke-linejoin="round" paint-order="stroke">${esc(l)}</text>`));
+  return s + `</g>`;
+}
+
 function legenda(c, lt) {
+  if (window.LEGENDA_FRASE) return legendaFrase(c, lt);
   const b = c.blocos.find((x) => lt >= x.ini && lt < x.fim);
   if (!b) return '';
   const partes = b.idx.map((i) => c.toks[i]);

@@ -58,7 +58,7 @@ function duracaoFala(arq, palavras) {
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
       '<body><svg id="tela" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
   await page.evaluate(() => document.fonts.ready);
 
@@ -74,11 +74,11 @@ function duracaoFala(arq, palavras) {
       audios.push(null);
       continue;
     }
-    const id = crypto.createHash('sha1').update(`${voz.voz}|${voz.velocidade}|${fala}`).digest('hex').slice(0, 12);
+    const id = crypto.createHash('sha1').update(`${voz.voz}|${voz.velocidade}|${voz.tom || ''}|${fala}`).digest('hex').slice(0, 12);
     const mp3 = path.join(pastaVoz, `${id}.mp3`), js = path.join(pastaVoz, `${id}.json`);
     if (!fs.existsSync(mp3) || !fs.existsSync(js)) {
       process.stdout.write(`voz: cena ${i + 1}... `);
-      execFileSync('python3', [path.join(pastaEstudio, 'voz.py'), fala, mp3, voz.voz, voz.velocidade, js], { stdio: 'inherit' });
+      execFileSync('python3', [path.join(pastaEstudio, 'voz.py'), fala, mp3, voz.voz, voz.velocidade, js, voz.tom || '+0Hz'], { stdio: 'inherit' });
       console.log('ok');
     }
     const palavras = JSON.parse(fs.readFileSync(js, 'utf8'));

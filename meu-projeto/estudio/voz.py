@@ -18,8 +18,8 @@ if os.path.exists(CA):
 import edge_tts
 
 
-async def main(texto, saida, voz='pt-BR-AntonioNeural', velocidade='+12%', arq_palavras=None):
-    com = edge_tts.Communicate(texto, voz, rate=velocidade, boundary='WordBoundary')
+async def main(texto, saida, voz='pt-BR-AntonioNeural', velocidade='+12%', arq_palavras=None, tom='+0Hz'):
+    com = edge_tts.Communicate(texto, voz, rate=velocidade, pitch=tom, boundary='WordBoundary')
     palavras = []
     with open(saida, 'wb') as f:
         async for parte in com.stream():
@@ -49,4 +49,4 @@ async def com_tentativas(*args, tentativas=9):
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.exit(__doc__)
-    asyncio.run(com_tentativas(*sys.argv[1:6]))
+    asyncio.run(com_tentativas(*sys.argv[1:7]))
