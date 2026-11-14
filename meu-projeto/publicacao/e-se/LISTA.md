@@ -12,7 +12,7 @@ texto e cores próprios.
 | # | Título (como estava no canal) | Texto que aparecia na capa deles | Nossa ideia de capa (original) | Status |
 |---|---|---|---|---|
 | 1 | E SE Você Fosse o ÚNICO MENINO Numa Festa do Pijama? | "TODAS MINHAS" | Bolinha gritando de unhas rosa, com a placa de JURADO, no escuro. Texto: **"SÓ EU DE MENINO?!"** | pronto (festa-do-pijama.mp4) |
-| 2 | E SE Você Fosse o ÚNICO MENINO Numa Escola Só de Meninas? | "VOCÊ" + seta | Bolinha sozinho numa fila de carteiras. Texto: **"SÓ EU?!"** | |
+| 2 | E SE Você Fosse o ÚNICO MENINO Numa Escola Só de Meninas? | "VOCÊ" + seta | Bolinha suando na carteira, cercado de meninas. Texto: **"30 MENINAS E EU?!"** | pronto (escola-so-de-meninas.mp4) |
 | 3 | E SE Todos Pudessem OUVIR os Seus Pensamentos? | "Sua mãe é tão..." | Balão de pensamento escapando da cabeça do bolinha no jantar de família. Texto: **"NÃO PENSA!"** | |
 | 4 | E SE Você OUVISSE o Que Toda Menina Pensa de Você? | "EU OUVI ISSO" | Bolinha com fone gigante e vários balõezinhos. Texto: **"OUVI TUDO"** | |
 | 5 | E SE Você Pudesse VER Quem Tem CRUSH em Você? | "amiga / CRUSH / amiga" | Bolinha com óculos de raio-X e corações flutuando sobre a turma. Texto: **"VI TUDO"** | |
