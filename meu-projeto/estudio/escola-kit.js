@@ -5,12 +5,12 @@ const EW = 1920, EH = 1080;
 
 // Figura de corpo inteiro (origem = centro da cabeça; pés em y ≈ 540 locais).
 function figura(p = {}) {
-  const q = { x: 960, y: 1000, esc: 0.85, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#5A3420', roupa: '#1E5BFF',
+  const q = { x: 960, y: 880, esc: 0.9, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#5A3420', roupa: '#1E5BFF',
     calca: '#0E0E0E', sapato: '#FFFFFF', capuz: false, longo: false, espetado: true, oculos: false, bone: null, capacete: null,
     saia: null, pose: 'base', ...p };
   const falar = q.fala && Math.sin(q.t * 15) > 0;
   const bob = Math.sin(q.t * 2.2) * 3;
-  let s = `<g transform="translate(${q.x} ${q.y + bob}) scale(${q.esc})">`;
+  let s = `<g transform="translate(${q.x} ${q.y - 546 * q.esc + bob}) scale(${q.esc})">`;
   s += `<ellipse cx="0" cy="546" rx="170" ry="20" fill="#000" opacity="0.28"/>`;
   // pernas e sapatos
   if (q.saia) {
@@ -182,7 +182,7 @@ function patio(lt, o = {}) {
   if (o.fogo) s += fogo(lt, 700, 540, 520, 300, o.fogo) + fumaca(lt, 960, 520, 8, '#3A3A44');
   s += `<rect x="0" y="820" width="${EW}" height="260" fill="#1E3A2A"/><rect x="0" y="812" width="${EW}" height="16" fill="#4A4A55"/>`;
   // caminhão de bombeiros
-  s += `<g transform="translate(1320 600)"><rect x="0" y="120" width="420" height="200" rx="18" fill="#D7262B" stroke="#111" stroke-width="6"/><rect x="300" y="60" width="130" height="260" rx="20" fill="#D7262B" stroke="#111" stroke-width="6"/><rect x="330" y="90" width="80" height="80" rx="10" fill="#9ADCFF" stroke="#111" stroke-width="4"/><circle cx="80" cy="330" r="50" fill="#222"/><circle cx="330" cy="330" r="50" fill="#222"/><circle cx="210" cy="330" r="50" fill="#222"/>`;
+  s += `<g transform="translate(1440 640) scale(0.78)"><rect x="0" y="120" width="420" height="200" rx="18" fill="#D7262B" stroke="#111" stroke-width="6"/><rect x="300" y="60" width="130" height="260" rx="20" fill="#D7262B" stroke="#111" stroke-width="6"/><rect x="330" y="90" width="80" height="80" rx="10" fill="#9ADCFF" stroke="#111" stroke-width="4"/><circle cx="80" cy="330" r="50" fill="#222"/><circle cx="330" cy="330" r="50" fill="#222"/><circle cx="210" cy="330" r="50" fill="#222"/>`;
   const piscar = Math.sin(lt * 12) > 0;
   s += `<rect x="150" y="96" width="110" height="26" rx="10" fill="${piscar ? '#FF3040' : '#3A6AFF'}"/><rect x="170" y="56" width="70" height="20" rx="8" fill="${piscar ? '#3A6AFF' : '#FF3040'}"/></g>`;
   if (o.escuro) s += `<rect width="${EW}" height="${EH}" fill="#000" opacity="${o.escuro}"/>`;
