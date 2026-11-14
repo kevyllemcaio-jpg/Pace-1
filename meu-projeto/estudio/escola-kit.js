@@ -3,6 +3,14 @@
 
 const EW = 1920, EH = 1080;
 
+
+// Braço fino com mão (cápsula + mão redonda), no lugar dos blocos de moletom
+function braco(x1, y1, x2, y2, cor, mao) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#111" stroke-width="58" stroke-linecap="round"/>` +
+    `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${cor}" stroke-width="48" stroke-linecap="round"/>` +
+    `<circle cx="${x2}" cy="${y2 + 26}" r="26" fill="${mao}" stroke="#111" stroke-width="5"/>`;
+}
+
 // Figura de corpo inteiro (origem = centro da cabeça; pés em y ≈ 540 locais).
 function figura(p = {}) {
   const q = { x: 960, y: 900, esc: 0.8, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#B0502A', roupa: '#141414',
@@ -31,11 +39,11 @@ function figura(p = {}) {
   }
   // braços
   if (q.pose === 'aponta') {
-    s += `<ellipse cx="-188" cy="300" rx="44" ry="120" fill="${q.roupa}" transform="rotate(12 -188 300)"/>`;
-    s += `<ellipse cx="0" cy="0" rx="44" ry="120" fill="${q.roupa}" transform="translate(205 205) rotate(-62)"/>`;
+    s += braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF');
+    s += braco(150, 230, 300, 120, q.roupa, q.pele || '#FFFFFF');
   } else {
-    s += `<ellipse cx="-188" cy="300" rx="44" ry="120" fill="${q.roupa}" transform="rotate(12 -188 300)"/>`;
-    s += `<ellipse cx="188" cy="300" rx="44" ry="120" fill="${q.roupa}" transform="rotate(-12 188 300)"/>`;
+    s += braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF');
+    s += braco(150, 230, 182, 420, q.roupa, q.pele || '#FFFFFF');
   }
   // pescoço
   s += `<rect x="-40" y="130" width="80" height="60" rx="20" fill="#F3F3F3"/>`;
