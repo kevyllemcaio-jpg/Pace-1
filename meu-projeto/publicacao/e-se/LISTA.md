@@ -23,7 +23,7 @@ texto e cores próprios.
 | 10 | E SE Você Virasse um MENINO? | (só desenho) | *Funciona melhor com uma personagem menina; dá para fazer como par do nº 9* | |
 | 11 | E SE Você Pudesse APRENDER Qualquer Coisa na Hora? | "LUTA PRA INICIANTES" | Bolinha em choque com o dicionário de chinês. Texto: **"APRENDI... CHINÊS?!"** | pronto (aprender-na-hora.mp4) |
 | 12 | E SE a Vida Real Tivesse OPÇÕES de Diálogo? | balões de escolha | Caixas de opção com a 3 selecionada e a mãe brava. Texto: **"ESCOLHE UMA!"** | pronto (opcoes-de-dialogo.mp4) |
-| 13 | E SE a Vida Real Te Desse DICAS Como num Videogame? | "Dica: CHAMA ELA PRA SAIR" | Barra de missão estilo jogo acima da cabeça dele. Texto: **"MISSÃO: ..."** | |
+| 13 | E SE a Vida Real Te Desse DICAS Como num Videogame? | "Dica: CHAMA ELA PRA SAIR" | Bolinha e a amiga comemorando "MISSÃO COMPLETA!". Texto: **"A VIDA É UM JOGO!"** | pronto (dicas-de-videogame.mp4) |
 | 14 | E SE Você Pudesse Controlar a Sua SORTE? | "SORTE" + velocímetro | Bolinha com o botão da sorte no 100 e trevos. Texto: **"SORTE NO MÁXIMO!"** | pronto (controlar-sorte.mp4) |
 | 15 | E se você tivesse DINHEIRO INFINITO? | "dinheiro infinito" | Bolinha com a carteira aberta e notas voando. Texto: **"DINHEIRO INFINITO!"** | pronto (dinheiro-infinito.mp4) |
 | — | E SE Você SALVASSE a Sua Escola de um ATIRADOR? | — | **Fora da lista**: tema de violência real em escola, que não vamos fazer. | descartado |
