@@ -7,7 +7,7 @@ const EW = 1920, EH = 1080;
 function figura(p = {}) {
   const q = { x: 960, y: 900, esc: 0.8, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#B0502A', roupa: '#141414',
     calca: '#0E0E0E', sapato: '#FFFFFF', capuz: false, longo: false, espetado: true, oculos: false, bone: null, capacete: null,
-    saia: null, pose: 'base', mochila: false, ...p };
+    saia: null, pose: 'base', mochila: false, semCabelo: false, ...p };
   const falar = q.fala && Math.sin(q.t * 15) > 0;
   const bob = Math.sin(q.t * 2.2) * 3;
   let s = `<g transform="translate(${q.x} ${q.y - 546 * q.esc + bob}) scale(${q.esc})">`;
@@ -43,7 +43,7 @@ function figura(p = {}) {
   if (q.longo) s += `<path d="M -165 -40 Q -205 120 -172 300 L 172 300 Q 205 120 165 -40 Z" fill="${q.cabelo}" stroke="#2A1A10" stroke-width="5"/>`;
   // cabeça
   s += `<circle cx="0" cy="0" r="150" fill="#FFFFFF" stroke="#E4E4E4" stroke-width="3"/>`;
-  if (!q.capacete) {
+  if (!q.capacete && !q.semCabelo) {
     s += `<path d="M -150 -10 Q -178 -160 -50 -168 Q -30 -230 30 -196 Q 120 -214 152 -60 Q 118 -108 70 -118 Q 36 -86 0 -120 Q -92 -112 -150 -10 Z" fill="${q.cabelo}"/>`;
     if (q.espetado) s += `<path d="M -150 -150 L -196 -206 L -120 -176 Z M -70 -190 L -92 -262 L -28 -204 Z M 16 -206 L 36 -290 L 66 -200 Z M 92 -176 L 150 -232 L 136 -150 Z M -14 -214 L 2 -262 L 22 -212 Z" fill="${q.cabelo}" stroke="#3A2010" stroke-width="5" stroke-linejoin="round"/>`;
   }
@@ -80,7 +80,7 @@ function figura(p = {}) {
 }
 
 // Presets de personagens
-const LEO = { capuz: true, mochila: true };       // Léo: moletom preto com capuz, mochila, cabelo castanho-alaranjado espetado
+const LEO = { roupa: '#F2B81E', calca: '#2F5FA8', sapato: '#FFFFFF', semCabelo: true };       // Léo: moletom preto com capuz, mochila, cabelo castanho-alaranjado espetado
 const ANA = { cabelo: '#3B2A3A', roupa: '#7A3B6E', calca: '#2B2B3A', oculos: true, longo: true, espetado: false, sapato: '#222' };
 const BIA = { cabelo: '#D8903A', roupa: '#F2A0C8', calca: '#3A3A5A', longo: true, espetado: false, sapato: '#222' };
 const NILTON = { cabelo: '#555', roupa: '#5A6A4A', calca: '#3A3A3A', bone: '#5A6A4A', espetado: false, sapato: '#222' };
