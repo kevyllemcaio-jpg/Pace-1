@@ -15,7 +15,7 @@ texto e cores próprios.
 | 2 | E SE Você Fosse o ÚNICO MENINO Numa Escola Só de Meninas? | "VOCÊ" + seta | Bolinha suando na carteira, cercado de meninas. Texto: **"30 MENINAS E EU?!"** | pronto (escola-so-de-meninas.mp4) |
 | 3 | E SE Todos Pudessem OUVIR os Seus Pensamentos? | "Sua mãe é tão..." | Balão "COPIEI DO PEDRO!" saindo da cabeça do bolinha na sala de aula. Texto: **"NÃO PENSA!"** | pronto (ouvir-pensamentos.mp4) |
 | 4 | E SE Você OUVISSE o Que Toda Menina Pensa de Você? | "EU OUVI ISSO" | Bolinha com fone gigante e vários balõezinhos. Texto: **"OUVI TUDO"** | |
-| 5 | E SE Você Pudesse VER Quem Tem CRUSH em Você? | "amiga / CRUSH / amiga" | Bolinha com óculos de raio-X e corações flutuando sobre a turma. Texto: **"VI TUDO"** | |
+| 5 | E SE Você Pudesse VER Quem Tem CRUSH em Você? | "amiga / CRUSH / amiga" | Bolinha de óculos de coração e a amiga com um coração gigante. Texto: **"QUEM GOSTA DE MIM?!"** | pronto (ver-crush.mp4) |
 | 6 | E SE TODAS as Garotas do Mundo Se Apaixonassem Por Você? | "NÓS TE AMAMOS" | Bolinha cercado de meninas com olhos de coração. Texto: **"TODAS APAIXONADAS!"** | pronto (garotas-apaixonadas.mp4) |
 | 7 | E SE Você e a Sua CRUSH Fossem os ÚLTIMOS Humanos Vivos? | "DIA 1 / DIA 30" | Cidade vazia, bolinha e a crush no telhado com um placar de dias. Texto: **"SÓ NÓS 2"** | |
 | 8 | E SE Você e a Sua CRUSH Ficassem SOZINHOS num Planeta? | "DIA 1 / DIA 30" | Planeta minúsculo, foguete quebrado. Texto: **"PRESOS!"** | |
