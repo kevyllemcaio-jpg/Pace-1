@@ -60,8 +60,14 @@ function duracaoFala(arq, palavras) {
     `<!doctype html><html><head><meta charset="utf-8"><style>${fonteCss()}html,body{margin:0;background:#000}svg{display:block}</style></head>` +
       '<body><canvas id="gl" width="1080" height="1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px"></canvas><svg id="tela" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></body></html>'
   );
-  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js', 'silvermoon.js', 'isekai.js', 'gamer-kit.js', 'gamer-arte.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
+  for (const arq of ['base.js', 'pessoas.js', 'cenarios.js', 'corpo.js', 'chibi.js', 'cartoon.js', 'historia-kit.js', 'anime.js', 'lobo.js', 'romance-kit.js', 'terror.js', 'portaria.js', 'posto.js', 'vendor/three.min.js', 'voxel.js', 'silvermoon.js', 'isekai.js', 'gamer-kit.js', 'gamer-arte.js', 'escola-kit.js']) await page.addScriptTag({ path: path.join(pastaEstudio, arq) });
   await page.addScriptTag({ path: path.resolve(epArg) });
+  // formato: vertical 1080x1920 (padrão) ou horizontal (o episódio define window.LARGURA / ALTURA)
+  const fmt = await page.evaluate(() => (window.LARGURA ? { w: window.LARGURA, h: window.ALTURA } : null));
+  if (fmt) {
+    await page.setViewportSize({ width: fmt.w, height: fmt.h });
+    await page.evaluate(({ w, h }) => { const t = document.getElementById('tela'); t.setAttribute('width', w); t.setAttribute('height', h); t.setAttribute('viewBox', `0 0 ${w} ${h}`); }, fmt);
+  }
   await page.evaluate(() => document.fonts.ready);
 
   // 1) Narração: um MP3 + tempos das palavras por cena (com cache).

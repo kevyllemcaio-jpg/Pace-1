@@ -223,6 +223,7 @@ function montarLegenda(c) {
 // Modo "frase inteira" (window.LEGENDA_FRASE): a fala toda em 2–3 linhas, na cor do personagem
 // (c.corLegenda) e com etiqueta opcional (c.rotulo), como nos vídeos POV de terror.
 function legendaFrase(c, lt) {
+  const CX_L = (window.LARGURA || 1080) / 2;
   if (!c.fala || c.semLegenda || lt < 0.1) return '';
   const txt = c.fala.replace(/\*/g, '');
   const pal = txt.split(/\s+/);
@@ -238,9 +239,9 @@ function legendaFrase(c, lt) {
   const tam = 64, y0 = (c.legendaY || window.LEGENDA_Y || 1450) - (ls.length - 1) * tam * 0.55;
   const cor = c.corLegenda || '#FFFFFF';
   const k = 0.85 + 0.15 * salto((lt - 0.1) / 0.18);
-  let s = `<g transform="translate(540 ${y0}) scale(${k}) translate(-540 ${-y0})">`;
-  if (c.rotulo) { const w = c.rotulo.length * 17 + 50; s += `<rect x="${540 - w / 2}" y="${y0 - tam - 34}" width="${w}" height="40" rx="20" fill="#0E1A2A" stroke="${cor}" stroke-width="3"/><text x="540" y="${y0 - tam - 6}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="26" fill="${cor}" letter-spacing="2">${esc(c.rotulo)}</text>`; }
-  ls.forEach((l, i) => (s += `<text x="540" y="${y0 + i * tam * 1.08}" text-anchor="middle" font-family="${window.FONTE_LEGENDA || 'Baloo, sans-serif'}" font-weight="800" font-size="${tam}" fill="${cor}" stroke="#0E0D14" stroke-width="12" stroke-linejoin="round" paint-order="stroke">${esc(l)}</text>`));
+  let s = `<g transform="translate(${CX_L} ${y0}) scale(${k}) translate(${-CX_L} ${-y0})">`;
+  if (c.rotulo) { const w = c.rotulo.length * 17 + 50; s += `<rect x="${CX_L - w / 2}" y="${y0 - tam - 34}" width="${w}" height="40" rx="20" fill="#0E1A2A" stroke="${cor}" stroke-width="3"/><text x="${CX_L}" y="${y0 - tam - 6}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="26" fill="${cor}" letter-spacing="2">${esc(c.rotulo)}</text>`; }
+  ls.forEach((l, i) => (s += `<text x="${CX_L}" y="${y0 + i * tam * 1.08}" text-anchor="middle" font-family="${window.FONTE_LEGENDA || 'Baloo, sans-serif'}" font-weight="800" font-size="${tam}" fill="${cor}" stroke="#0E0D14" stroke-width="12" stroke-linejoin="round" paint-order="stroke">${esc(l)}</text>`));
   return s + `</g>`;
 }
 
