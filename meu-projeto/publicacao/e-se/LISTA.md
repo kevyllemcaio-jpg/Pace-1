@@ -25,7 +25,7 @@ texto e cores próprios.
 | 12 | E SE a Vida Real Tivesse OPÇÕES de Diálogo? | balões de escolha | Duas caixas de opção, uma verde e uma vermelha, ao lado do bolinha suando. Texto: **"ESCOLHE!"** | |
 | 13 | E SE a Vida Real Te Desse DICAS Como num Videogame? | "Dica: CHAMA ELA PRA SAIR" | Barra de missão estilo jogo acima da cabeça dele. Texto: **"MISSÃO: ..."** | |
 | 14 | E SE Você Pudesse Controlar a Sua SORTE? | "SORTE" + velocímetro | Bolinha girando um botão de sorte com trevos voando. Texto: **"SORTE MÁX"** | |
-| 15 | E se você tivesse DINHEIRO INFINITO? | "dinheiro infinito" | Bolinha nadando em moedas. Texto: **"NÃO ACABA"** | |
+| 15 | E se você tivesse DINHEIRO INFINITO? | "dinheiro infinito" | Bolinha com a carteira aberta e notas voando. Texto: **"DINHEIRO INFINITO!"** | pronto (dinheiro-infinito.mp4) |
 | — | E SE Você SALVASSE a Sua Escola de um ATIRADOR? | — | **Fora da lista**: tema de violência real em escola, que não vamos fazer. | descartado |
 
 Observações:
