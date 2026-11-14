@@ -103,15 +103,15 @@ function armarios() {
     const t0 = i / 6, t1 = (i + 0.78) / 6;
     const topo = (t) => [720 * t, 120 + 180 * t], base = (t) => [720 * t, EH - 460 * t];
     const a = topo(t0), b = topo(t1), c = base(t1), d = base(t0);
-    s += `<polygon points="${a} ${b} ${c} ${d}" fill="#2F5FC8" stroke="#0E2060" stroke-width="4"/>`;
-    s += `<line x1="${(a[0] + b[0]) / 2}" y1="${(a[1] + b[1]) / 2 + 60}" x2="${(c[0] + d[0]) / 2}" y2="${(c[1] + d[1]) / 2 - 70}" stroke="#0E2060" stroke-width="5"/>`;
+    s += `<polygon points="${a} ${b} ${c} ${d}" fill="#FF7FA8" stroke="#8A2A50" stroke-width="5"/>`;
+    s += `<line x1="${(a[0] + b[0]) / 2}" y1="${(a[1] + b[1]) / 2 + 60}" x2="${(c[0] + d[0]) / 2}" y2="${(c[1] + d[1]) / 2 - 70}" stroke="#8A2A50" stroke-width="5"/>`;
   }
   for (let i = 0; i < 6; i++) {
     const t0 = i / 6, t1 = (i + 0.78) / 6;
     const topo = (t) => [EW - 720 * t, 120 + 180 * t], base = (t) => [EW - 720 * t, EH - 460 * t];
     const a = topo(t0), b = topo(t1), c = base(t1), d = base(t0);
-    s += `<polygon points="${a} ${b} ${c} ${d}" fill="#2F5FC8" stroke="#0E2060" stroke-width="4"/>`;
-    s += `<line x1="${(a[0] + b[0]) / 2}" y1="${(a[1] + b[1]) / 2 + 60}" x2="${(c[0] + d[0]) / 2}" y2="${(c[1] + d[1]) / 2 - 70}" stroke="#0E2060" stroke-width="5"/>`;
+    s += `<polygon points="${a} ${b} ${c} ${d}" fill="#FF7FA8" stroke="#8A2A50" stroke-width="5"/>`;
+    s += `<line x1="${(a[0] + b[0]) / 2}" y1="${(a[1] + b[1]) / 2 + 60}" x2="${(c[0] + d[0]) / 2}" y2="${(c[1] + d[1]) / 2 - 70}" stroke="#8A2A50" stroke-width="5"/>`;
   }
   return s;
 }
@@ -139,14 +139,14 @@ function fumaca(lt, x, y, n = 7, cor = '#3A3A44') {
 }
 // Corredor da escola (fogo opcional no fundo)
 function corredor(lt, o = {}) {
-  let s = `<rect width="${EW}" height="${EH}" fill="#2A3350"/>`;
-  s += `<polygon points="0,0 ${EW},0 1200,300 720,300" fill="#1B2236"/>`;
+  let s = `<rect width="${EW}" height="${EH}" fill="#3AB5A0"/>`;
+  s += `<polygon points="0,0 ${EW},0 1200,300 720,300" fill="#2A8A7E"/>`;
   for (const [x, y, w] of [[220, 40, 260], [640, 90, 110], [980, 90, 110], [1400, 40, 260]]) s += `<rect x="${x}" y="${y}" width="${w}" height="14" fill="#FFF6D8" opacity="${o.luz ?? 1}"/>`;
-  s += `<polygon points="0,120 720,300 720,620 0,${EH}" fill="#33466E"/><polygon points="${EW},120 1200,300 1200,620 ${EW},${EH}" fill="#33466E"/>`;
+  s += `<polygon points="0,120 720,300 720,620 0,${EH}" fill="#5FC8B5"/><polygon points="${EW},120 1200,300 1200,620 ${EW},${EH}" fill="#5FC8B5"/>`;
   s += armarios();
-  s += `<rect x="720" y="300" width="480" height="320" fill="#222C48"/>`;
+  s += `<rect x="720" y="300" width="480" height="320" fill="#FFB3C8"/>`;
   s += `<rect x="880" y="380" width="160" height="240" fill="#2E3A5C" stroke="#111" stroke-width="5"/>`;
-  s += `<polygon points="0,${EH} ${EW},${EH} 1200,620 720,620" fill="#5A4A44"/>`;
+  s += `<polygon points="0,${EH} ${EW},${EH} 1200,620 720,620" fill="#E8A45A"/>`;
   s += `<line x1="0" y1="${EH - 40}" x2="${EW}" y2="${EH - 40}" stroke="#776660" stroke-width="3" opacity="0.5"/>`;
   if (o.fogo) {
     s += `<rect x="720" y="300" width="480" height="320" fill="#FF8A3A" opacity="${0.25 + 0.1 * Math.sin(lt * 5)}"/>`;

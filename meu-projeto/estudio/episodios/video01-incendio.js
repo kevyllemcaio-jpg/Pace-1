@@ -13,8 +13,8 @@ window.ENCURTAR_PAUSAS = true;
 window.TRILHA = 'alegre';
 
 const V = {
-  narr: { voz: { voz: 'pt-BR-AntonioNeural', velocidade: '+2%' }, cor: '#F4EEDC', rotulo: 'NARRADOR' },
-  leo: { voz: { voz: 'pt-BR-AntonioNeural', velocidade: '+8%', tom: '+3Hz' }, cor: '#7FC8FF', rotulo: 'LÉO' },
+  narr: { voz: { voz: 'pt-BR-AntonioNeural', velocidade: '+2%' }, cor: '#FFD93D', rotulo: 'NARRADOR' },
+  leo: { voz: { voz: 'pt-BR-AntonioNeural', velocidade: '+8%', tom: '+3Hz' }, cor: '#FF8FC8', rotulo: 'LÉO' },
   bia: { voz: { voz: 'pt-BR-ThalitaMultilingualNeural', velocidade: '+6%' }, cor: '#F2A0C8', rotulo: 'BIA' },
   ana: { voz: { voz: 'pt-BR-FranciscaNeural', velocidade: '+4%' }, cor: '#D8B8FF', rotulo: 'PROFESSORA ANA' },
   nilton: { voz: { voz: 'pt-BR-AntonioNeural', velocidade: '-2%', tom: '-6Hz' }, cor: '#FFD36A', rotulo: 'SEU NILTON' },
