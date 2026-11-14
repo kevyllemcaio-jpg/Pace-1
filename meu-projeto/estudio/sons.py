@@ -416,7 +416,7 @@ def trilha_epica(dur):
 
 def trilha_trechos(dur, trechos):
     """Trilha que muda de estilo em instantes dados ('t=estilo,...'), com transição de 1,5 s."""
-    gera = {'terror': trilha_terror, 'calma': lambda d: trilha_calma(d) * 1.4, 'misterio': lambda d: trilha_misterio(d) * 2.2, 'silencio': lambda d: np.zeros(int(d * SR)), 'alegre': trilha, 'epica': lambda d: trilha_epica(d) * 1.6}
+    gera = {'terror': trilha_terror, 'calma': lambda d: trilha_calma(d) * 1.4, 'misterio': lambda d: trilha_misterio(d) * 2.2, 'silencio': lambda d: np.zeros(int(d * SR)), 'suspense': trilha_terror, 'alegre': trilha, 'epica': lambda d: trilha_epica(d) * 1.6}
     pts = sorted((float(a), b) for a, b in (p.split('=') for p in trechos.split(',')))
     n = int(dur * SR)
     x = np.arange(n) / SR
