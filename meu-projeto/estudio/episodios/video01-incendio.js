@@ -6,7 +6,7 @@
 window.LARGURA = 1920;
 window.ALTURA = 1080;
 window.LEGENDA_FRASE = true;
-window.LEGENDA_Y = 1030;
+window.LEGENDA_Y = 985;
 window.FONTE_LEGENDA = 'Baloo, sans-serif';
 window.TRATAR_VOZ = 'seco';
 window.ENCURTAR_PAUSAS = true;
