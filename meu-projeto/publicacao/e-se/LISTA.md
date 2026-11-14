@@ -1,0 +1,33 @@
+# Série "E SE...?": lista de Shorts
+
+Premissas tiradas do canal de referência "Mundo do E Se?". Cada Short terá um **roteiro original**
+(20–40 s, vertical 1080x1920) com o personagem **bolinha** (cabeça branca lisa, jaqueta amarela,
+calça azul, luvas e tênis brancos). As premissas "e se..." são só o ponto de partida: história,
+piadas, cenas e capa são nossas, sem copiar os vídeos nem as capas do canal.
+
+Capa de cada Short: o mesmo *tipo* de capa que funciona nesse nicho (bolinha grande reagindo,
+1–3 palavras em letras grossas com contorno, cores saturadas, cenário colorido), com composição,
+texto e cores próprios.
+
+| # | Título (como estava no canal) | Texto que aparecia na capa deles | Nossa ideia de capa (original) | Status |
+|---|---|---|---|---|
+| 1 | E SE Você Fosse o ÚNICO MENINO Numa Festa do Pijama? | "TODAS MINHAS" | Bolinha gritando de unhas rosa, com a placa de JURADO, no escuro. Texto: **"SÓ EU DE MENINO?!"** | pronto (festa-do-pijama.mp4) |
+| 2 | E SE Você Fosse o ÚNICO MENINO Numa Escola Só de Meninas? | "VOCÊ" + seta | Bolinha sozinho numa fila de carteiras. Texto: **"SÓ EU?!"** | |
+| 3 | E SE Todos Pudessem OUVIR os Seus Pensamentos? | "Sua mãe é tão..." | Balão de pensamento escapando da cabeça do bolinha no jantar de família. Texto: **"NÃO PENSA!"** | |
+| 4 | E SE Você OUVISSE o Que Toda Menina Pensa de Você? | "EU OUVI ISSO" | Bolinha com fone gigante e vários balõezinhos. Texto: **"OUVI TUDO"** | |
+| 5 | E SE Você Pudesse VER Quem Tem CRUSH em Você? | "amiga / CRUSH / amiga" | Bolinha com óculos de raio-X e corações flutuando sobre a turma. Texto: **"VI TUDO"** | |
+| 6 | E SE TODAS as Garotas do Mundo Se Apaixonassem Por Você? | "NÓS TE AMAMOS" | Bolinha fugindo de uma multidão com corações. Texto: **"ME SALVA"** | |
+| 7 | E SE Você e a Sua CRUSH Fossem os ÚLTIMOS Humanos Vivos? | "DIA 1 / DIA 30" | Cidade vazia, bolinha e a crush no telhado com um placar de dias. Texto: **"SÓ NÓS 2"** | |
+| 8 | E SE Você e a Sua CRUSH Ficassem SOZINHOS num Planeta? | "DIA 1 / DIA 30" | Planeta minúsculo, foguete quebrado. Texto: **"PRESOS!"** | |
+| 9 | E SE Você Virasse uma MENINA? | (só desenho) | Bolinha no espelho com laço e cílios. Texto: **"QUEM É ESSA?"** | |
+| 10 | E SE Você Virasse um MENINO? | (só desenho) | *Funciona melhor com uma personagem menina; dá para fazer como par do nº 9* | |
+| 11 | E SE Você Pudesse APRENDER Qualquer Coisa na Hora? | "LUTA PRA INICIANTES" | Bolinha lendo um livro que brilha, com raios. Texto: **"APRENDI!"** | |
+| 12 | E SE a Vida Real Tivesse OPÇÕES de Diálogo? | balões de escolha | Duas caixas de opção, uma verde e uma vermelha, ao lado do bolinha suando. Texto: **"ESCOLHE!"** | |
+| 13 | E SE a Vida Real Te Desse DICAS Como num Videogame? | "Dica: CHAMA ELA PRA SAIR" | Barra de missão estilo jogo acima da cabeça dele. Texto: **"MISSÃO: ..."** | |
+| 14 | E SE Você Pudesse Controlar a Sua SORTE? | "SORTE" + velocímetro | Bolinha girando um botão de sorte com trevos voando. Texto: **"SORTE MÁX"** | |
+| 15 | E se você tivesse DINHEIRO INFINITO? | "dinheiro infinito" | Bolinha nadando em moedas. Texto: **"NÃO ACABA"** | |
+| — | E SE Você SALVASSE a Sua Escola de um ATIRADOR? | — | **Fora da lista**: tema de violência real em escola, que não vamos fazer. | descartado |
+
+Observações:
+- Os vídeos do canal têm 10–20 min. Os nossos são Shorts, então cada roteiro foca em **uma** virada engraçada.
+- Ordem sugerida: 1 → 2 → 3 → 6 → 11 → 15 (premissas mais visuais primeiro).
