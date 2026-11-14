@@ -16,7 +16,7 @@ cf, l1, l2, out, ty = sys.argv[1:6]; ty = int(ty)
 fp = '/usr/share/fonts/opentype/inter/Inter-Black.otf'
 im = Image.open(f'frames/f{cf}.jpg').convert('RGB'); W, H = im.size; d = ImageDraw.Draw(im)
 def big(txt, y, fill, rot=-4):
-    size = 240
+    size = int(__import__('os').environ.get('COVER_MAX', '240'))
     while True:
         f = ImageFont.truetype(fp, size); bb = d.textbbox((0, 0), txt, font=f)
         if bb[2] - bb[0] < W - 120 or size < 80: break
@@ -32,7 +32,7 @@ if l2: big(l2, ty + h - 40, (255, 95, 162))
 im.save(out, quality=93)
 PY
 ffmpeg -y -v error -i out/main.mp4 -loop 1 -framerate 30 -t 2 -i out/capa-$SLUG.jpg -f lavfi -t 2 -i anullsrc=r=44100:cl=stereo \
- -filter_complex "[0:v]fps=30,format=yuv420p,setsar=1[v0];[1:v]scale=1080:1920,format=yuv420p,setsar=1[v1];[0:a]aresample=44100,aformat=channel_layouts=stereo[a0];[v0][a0][v1][2:a]concat=n=2:v=1:a=1[v][a]" \
+ -filter_complex "[0:v]fps=30,format=yuv420p,setsar=1[v0];[1:v]scale=${SIZE:-1080:1920},format=yuv420p,setsar=1[v1];[0:a]aresample=44100,aformat=channel_layouts=stereo[a0];[v0][a0][v1][2:a]concat=n=2:v=1:a=1[v][a]" \
  -map "[v]" -map "[a]" -c:v libx264 -crf 17 -preset medium -c:a aac -b:a 192k -movflags +faststart out/$SLUG.mp4
 echo "loudness: $(ffmpeg -i out/main.mp4 -af ebur128 -f null - 2>&1 | grep -E '^\s+I:' | tail -1)"
 echo "qa: $(ffmpeg -i out/main.mp4 -vf 'freezedetect=n=0.001:d=0.4,blackdetect=d=0.1' -map 0:v -f null - 2>&1 | grep -cE 'freeze_start|black_start') issues"

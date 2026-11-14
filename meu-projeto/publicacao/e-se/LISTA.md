@@ -18,7 +18,7 @@ texto e cores próprios.
 | 5 | E SE Você Pudesse VER Quem Tem CRUSH em Você? | "amiga / CRUSH / amiga" | Bolinha de óculos de coração e a amiga com um coração gigante. Texto: **"QUEM GOSTA DE MIM?!"** | pronto (ver-crush.mp4) |
 | 6 | E SE TODAS as Garotas do Mundo Se Apaixonassem Por Você? | "NÓS TE AMAMOS" | Bolinha cercado de meninas com olhos de coração. Texto: **"TODAS APAIXONADAS!"** | pronto (garotas-apaixonadas.mp4) |
 | 7 | E SE Você e a Sua CRUSH Fossem os ÚLTIMOS Humanos Vivos? | "DIA 1 / DIA 30" | Cidade vazia, bolinha e a crush no telhado com um placar de dias. Texto: **"SÓ NÓS 2"** | |
-| 8 | E SE Você e a Sua CRUSH Ficassem SOZINHOS num Planeta? | "DIA 1 / DIA 30" | Planeta minúsculo, foguete quebrado. Texto: **"PRESOS!"** | |
+| 8 | E SE Você e a Sua CRUSH Ficassem SOZINHOS num Planeta? | "DIA 1 / DIA 30" | (HORIZONTAL) Bolinha, Sofia e Pudim no planeta roxo com o foguete caído. Texto: **"PRESOS NUM PLANETA!"** | pronto horizontal (sozinhos-num-planeta.mp4) |
 | 9 | E SE Você Virasse uma MENINA? | (só desenho) | Bolinha no espelho com laço e cílios. Texto: **"QUEM É ESSA?"** | |
 | 10 | E SE Você Virasse um MENINO? | (só desenho) | *Funciona melhor com uma personagem menina; dá para fazer como par do nº 9* | |
 | 11 | E SE Você Pudesse APRENDER Qualquer Coisa na Hora? | "LUTA PRA INICIANTES" | Bolinha em choque com o dicionário de chinês. Texto: **"APRENDI... CHINÊS?!"** | pronto (aprender-na-hora.mp4) |
