@@ -5,7 +5,7 @@ const EW = 1920, EH = 1080;
 
 // Figura de corpo inteiro (origem = centro da cabeça; pés em y ≈ 540 locais).
 function figura(p = {}) {
-  const q = { x: 960, y: 880, esc: 0.9, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#5A3420', roupa: '#1E5BFF',
+  const q = { x: 960, y: 900, esc: 1.0, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#5A3420', roupa: '#1E5BFF',
     calca: '#0E0E0E', sapato: '#FFFFFF', capuz: false, longo: false, espetado: true, oculos: false, bone: null, capacete: null,
     saia: null, pose: 'base', ...p };
   const falar = q.fala && Math.sin(q.t * 15) > 0;
