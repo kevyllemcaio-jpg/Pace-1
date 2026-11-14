@@ -31,3 +31,8 @@ texto e cores próprios.
 Observações:
 - Os vídeos do canal têm 10–20 min. Os nossos são Shorts, então cada roteiro foca em **uma** virada engraçada.
 - Ordem sugerida: 1 → 2 → 3 → 6 → 11 → 15 (premissas mais visuais primeiro).
+
+## Padrão de entrega (todo vídeo)
+1. `<nome>.mp4`: o Short com a **capa nos 2 segundos finais** (para escolher como miniatura no YouTube).
+2. `capa-<nome>.jpg`: a capa separada.
+3. `<nome>.md`: título, descrição, tags e todos os campos da tela "Adicionar detalhes" do YouTube.
