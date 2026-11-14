@@ -1,16 +1,16 @@
 #!/bin/bash
 # usage: finish.sh <project dir> <slug> <cover frame> "<line1>" "<line2>"
 set -e
-cd "$1"; SLUG=$2; CF=$(printf %04d $3); L1=$4; L2=$5
+cd "$1"; SLUG=$2; CF=$(printf %04d $3); L1=$4; L2=$5; TY=${6:-1210}
 OUT=/home/user/Pace-1/meu-projeto/publicacao/e-se
 L=$(ffmpeg -i work/mix.wav -af ebur128 -f null - 2>&1 | grep -E '^\s+I:' | tail -1 | awk '{print $2}')
 G=$(python3 -c "print(-14-($L))")
 mkdir -p out
 ffmpeg -y -v error -framerate 30 -i frames/f%04d.jpg -i work/mix.wav -filter:a "volume=${G}dB,alimiter=limit=0.89:level=false" -c:v libx264 -crf 17 -preset medium -pix_fmt yuv420p -c:a aac -b:a 192k -ar 44100 -ac 2 -shortest out/main.mp4
-python3 - "$CF" "$L1" "$L2" "out/capa-$SLUG.jpg" <<'PY'
+python3 - "$CF" "$L1" "$L2" "out/capa-$SLUG.jpg" "$TY" <<'PY'
 import sys
 from PIL import Image, ImageDraw, ImageFont
-cf, l1, l2, out = sys.argv[1:5]
+cf, l1, l2, out, ty = sys.argv[1:6]; ty = int(ty)
 fp = '/usr/share/fonts/opentype/inter/Inter-Black.otf'
 im = Image.open(f'frames/f{cf}.jpg').convert('RGB'); W, H = im.size; d = ImageDraw.Draw(im)
 def big(txt, y, fill, rot=-4):
@@ -25,8 +25,8 @@ def big(txt, y, fill, rot=-4):
     g.text((40 - bb[0], 40 - bb[1]), txt, font=f, fill=fill, stroke_width=18, stroke_fill=(20,10,30))
     L = L.rotate(rot, expand=True, resample=Image.BICUBIC); im.paste(L, ((W - L.width)//2, y), L)
     return L.height
-h = big(l1, 1210, (255, 210, 63))
-if l2: big(l2, 1210 + h - 40, (255, 95, 162))
+h = big(l1, ty, (255, 210, 63))
+if l2: big(l2, ty + h - 40, (255, 95, 162))
 im.save(out, quality=93)
 PY
 ffmpeg -y -v error -i out/main.mp4 -loop 1 -framerate 30 -t 2 -i out/capa-$SLUG.jpg -f lavfi -t 2 -i anullsrc=r=44100:cl=stereo \
