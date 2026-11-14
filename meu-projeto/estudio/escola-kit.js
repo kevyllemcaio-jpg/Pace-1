@@ -191,3 +191,38 @@ function patio(lt, o = {}) {
 }
 // Corredor do fundo (ou pátio) com ajuste de câmera: cena simples de texto
 function escuro(o) { return o > 0.001 ? `<rect width="${EW}" height="${EH}" fill="#000" opacity="${o}"/>` : ''; }
+
+// ---------- cenários extras (mesma assinatura: (lt, o) com o.fogo opcional) ----------
+// Sala de aula: lousa, carteiras, janela
+function sala(lt, o = {}) {
+  let s = `<rect width="${EW}" height="${EH}" fill="#E8E0C8"/>`;
+  s += `<rect x="0" y="0" width="${EW}" height="120" fill="#D8CCA8"/>`;
+  s += `<rect x="560" y="140" width="800" height="300" rx="10" fill="#2E4A3A" stroke="#6A4A2A" stroke-width="20"/>`;
+  s += `<line x1="640" y1="260" x2="1000" y2="260" stroke="#E8F0E0" stroke-width="5" opacity="0.6"/><line x1="640" y1="320" x2="900" y2="320" stroke="#E8F0E0" stroke-width="5" opacity="0.6"/>`;
+  s += `<rect x="1500" y="140" width="300" height="360" fill="#A8D8F0" stroke="#6A4A2A" stroke-width="14"/><line x1="1650" y1="140" x2="1650" y2="500" stroke="#6A4A2A" stroke-width="10"/>`;
+  s += `<polygon points="0,${EH} ${EW},${EH} ${EW},700 0,700" fill="#C8B090"/><line x1="0" y1="700" x2="${EW}" y2="700" stroke="#A89070" stroke-width="6"/>`;
+  for (const x of [200, 420, 1250]) s += `<rect x="${x}" y="760" width="260" height="22" rx="6" fill="#8A6A4A" stroke="#3A2A1A" stroke-width="5"/><rect x="${x + 110}" y="782" width="20" height="120" fill="#3A2A1A"/>`;
+  if (o.fogo) s += `<rect x="1500" y="140" width="300" height="360" fill="#FF8A3A" opacity="${0.35 * o.fogo}"/>` + fumaca(lt, 1650, 200, 6, '#4A4048');
+  return s;
+}
+// Escada de emergência: degraus subindo e corrimão
+function escada(lt, o = {}) {
+  let s = `<rect width="${EW}" height="${EH}" fill="#2A3350"/>`;
+  s += `<rect x="0" y="0" width="${EW}" height="260" fill="#1B2236"/>`;
+  for (let i = 0; i < 9; i++) s += `<polygon points="${200 + i * 60},${980 - i * 70} ${1700 - i * 60},${980 - i * 70} ${1700 - i * 60},${1040 - i * 70} ${200 + i * 60},${1040 - i * 70}" fill="#6A6A78" stroke="#3A3A48" stroke-width="5"/>`;
+  s += `<line x1="180" y1="980" x2="1000" y2="360" stroke="#B0B8C8" stroke-width="12"/><line x1="180" y1="1040" x2="1000" y2="420" stroke="#B0B8C8" stroke-width="12"/>`;
+  s += `<rect x="1500" y="120" width="260" height="110" rx="10" fill="#2AAA5A" stroke="#111" stroke-width="6"/><text x="1630" y="190" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="54" fill="#FFF">SAÍDA</text>`;
+  if (o.fogo) s += fumaca(lt, 1000, 200, 6, '#4A4048') + fogo(lt, 1200, 320, 300, 170, o.fogo * 0.6);
+  return s;
+}
+// Auditório: palco com cortina vermelha
+function auditorio(lt, o = {}) {
+  let s = `<rect width="${EW}" height="${EH}" fill="#1A1420"/>`;
+  s += `<rect x="260" y="180" width="1400" height="560" fill="#2A1A24"/>`;
+  s += `<polygon points="0,0 380,0 420,900 0,900" fill="#8A1A2A"/><polygon points="${EW},0 ${EW - 380},0 ${EW - 420},900 ${EW},900" fill="#8A1A2A"/>`;
+  for (let i = 0; i < 6; i++) s += `<line x1="${60 + i * 60}" y1="0" x2="${80 + i * 60}" y2="900" stroke="#6A1020" stroke-width="10"/><line x1="${EW - 60 - i * 60}" y1="0" x2="${EW - 80 - i * 60}" y2="900" stroke="#6A1020" stroke-width="10"/>`;
+  s += `<polygon points="260,740 1660,740 1760,1080 160,1080" fill="#6A4A2A"/>`;
+  for (let i = 0; i < 6; i++) s += `<circle cx="${400 + i * 200}" cy="200" r="22" fill="#FFE8A0" opacity="${0.5 + 0.3 * Math.sin(lt * 3 + i)}"/>`;
+  if (o.fogo) s += `<polygon points="0,0 380,0 420,900 0,900" fill="#FF7A1A" opacity="${0.3 * o.fogo}"/>` + fogo(lt, 0, 620, 380, 300, o.fogo * 0.7) + fumaca(lt, 960, 240, 6, '#3A3038');
+  return s;
+}

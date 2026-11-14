@@ -35,7 +35,8 @@ function cena(quem, fala, desenhar, o = {}) {
     desenhar(lt, c) {
       let s = desenhar(lt, c, falando(c, lt));
       if (o.tela) s += o.tela(lt, c);
-      return s;
+      const k = 1 + 0.07 * Math.min(1, lt / Math.max(c.dur, 0.1));
+      return `<g transform="translate(${960 * (1 - k)} ${540 * (1 - k)}) scale(${k})">${s}</g>`;
     },
   });
 }
@@ -57,7 +58,7 @@ cena('narr', 'Ele sabia que o tempo era curto. Cada minuto de fumaça deixava o 
 cena('narr', 'Colégio Santa Clara. Sexta-feira, sete da noite. A maioria já foi embora.',
   (lt) => patio(lt, { escuro: 0 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }),
   { trilha: 'calma' });
-cena('narr', 'Era a última semana de aula antes das férias. Os corredores estavam cheios de cartazes e de risadas.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'Era a última semana de aula antes das férias. Os corredores estavam cheios de cartazes e de risadas.', (lt, c, fl) => sala(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'O protagonista se chama Léo. Dezesseis anos, o cara que chega cedo e sai por último.',
   (lt) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0.2, 0] }),
   { trilha: 'calma' });
@@ -130,7 +131,7 @@ cena('leo', 'Não é piada! Vai, chama a professora Ana!',
   { trilha: 'terror' });
 
 // ============ 6. A PROFESSORA ============
-cena('narr', 'Léo correu de volta ao corredor. As luzes piscavam e a fumaça descia pelas escadas.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'Léo correu de volta ao corredor. As luzes piscavam e a fumaça descia pelas escadas.', (lt, c, fl) => escada(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'A professora Ana estava na sala ao lado, corrigindo provas. Ela correu para o corredor.',
   (lt) => corredor(lt, { fogo: 0.5 }) + figura({ ...ANA, x: 1400, y: 880, esc: 0.8, t: lt, expr: 'panico', olhar: [-0.6, 0], pose: 'base' }) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'panico', olhar: [0.6, 0] }),
   { trilha: 'terror' });
@@ -143,8 +144,8 @@ cena('leo', 'Professora, a porta do laboratório está quente! Tem fogo lá dent
 cena('ana', 'Meu Deus! Abre a porta com cuidado, Léo. Eu vou pegar o telefone da secretaria.',
   (lt, c, fl) => laboratorio(lt, 1.2) + figura({ ...ANA, x: 1400, y: 880, esc: 0.8, t: lt, expr: 'panico', fala: fl, olhar: [-0.6, 0] }),
   { trilha: 'terror' });
-cena('ana', 'O auditório fica do outro lado, e a turma do teatro está lá ensaiando!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
-cena('leo', 'Eu vou avisar eles. Professora, pega o extintor da parede e vai pra saída!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('ana', 'O auditório fica do outro lado, e a turma do teatro está lá ensaiando!', (lt, c, fl) => auditorio(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('leo', 'Eu vou avisar eles. Professora, pega o extintor da parede e vai pra saída!', (lt, c, fl) => sala(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Ela correu. O telefone da secretaria, porém, estava mudo. O sinal dentro do prédio caiu.',
   (lt) => corredor(lt, { fogo: 0.4 }) + figura({ ...ANA, x: 1400, y: 880, esc: 0.8, t: lt, expr: 'triste', pose: 'cabeca', olhar: [-0.6, 0] }),
   { trilha: 'terror' });
@@ -171,11 +172,11 @@ cena('ana', 'Léo, sai daí agora! Não é hora de herói!', (lt, c, fl) => corr
 cena('narr', 'No fim do corredor, ainda tinha gente. Uma turma inteira do segundo ano, ensaiando teatro no auditório.',
   (lt) => corredor(lt, { fogo: 0.7 }) + [0, 1, 2, 3].map((i) => figura({ ...COLEGA(['#6A8AE0', '#E0A060', '#60C0A0', '#C070C0'][i], ['#222', '#7A4A2A', '#111', '#C89040'][i]), x: 1280 + i * 120, y: 880, esc: 0.9, t: lt + i * 0.3, expr: 'panico', olhar: [-0.5, 0] })).join('') + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'determinado', olhar: [0.8, 0] }),
   { trilha: 'terror' });
-cena('narr', 'Eram vinte e três alunos, a professora de teatro e o zelador Seu Nilton, que conhecia cada passagem do prédio.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'Eram vinte e três alunos, a professora de teatro e o zelador Seu Nilton, que conhecia cada passagem do prédio.', (lt, c, fl) => auditorio(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Todo mundo pro pátio! Pela saída de emergência, agora! Não corre, mas não para!',
   (lt, c, fl) => corredor(lt, { fogo: 0.8 }) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'determinado', fala: fl, olhar: [0.8, 0] }) + [0, 1, 2, 3].map((i) => figura({ ...COLEGA(['#6A8AE0', '#E0A060', '#60C0A0', '#C070C0'][i], ['#222', '#7A4A2A', '#111', '#C89040'][i]), x: 1280 + i * 120, y: 880, esc: 0.9, t: lt + i * 0.3, expr: 'panico', olhar: [-0.5, 0] })).join(''),
   { trilha: 'terror' });
-cena('bia', 'E a turma do teatro? Eles estão no auditório!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('bia', 'E a turma do teatro? Eles estão no auditório!', (lt, c, fl) => auditorio(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Eu vou buscar eles. Bia, vai com a Ana!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'A porta principal tinha fechado sozinha. A porta corta-fogo desceu com a fumaça e travou.',
   (lt) => corredor(lt, { fogo: 0.8 }) + `<rect x="200" y="240" width="520" height="700" fill="#8A3A2A" stroke="#111" stroke-width="8"/><rect x="240" y="280" width="440" height="620" fill="#A24A3A" stroke="#111" stroke-width="5"/>` + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'panico', olhar: [-0.6, 0] }),
@@ -210,7 +211,7 @@ cena('narr', 'Atrás deles, o corredor desabava aos poucos. Cada passo era uma p
 cena('narr', 'Faltava uma pessoa. No auditório escuro, um menino dormia com o fone no ouvido. Ninguém tinha visto ele.',
   (lt) => corredor(lt, { escuro: 0.4, fogo: 0.2 }) + `<rect x="1120" y="360" width="400" height="400" fill="#2A2440" stroke="#111" stroke-width="6"/>` + figura({ ...COLEGA('#777', '#222'), x: 1320, y: 880, esc: 0.8, t: lt, expr: 'sono', olhar: [0, 0] }),
   { trilha: 'suspense' });
-cena('narr', 'O auditório estava escuro e com cheiro de tinta. No palco, a cortina de veludo já pegava fogo pela ponta.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'O auditório estava escuro e com cheiro de tinta. No palco, a cortina de veludo já pegava fogo pela ponta.', (lt, c, fl) => auditorio(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Ei! Acorda! A escola está pegando fogo!',
   (lt, c, fl) => corredor(lt, { fogo: 0.5 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'panico', fala: fl, olhar: [0.4, 0] }) + figura({ ...COLEGA('#777', '#222'), x: 1450, y: 880, esc: 0.8, t: lt, expr: lt > 1 ? 'surpreso' : 'sono', olhar: [-0.6, 0] }),
   { trilha: 'suspense' });
@@ -255,7 +256,7 @@ cena('narr', 'Naquela noite, a mãe do Léo chegou do plantão. Ela ouviu tudo n
 cena('narr', 'Na segunda-feira, a escola inteira comemorava o alarme. O alarme automático, dizia o comunicado da diretoria.',
   (lt) => corredor(lt, { luz: 1 }) + figura({ ...DIRETOR, x: 1300, y: 880, esc: 0.8, t: lt, expr: 'feliz', pose: 'aponta', olhar: [-0.6, 0] }) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0.6, 0] }),
   { trilha: 'alegre' });
-cena('narr', 'A escola fez um mural com fotos do incêndio, e o nome do Léo não aparecia em nenhuma legenda.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'A escola fez um mural com fotos do incêndio, e o nome do Léo não aparecia em nenhuma legenda.', (lt, c, fl) => sala(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('diretor', 'Parabéns à escola inteira! O alarme automático salvou todo mundo!',
   (lt, c, fl) => corredor(lt) + figura({ ...DIRETOR, x: 1300, y: 880, esc: 0.8, t: lt, expr: 'feliz', fala: fl, pose: 'aponta', olhar: [-0.6, 0] }) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0.6, 0] }),
   { trilha: 'alegre' });
@@ -265,17 +266,17 @@ cena('bia', 'Léo, eles disseram que foi o alarme. Ninguém lembra de quem grito
 cena('leo', 'Tudo bem, Bia. Eu sei quem foi. E a professora sabe também.',
   (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'feliz', fala: fl, olhar: [0.5, 0] }) + figura({ ...BIA, x: 1360, y: 880, esc: 0.8, t: lt, expr: 'feliz', olhar: [-0.5, 0] }),
   { trilha: 'alegre' });
-cena('narr', 'Na terça-feira, a secretaria chamou o Léo.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'Na terça-feira, a secretaria chamou o Léo.', (lt, c, fl) => sala(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('ana', 'Léo, eu fui a primeira a não acreditar em você. Me desculpa.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'A senhora não precisa se desculpar. Foi a primeira vez que alguém confiou em mim numa emergência.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 620, y: 880, esc: 0.8, t: lt, expr: 'feliz', fala: fl, olhar: [0.5, 0] }));
-cena('leo', 'Tudo bem, professora. A senhora chamou os bombeiros, isso também conta.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('leo', 'Tudo bem, professora. A senhora chamou os bombeiros, isso também conta.', (lt, c, fl) => patio(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Léo sorriu pela primeira vez em dias. Ele ainda tinha fuligem na orelha, mas ninguém se importava mais.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('nilton', 'Léo... fui eu que tirei a bateria do alarme. Pra carregar meu rádio de madrugada. Me desculpa, menino.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'O zelador tinha esquecido de recolocar a bateria. Um erro pequeno, com consequências enormes.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Léo pegou a mochila e saiu da sala. Pela primeira vez, ele não era o último a ir embora.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Agora a gente sabe. Vou ficar de olho nas coisas da escola, pode deixar.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Naquela noite, a escola ficou de luzes apagadas. Só o brilho do poste refletia nas janelas.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
-cena('narr', 'No dia seguinte, a escola abriu de novo. Os cartazes de férias continuavam nas paredes, e o laboratório estava cercado por fita.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
+cena('narr', 'No dia seguinte, a escola abriu de novo. Os cartazes de férias continuavam nas paredes, e o laboratório estava cercado por fita.', (lt, c, fl) => laboratorio(lt, 0.9) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Léo voltou para casa andando sozinho. Olhou para trás uma última vez, e a escola parecia só uma escola de novo.', (lt, c, fl) => corredor(lt) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'E se você estivesse no lugar dele? Você teria gritado primeiro?',
   (lt) => corredor(lt) + `<rect x="260" y="820" width="1400" height="200" rx="30" fill="#000" opacity="0.6"/>` + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'feliz', olhar: [0, 0] }),
