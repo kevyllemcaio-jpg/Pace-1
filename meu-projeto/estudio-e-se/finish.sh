@@ -6,7 +6,9 @@ OUT=/home/user/Pace-1/meu-projeto/publicacao/e-se
 L=$(ffmpeg -i work/mix.wav -af ebur128 -f null - 2>&1 | grep -E '^\s+I:' | tail -1 | awk '{print $2}')
 G=$(python3 -c "print(-14-($L))")
 mkdir -p out
-ffmpeg -y -v error -framerate 30 -i frames/f%04d.jpg -i work/mix.wav -filter:a "volume=${G}dB,alimiter=limit=0.89:level=false" -c:v libx264 -crf 17 -preset medium -pix_fmt yuv420p -c:a aac -b:a 192k -ar 44100 -ac 2 -shortest out/main.mp4
+VF=""
+if [ -f work/words.json ] && [ "${NOCAPS:-0}" != 1 ]; then python3 /root/shorts/caps.py work/words.json work/caps.ass >/dev/null; VF="-vf ass=work/caps.ass"; fi
+ffmpeg -y -v error -framerate 30 -i frames/f%04d.jpg -i work/mix.wav $VF -filter:a "volume=${G}dB,alimiter=limit=0.89:level=false" -c:v libx264 -crf 17 -preset medium -pix_fmt yuv420p -c:a aac -b:a 192k -ar 44100 -ac 2 -shortest out/main.mp4
 python3 - "$CF" "$L1" "$L2" "out/capa-$SLUG.jpg" "$TY" <<'PY'
 import sys
 from PIL import Image, ImageDraw, ImageFont

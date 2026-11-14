@@ -36,3 +36,5 @@ Observações:
 1. `<nome>.mp4`: o Short com a **capa nos 2 segundos finais** (para escolher como miniatura no YouTube).
 2. `capa-<nome>.jpg`: a capa separada.
 3. `<nome>.md`: título, descrição, tags e todos os campos da tela "Adicionar detalhes" do YouTube.
+4. **Legenda palavra por palavra** (a partir do nº 4): no terço de baixo da tela, acima da área dos botões do Shorts, sem cobrir o rosto do personagem; a palavra falada fica amarela.
+5. A ordem dos vídeos segue esta lista.
