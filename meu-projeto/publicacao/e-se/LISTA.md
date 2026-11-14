@@ -21,7 +21,7 @@ texto e cores próprios.
 | 8 | E SE Você e a Sua CRUSH Ficassem SOZINHOS num Planeta? | "DIA 1 / DIA 30" | Planeta minúsculo, foguete quebrado. Texto: **"PRESOS!"** | |
 | 9 | E SE Você Virasse uma MENINA? | (só desenho) | Bolinha no espelho com laço e cílios. Texto: **"QUEM É ESSA?"** | |
 | 10 | E SE Você Virasse um MENINO? | (só desenho) | *Funciona melhor com uma personagem menina; dá para fazer como par do nº 9* | |
-| 11 | E SE Você Pudesse APRENDER Qualquer Coisa na Hora? | "LUTA PRA INICIANTES" | Bolinha lendo um livro que brilha, com raios. Texto: **"APRENDI!"** | |
+| 11 | E SE Você Pudesse APRENDER Qualquer Coisa na Hora? | "LUTA PRA INICIANTES" | Bolinha em choque com o dicionário de chinês. Texto: **"APRENDI... CHINÊS?!"** | pronto (aprender-na-hora.mp4) |
 | 12 | E SE a Vida Real Tivesse OPÇÕES de Diálogo? | balões de escolha | Duas caixas de opção, uma verde e uma vermelha, ao lado do bolinha suando. Texto: **"ESCOLHE!"** | |
 | 13 | E SE a Vida Real Te Desse DICAS Como num Videogame? | "Dica: CHAMA ELA PRA SAIR" | Barra de missão estilo jogo acima da cabeça dele. Texto: **"MISSÃO: ..."** | |
 | 14 | E SE Você Pudesse Controlar a Sua SORTE? | "SORTE" + velocímetro | Bolinha girando um botão de sorte com trevos voando. Texto: **"SORTE MÁX"** | |
