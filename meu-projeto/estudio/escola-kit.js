@@ -5,9 +5,9 @@ const EW = 1920, EH = 1080;
 
 // Figura de corpo inteiro (origem = centro da cabeça; pés em y ≈ 540 locais).
 function figura(p = {}) {
-  const q = { x: 960, y: 900, esc: 0.8, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#5A3420', roupa: '#1E5BFF',
+  const q = { x: 960, y: 900, esc: 0.8, t: 0, expr: 'neutro', fala: false, olhar: [0, 0], cabelo: '#B0502A', roupa: '#141414',
     calca: '#0E0E0E', sapato: '#FFFFFF', capuz: false, longo: false, espetado: true, oculos: false, bone: null, capacete: null,
-    saia: null, pose: 'base', ...p };
+    saia: null, pose: 'base', mochila: false, ...p };
   const falar = q.fala && Math.sin(q.t * 15) > 0;
   const bob = Math.sin(q.t * 2.2) * 3;
   let s = `<g transform="translate(${q.x} ${q.y - 546 * q.esc + bob}) scale(${q.esc})">`;
@@ -20,13 +20,14 @@ function figura(p = {}) {
     s += `<path d="M -130 380 L -140 520 L -20 520 L -4 380 Z" fill="${q.calca}"/><path d="M 4 380 L 20 520 L 140 520 L 130 380 Z" fill="${q.calca}"/>`;
     s += `<ellipse cx="-72" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/><ellipse cx="72" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/>`;
   }
+  if (q.mochila) s += `<rect x="-232" y="160" width="120" height="210" rx="30" fill="#2A2A2A" stroke="#0A0A0A" stroke-width="6"/><rect x="-220" y="250" width="96" height="70" rx="14" fill="#1E1E1E" stroke="#0A0A0A" stroke-width="4"/>`;
   // tronco
-  s += `<path d="M -150 300 Q -165 190 -100 165 L 100 165 Q 165 190 150 300 L 150 380 L -150 380 Z" fill="${q.roupa}" stroke="${q.capuz ? '#0A2A80' : '#222'}" stroke-width="3"/>`;
+  s += `<path d="M -150 300 Q -165 190 -100 165 L 100 165 Q 165 190 150 300 L 150 380 L -150 380 Z" fill="${q.roupa}" stroke="${q.capuz ? '#000' : '#222'}" stroke-width="3"/>`;
   if (q.capuz) {
     s += `<path d="M -95 170 Q 0 120 95 170 L 80 200 Q 0 160 -80 200 Z" fill="${q.roupa}" stroke="#0A2A80" stroke-width="3"/>`;
     s += `<line x1="-26" y1="180" x2="-30" y2="262" stroke="#E8E8E8" stroke-width="5" stroke-linecap="round"/><line x1="26" y1="180" x2="30" y2="262" stroke="#E8E8E8" stroke-width="5" stroke-linecap="round"/>`;
     s += `<circle cx="-30" cy="266" r="6" fill="#E8E8E8"/><circle cx="30" cy="266" r="6" fill="#E8E8E8"/>`;
-    s += `<path d="M -92 300 Q -92 282 -70 282 L 70 282 Q 92 282 92 300 L 92 330 Q 0 350 -92 330 Z" fill="#1A4AC0" stroke="#0A2A80" stroke-width="4"/>`;
+    s += `<path d="M -92 300 Q -92 282 -70 282 L 70 282 Q 92 282 92 300 L 92 330 Q 0 350 -92 330 Z" fill="#1E1E1E" stroke="#000" stroke-width="4"/>`;
   }
   // braços
   if (q.pose === 'aponta') {
@@ -79,7 +80,7 @@ function figura(p = {}) {
 }
 
 // Presets de personagens
-const LEO = {};                                   // Léo: moletom azul, cabelo castanho espetado
+const LEO = { capuz: true, mochila: true };       // Léo: moletom preto com capuz, mochila, cabelo castanho-alaranjado espetado
 const ANA = { cabelo: '#3B2A3A', roupa: '#7A3B6E', calca: '#2B2B3A', oculos: true, longo: true, espetado: false, sapato: '#222' };
 const BIA = { cabelo: '#D8903A', roupa: '#F2A0C8', calca: '#3A3A5A', longo: true, espetado: false, sapato: '#222' };
 const NILTON = { cabelo: '#555', roupa: '#5A6A4A', calca: '#3A3A3A', bone: '#5A6A4A', espetado: false, sapato: '#222' };
