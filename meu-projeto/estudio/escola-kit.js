@@ -18,15 +18,18 @@ function figura(p = {}) {
     saia: null, pose: 'base', mochila: false, semCabelo: false, ...p };
   const falar = q.fala && Math.sin(q.t * 15) > 0;
   const bob = Math.sin(q.t * 2.2) * 3;
-  let s = `<g transform="translate(${q.x} ${q.y - 546 * q.esc + bob}) scale(${q.esc})">`;
+  const andar = q.andar !== false;
+  const passo = andar ? Math.sin(q.t * 7) * 16 : 0;
+  const deriva = andar ? Math.sin(q.t * 0.8) * 22 : 0;
+  let s = `<g transform="translate(${q.x + deriva} ${q.y - 546 * q.esc + bob}) scale(${q.esc})">`;
   s += `<ellipse cx="0" cy="546" rx="170" ry="20" fill="#000" opacity="0.28"/>`;
   // pernas e sapatos
   if (q.saia) {
     s += `<path d="M -120 380 L -150 520 L 150 520 L 120 380 Z" fill="${q.saia}" stroke="#111" stroke-width="5"/>`;
     s += `<rect x="-78" y="506" width="56" height="34" rx="12" fill="${q.sapato}" stroke="#111" stroke-width="5"/><rect x="22" y="506" width="56" height="34" rx="12" fill="${q.sapato}" stroke="#111" stroke-width="5"/>`;
   } else {
-    s += `<path d="M -130 380 L -140 520 L -20 520 L -4 380 Z" fill="${q.calca}"/><path d="M 4 380 L 20 520 L 140 520 L 130 380 Z" fill="${q.calca}"/>`;
-    s += `<ellipse cx="-72" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/><ellipse cx="72" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/>`;
+    s += `<g transform="rotate(${passo} -70 380)"><path d="M -130 380 L -140 520 L -20 520 L -4 380 Z" fill="${q.calca}"/></g><g transform="rotate(${-passo} 70 380)"><path d="M 4 380 L 20 520 L 140 520 L 130 380 Z" fill="${q.calca}"/></g>`;
+    s += `<ellipse cx="${-72 + passo * 0.5}" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/><ellipse cx="${72 - passo * 0.5}" cy="536" rx="62" ry="26" fill="${q.sapato}" stroke="#111" stroke-width="6"/>`;
   }
   if (q.mochila) s += `<rect x="-232" y="160" width="120" height="210" rx="30" fill="#2A2A2A" stroke="#0A0A0A" stroke-width="6"/><rect x="-220" y="250" width="96" height="70" rx="14" fill="#1E1E1E" stroke="#0A0A0A" stroke-width="4"/>`;
   // tronco
@@ -39,11 +42,11 @@ function figura(p = {}) {
   }
   // braços
   if (q.pose === 'aponta') {
-    s += braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF');
+    s += `<g transform="rotate(${-passo * 0.7} -150 230)">${braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF')}</g>`;
     s += braco(150, 230, 300, 120, q.roupa, q.pele || '#FFFFFF');
   } else {
-    s += braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF');
-    s += braco(150, 230, 182, 420, q.roupa, q.pele || '#FFFFFF');
+    s += `<g transform="rotate(${-passo * 0.7} -150 230)">${braco(-150, 230, -182, 420, q.roupa, q.pele || '#FFFFFF')}</g>`;
+    s += `<g transform="rotate(${passo * 0.7} 150 230)">${braco(150, 230, 182, 420, q.roupa, q.pele || '#FFFFFF')}</g>`;
   }
   // pescoço
   s += `<rect x="-40" y="130" width="80" height="60" rx="20" fill="#F3F3F3"/>`;

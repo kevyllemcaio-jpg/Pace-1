@@ -107,6 +107,7 @@ cena('narr', 'Naquele momento o corredor ficou em silêncio. Só se ouvia um est
 cena('narr', 'Ele abriu a porta. O fogo já tinha tomado a bancada do meio.',
   (lt) => laboratorio(lt, 0.9 + 0.2 * Math.sin(lt * 4)) + figura({ ...LEO, x: 420, y: 880, esc: 0.8, t: lt, expr: 'panico', olhar: [0.8, 0] }),
   { trilha: 'terror' });
+cena('narr', 'Léo olhou para o fogo. Os olhos arregalados, o corpo congelado.', (lt, c, fl) => `<rect width="${EW}" height="${EH}" fill="#2A1A24"/>` + fogo(lt, 0, 780, EW, 320, 0.9) + figura({ ...LEO, x: 960, y: 1290, esc: 1.7, t: lt, expr: 'panico', fala: fl, andar: false, olhar: [0, 0] }));
 cena('narr', 'O calor bateu no rosto dele como um tapa. A luz laranja tingia as paredes e os armários.', (lt, c, fl) => laboratorio(lt, 1) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Tem alguém aqui? Tem alguém no laboratório?', (lt, c, fl) => laboratorio(lt, 1) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'O alarme de incêndio estava na parede. Ele apertou. Nada aconteceu.',
@@ -118,6 +119,7 @@ cena('leo', 'O alarme não toca! Alguém tirou a bateria!',
   { trilha: 'terror' });
 
 // ============ 5. A BIA NÃO ACREDITA ============
+cena('narr', 'Ele engoliu seco e sentiu o coração bater na garganta.', (lt, c, fl) => `<rect width="${EW}" height="${EH}" fill="#2A1A24"/>` + fogo(lt, 0, 780, EW, 320, 0.9) + figura({ ...LEO, x: 960, y: 1290, esc: 1.7, t: lt, expr: 'panico', fala: fl, andar: false, olhar: [0, 0] }));
 cena('narr', 'A caixa do alarme estava aberta, com os fios soltos. Alguém tinha tirado a bateria.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('bia', 'Léo, o grêmio pegou a bateria pro karaokê de ontem! Eu avisei pra eles!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Bia, liga pra emergência! Agora!',
@@ -160,6 +162,7 @@ cena('narr', 'A mão dele tremia. Ele apertou com força, do jeito que tinha apr
 cena('narr', 'O jato de pó branco espalhou sobre as chamas. O fogo recuou, mas a fumaça só aumentou.',
   (lt) => laboratorio(lt, 0.7) + `<g opacity="${0.4 + 0.3 * Math.sin(lt * 3)}">${[0, 1, 2, 3, 4].map((i) => `<circle cx="${760 + i * 70 + Math.sin(lt + i) * 10}" cy="${520 - i * 30}" r="${24 + i * 6}" fill="#FFFFFF"/>`).join('')}</g>` + figura({ ...LEO, x: 420, y: 880, esc: 0.8, t: lt, expr: 'determinado', pose: 'aponta', olhar: [0.9, 0] }),
   { trilha: 'terror' });
+cena('narr', 'A fumaça queimava os olhos. Ele piscava sem parar.', (lt, c, fl) => `<rect width="${EW}" height="${EH}" fill="#2A1A24"/>` + fogo(lt, 0, 780, EW, 320, 0.9) + figura({ ...LEO, x: 960, y: 1290, esc: 1.7, t: lt, expr: 'triste', fala: fl, andar: false, olhar: [0, 0] }));
 cena('narr', 'Ele se abaixou. A fumaça era densa, queimava os olhos e o ar ficava cada vez mais quente.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Fica baixo! A fumaça sobe, o ar bom fica perto do chão!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('leo', 'Não adianta! É muito fogo! Gente, sai daí!',
@@ -167,6 +170,7 @@ cena('leo', 'Não adianta! É muito fogo! Gente, sai daí!',
   { trilha: 'terror' });
 
 // ============ 8. A TURMA ============
+cena('narr', 'Ele olhou para o teto. Medo puro.', (lt, c, fl) => `<rect width="${EW}" height="${EH}" fill="#2A1A24"/>` + fogo(lt, 0, 780, EW, 320, 0.9) + figura({ ...LEO, x: 960, y: 1290, esc: 1.7, t: lt, expr: 'panico', fala: fl, andar: false, olhar: [0, 0] }));
 cena('narr', 'O fogo tinha subido para o teto. Uma lâmpada estourou e caiu perto dos pés dele.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('ana', 'Léo, sai daí agora! Não é hora de herói!', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'No fim do corredor, ainda tinha gente. Uma turma inteira do segundo ano, ensaiando teatro no auditório.',
@@ -206,6 +210,7 @@ cena('leo', 'Calma, eu te seguro! Vai, vai!',
   { trilha: 'terror' });
 
 // ============ 10. A ÚLTIMA SALA ============
+cena('narr', 'Ele respirou aliviado, mas ainda tremia.', (lt, c, fl) => `<rect width="${EW}" height="${EH}" fill="#2A1A24"/>` + fogo(lt, 0, 780, EW, 320, 0.9) + figura({ ...LEO, x: 960, y: 1290, esc: 1.7, t: lt, expr: 'feliz', fala: fl, andar: false, olhar: [0, 0] }));
 cena('narr', 'Uma das alunas, de tranças, agradeceu sem conseguir falar direito. Só apertou a mão dele.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Atrás deles, o corredor desabava aos poucos. Cada passo era uma pequena vitória.', (lt, c, fl) => corredor(lt, { fogo: 0.6 }) + figura({ ...LEO, x: 960, y: 880, esc: 0.8, t: lt, expr: 'neutro', olhar: [0, 0] }));
 cena('narr', 'Faltava uma pessoa. No auditório escuro, um menino dormia com o fone no ouvido. Ninguém tinha visto ele.',
