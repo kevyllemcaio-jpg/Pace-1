@@ -38,3 +38,8 @@ Observações:
 3. `<nome>.md`: título, descrição, tags e todos os campos da tela "Adicionar detalhes" do YouTube.
 4. **Legenda palavra por palavra** (a partir do nº 4): no terço de baixo da tela, acima da área dos botões do Shorts, sem cobrir o rosto do personagem; a palavra falada fica amarela.
 5. A ordem dos vídeos segue esta lista.
+
+## Extras (fora da lista original)
+| Vídeo | Arquivo | Status |
+|---|---|---|
+| E SE Você Achasse um RELÓGIO ALIENÍGENA por 1 Dia? (alienígenas originais: Bração, Zummm) | relogio-alienigena.mp4 | pronto |
