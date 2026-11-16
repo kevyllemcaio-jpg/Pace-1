@@ -43,3 +43,4 @@ Observações:
 | Vídeo | Arquivo | Status |
 |---|---|---|
 | E SE Você Achasse um RELÓGIO ALIENÍGENA por 1 Dia? (alienígenas originais: Bração, Zummm) | relogio-alienigena.mp4 | pronto |
+| E SE Você Tivesse um RELÓGIO ALIENÍGENA na Vida Real? (Fogaréu, Zummm, Bração, Asinha, Pingo) | relogio-vida-real.mp4 | pronto |
