@@ -31,6 +31,6 @@ for ci, ch in enumerate(chunks):
         a = w['a']; b = ch[wi + 1]['a'] if wi + 1 < len(ch) else end_chunk
         parts = [(r'{\c&H3FD2FF&\fscx108\fscy108}' + x['t'] + r'{\c&HFFFFFF&\fscx100\fscy100}') if j == wi else x['t'] for j, x in enumerate(ch)]
         ev.append(f"Dialogue: 0,{t(a)},{t(b)},Cap,,0,0,0,,{' '.join(parts)}")
-head = head.replace('{PX}', '1920' if LAND else '1080').replace('{PY}', '1080' if LAND else '1920').replace('{FS}', '66' if LAND else '84').replace('{MV}', '80' if LAND else '370')
+head = head.replace('{PX}', '1920' if LAND else '1080').replace('{PY}', '1080' if LAND else '1920').replace('{FS}', os.environ.get('CAPFS', '66' if LAND else '84')).replace('{MV}', '80' if LAND else '370')
 open(sys.argv[2], 'w').write(head + '\n'.join(ev) + '\n')
 print(len(chunks), 'chunks')

@@ -45,3 +45,4 @@ Observações:
 | E SE Você Achasse um RELÓGIO ALIENÍGENA por 1 Dia? (alienígenas originais: Bração, Zummm) | relogio-alienigena.mp4 | pronto |
 | E SE Você Tivesse um RELÓGIO ALIENÍGENA na Vida Real? (Fogaréu, Zummm, Bração, Asinha, Pingo) | relogio-vida-real.mp4 | pronto |
 | E SE Você Tivesse SUPERVELOCIDADE por 24 Horas? (3D, herói original ZÁS, 60 s) | supervelocidade-24h.mp4 | pronto |
+| E SE Você Tivesse um RELÓGIO ALIENÍGENA por 24 Horas? (3D, alienígenas originais, 60 s) | relogio-alienigena-24h.mp4 | pronto |
