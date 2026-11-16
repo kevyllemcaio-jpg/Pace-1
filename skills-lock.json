@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "skills": {
+    "hero-section-design": {
+      "source": "curiositech/windags-skills",
+      "commit": "6992af55d780dc54b219e1fa9cd6b5932a2d82df",
+      "sourceType": "github",
+      "skillPath": "skills/hero-section-design/SKILL.md",
+      "computedHash": "df5a1d46741697c08d9dd82d27d467114d85578c6982ac527d3cac3edf9910ae"
+    }
+  }
+}
