@@ -72,3 +72,10 @@ Observações:
 | E SE o Seu Primeiro Encontro Tivesse LEGENDA? | encontro-com-legenda.mp4 | pronto |
 | E SE Você Fosse o ÚNICO HOMEM na Aula de Dança da Academia? | — | ideia |
 | E SE o Seu Chefe Ouvisse Seus Pensamentos na Reunião? | — | ideia |
+
+## Ideias virais (busca de formatos)
+| Título | Arquivo | Status |
+|---|---|---|
+| E SE Você Ficasse INVISÍVEL, Mas Só Quando Ninguém Tá Olhando? | invisivel-se-ninguem-olhar.mp4 | pronto |
+| E SE Seus Pensamentos Aparecessem como LEGENDA o Dia Inteiro? | — | em produção |
+| E SE Você Fosse o ÚNICO HOMEM na Aula de Dança da Academia? (adulto) | — | na fila |
