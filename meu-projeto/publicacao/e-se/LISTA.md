@@ -82,3 +82,6 @@ Observações:
 | E SE Você Ficasse PRESO num Quarto com 10 MENINAS? | preso-com-10-meninas.mp4 | pronto |
 | E SE Você Fosse a ÚNICA MENINA numa Festa do Pijama de Meninos? | unica-menina-na-festa.mp4 | pronto |
 | E SE Você Ficasse 100 DIAS Preso num Bunker com o Seu CRUSH? (3D) | bunker-100-dias.mp4 | pronto |
+
+## Padrão 3D (a partir de agora)
+- Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
