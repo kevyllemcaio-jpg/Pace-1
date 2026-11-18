@@ -57,11 +57,11 @@ Observações:
 | N5 | E SE Sua Irmã Te Levasse pro CHÁ DE BONECAS? | "SOCORRO, IRMÃ!" | ideia |
 | N6 | E SE Seu DIÁRIO Fosse Lido em Voz Alta na Sala? | "NÃO LÊ ISSO!" | ideia |
 | N7 | E SE Todo Mundo VISSE o Seu Histórico do Celular? | "APAGA! APAGA!" | ideia |
-| N8 | E SE Sua CRUSH Pudesse Ouvir Seus Pensamentos (Só Ela)? | "ELA OUVIU?!" | em produção |
+| N8 | E SE Sua CRUSH Pudesse Ouvir Seus Pensamentos (Só Ela)? | "ELA OUVE TUDO?!" | pronto (crush-ouve-pensamentos.mp4) |
 | N9 | E SE a Sua MÃE Ouvisse Seus Pensamentos? | "MÃE, NÃO!" | ideia |
 | N10 | E SE os PROFESSORES Ouvissem Tudo na Prova? | "COLA MENTAL" | ideia |
 | N11 | E SE Aparecesse na Sua Testa o Que Você Sente? | "TÁ ESCRITO!" | ideia |
-| N12 | E SE Você Não Pudesse MENTIR por 24 Horas na Escola? | "SÓ VERDADE?!" | na fila |
+| N12 | E SE Você Não Pudesse MENTIR por 24 Horas na Escola? | "SÓ VERDADE?!" | em produção |
 | N13 | E SE a Escola Inteira Descobrisse Sua CRUSH? | "TODO MUNDO SABE" | ideia |
 | N14 | E SE Você Ficasse INVISÍVEL Só pras Meninas? | "CADÊ EU?!" | ideia |
 | N15 | E SE Você Trocasse de Lugar com a Sua IRMÃ? | "EU SOU ELA?!" | ideia |
