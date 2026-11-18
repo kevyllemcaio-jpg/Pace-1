@@ -46,3 +46,22 @@ Observações:
 | E SE Você Tivesse um RELÓGIO ALIENÍGENA na Vida Real? (Fogaréu, Zummm, Bração, Asinha, Pingo) | relogio-vida-real.mp4 | pronto |
 | E SE Você Tivesse SUPERVELOCIDADE por 24 Horas? (3D, herói original ZÁS, 60 s) | supervelocidade-24h.mp4 | pronto |
 | E SE Você Tivesse um RELÓGIO ALIENÍGENA por 24 Horas? (3D, alienígenas originais, 60 s) | relogio-alienigena-24h.mp4 | pronto |
+
+## Novas ideias (na linha dos 3 que mais deram certo)
+| # | Título | Capa | Status |
+|---|---|---|---|
+| N1 | E SE Você Fosse o ÚNICO MENINO num Acampamento de Meninas? | "1 BARRACA, 20 MENINAS" | ideia |
+| N2 | E SE Você Fosse o ÚNICO MENINO no Time de Vôlei das Meninas? | "ME ESCALARAM?!" | ideia |
+| N3 | E SE Você Fosse o ÚNICO MENINO na Aula de Balé? | "TUTU ROSA?!" | ideia |
+| N4 | E SE Você Ficasse PRESO no Banheiro das Meninas? | "PRESO NO BANHEIRO DELAS!" | pronto (preso-no-banheiro.mp4) |
+| N5 | E SE Sua Irmã Te Levasse pro CHÁ DE BONECAS? | "SOCORRO, IRMÃ!" | ideia |
+| N6 | E SE Seu DIÁRIO Fosse Lido em Voz Alta na Sala? | "NÃO LÊ ISSO!" | ideia |
+| N7 | E SE Todo Mundo VISSE o Seu Histórico do Celular? | "APAGA! APAGA!" | ideia |
+| N8 | E SE Sua CRUSH Pudesse Ouvir Seus Pensamentos (Só Ela)? | "ELA OUVIU?!" | em produção |
+| N9 | E SE a Sua MÃE Ouvisse Seus Pensamentos? | "MÃE, NÃO!" | ideia |
+| N10 | E SE os PROFESSORES Ouvissem Tudo na Prova? | "COLA MENTAL" | ideia |
+| N11 | E SE Aparecesse na Sua Testa o Que Você Sente? | "TÁ ESCRITO!" | ideia |
+| N12 | E SE Você Não Pudesse MENTIR por 24 Horas na Escola? | "SÓ VERDADE?!" | na fila |
+| N13 | E SE a Escola Inteira Descobrisse Sua CRUSH? | "TODO MUNDO SABE" | ideia |
+| N14 | E SE Você Ficasse INVISÍVEL Só pras Meninas? | "CADÊ EU?!" | ideia |
+| N15 | E SE Você Trocasse de Lugar com a Sua IRMÃ? | "EU SOU ELA?!" | ideia |
