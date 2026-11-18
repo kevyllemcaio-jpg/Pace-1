@@ -65,3 +65,10 @@ Observações:
 | N13 | E SE a Escola Inteira Descobrisse Sua CRUSH? | "TODO MUNDO SABE" | ideia |
 | N14 | E SE Você Ficasse INVISÍVEL Só pras Meninas? | "CADÊ EU?!" | ideia |
 | N15 | E SE Você Trocasse de Lugar com a Sua IRMÃ? | "EU SOU ELA?!" | ideia |
+
+## Série adulta (bolinha adulto, duplo sentido leve, sem nada explícito)
+| Título | Arquivo | Status |
+|---|---|---|
+| E SE o Seu Primeiro Encontro Tivesse LEGENDA? | encontro-com-legenda.mp4 | pronto |
+| E SE Você Fosse o ÚNICO HOMEM na Aula de Dança da Academia? | — | ideia |
+| E SE o Seu Chefe Ouvisse Seus Pensamentos na Reunião? | — | ideia |
