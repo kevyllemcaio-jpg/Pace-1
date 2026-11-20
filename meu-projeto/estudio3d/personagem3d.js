@@ -3,18 +3,24 @@
 // cabelo castanho-escuro curto repartido de lado. Olha para +z; pés em y = 0.
 //
 // Uso:  const p = criarPersonagem();  cena.add(p);
-//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1, falando: bool }
+//       p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado'|'controle', expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado', andar: 0..1, pulo: 0..1, falando: bool }
 //       p.animar(t)   // a cada quadro
 
 import * as THREE from 'three';
 import { mat, caixa } from './mundo.js';
 
-const COR = {
+const COR_PADRAO = {
   pele: '#F0C49C', roupa: '#FFC21A', roupaEscura: '#E0A000', calca: '#1D1D22',
   cabelo: '#3A2416', tenis: '#FFFFFF', sola: '#D93A3A', olho: '#1A1A1A', boca: '#7A2626', bochecha: '#F29A86',
 };
 
-export function criarPersonagem() {
+/**
+ * opcoes.cores  -> troca cores (pele, roupa, roupaEscura, calca, cabelo, tenis, sola...)
+ * opcoes.estilo -> 'mae': cabelo comprido com coque, sem topete, e óculos
+ */
+export function criarPersonagem(opcoes = {}) {
+  const COR = { ...COR_PADRAO, ...(opcoes.cores || {}) };
+  const mae = opcoes.estilo === 'mae';
   const p = new THREE.Group();
   const corpo = new THREE.Group();
   p.add(corpo);
@@ -66,9 +72,16 @@ export function criarPersonagem() {
   const franja = caixa(0.34, 0.09, 0.07, cab, [0.04, 0.43, 0.19]);
   franja.rotation.z = -0.22;
   cabeca.add(franja);
-  const topete = caixa(0.1, 0.09, 0.12, cab, [-0.06, 0.56, 0.06]);
-  topete.rotation.set(0.3, 0, 0.35);
-  cabeca.add(topete);
+  if (mae) {
+    // cabelo comprido nas laterais/nuca + coque no alto da cabeça
+    cabeca.add(caixa(0.06, 0.36, 0.34, cab, [-0.235, 0.27, -0.03]), caixa(0.06, 0.36, 0.34, cab, [0.235, 0.27, -0.03]));
+    cabeca.add(caixa(0.47, 0.42, 0.08, cab, [0, 0.24, -0.2]));
+    cabeca.add(caixa(0.2, 0.17, 0.2, cab, [0, 0.6, -0.1]));
+  } else {
+    const topete = caixa(0.1, 0.09, 0.12, cab, [-0.06, 0.56, 0.06]);
+    topete.rotation.set(0.3, 0, 0.35);
+    cabeca.add(topete);
+  }
 
   // Rosto (frente = +z)
   const rosto = new THREE.Group();
@@ -87,6 +100,15 @@ export function criarPersonagem() {
   [-1, 1].forEach((s) => rosto.add(caixa(0.06, 0.03, 0.01, mat(COR.bochecha), [s * 0.14, 0.2, 0], { sombra: false })));
   const boca = caixa(0.12, 0.035, 0.02, mat(COR.boca), [0, 0.13, 0], { sombra: false });
   rosto.add(boca);
+  if (mae) {
+    // óculos de armação vermelha
+    const arm = mat('#B0263A');
+    [-1, 1].forEach((s) => {
+      rosto.add(caixa(0.12, 0.016, 0.015, arm, [s * 0.09, 0.33, 0.012], { sombra: false }), caixa(0.12, 0.016, 0.015, arm, [s * 0.09, 0.23, 0.012], { sombra: false }));
+      rosto.add(caixa(0.016, 0.1, 0.015, arm, [s * 0.15, 0.28, 0.012], { sombra: false }), caixa(0.016, 0.1, 0.015, arm, [s * 0.03, 0.28, 0.012], { sombra: false }));
+    });
+    rosto.add(caixa(0.06, 0.014, 0.015, arm, [0, 0.29, 0.012], { sombra: false }));
+  }
   corpo.add(cabeca);
 
   p.estado = { bracos: 'normal', expr: 'feliz', andar: 0, pulo: 0 };
@@ -114,6 +136,10 @@ export function criarPersonagem() {
       case 'cabeca':
         dir.rotation.set(-2.5, 0, -0.55);
         esq.rotation.set(-2.5, 0, 0.55);
+        break;
+      case 'controle': // segurando um controle na frente da barriga
+        dir.rotation.set(-1.05, 0, 0.35 + Math.sin(t * 13) * 0.04);
+        esq.rotation.set(-1.05, 0, -0.35 - Math.sin(t * 13 + 1) * 0.04);
         break;
       case 'aponta':
         dir.rotation.set(-1.45, 0, -0.25);

@@ -217,3 +217,16 @@ Com 24 horas acordado, seus reflexos já ficam iguais aos de quem bebeu. No dia 
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #sono #curiosidades #cerebro #ciencia #insonia #shorts
+
+## Minha mãe jogou Minecraft pela 1ª vez (`saida/mae-minecraft.mp4`, capa `publicacao/capa-mae-minecraft.png`)
+Short de história com a **mãe** (elenco fixo: `criarPersonagem({ estilo: 'mae' })`, voz `pt-BR-FranciscaNeural`).
+O jogo mostrado é um jogo de blocos genérico (sem personagens, logos ou interface do jogo real).
+
+**Título (YouTube):**
+Minha mãe jogou Minecraft pela primeira vez 😂 #shorts
+
+**Descrição:**
+Ela pediu desculpa pro bloco, derrubou árvore na mão e construiu uma casa sem porta… e isso salvou a vida dela. 🧱
+E a sua mãe, já jogou videogame? Comenta aí! 👇
+
+#minecraft #mae #videogame #humor #animacao #shorts

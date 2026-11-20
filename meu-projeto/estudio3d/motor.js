@@ -14,6 +14,7 @@
 // b.falando(lt) -> true enquanto uma palavra está sendo dita (boca do personagem).
 //   corte?: true | (lt, b) => bool,   vista em corte (mostra o subsolo / o interior)
 //   semLegenda?: true,    não mostra a legenda palavra por palavra
+//   voz?, velocidade?     voz só deste bloco (ex.: 'pt-BR-FranciscaNeural' para a mãe)
 //   aplicar(lt, b),       ajusta o mundo para o instante lt (s) do bloco
 //   camada?(lt, b),       HTML extra (cartão, etiqueta...) por cima do vídeo
 //   sons?: [{ em: 'palavra' | (b) => s, tipo }]
@@ -266,6 +267,7 @@ export function iniciar(video) {
 
   return {
     falas: () => blocos.map((b) => b.fala || null),
+    vozes: () => blocos.map((b) => b.voz || null), // voz por bloco (ex.: a mãe com voz feminina)
     config: video.config,
     definirTempos,
     duracao,

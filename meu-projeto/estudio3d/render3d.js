@@ -79,13 +79,15 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
 
   // 1) Narração: um MP3 + tempos das palavras por bloco (com cache).
   const config = await page.evaluate(() => MOTOR.config);
-  const voz = config.voz || 'pt-BR-AntonioNeural';
+  const vozPadrao = config.voz || 'pt-BR-AntonioNeural';
   const velocidade = config.velocidade || '+10%';
   const falas = await page.evaluate(() => MOTOR.falas());
+  const vozes = await page.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
   const audios = [];
   if (comVoz) {
     const tempos = falas.map((fala, i) => {
       if (!fala) { audios.push(null); return null; }
+      const voz = vozes[i] || vozPadrao;
       const id = crypto.createHash('sha1').update(`${voz}|${velocidade}|${fala}`).digest('hex').slice(0, 12);
       const mp3 = path.join(pastaVoz, `${id}.mp3`), json = path.join(pastaVoz, `${id}.json`);
       if (!fs.existsSync(mp3) || !fs.existsSync(json)) {
@@ -167,7 +169,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
-  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
   pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);

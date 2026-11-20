@@ -19,10 +19,12 @@ const raiz = path.join(__dirname, '..');
   p.on('pageerror', (e) => console.error('ERRO:', e.message));
   await p.goto(`http://127.0.0.1:${s.address().port}/estudio3d/pagina.html?video=${nome}&escala=1.5${horizontal ? '&formato=horizontal' : ''}`);
   await p.waitForFunction(() => window.PRONTO === true);
-  const { voz = 'pt-BR-AntonioNeural', velocidade = '+10%' } = await p.evaluate(() => MOTOR.config);
+  const { voz: vozPadrao = 'pt-BR-AntonioNeural', velocidade = '+10%' } = await p.evaluate(() => MOTOR.config);
   const falas = await p.evaluate(() => MOTOR.falas());
-  const tempos = falas.map((f) => {
+  const vozes = await p.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
+  const tempos = falas.map((f, i) => {
     if (!f) return null;
+    const voz = vozes[i] || vozPadrao;
     const id = crypto.createHash('sha1').update(`${voz}|${velocidade}|${f}`).digest('hex').slice(0, 12);
     const mp3 = path.join(raiz, 'saida/.voz', id + '.mp3'), json = mp3.replace('.mp3', '.json');
     if (!fs.existsSync(json)) return null;
