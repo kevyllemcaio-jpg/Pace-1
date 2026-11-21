@@ -42,5 +42,6 @@ As cores, os cenários e a aparência de João são escolhas artísticas: a Bíb
 - Deus Pai aparece só como luz e voz. O rosto do Filho do Homem fica sempre coberto pelo brilho, sem traços.
 - O que o texto descreve está todo em cena: veste até os pés, cinto de ouro no peito, cabelos brancos, olhos de fogo, pés de bronze, voz de muitas águas, sete estrelas, espada de dois gumes e rosto como o sol.
 - Sem música de fundo: só a narração e alguns efeitos.
-- Abertura com close no rosto de João, imagem mudando a cada poucos segundos, fala sem pausas e legenda grande palavra por palavra.
+- Abertura com close no rosto de João, fala sem pausas e imagem mudando a cada poucos segundos.
+- Edição no estilo de referência do canal: troca de cena com zoom rápido e borrão de movimento (sem corte seco), etiqueta do assunto no topo de cada cena e legenda limpa no meio da tela, com a palavra falada em amarelo.
 - Vozes: narrador, o Senhor Deus (mais grave, com eco) e o Filho de Homem (com rumor de águas). As três vêm da mesma voz sintética, com tratamentos diferentes.

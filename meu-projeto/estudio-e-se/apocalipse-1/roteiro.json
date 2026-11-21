@@ -205,5 +205,7 @@
    "voz": "narrador",
    "texto": "Continua em Apocalipse, capítulo dois."
   }
- ]
+ ],
+ "transicao": "zoom",
+ "legenda_estilo": "centro"
 }
