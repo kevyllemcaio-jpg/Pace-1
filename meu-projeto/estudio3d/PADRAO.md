@@ -48,7 +48,14 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
 - Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
 - Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
 
-## Personagem principal ("você")
+## Personagem novo (desenho animado) — usar a partir de agora
+`personagem-toon.js` → `criarPersonagemToon()`: redondo, cabeça grande, contorno preto, sombreado de desenho,
+olhos grandes com brilho, cores vivas (moletom amarelo, calça azul, tênis vermelho). A mãe:
+`criarPersonagemToon({ estilo: 'mae' })` (coque + óculos). Mesmas poses/expressões do antigo
+(`cabeca` = mãos nas bochechas). Objetos falantes: `rosto-objeto.js` (mesmo estilo).
+O boneco quadrado (`personagem3d.js`) fica só para os vídeos antigos.
+
+## Personagem principal antigo ("você")
 `personagem3d.js`: jaqueta amarela sem zíper, calça preta, tênis branco com sola vermelha,
 cabelo castanho-escuro curto repartido de lado. Aparece na abertura, comemora no
 "Parabéns" e fala com o público no final.

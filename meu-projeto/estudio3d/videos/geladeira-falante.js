@@ -7,7 +7,7 @@
 import * as THREE from 'three';
 import { suave, lim, mistura, etiqueta, cartao, som } from '../motor.js';
 import { mat, caixa, cilindro, malha } from '../mundo.js';
-import { criarPersonagem } from '../personagem3d.js';
+import { criarPersonagemToon } from '../personagem-toon.js';
 import { criarCozinha } from '../cenarios/cozinha.js';
 import { criarRosto } from '../rosto-objeto.js';
 import { finalPergunta } from '../formato-dias.js';
@@ -25,7 +25,7 @@ export function criar(ctx) {
 
   // ---------- geladeira com rosto ----------
   const L = 0.9, A = 2.0, PR = 0.72, ZF = -0.2; // largura, altura, profundidade, frente
-  const branco = mat('#F2F5F8');
+  const branco = mat('#7FDCC6'); // geladeira retrô verde-menta (cor viva)
   const corpo = new THREE.Group();
   corpo.add(caixa(0.04, A, PR, branco, [-L / 2, A / 2, ZF - PR / 2]), caixa(0.04, A, PR, branco, [L / 2, A / 2, ZF - PR / 2]));
   corpo.add(caixa(L, 0.04, PR, branco, [0, A, ZF - PR / 2]), caixa(L, 0.06, PR, branco, [0, 0.05, ZF - PR / 2]));
@@ -49,7 +49,7 @@ export function criar(ctx) {
   // porta (pivô na dobradiça esquerda) com o rosto
   const porta = new THREE.Group();
   porta.position.set(-L / 2, 0, ZF);
-  porta.add(caixa(L, A - 0.04, 0.06, mat('#F7F9FB'), [L / 2, A / 2, 0.03]));
+  porta.add(caixa(L, A - 0.04, 0.06, mat('#8FE6D2'), [L / 2, A / 2, 0.03]));
   porta.add(caixa(0.04, 0.6, 0.05, mat('#9AA3AE', { metal: true }), [L - 0.08, 1.0, 0.08]));
   const rostoG = criarRosto({ escala: 1.7 });
   rostoG.position.set(L / 2, 1.42, 0.065);
@@ -73,7 +73,7 @@ export function criar(ctx) {
   cena.add(micro);
 
   // ---------- você (de pijama) ----------
-  const voce = criarPersonagem({ cores: { roupa: '#5B7DB1', roupaEscura: '#46669A', calca: '#5B7DB1', tenis: '#E9E2D0', sola: '#C9B79A' } });
+  const voce = criarPersonagemToon({ cores: { roupa: '#3FA9FF', roupaDet: '#FFD21F', calca: '#3FA9FF', tenis: '#FFD21F' } });
   cena.add(voce);
 
   let E;
