@@ -1,0 +1,209 @@
+{
+ "titulo": "Apocalipse 1",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "noturno",
+ "narrador": "narrador",
+ "musica": "epico",
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "vozes": {
+  "narrador": "externo",
+  "deus": "externo",
+  "filho": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "Isto é o que João viu na ilha de Patmos. Apocalipse, capítulo um."
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Revelação de Jesus Cristo, que Deus lhe deu para mostrar aos seus servos as coisas que em breve devem acontecer."
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "Ele a comunicou por meio do seu anjo ao seu servo João."
+  },
+  {
+   "id": "n4",
+   "voz": "narrador",
+   "texto": "E João deu testemunho da palavra de Deus e do testemunho de Jesus Cristo, de tudo o que viu."
+  },
+  {
+   "id": "n5",
+   "voz": "narrador",
+   "texto": "Bem-aventurado aquele que lê, e os que ouvem as palavras desta profecia e guardam o que nela está escrito."
+  },
+  {
+   "id": "n6",
+   "voz": "narrador",
+   "texto": "Pois o tempo está próximo."
+  },
+  {
+   "id": "n7",
+   "voz": "narrador",
+   "texto": "João, às sete igrejas que estão na Ásia."
+  },
+  {
+   "id": "n8",
+   "voz": "narrador",
+   "texto": "Graça e paz a vocês, da parte daquele que é, que era e que há de vir;"
+  },
+  {
+   "id": "n9",
+   "voz": "narrador",
+   "texto": "da parte dos sete Espíritos que estão diante do seu trono;"
+  },
+  {
+   "id": "n10",
+   "voz": "narrador",
+   "texto": "e da parte de Jesus Cristo, a fiel testemunha, o primogênito dos mortos e o soberano dos reis da terra."
+  },
+  {
+   "id": "n11",
+   "voz": "narrador",
+   "texto": "Àquele que nos ama e, pelo seu sangue, nos libertou dos nossos pecados,"
+  },
+  {
+   "id": "n12",
+   "voz": "narrador",
+   "texto": "e nos fez reino, sacerdotes para o seu Deus e Pai, a ele a glória e o domínio pelos séculos dos séculos. Amém."
+  },
+  {
+   "id": "n13",
+   "voz": "narrador",
+   "texto": "Eis que ele vem com as nuvens, e todo olho o verá, até mesmo aqueles que o traspassaram."
+  },
+  {
+   "id": "n14",
+   "voz": "narrador",
+   "texto": "E todas as tribos da terra se lamentarão sobre ele. Certamente. Amém."
+  },
+  {
+   "id": "d1",
+   "voz": "deus",
+   "texto": "Eu sou o Alfa e o Ômega,"
+  },
+  {
+   "id": "n15",
+   "voz": "narrador",
+   "texto": "diz o Senhor Deus,"
+  },
+  {
+   "id": "d2",
+   "voz": "deus",
+   "texto": "aquele que é, que era e que há de vir, o Todo-Poderoso."
+  },
+  {
+   "id": "n16",
+   "voz": "narrador",
+   "texto": "Eu, João, irmão de vocês e companheiro na tribulação, no reino e na perseverança em Jesus,"
+  },
+  {
+   "id": "n17",
+   "voz": "narrador",
+   "texto": "estava na ilha chamada Patmos, por causa da palavra de Deus e do testemunho de Jesus."
+  },
+  {
+   "id": "n18",
+   "voz": "narrador",
+   "texto": "Achei-me em espírito, no dia do Senhor."
+  },
+  {
+   "id": "n19",
+   "voz": "narrador",
+   "texto": "E ouvi, por detrás de mim, uma grande voz, como de trombeta, dizendo:"
+  },
+  {
+   "id": "j1",
+   "voz": "filho",
+   "texto": "O que vês, escreve em livro e manda às sete igrejas:"
+  },
+  {
+   "id": "j2",
+   "voz": "filho",
+   "texto": "Éfeso, Esmirna, Pérgamo, Tiatira, Sardes, Filadélfia e Laodiceia."
+  },
+  {
+   "id": "n20",
+   "voz": "narrador",
+   "texto": "Voltei-me para ver quem falava comigo."
+  },
+  {
+   "id": "n21",
+   "voz": "narrador",
+   "texto": "E, ao voltar-me, vi sete candeeiros de ouro."
+  },
+  {
+   "id": "n22",
+   "voz": "narrador",
+   "texto": "E, no meio dos candeeiros, um semelhante a filho de homem, com vestes talares, cingido à altura do peito com um cinto de ouro."
+  },
+  {
+   "id": "n23",
+   "voz": "narrador",
+   "texto": "A sua cabeça e os seus cabelos eram brancos como a lã, como a neve. Os seus olhos, como chama de fogo."
+  },
+  {
+   "id": "n24",
+   "voz": "narrador",
+   "texto": "Os seus pés, semelhantes ao bronze polido, como que refinado numa fornalha. E a sua voz, como voz de muitas águas."
+  },
+  {
+   "id": "n25",
+   "voz": "narrador",
+   "texto": "Na mão direita ele tinha sete estrelas. Da sua boca saía uma afiada espada de dois gumes."
+  },
+  {
+   "id": "n26",
+   "voz": "narrador",
+   "texto": "E o seu rosto brilhava como o sol na sua força."
+  },
+  {
+   "id": "n27",
+   "voz": "narrador",
+   "texto": "Quando o vi, caí a seus pés como morto."
+  },
+  {
+   "id": "n28",
+   "voz": "narrador",
+   "texto": "Porém ele pôs sobre mim a sua mão direita, dizendo:"
+  },
+  {
+   "id": "j3",
+   "voz": "filho",
+   "texto": "Não temas. Eu sou o primeiro e o último, e aquele que vive."
+  },
+  {
+   "id": "j4",
+   "voz": "filho",
+   "texto": "Estive morto, mas eis que estou vivo pelos séculos dos séculos, e tenho as chaves da morte e do inferno."
+  },
+  {
+   "id": "j5",
+   "voz": "filho",
+   "texto": "Escreve, pois, as coisas que viste, as que são e as que hão de acontecer depois destas."
+  },
+  {
+   "id": "j6",
+   "voz": "filho",
+   "texto": "Quanto ao mistério das sete estrelas que viste na minha mão direita, e aos sete candeeiros de ouro:"
+  },
+  {
+   "id": "j7",
+   "voz": "filho",
+   "texto": "as sete estrelas são os anjos das sete igrejas, e os sete candeeiros são as sete igrejas."
+  },
+  {
+   "id": "n29",
+   "voz": "narrador",
+   "texto": "Continua em Apocalipse, capítulo dois."
+  }
+ ]
+}
