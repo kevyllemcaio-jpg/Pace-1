@@ -533,7 +533,7 @@ const GIRL = kid({ skin: '#f1d9cf', hair: '#6b3a1e', style: 'long', bow: '#ff5fa
 const BEDG = new THREE.Group(); BEDG.position.set(-120, 0, -120); scene.add(BEDG);
 { BEDG.add(box(70, 16, 130, '#ffffff', [0, 8, 0], 0.6)); BEDG.add(box(74, 46, 6, '#c77dff', [0, 23, -66], 0.7)); BEDG.add(box(64, 10, 30, '#ffe0ef', [0, 21, -46], 0.9)); const bl = box(72, 6, 90, '#ffafcc', [0, 19, 18], 0.9); BEDG.add(bl); BEDG.userData.blanket = bl; }
 const SHELF = new THREE.Group(); SHELF.position.set(140, 70, -205); scene.add(SHELF);
-{ SHELF.add(box(110, 3, 26, '#a47148', [0, 0, 0], 0.7)); for (let i = 0; i < 3; i++) { const c = new THREE.Group(); c.position.set(-18 + i * 14, 1.5, 2); c.add(M(new THREE.CylinderGeometry(2.2, 1.6, 3.2, 20), mat('#ffffff', 0.25), [0, 1.6, 0])); c.add(M(new THREE.TorusGeometry(1.1, 0.35, 8, 16), mat('#ffffff', 0.25), [2.5, 1.8, 0])); c.add(M(new THREE.CylinderGeometry(3.4, 3.4, 0.4, 24), mat('#ffc6ff', 0.3), [0, 0.2, 0])); SHELF.add(c); } const pot = M(new THREE.SphereGeometry(4, 24, 16), mat('#ffffff', 0.25), [25, 5, 0]); SHELF.add(pot); SHELF.add(M(new THREE.CylinderGeometry(0.6, 1.2, 5, 10), mat('#ffffff', 0.25), [30, 6, 0])).rotation.z = -0.9;
+{ SHELF.add(box(110, 3, 26, '#a47148', [0, 0, 0], 0.7)); for (let i = 0; i < 3; i++) { const c = new THREE.Group(); c.position.set(-18 + i * 14, 1.5, 2); c.add(M(new THREE.CylinderGeometry(2.2, 1.6, 3.2, 20), mat('#ffffff', 0.25), [0, 1.6, 0])); c.add(M(new THREE.TorusGeometry(1.1, 0.35, 8, 16), mat('#ffffff', 0.25), [2.5, 1.8, 0])); c.add(M(new THREE.CylinderGeometry(3.4, 3.4, 0.4, 24), mat('#ffc6ff', 0.3), [0, 0.2, 0])); SHELF.add(c); } const pot = M(new THREE.SphereGeometry(4, 24, 16), mat('#ffffff', 0.25), [25, 5, 0]); SHELF.add(pot); { const sp = M(new THREE.CylinderGeometry(0.6, 1.2, 5, 10), mat('#ffffff', 0.25), [30, 6, 0]); sp.rotation.z = -0.9; SHELF.add(sp); }
   // a toy horse
   const hz = new THREE.Group(); hz.position.set(-42, 1.5, 0); hz.add(box(14, 6, 5, '#ffd23f', [0, 9, 0])); hz.add(box(5, 8, 4, '#ffd23f', [7, 14, 0])); for (const [x, z] of [[-5, -1.5], [5, -1.5], [-5, 1.5], [5, 1.5]]) hz.add(box(1.6, 7, 1.6, '#ffd23f', [x, 3.5, z])); hz.add(box(2, 6, 1, '#e63946', [5, 15, 0])); SHELF.add(hz); }
 const NLIGHT = new THREE.Group(); NLIGHT.position.set(-40, 60, -209); scene.add(NLIGHT);
@@ -616,7 +616,7 @@ const SH = [
   { a: 34.25, b: 38.0, run(t) { day(); stand(NINA, 1, 8, 0.2, 'happyc'); NINA.userData.head.rotation.z = Math.sin(t * 3) * 0.12; const [p, l] = headC(NINA, 0.4, 0, 1.6); return { cam: C(p, l, 1.6), ap: 0.01, fx: () => notes(t, W / 2 + 120, 800) }; } },
   // 14 — every night he covers her mouth while she sleeps
   { a: 38.0, b: 42.77, run(t) { night(); show(NINA, 0, 0.35, 10, 0); NINA.rotation.x = -Math.PI / 2; setFace(NINA, 'happyc'); show(ME, -0.8, 0, 10.6, Math.PI / 2 + 0.2); ME.userData.body.position.y = -0.4; for (const lg of ME.userData.legs) lg.rotation.x = -1.4; setFace(ME, 'worry', 0.6); ME.userData.arms[1].rotation.set(-1.6, 0, -0.1);
-    return { cam: C([0.6, 2.1, 12.4], [-0.2, 0.5, 10.4], 2.6), ap: 0.004, fx: () => notes(t, W / 2, 900, 2) }; } },
+    const k = prog(t, 38, 42.77); return { cam: C([lerp(1.4, -0.6, k), 2.3 - k * 0.5, 12.6 - k * 0.6], [-0.2, 0.5, 10.4], 2.6), ap: 0.004, fx: () => notes(t, W / 2, 900, 2) }; } },
   // 15 — a boy drops a glass (slow motion) — CRASH
   { a: 42.77, b: 45.94, run(t) { day(); stand(LOST, ...[lostPos[0], lostPos[2]], 0.4, t < 44.4 ? 'happy' : 'shock'); const k = prog(t, 43.1, 44.4); const h = hand(LOST, 1); CUP.visible = t < 44.4; CUP.position.set(h.x + 0.3, lerp(h.y, 0.2, k * k), h.z + 0.25); CUP.rotation.z = k * 2;
     if (t >= 44.4) SHARDS.forEach((s, i) => { const r = rng(i + 5), u = prog(t, 44.4, 45.0); s.visible = true; s.position.set(h.x + 0.3 + (r() - 0.5) * 1.6 * u, 0.05 + Math.sin(u * Math.PI) * 0.4 * r(), h.z + 0.25 + (r() - 0.5) * 1.6 * u); s.rotation.set(t * 3 + i, i, 0); });
@@ -631,7 +631,7 @@ const SH = [
   // 18 — the adults whisper: the sky is angry
   { a: 51.85, b: 54.0, run(t) { day(); FOLK.slice(0, 5).forEach((k, i) => { stand(k, -2 + i * 1.0, 3 + (i % 2) * 0.8, Math.PI + (i - 2) * 0.2, 'worry'); k.userData.head.rotation.x = -0.4; }); return { cam: C([0, 2.0, -1.2], [0, 2.0, 3.4], 4.6), ap: 0.003 }; } },
   // 19 — Nina looks up
-  { a: 54.0, b: 56.29, run(t) { day(); stand(NINA, 1, 8, 0, 'stern'); NINA.userData.head.rotation.x = -0.45; const [p, l] = headC(NINA, -0.3, -0.25, 1.7); return { cam: C(p, l, 1.7), ap: 0.01 }; } },
+  { a: 54.0, b: 56.29, run(t) { day(); stand(NINA, 1, 8, 0, 'stern'); NINA.userData.head.rotation.x = -0.45; const k = prog(t, 54, 56.29); const [p, l] = headC(NINA, -0.5 + k * 0.6, -0.25, 1.9 - k * 0.5); return { cam: C(p, l, 1.7), ap: 0.01 }; } },
   // 20 — "if it was angry, why did it pick him up so gently?"
   { a: 56.29, b: 60.01, run(t) { day(); stand(NINA, 1, 8, 0.3, 'worry'); const [p, l] = headC(NINA, 0.35, 0.02, 1.35 - prog(t, 56.3, 60) * 0.2); return { cam: C(p, l, 1.3), ap: 0.012 }; } },
   // 21 — that night, he climbs the wall
@@ -642,7 +642,7 @@ const SH = [
   // 23 — a river of wool
   { a: 65.0, b: 67.6, run(t) { night(); const k = prog(t, 65, 67.6); return { cam: C([46 + k * 6, WH + 3, 30], [95, 0, 30], 50), ap: 0.0008 }; } },
   // 24 — a square moon that goes tick-tock
-  { a: 67.6, b: 70.87, run(t) { night(); NLIGHT.userData.mm.rotation.z = -Math.floor(t * 2) * 0.1; NLIGHT.userData.hh.rotation.z = -2.1; show(ME, 0, WH, -46, Math.PI); setFace(ME, 'surprised'); ME.userData.head.rotation.x = -0.3; return { cam: C([1.5, WH + 1.5, -43.5], [-40, 60, -209], 160), ap: 0.0005, bloom: 0.35 }; } },
+  { a: 67.6, b: 70.87, run(t) { night(); NLIGHT.userData.mm.rotation.z = -Math.floor(t * 2) * 0.1; NLIGHT.userData.hh.rotation.z = -2.1; show(ME, 0, WH, -46, Math.PI); setFace(ME, 'surprised'); ME.userData.head.rotation.x = -0.3; const k = prog(t, 67.6, 70.87); return { cam: C([1.5 - k * 3, WH + 1.5 + k * 1.5, -43.5], [-40 + k * 20, 60 - k * 6, -209], 160), ap: 0.0005, bloom: 0.35 }; } },
   // 25 — on the other side: a giant room
   { a: 70.87, b: 75.0, run(t) { night(); show(ME, 0, WH, -46, Math.PI); setFace(ME, 'shock'); show(GIRL, -120, 22, -126, 0); GIRL.rotation.x = -Math.PI / 2; GIRL.scale.setScalar(K); setFace(GIRL, 'happyc'); const k = prog(t, 70.87, 75); return { cam: C([0.8, WH + 2.0 + k * 3, -42 + k * 3], [-60, 20, -140], 100), ap: 0.0006 }; } },
   // 26 — a giant girl, asleep
@@ -651,8 +651,8 @@ const SH = [
   // 27 — the town was her dollhouse
   { a: 79.4, b: 82.46, run(t) { night(); show(GIRL, -120, 22, -126, 0); GIRL.rotation.x = -Math.PI / 2; GIRL.scale.setScalar(K); setFace(GIRL, 'happyc'); const k = ss(prog(t, 79.4, 82.3)); return { cam: C([lerp(20, 150, k), lerp(40, 150, k), lerp(-10, 170, k)], [-20, 0, -40], 150), ap: 0.0004 }; } },
   // 28 — the missing boy, on the shelf: pretend tea, smiling
-  { a: 82.46, b: 88.79, run(t) { night(); moonLamp.intensity = 320; show(LOST, SHELF.position.x - 30, SHELF.position.y + 1.5, SHELF.position.z + 4, 0.3); LOST.scale.setScalar(2.4); setFace(LOST, 'happyc'); LOST.userData.arms[1].rotation.set(-1.2, 0, 0.3); const k = prog(t, 82.46, 88.79);
-    return { cam: C([SHELF.position.x - 18 - k * 4, SHELF.position.y + 7, SHELF.position.z + 30 - k * 6], [SHELF.position.x - 18, SHELF.position.y + 4, SHELF.position.z + 2], 26), ap: 0.0015 }; } },
+  { a: 82.46, b: 88.79, run(t) { night(); moonLamp.intensity = 320; show(LOST, SHELF.position.x - 25, SHELF.position.y + 1.5, SHELF.position.z + 5, 0.5); LOST.scale.setScalar(2.4); setFace(LOST, 'happyc'); LOST.userData.arms[1].rotation.set(-1.2, 0, 0.3); const k = prog(t, 82.46, 88.79);
+    return { cam: C([SHELF.position.x - 16, SHELF.position.y + 12 - k * 5, SHELF.position.z + 62 - k * 28], [SHELF.position.x - 18, SHELF.position.y + 3, SHELF.position.z], 60 - k * 28), ap: 0.0015 }; } },
   // 29 — she never took them to punish them: she took them to play
   { a: 88.79, b: 93.27, run(t) { night(); moonLamp.intensity = 320; HAND.visible = true; HAND.rotation.set(-0.3, 0, 0); HAND.position.set(SHELF.position.x - 10, SHELF.position.y + 14 + Math.sin(t) * 0.5, SHELF.position.z + 10); curl(HAND, 0.25); const hp = HAND.position; show(LOST, hp.x, hp.y + 1, hp.z + 3, 0.2); LOST.scale.setScalar(2.4); setFace(LOST, 'happyc'); LOST.userData.arms[1].rotation.set(-0.3, 0, 1.2 + Math.sin(t * 6) * 0.3);
     return { cam: C([hp.x + 12, hp.y + 8, hp.z + 26], [hp.x, hp.y + 2, hp.z], 26), ap: 0.0015, fx: () => { const p = P(hp.x, hp.y + 8, hp.z); for (let i = 0; i < 4; i++) { const u = ((t * 0.5 + i / 4) % 1); O.globalAlpha = Math.sin(u * Math.PI); O.fillStyle = '#ff5fa2'; heart2(p[0] + Math.sin(i * 2) * 160, p[1] - u * 300, 30); O.globalAlpha = 1; } } }; } },
