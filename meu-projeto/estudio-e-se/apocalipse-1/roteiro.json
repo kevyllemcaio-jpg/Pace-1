@@ -4,7 +4,7 @@
  "qualidade": "alta",
  "estilo": "noturno",
  "narrador": "narrador",
- "musica": "epico",
+ "musica": "nenhuma",
  "tema": "historia",
  "efeitos_auto": false,
  "legendas": true,
@@ -143,7 +143,7 @@
   {
    "id": "n22",
    "voz": "narrador",
-   "texto": "E, no meio dos candeeiros, um semelhante a filho de homem, com vestes talares, cingido à altura do peito com um cinto de ouro."
+   "texto": "E, no meio dos candeeiros, um semelhante ao Filho do Homem, com vestes talares, cingido à altura do peito com um cinto de ouro."
   },
   {
    "id": "n23",

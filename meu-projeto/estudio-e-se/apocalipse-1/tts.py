@@ -27,7 +27,7 @@ for i, v, t in F:
     info[i] = dict(dur=round(len(s) / SR, 3), voz=v, texto=t, externo=True)
     rp.append(dict(id=i, voz=v, texto=t))
 json.dump(info, open('audio/falas.json', 'w', encoding='utf8'), ensure_ascii=False, indent=1)
-R = dict(titulo='Apocalipse 1', formato='9:16', qualidade='alta', estilo='noturno', narrador='narrador', musica='epico', tema='historia',
+R = dict(titulo='Apocalipse 1', formato='9:16', qualidade='alta', estilo='noturno', narrador='narrador', musica='nenhuma', tema='historia',
          efeitos_auto=False, legendas=True, vozes={k: 'externo' for k in V}, pronuncias={}, falas=rp)
 json.dump(R, open('roteiro.json', 'w', encoding='utf8'), ensure_ascii=False, indent=1)
 print('total', round(sum(x['dur'] for x in info.values()), 1), 's')

@@ -266,7 +266,7 @@ Exemplo completo e testado (é o roteiro do `cenas.py` de exemplo, no fim do doc
   - **Confira o gênero das vozes que o `importar_roteiro.py` atribuiu aos personagens**: ele distribui por ordem, sem saber quem é homem ou mulher.
 - **Pronúncias** (IPA) valem para Kokoro e Piper. Nomes estrangeiros quase sempre precisam delas.
 - `vel`: 0,9 a 1,05.
-- `musica`: `auto` (pelo tema), `misterio`, `leve`, `tenso`, `epico`, `triste`, `divertido` ou `tecnologia`.
+- `musica`: `auto` (pelo tema), `nenhuma` (sem trilha), `misterio`, `leve`, `tenso`, `epico`, `triste`, `divertido` ou `tecnologia`.
 - `tema`: `auto`, `golpe`, `financas`, `tecnologia`, `historia`, `motivacao`, `triste`, `humor` ou `saude`.
 - `estilo`: `noturno`, `dia`, `fofo`, `caderno`, `gibi`, `minimal` ou `palito`.
 - `elenco`: o que veio do editor.
@@ -2195,7 +2195,7 @@ def mix(v):
     textos = list(v.txt.values()); tema_auto, _ = detectar_tema(textos)
     tema = v.R.get('tema', 'auto'); tema = tema_auto if tema == 'auto' else tema
     clima = v.R.get('musica', 'auto'); clima = TEMAS.get(tema, ('misterio',))[0] if clima == 'auto' else clima
-    print(f'tema {tema} | trilha {CLIMAS[clima]["nome"]}')
+    print(f'tema {tema} | trilha {"sem música" if clima == "nenhuma" else CLIMAS[clima]["nome"]}')
     manuais = []; trans = glitch if tema == 'tecnologia' else (lambda: whoosh(.5))
     mutes = []; cut = None
     for S in v.shots:
@@ -2215,7 +2215,7 @@ def mix(v):
         for ef, tt in efeitos_auto(v):
             if all(abs(tt - x) > .45 for x in manuais): place(sfx, SFX[ef](), tt, .45, .15); print('  efeito', ef, round(tt, 2), 's')
     sfx += (lp(rng.standard_normal(N), 400) * 0.004)[:, None]  # tom de sala bem baixo
-    mus = trilha(N, clima, mutes, cut)
+    mus = np.zeros((N, 2)) if clima == 'nenhuma' else trilha(N, clima, mutes, cut)  # "musica": "nenhuma" = sem trilha
     env = lp(np.abs(vm), 5, 1); env /= env.max() + 1e-9; duck = (1 - 0.6 * np.clip(env * 3.2, 0, 1))[:, None]
     m = voice * 1.0 + mus * 0.36 * duck + sfx * 0.5; m = np.tanh(m * 1.15) / np.tanh(1.15)
     raw = f'{v.proj}/mix_raw.wav'; sf.write(raw, m.astype(np.float32), SR)

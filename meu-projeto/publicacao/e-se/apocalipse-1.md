@@ -14,7 +14,7 @@ Alternativas:
 ```
 Apocalipse, capítulo 1, versículo por versículo, em animação.
 João está na ilha de Patmos, ouve uma grande voz como de trombeta e vê sete candeeiros de ouro.
-No meio deles, alguém semelhante a filho de homem.
+No meio deles, alguém semelhante ao Filho do Homem.
 
 Episódio 1 da série Apocalipse em animação. Próximo: Apocalipse 2.
 
@@ -39,7 +39,8 @@ As cores, os cenários e a aparência de João são escolhas artísticas: a Bíb
 
 ## Como foi feito
 - Segue o roteiro de produção aprovado de Apocalipse 1: versículos 1 a 20, na ordem, sem acontecimentos ou falas inventadas.
-- Deus Pai aparece só como luz e voz. O rosto do semelhante a filho de homem fica sempre coberto pelo brilho, sem traços.
+- Deus Pai aparece só como luz e voz. O rosto do Filho do Homem fica sempre coberto pelo brilho, sem traços.
 - O que o texto descreve está todo em cena: veste até os pés, cinto de ouro no peito, cabelos brancos, olhos de fogo, pés de bronze, voz de muitas águas, sete estrelas, espada de dois gumes e rosto como o sol.
+- Sem música de fundo: só a narração e alguns efeitos.
 - Abertura com close no rosto de João, imagem mudando a cada poucos segundos, fala sem pausas e legenda grande palavra por palavra.
 - Vozes: narrador, o Senhor Deus (mais grave, com eco) e o Filho de Homem (com rumor de águas). As três vêm da mesma voz sintética, com tratamentos diferentes.

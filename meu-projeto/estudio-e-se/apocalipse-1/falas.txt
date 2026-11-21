@@ -23,7 +23,7 @@ j1|filho|O que vês, escreve em livro e manda às sete igrejas:
 j2|filho|Éfeso, Esmirna, Pérgamo, Tiatira, Sardes, Filadélfia e Laodiceia.
 n20|narrador|Voltei-me para ver quem falava comigo.
 n21|narrador|E, ao voltar-me, vi sete candeeiros de ouro.
-n22|narrador|E, no meio dos candeeiros, um semelhante a filho de homem, com vestes talares, cingido à altura do peito com um cinto de ouro.
+n22|narrador|E, no meio dos candeeiros, um semelhante ao Filho do Homem, com vestes talares, cingido à altura do peito com um cinto de ouro.
 n23|narrador|A sua cabeça e os seus cabelos eram brancos como a lã, como a neve. Os seus olhos, como chama de fogo.
 n24|narrador|Os seus pés, semelhantes ao bronze polido, como que refinado numa fornalha. E a sua voz, como voz de muitas águas.
 n25|narrador|Na mão direita ele tinha sete estrelas. Da sua boca saía uma afiada espada de dois gumes.
