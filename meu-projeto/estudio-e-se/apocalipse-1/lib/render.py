@@ -76,17 +76,26 @@ class Video:
         z0, z1 = d.get('zoom_v' if V else 'zoom', d.get('zoom', (1.0, 1.03) if card else (1.0, 1.07)))
         fo = d.get('focus_v' if V else 'focus', d.get('focus', (960, 540))); f0, f1 = (fo, fo) if isinstance(fo[0], (int, float)) else fo
         z = lerp(z0, z1, e); fx, fy = lerp(f0[0], f1[0], e), lerp(f0[1], f1[1], e)
-        zb = 0.0
-        if self.R.get('transicao') == 'zoom':  # sai empurrando a câmera para dentro, entra recuando
-            NT = 7
-            if S.i < len(self.shots) - 1 and n1 - f <= NT: u = (NT - (n1 - f)) / NT; z *= 1 + 0.9 * u * u; zb = max(zb, u)
-            if S.i > 0 and f - n0 < NT: u = 1 - (f - n0) / NT; z *= 1 + 0.6 * u * u; zb = max(zb, u)
+        zb = 0.0; tw = tsig = rz = 0.0
+        if self.R.get('transicao') == 'zoom':  # troca de cena com movimento de câmera, um tipo diferente a cada corte
+            NT = 7; TIPOS = ('entra', 'lado', 'sai', 'gira', 'lado2', 'entra', 'gira2', 'sai')
+            def mov(tipo, u, saindo):
+                nonlocal z, zb, tw, tsig, rz
+                if tipo == 'entra': z *= (1 + 0.9 * u * u) if saindo else (1 + 0.6 * u * u); zb = max(zb, u)
+                elif tipo == 'sai': z *= (1 - 0.42 * u * u) if saindo else (1 - 0.3 * u * u); zb = max(zb, u)
+                elif tipo in ('lado', 'lado2'):
+                    sd = 1 if tipo == 'lado' else -1; tw += (-sd if saindo else sd) * u * u * 1100 * OW / 1920; tsig = max(tsig, u * 46 * OW / 1920)
+                else:
+                    sd = 1 if tipo == 'gira' else -1; rz += (sd if saindo else -sd) * u * u * 28; z *= 1 + 0.45 * u * u; zb = max(zb, u * .8)
+            if S.i < len(self.shots) - 1 and n1 - f <= NT: mov(TIPOS[(S.i + 1) % len(TIPOS)], (NT - (n1 - f)) / NT, True)
+            if S.i > 0 and f - n0 < NT: mov(TIPOS[S.i % len(TIPOS)], 1 - (f - n0) / NT, False)
         bs = max(OW / W, OH / H); zz = z * bs  # escala "cobrir": o mundo 1920x1080 preenche qualquer formato
         S.view = (fx - OW / 2 / zz, fy - OH / 2 / zz, fx + OW / 2 / zz, fy + OH / 2 / zz); S.vertical = V
         wx = sig = shx = shy = 0; k_ = OW / 1920
         prev = self.shots[S.i - 1].d if S.i > 0 else {}
         if d.get('whip') and n1 - f <= 5: wx = -((6 - (n1 - f)) ** 2) * 34 * k_; sig = (6 - (n1 - f)) * 16 * k_
         if prev.get('whip') and f - n0 < 4: wx = (4 - (f - n0)) ** 2 * 52 * k_; sig = (4 - (f - n0)) * 18 * k_
+        wx += tw; sig = max(sig, tsig)
         for sh in d.get('shake', []):
             ts = S.at(sh)
             if ts <= t < ts + .35: k = 1 - (t - ts) / .35; shx = 16 * k * math.sin(t * 90); shy = 12 * k * math.cos(t * 77)
@@ -98,17 +107,17 @@ class Video:
             if S.falas: k = S.falas[0]; card_text(c, txt, t, self.cue[k], self.fala_util(k) - .15)
             else: card_text(c, txt, t, S.s0 + .25, 1.0)
         else:
-            c.translate(OW / 2 + wx + shx, OH / 2 + shy); c.scale(zz, zz); c.rotate(d.get('rot', 0) * (e - .5)); c.translate(-fx, -fy)
+            c.translate(OW / 2 + wx + shx, OH / 2 + shy); c.rotate(rz); c.scale(zz, zz); c.rotate(d.get('rot', 0) * (e - .5)); c.translate(-fx, -fy)
             d['draw'](c, t, S)
         c.restore()
         if not card: finish(surf, bloom=d.get('bloom', .40)); vignette(c, d.get('vig', .64))
         if zb > 0.02:  # borrão de zoom (cópias ampliadas em cima)
             img = surf.makeImageSnapshot(); c.save(); c.resetMatrix()
-            for j in range(1, 6):
-                sc_ = 1 + zb * 0.045 * j; c.save(); c.translate(self.PW / 2, self.PH / 2); c.scale(sc_, sc_); c.translate(-self.PW / 2, -self.PH / 2)
-                c.drawImage(img, 0, 0, skia.SamplingOptions(skia.FilterMode.kLinear), fp((0, 0, 0), 255 * .55 * zb / j ** .5)); c.restore()
+            for j in range(1, 10):
+                sc_ = 1 + zb * 0.024 * j; c.save(); c.translate(self.PW / 2, self.PH / 2); c.scale(sc_, sc_); c.translate(-self.PW / 2, -self.PH / 2)
+                c.drawImage(img, 0, 0, skia.SamplingOptions(skia.FilterMode.kLinear), fp((0, 0, 0), 255 * .42 * zb / j ** .5)); c.restore()
             c.restore()
-        if d.get('topo'): topo(c, d['topo'], t - S.s0)
+        if d.get('topo') and not (S.i > 0 and self.shots[S.i - 1].d.get('topo') == d['topo']): topo(c, d['topo'], t - S.s0)  # só quando o assunto muda
         if d.get('tag'): tag(c, d['tag'], (t - S.s0 - .2) / 1.0)
         for lw_ in d.get('lower', []):  # ("NOME|subtítulo", quando[, x, y]); x,y só valem no 16:9
             nm, _, sb = lw_[0].partition('|'); x_, y_ = (lw_[2], lw_[3]) if len(lw_) > 3 and OW == 1920 and OH == 1080 else (70, OH * (.68 if OH > OW else .72 if self.legendas else .86))

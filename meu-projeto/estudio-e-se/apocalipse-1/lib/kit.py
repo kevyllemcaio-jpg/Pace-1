@@ -632,8 +632,8 @@ def card_text(c, line_txt, t, t0, dur, size=None, color='#FFFFFF'):  # cartão p
         if vis: c.drawString(' '.join(vis), SW / 2 - full / 2, y0 + j * lh, f, fp(color))
 INTER_B = skia.Typeface.MakeFromFile('/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf') if os.path.exists('/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf') else KALAM
 INTER_K = skia.Typeface.MakeFromFile('/usr/share/fonts/opentype/inter/Inter-Black.otf') if os.path.exists('/usr/share/fonts/opentype/inter/Inter-Black.otf') else MARKER
-def topo(c, txt, dt):  # etiqueta do assunto da cena, no alto (caixa creme, letra escura)
-    k = pop(K(dt, .05, .25))
+def topo(c, txt, dt, dura=2.2):  # etiqueta do assunto da cena, no alto (caixa creme, letra escura); some depois de "dura" s
+    k = pop(K(dt, .05, .25)) * (1 - K(dt, dura, .3))
     if k <= 0: return
     size = 40 * SW / 1080; f = skia.Font(INTER_K, size); w = f.measureText(txt); x, y = SW / 2, SH * .165
     c.save(); c.translate(x, y); c.scale(k, k)
