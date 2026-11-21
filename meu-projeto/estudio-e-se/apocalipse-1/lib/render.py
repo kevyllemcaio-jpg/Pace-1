@@ -65,7 +65,7 @@ class Video:
         import inspect
         src = inspect.getsource(S.d['draw']) if 'draw' in S.d else ''
         d = {k: v for k, v in S.d.items() if k != 'draw'}
-        kit = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'kit.py'), encoding='utf8').read()
+        kit = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'kit.py'), encoding='utf8').read() + open(os.path.abspath(__file__), encoding='utf8').read()  # mudança no render.py também refaz a tomada
         return hashlib.md5(f"{self.fmt}{self.q}{self.estilo}{self.legendas}{S.s0}{S.s1}{json.dumps(d, default=str, sort_keys=True)}{src}{kit}".encode()).hexdigest()[:10]
 
     # ------------------------------------------------ desenho de um quadro
