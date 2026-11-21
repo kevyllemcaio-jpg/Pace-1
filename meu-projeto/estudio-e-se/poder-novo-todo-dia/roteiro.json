@@ -1,0 +1,157 @@
+{
+ "titulo": "Um poder novo todo dia",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "nenhuma",
+ "tema": "humor",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "zoom",
+ "legenda_estilo": "centro",
+ "vozes": {
+  "narrador": "externo",
+  "menino": "externo",
+  "mae": "externo",
+  "juca": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "E se você acordasse com um poder novo... todo santo dia?"
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Sem escolher. Sem manual. E à meia-noite, ele some."
+  },
+  {
+   "id": "p1",
+   "voz": "menino",
+   "texto": "Por que o teto tá tão perto?"
+  },
+  {
+   "id": "m1",
+   "voz": "menino",
+   "texto": "Eu tô flutuando!"
+  },
+  {
+   "id": "m2",
+   "voz": "menino",
+   "texto": "Ai! Como é que desce disso?"
+  },
+  {
+   "id": "m3",
+   "voz": "menino",
+   "texto": "Melhor dia da minha vida."
+  },
+  {
+   "id": "a1",
+   "voz": "mae",
+   "texto": "Filho, pé no chão! Literalmente!"
+  },
+  {
+   "id": "m4",
+   "voz": "menino",
+   "texto": "Mãe, eu tô voando!"
+  },
+  {
+   "id": "a2",
+   "voz": "mae",
+   "texto": "Voando ou não, o café esfria."
+  },
+  {
+   "id": "j1",
+   "voz": "juca",
+   "texto": "Ô, moleque! Tu tá voando?! Isso vai pro grupo da rua!"
+  },
+  {
+   "id": "m5",
+   "voz": "menino",
+   "texto": "Seu Juca, apaga isso!"
+  },
+  {
+   "id": "m6",
+   "voz": "menino",
+   "texto": "Meia-noite... acabou. Ai!"
+  },
+  {
+   "id": "m7",
+   "voz": "menino",
+   "texto": "Hoje tá todo mundo falando... sem abrir a boca."
+  },
+  {
+   "id": "ap1",
+   "voz": "mae",
+   "texto": "Será que ele achou o presente escondido no armário?"
+  },
+  {
+   "id": "m8",
+   "voz": "menino",
+   "texto": "Que presente, mãe?"
+  },
+  {
+   "id": "a3",
+   "voz": "mae",
+   "texto": "Como você...?!"
+  },
+  {
+   "id": "jp1",
+   "voz": "juca",
+   "texto": "Hoje esse menino vai voar de novo, eu sei."
+  },
+  {
+   "id": "m9",
+   "voz": "menino",
+   "texto": "Não vou não, Seu Juca!"
+  },
+  {
+   "id": "j2",
+   "voz": "juca",
+   "texto": "Ué... eu não falei nada!"
+  },
+  {
+   "id": "a4",
+   "voz": "mae",
+   "texto": "Cadê esse menino?"
+  },
+  {
+   "id": "m10",
+   "voz": "menino",
+   "texto": "Tô do seu lado, mãe!"
+  },
+  {
+   "id": "a5",
+   "voz": "mae",
+   "texto": "Ai, que susto!"
+  },
+  {
+   "id": "j3",
+   "voz": "juca",
+   "texto": "Agora virou fantasma! Gravando!"
+  },
+  {
+   "id": "m11",
+   "voz": "menino",
+   "texto": "Hoje... nada? Nenhum poder?"
+  },
+  {
+   "id": "j4",
+   "voz": "juca",
+   "texto": "Moleque! Como é que desce disso?!"
+  },
+  {
+   "id": "m12",
+   "voz": "menino",
+   "texto": "Seu Juca?!"
+  },
+  {
+   "id": "m13",
+   "voz": "menino",
+   "texto": "E você? Qual poder queria amanhã?"
+  }
+ ]
+}

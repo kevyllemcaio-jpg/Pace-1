@@ -1,0 +1,27 @@
+n1|narrador|E se você acordasse com um poder novo... todo santo dia?
+n2|narrador|Sem escolher. Sem manual. E à meia-noite, ele some.
+p1|menino_p|Por que o teto tá tão perto?
+m1|menino|Eu tô flutuando!
+m2|menino|Ai! Como é que desce disso?
+m3|menino|Melhor dia da minha vida.
+a1|mae|Filho, pé no chão! Literalmente!
+m4|menino|Mãe, eu tô voando!
+a2|mae|Voando ou não, o café esfria.
+j1|juca|Ô, moleque! Tu tá voando?! Isso vai pro grupo da rua!
+m5|menino|Seu Juca, apaga isso!
+m6|menino|Meia-noite... acabou. Ai!
+m7|menino|Hoje tá todo mundo falando... sem abrir a boca.
+ap1|mae_p|Será que ele achou o presente escondido no armário?
+m8|menino|Que presente, mãe?
+a3|mae|Como você...?!
+jp1|juca_p|Hoje esse menino vai voar de novo, eu sei.
+m9|menino|Não vou não, Seu Juca!
+j2|juca|Ué... eu não falei nada!
+a4|mae|Cadê esse menino?
+m10|menino|Tô do seu lado, mãe!
+a5|mae|Ai, que susto!
+j3|juca|Agora virou fantasma! Gravando!
+m11|menino|Hoje... nada? Nenhum poder?
+j4|juca|Moleque! Como é que desce disso?!
+m12|menino|Seu Juca?!
+m13|menino|E você? Qual poder queria amanhã?
