@@ -230,3 +230,15 @@ Ela pediu desculpa pro bloco, derrubou árvore na mão e construiu uma casa sem 
 E a sua mãe, já jogou videogame? Comenta aí! 👇
 
 #minecraft #mae #videogame #humor #animacao #shorts
+
+## Se a sua geladeira falasse (`saida/geladeira-falante.mp4`, capa `publicacao/capa-geladeira-falante.png`)
+Formato **objetos falantes** (rosto em `estudio3d/rosto-objeto.js`). Geladeira = voz do narrador; micro-ondas = `pt-BR-FranciscaNeural`.
+
+**Título (YouTube):**
+Se a sua geladeira falasse… 🧊 #shorts
+
+**Descrição:**
+3 da manhã. Você abre, olha, olha… e fecha sem pegar nada. A sua geladeira viu tudo — e o micro-ondas também. 😅
+O que a SUA geladeira diria de você? Comenta aí! 👇
+
+#geladeira #humor #objetosfalantes #animacao #curiosidades #shorts
