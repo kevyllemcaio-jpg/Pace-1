@@ -91,9 +91,13 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   const falas = await page.evaluate(() => MOTOR.falas());
   const vozes = await page.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
   const audios = [];
+  const leads = []; // silêncio cortado do começo de cada fala (ritmo corrido)
+  // ritmo: 'corrido' -> uma fala emenda na outra (corta o silêncio do começo/fim, quase sem pausa)
+  const corrido = config.ritmo === 'corrido';
+  const pausa = corrido ? 0.06 : PAUSA;
   if (comVoz) {
     const tempos = falas.map((fala, i) => {
-      if (!fala) { audios.push(null); return null; }
+      if (!fala) { audios.push(null); leads.push(0); return null; }
       const voz = vozes[i] || vozPadrao;
       const id = crypto.createHash('sha1').update(`${voz}|${velocidade}|${fala}`).digest('hex').slice(0, 12);
       const mp3 = path.join(pastaVoz, `${id}.mp3`), json = path.join(pastaVoz, `${id}.json`);
@@ -103,7 +107,10 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
         console.log('ok');
       }
       audios.push(mp3);
-      return { dur: ATRASO_FALA + fimDaFala(mp3) + PAUSA, palavras: JSON.parse(fs.readFileSync(json, 'utf8')) };
+      const pal = JSON.parse(fs.readFileSync(json, 'utf8'));
+      const lead = corrido && pal.length ? Math.max(0, pal[0].inicio + ATRASO_FALA - 0.02) : 0;
+      leads.push(lead);
+      return { dur: ATRASO_FALA + fimDaFala(mp3) - lead + pausa, palavras: pal.map((p) => ({ ...p, inicio: p.inicio - lead, fim: p.fim - lead })) };
     });
     await page.evaluate((t) => MOTOR.definirTempos(t), tempos);
   }
@@ -216,12 +223,13 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   await browser.close();
   servidor.close();
   const faixas = []; // [arquivo, início, volume]
-  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + ATRASO_FALA, 1.5]));
+  // o começo silencioso cortado (lead) entra antes do início do bloco; atrim tira o que sobraria antes de 0
+  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + ATRASO_FALA - (leads[i] || 0), 1.5, leads[i] || 0]));
   sons.forEach((s) => SONS[s.tipo] && faixas.push([arquivoSom(s.tipo), Math.max(0, s.t), 0.55]));
   const entradas = ['-i', semAudio];
   faixas.forEach(([a]) => entradas.push('-i', a));
   const filtro =
-    faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,volume=${vol},adelay=${Math.round(ini * 1000)}:all=1[s${i}]`).join(';') +
+    faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,${ini < 0 ? `atrim=start=${(-ini).toFixed(3)},asetpts=PTS-STARTPTS,` : ''}volume=${vol},adelay=${Math.round(Math.max(0, ini) * 1000)}:all=1[s${i}]`).join(';') +
     `;${faixas.map((_, i) => `[s${i}]`).join('')}amix=inputs=${faixas.length}:normalize=0,alimiter=limit=0.95,apad[a]`;
   // versão só com voz e efeitos (guardada) + versão final com música de fundo
   const semMusica = path.join(pastaSaida, '.sem-musica', `${nome}.mp4`);

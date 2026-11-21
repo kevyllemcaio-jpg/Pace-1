@@ -19,7 +19,8 @@ import { carro } from '../mundo.js';
 export const config = {
   titulo: ['E SE UM *PIANO*', 'CAÍSSE NA SUA', '*CABEÇA*?'],
   qualidade: '2k',
-  velocidade: '+10%',
+  velocidade: '+16%',
+  ritmo: 'corrido', // fala emendada, sem pausa entre as frases
   legendaTopo: 880,
 };
 
@@ -121,7 +122,7 @@ export function criar(ctx) {
   const blocos = [
     // ===================== PARTE 1 — o piano =====================
     {
-      fala: 'E se você estivesse andando pela Avenida Paulista e, do nada, um piano caísse na sua cabeça?',
+      fala: 'E se você tivesse andando pela Paulista e, do nada, um piano caísse na sua cabeça?',
       destaque: ['paulista', 'piano', 'cabeça'],
       semLegenda: true,
       camera: mao({ pos: [3.3, 0.75, 0.5], alvo: [2.1, 2.6, -14] }),
@@ -130,7 +131,7 @@ export function criar(ctx) {
       sons: [{ em: () => 0.02, tipo: 'impacto' }, { em: () => 0.2, tipo: 'vento' }],
     },
     {
-      fala: 'O Caio só tava indo pro trabalho, de fone, mexendo no celular.',
+      fala: 'O Caio tava indo pro trampo, de fone, olhando o celular.',
       destaque: ['caio', 'fone', 'celular'],
       corteSeco: true,
       camera: mao((lt, b) => { const z = caio.position.z; return { pos: [2.1, 1.62, z + 1.3], alvo: [2.4, 1.5, z] }; }),
@@ -138,7 +139,7 @@ export function criar(ctx) {
       camada: (lt, b) => sobre(lt, b),
     },
     {
-      fala: 'Dez andares acima, dois caras içavam um piano até a janela.',
+      fala: 'Dez andares acima, dois caras subiam um piano na corda.',
       destaque: ['dez', 'piano'],
       corteSeco: true,
       camera: (lt, b) => { const k = suave(lt / (b.dur * 0.8)); return { pos: [-1.5, mistura(8, 27, k), mistura(4, 2, k)], alvo: [3.5, mistura(12, 30, k), -5] }; },
@@ -147,7 +148,7 @@ export function criar(ctx) {
       sons: [{ em: 'piano', tipo: 'martelo' }],
     },
     {
-      fala: 'Aí, a corda arrebentou. Duzentos e cinquenta quilos no ar.',
+      fala: 'Aí a corda arrebentou. Duzentos e cinquenta quilos, soltos no ar.',
       destaque: ['arrebentou', 'duzentos'],
       corteSeco: true,
       camera: mao((lt, b) => (lt < b.palavra('duzentos') ? { pos: [0.6, 34.6, -1.6], alvo: [2.2, 35.6, -4] } : { pos: [-0.6, 29.6, 0.5], alvo: [2.4, 29.6, -4.5] }), 0.6),
@@ -163,7 +164,7 @@ export function criar(ctx) {
       sons: [{ em: 'arrebentou', depois: 0.15, tipo: 'quebra' }],
     },
     {
-      fala: 'No primeiro segundo, ele já tá a trinta e cinco por hora.',
+      fala: 'Em um segundo, ele já tá a trinta e cinco por hora.',
       destaque: ['primeiro', 'trinta'],
       camera: mao((lt, b) => { const y = yPiano(E.tf); return { pos: [-0.2, y + 0.5, -0.6], alvo: [2.2, y + 0.4, -4] }; }, 0.5),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(0.04, 1.0, lt / b.dur); },
@@ -179,7 +180,7 @@ export function criar(ctx) {
       sons: [{ em: 'setenta', tipo: 'dia' }],
     },
     {
-      fala: 'É a gravidade somando velocidade o caminho inteiro.',
+      fala: 'É a gravidade acelerando ele o caminho todo.',
       destaque: ['gravidade'],
       corteSeco: true,
       camera: mao({ pos: [-4.5, 3, 10], alvo: [2.2, 14, -6] }),
@@ -192,7 +193,7 @@ export function criar(ctx) {
       },
     },
     {
-      fala: 'Em dois segundos e meio, ele chega lá embaixo a mais de oitenta por hora.',
+      fala: 'Dois segundos e meio depois, ele chega lá embaixo a mais de oitenta.',
       destaque: ['dois', 'oitenta'],
       corteSeco: true,
       camera: mao({ pos: [2.4, 0.35, 1.2], alvo: [2.2, 9, -4.5] }, 0.4),
@@ -210,7 +211,7 @@ export function criar(ctx) {
       sons: [{ em: 'peso', tipo: 'pop' }],
     },
     {
-      fala: 'Duzentos e cinquenta quilos a oitenta por hora têm a mesma energia de um carro de uma tonelada batendo a quarenta por hora.',
+      fala: 'Duzentos e cinquenta quilos nessa velocidade é igual a um carro batendo a quarenta por hora.',
       destaque: ['energia', 'carro', 'quarenta'],
       corteSeco: true,
       camera: mao({ pos: [1.6, 1.4, -5], alvo: [-1.5, 0.9, -16] }),
@@ -228,7 +229,7 @@ export function criar(ctx) {
       sons: [{ em: 'capacete', tipo: 'plim' }],
     },
     {
-      fala: 'Capacete de obra é testado com uns cinquenta joules de impacto.',
+      fala: 'Capacete de obra aguenta uns cinquenta joules.',
       destaque: ['cinquenta', 'joules'],
       corteSeco: true,
       camera: mao({ pos: [LAB + 1.2, 1.8, 3.2], alvo: [LAB, 1.4, 0] }),
@@ -245,7 +246,7 @@ export function criar(ctx) {
       sons: [0.2, 0.5, 0.8, 1.1].map((d) => ({ em: () => d, tipo: 'tique' })).concat([{ em: 'mil', tipo: 'dia' }]),
     },
     {
-      fala: 'Não ia adiantar nada.',
+      fala: 'Ou seja: não ia adiantar nada.',
       corteSeco: true,
       camera: (lt) => ({ pos: [3.4 + Math.sin(lt * 60) * 0.05 * (1 - lim(lt / 0.7)), 0.5, 1.4], alvo: [2.2, 0.5, -4] }),
       aplicar(lt, b) { E.mundo = 'rua'; E.caiu = true; E.capacete = false; caio.visible = false; },
@@ -260,7 +261,7 @@ export function criar(ctx) {
       sons: [{ em: () => 0.02, tipo: 'impacto' }, { em: () => 0.04, tipo: 'quebra' }, { em: () => 0.3, tipo: 'baque' }],
     },
     {
-      fala: 'Muita gente acha que isso seria o fim. Mas não pro Caio.',
+      fala: 'Todo mundo acha que esse seria o fim. Mas não pro Caio.',
       destaque: ['fim', 'caio'],
       corteSeco: true,
       camera: (lt, b) => ({ pos: [2.2, mistura(6, 18, suave(lt / b.dur)), -4.01], alvo: [2.2, 0, -4] }),
@@ -283,7 +284,7 @@ export function criar(ctx) {
       sons: [{ em: () => 0.1, tipo: 'sino' }],
     },
     {
-      fala: 'Lá, todo mundo nasce com uma marca no corpo. E a marca mostra qual magia você tem.',
+      fala: 'Lá, todo mundo nasce com uma marca que mostra a sua magia.',
       destaque: ['marca', 'magia'],
       corteSeco: true,
       camera: mao((lt, b) => ({ pos: [REINO + mistura(-1, 1, lt / b.dur), 1.6, 5], alvo: [REINO, 1.3, -3] })),
@@ -291,7 +292,7 @@ export function criar(ctx) {
       camada: (lt, b) => sobre(lt, b),
     },
     {
-      fala: 'Uma chama, é fogo. Uma gota, água. Um raio, trovão.',
+      fala: 'Chama é fogo. Gota é água. Raio é trovão.',
       destaque: ['fogo', 'água', 'trovão'],
       corteSeco: true,
       camera: { pos: [REINO, 1.5, 5.6], alvo: [REINO, 1.5, 0] },
@@ -320,7 +321,7 @@ export function criar(ctx) {
       sons: [{ em: 'peito', tipo: 'impacto' }, { em: 'olho', tipo: 'tensao' }],
     },
     {
-      fala: 'No livro mais antigo do reino, ela tinha um nome só: a marca do fim.',
+      fala: 'E no livro mais antigo do reino, ela tem um nome só: a marca do fim.',
       destaque: ['livro', 'fim'],
       corteSeco: true,
       camera: (lt, b) => ({ pos: [QUARTO + 0.1, mistura(3.4, 2.9, suave(lt / b.dur)), mistura(-1.0, -1.4, suave(lt / b.dur))], alvo: [QUARTO, 0.97, -3] }),
