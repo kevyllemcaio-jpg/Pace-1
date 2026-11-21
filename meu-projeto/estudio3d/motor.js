@@ -17,6 +17,7 @@
 //   voz?, velocidade?     voz só deste bloco (ex.: 'pt-BR-FranciscaNeural' para a mãe)
 //   aplicar(lt, b),       ajusta o mundo para o instante lt (s) do bloco
 //   camada?(lt, b),       HTML extra (cartão, etiqueta...) por cima do vídeo
+//   fundo?(lt, b),        HTML atrás da legenda/título (ex.: desenho 2D em tela cheia)
 //   sons?: [{ em: 'palavra' | (b) => s, tipo }]
 // }
 // b.palavra('quebra') -> instante (s, dentro do bloco) em que a palavra é dita.
@@ -221,7 +222,9 @@ export function iniciar(video) {
     posicionarCamera(i, lt);
     renderer.render(cena, camera);
 
-    let html = b.semLegenda || (i === 0 && video.config.tituloEstilo === 'meio' && lt < b.dur - 0.6) ? '' : legendaHTML(b, lt);
+    // fundo?(lt, b): HTML desenhado ATRÁS da legenda e do título (ex.: ilustração 2D em tela cheia)
+    let html = b.fundo ? b.fundo(lt, b) : '';
+    html += b.semLegenda || (i === 0 && video.config.tituloEstilo === 'meio' && lt < b.dur - 0.6) ? '' : legendaHTML(b, lt);
     if (i === 0 && video.config.titulo) {
       const op = 1 - lim((lt - (b.dur - 0.6)) / 0.4);
       if (video.config.tituloEstilo === 'meio') {

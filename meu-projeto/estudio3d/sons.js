@@ -49,6 +49,11 @@ const SONS = {
   subida: 'aevalsrc=0.25*sin(2*PI*(200*t+300*t*t))+0.15*(random(0)-0.5)*t:d=1.2,highpass=f=150,afade=t=in:d=0.8,afade=t=out:st=1.1:d=0.1',
   // glitch: chiado digital picotado
   glitch: 'aevalsrc=0.4*sin(2*PI*(400+800*gt(mod(t\\,0.08)\\,0.04))*t)*gt(mod(t\\,0.05)\\,0.02):d=0.35',
+  // --- histórias 2D (clima) ---
+  // vento: rajada longa e suave (4 s)
+  vento: 'anoisesrc=d=4:c=pink:a=0.7,lowpass=f=700,highpass=f=120,tremolo=f=0.6:d=0.7,afade=t=in:d=1.2,afade=t=out:st=2.6:d=1.4,volume=1.3',
+  // sussurro: chiado que "fala" baixinho (2 s)
+  sussurro: 'anoisesrc=d=2:c=white:a=0.5,bandpass=f=3200:w=2500,tremolo=f=7:d=0.9,afade=t=in:d=0.4,afade=t=out:st=1.3:d=0.7,volume=0.8',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 

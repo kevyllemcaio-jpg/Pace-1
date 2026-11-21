@@ -242,3 +242,15 @@ Se a sua geladeira falasse… 🧊 #shorts
 O que a SUA geladeira diria de você? Comenta aí! 👇
 
 #geladeira #humor #objetosfalantes #animacao #curiosidades #shorts
+
+## Quem a névoa toca esquece o próprio nome (`saida/historia-nevoa.mp4`, capa `publicacao/capa-historia-nevoa.png`)
+Formato **história narrada 2D** (desenho em SVG: `estudio3d/desenho2d.js`, camada `fundo` do motor). História original.
+
+**Título (YouTube):**
+Quem a névoa toca esquece o próprio nome 🌫️ #shorts
+
+**Descrição:**
+Na minha vila, as casas ficam a dez metros do chão. Toda noite sobe a Maré Cinza — e quem ela toca esquece o próprio nome e caminha para o mar. Uma noite, eu desci para saber o que a névoa diz…
+Você teria respondido a névoa? Comenta aí! 👇
+
+#historia #misterio #animacao2d #contos #plottwist #shorts

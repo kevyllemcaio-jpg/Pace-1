@@ -169,7 +169,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
-  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/personagem-toon.js', 'estudio3d/rosto-objeto.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/personagem-toon.js', 'estudio3d/rosto-objeto.js', 'estudio3d/desenho2d.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
   pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);
