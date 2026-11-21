@@ -48,6 +48,13 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
 - Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
 - Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
 
+## Padrão de produção atual (a partir de agora)
+- **Personagem 3D novo** (`personagem-toon.js`) **na frente de cenário 2D** (SVG, `desenho2d.js`), usando a
+  camada `cenario2d(lt, b)` do motor e `cena.background = null` (exemplo: `videos/chuva-pra-cima.js`).
+  Sombra do personagem: plano com `THREE.ShadowMaterial`. Câmera 3D fixa e lente fechada (fov ~28) para o
+  chão 3D (y = 0) cair na linha do chão do desenho.
+- **Qualidade 2K**: `qualidade: '2k'` no config do vídeo → 1440x2560 (ou `--2k` no render3d.js).
+
 ## Personagem novo (desenho animado) — usar a partir de agora
 `personagem-toon.js` → `criarPersonagemToon()`: redondo, cabeça grande, contorno preto, sombreado de desenho,
 olhos grandes com brilho, cores vivas (moletom amarelo, calça azul, tênis vermelho). A mãe:

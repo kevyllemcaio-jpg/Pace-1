@@ -18,6 +18,7 @@
 //   aplicar(lt, b),       ajusta o mundo para o instante lt (s) do bloco
 //   camada?(lt, b),       HTML extra (cartão, etiqueta...) por cima do vídeo
 //   fundo?(lt, b),        HTML atrás da legenda/título (ex.: desenho 2D em tela cheia)
+//   cenario2d?(lt, b),    desenho 2D ATRÁS do 3D (personagem 3D + cenário 2D; deixe cena.background = null)
 //   sons?: [{ em: 'palavra' | (b) => s, tipo }]
 // }
 // b.palavra('quebra') -> instante (s, dentro do bloco) em que a palavra é dita.
@@ -109,7 +110,8 @@ export function iniciar(video) {
   const limpo = params.get('limpo') === '1'; // sem textos por cima (para recortar cenas)
 
   const canvas = document.getElementById('tela');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true, alpha: true });
+  renderer.setClearColor(0x000000, 0); // fundo transparente quando cena.background = null (cenário 2D atrás)
   renderer.setPixelRatio(escala);
   renderer.setSize(W, H, false);
   renderer.shadowMap.enabled = true;
@@ -144,6 +146,7 @@ export function iniciar(video) {
   const roteiro = video.criar(ctx);
   const blocos = roteiro.blocos;
   const camada = document.getElementById('camada');
+  const cenario2d = document.getElementById('cenario2d');
 
   // Tempos provisórios (sem narração); o render.js substitui pelos tempos reais da fala.
   function definirTempos(tempos) {
@@ -239,6 +242,8 @@ export function iniciar(video) {
     if (b.camada) html += b.camada(lt, b);
     if (b.corteSeco && i > 0 && lt < 0.14) html += `<div style="position:absolute;inset:0;background:#fff;opacity:${0.85 * (1 - lt / 0.14)}"></div>`;
     camada.innerHTML = limpo ? '' : html;
+    // cenario2d?(lt, b): desenho 2D ATRÁS do 3D (personagem 3D na frente de cenário 2D; use cena.background = null)
+    if (cenario2d) cenario2d.innerHTML = b.cenario2d ? b.cenario2d(lt, b) : '';
   }
 
   function sons() {

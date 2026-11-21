@@ -197,3 +197,62 @@ export function balao(x, y, texto, { tam = 40, cor = '#fff' } = {}) {
 export const placa = (texto, k = 1) => `<div style="position:absolute;left:0;right:0;top:110px;text-align:center;font-family:Inter,sans-serif;font-weight:900;font-size:40px;color:#F4EBC8;opacity:${lim(k)};-webkit-text-stroke:7px #0E1630;paint-order:stroke fill;letter-spacing:1px">${esc(texto)}</div>`;
 
 export { suave };
+
+// ---------- cidade colorida (dia) ----------
+/** Céu de dia em degradê (cobre área grande para pan vertical). */
+export const ceuDia = (cor1 = '#5EC8FF', cor2 = '#C9F0FF') => `<defs><linearGradient id="ceuDiaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cor1}"/><stop offset="100%" stop-color="${cor2}"/></linearGradient></defs><rect x="-800" y="-4000" width="2400" height="6000" fill="url(#ceuDiaG)"/>`;
+
+/** Prédio colorido. (x, base) = canto inferior esquerdo. invertido: pendurado de cabeça pra baixo a partir de `base`. */
+export function predio(x, base, w, h, cor, { invertido = false, telhado = '#3A3A4A', semente = 1 } = {}) {
+  const r = aleat(semente);
+  const y0 = invertido ? base : base - h;
+  let s = `<rect x="${x}" y="${y0}" width="${w}" height="${h}" fill="${cor}" stroke="${LINHA}" stroke-width="5"/>`;
+  const ty = invertido ? base + h : base - h;
+  s += `<rect x="${x - 8}" y="${invertido ? ty : ty - 14}" width="${w + 16}" height="14" fill="${telhado}" stroke="${LINHA}" stroke-width="4"/>`;
+  for (let jy = 30; jy < h - 50; jy += 70) for (let jx = 22; jx < w - 30; jx += 56) {
+    const acesa = r() > 0.45;
+    const yy = invertido ? base + jy : base - jy - 44;
+    s += `<rect x="${x + jx}" y="${yy}" width="32" height="44" rx="4" fill="${acesa ? '#FFE48A' : '#7FB8D8'}" stroke="${LINHA}" stroke-width="3"/>`;
+  }
+  // porta
+  const py = invertido ? base : base - 70;
+  s += `<rect x="${x + w / 2 - 22}" y="${py}" width="44" height="70" rx="6" fill="#6B4A30" stroke="${LINHA}" stroke-width="4"/>`;
+  return s;
+}
+
+/** Fileira de prédios (cidade). chao = linha do chão (ou do "teto", se invertido). */
+export function cidade(chao, { invertido = false, semente = 3 } = {}) {
+  const cores = ['#FF6B6B', '#FFB347', '#4ECDC4', '#A78BFA', '#F78FB3', '#6BCB77', '#4D96FF'];
+  const r = aleat(semente);
+  let s = '', x = -260;
+  let i = 0;
+  while (x < 980) {
+    const w = 130 + r() * 90, h = 260 + r() * 320;
+    s += predio(x, chao, w, h, cores[i % cores.length], { invertido, semente: semente * 10 + i });
+    x += w + 10 + r() * 20;
+    i++;
+  }
+  return s;
+}
+
+/** Rua: calçada + asfalto a partir de `chao`. */
+export const rua = (chao) => `<rect x="-800" y="${chao}" width="2400" height="60" fill="#C9C9D6" stroke="${LINHA}" stroke-width="5"/><rect x="-800" y="${chao + 60}" width="2400" height="900" fill="#4A4E69"/>` +
+  Array.from({ length: 16 }, (_, k) => `<rect x="${-700 + k * 160}" y="${chao + 200}" width="90" height="16" rx="6" fill="#F4E3A1"/>`).join('');
+
+/** Nuvem fofa com contorno. */
+export const nuvem = (x, y, s = 1) => `<g transform="translate(${x},${y}) scale(${s})"><path d="M-110 30 Q-130 -20 -80 -30 Q-70 -80 -10 -70 Q30 -110 80 -60 Q130 -60 125 -10 Q150 30 100 40 Z" fill="#FFFFFF" stroke="${LINHA}" stroke-width="5" stroke-linejoin="round"/></g>`;
+
+/** Gotas de chuva SUBINDO (do chão para o céu). */
+export function gotasSubindo(t, { area = [-100, -3000, 920, 4100], n = 140, semente = 21, vel = 520 } = {}) {
+  const r = aleat(semente);
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const x = area[0] + r() * area[2];
+    const y = area[1] + ((((r() * area[3] - t * vel * (0.8 + r() * 0.4)) % area[3]) + area[3]) % area[3]);
+    s += `<path d="M${x.toFixed(1)} ${y.toFixed(1)} q-7 14 0 20 q7 -6 0 -20 Z" fill="#7CC6FF" stroke="#2B6CB0" stroke-width="2" transform="rotate(180 ${x.toFixed(1)} ${(y + 10).toFixed(1)})"/>`;
+  }
+  return s;
+}
+
+/** Guarda-chuva de cabeça pra baixo (aberto para cima, pegando a chuva que sobe). */
+export const guardaChuvaInvertido = (x, y, cor = '#E63946', s = 1) => `<g transform="translate(${x},${y}) scale(${s})"><line x1="0" y1="10" x2="0" y2="-95" stroke="${LINHA}" stroke-width="5"/><path d="M0 10 q12 0 12 -12" fill="none" stroke="${LINHA}" stroke-width="5"/><path d="M-80 -150 Q0 -50 80 -150 Q40 -128 0 -150 Q-40 -128 -80 -150 Z" fill="${cor}" stroke="${LINHA}" stroke-width="5" stroke-linejoin="round"/></g>`;

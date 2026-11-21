@@ -254,3 +254,15 @@ Na minha vila, as casas ficam a dez metros do chão. Toda noite sobe a Maré Cin
 Você teria respondido a névoa? Comenta aí! 👇
 
 #historia #misterio #animacao2d #contos #plottwist #shorts
+
+## Na minha cidade, a chuva cai pra cima (`saida/chuva-pra-cima.mp4`, 2K, capa `publicacao/capa-chuva-pra-cima.png`)
+Formato novo: **personagem 3D + cenário 2D, em 2K**. História original.
+
+**Título (YouTube):**
+Na minha cidade, a chuva cai pra cima ☔ #shorts
+
+**Descrição:**
+Aqui a gente amarra os sapatos no chão pra não sair flutuando quando chove. Hoje eu desamarrei o meu… e descobri o que tem lá em cima. 👀
+Você desamarraria o seu sapato? Comenta aí! 👇
+
+#historia #animacao #plottwist #imaginacao #curiosidades #shorts
