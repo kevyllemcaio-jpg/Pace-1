@@ -266,3 +266,15 @@ Aqui a gente amarra os sapatos no chão pra não sair flutuando quando chove. Ho
 Você desamarraria o seu sapato? Comenta aí! 👇
 
 #historia #animacao #plottwist #imaginacao #curiosidades #shorts
+
+## E se um piano caísse na sua cabeça? (isekai) (`saida/piano-isekai.mp4`, 2K, capa `publicacao/capa-piano-isekai.png`)
+Personagem 3D + cenário 2D. Parte 1: física da queda (30 m, ~2,4 s, ~85 km/h, ~69 mil J). Parte 2: isekai — renasce num reino medieval onde todo mundo nasce com uma marca de poder… e a sua é amaldiçoada.
+
+**Título (YouTube):**
+E se um piano caísse na sua cabeça? 🎹💀 #shorts
+
+**Descrição:**
+Você tá na Paulista, de fone, mexendo no celular… e a corda do piano arrebenta lá no 10º andar. Em 2,4 segundos ele passa de 80 km/h. Aí tudo fica preto — e você acorda bebê, num reino onde todo mundo nasce com uma marca de poder. A sua é a única que ninguém nunca viu. 👁️
+Qual marca você queria ter? Quer a parte 2? Comenta aí! 👇
+
+#isekai #anime #animacao #esevoce #fisica #shorts

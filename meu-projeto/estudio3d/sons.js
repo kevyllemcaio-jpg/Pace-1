@@ -56,6 +56,12 @@ const SONS = {
   sussurro: 'anoisesrc=d=2:c=white:a=0.5,bandpass=f=3200:w=2500,tremolo=f=7:d=0.9,afade=t=in:d=0.4,afade=t=out:st=1.3:d=0.7,volume=0.8',
   // chuvinha: chiado de chuva suave (5 s)
   chuvinha: 'anoisesrc=d=5:c=pink:a=0.6,highpass=f=1500,lowpass=f=7000,afade=t=in:d=1,afade=t=out:st=3.5:d=1.5,volume=0.7',
+  // sino: badalada de sino (grave, longa)
+  sino: 'aevalsrc=0.4*sin(2*PI*196*t)*exp(-1.2*t)+0.25*sin(2*PI*392*t)*exp(-1.8*t)+0.18*sin(2*PI*523*t)*exp(-2.5*t)+0.1*sin(2*PI*784*t)*exp(-3*t):d=3,afade=t=in:d=0.005',
+  // coracao: tum-tum grave
+  coracao: 'aevalsrc=0.9*sin(2*PI*55*t)*exp(-18*t)+0.7*sin(2*PI*50*(t-0.22))*exp(-18*(t-0.22))*gt(t\\,0.22):d=0.7',
+  // choro: "uéééé" de bebê (vogal com vibrato)
+  choro: 'aevalsrc=(0.3*sin(2*PI*(480+60*sin(2*PI*6*t))*t)+0.15*sin(2*PI*2*(480+60*sin(2*PI*6*t))*t))*(0.6+0.4*sin(2*PI*1.6*t))*min(1\\,t*8):d=1.6,lowpass=f=2500,afade=t=out:st=1.2:d=0.4',
   fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
 };
 

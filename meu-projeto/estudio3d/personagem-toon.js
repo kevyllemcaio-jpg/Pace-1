@@ -4,6 +4,8 @@
 //
 //   const p = criarPersonagemToon();                       // "você" (personagem principal)
 //   const m = criarPersonagemToon({ estilo: 'mae' });      // a mãe (coque + óculos)
+//   const b = criarPersonagemToon({ estilo: 'bebe' });     // bebê (já vem em escala de bebê)
+//   opcoes.fone: true | cor  -> fone de ouvido; bracos: 'celular' -> mexendo no celular
 //   p.estado = { bracos: 'normal'|'cima'|'aceno'|'cabeca'|'aponta'|'lado'|'controle',
 //                expr: 'feliz'|'sorriso'|'serio'|'surpreso'|'preocupado'|'bravo', falando, andar, pulo }
 //   p.animar(t)   // a cada quadro. Olha para +z; pés em y = 0; altura ~1,75.
@@ -57,6 +59,7 @@ const COR_PADRAO = {
 export function criarPersonagemToon(opcoes = {}) {
   const C = { ...COR_PADRAO, ...(opcoes.cores || {}) };
   const mae = opcoes.estilo === 'mae';
+  const bebe = opcoes.estilo === 'bebe'; // bebê: cabeça enorme, corpinho pequeno, sem cabelo espetado
   const p = new THREE.Group();
   const corpo = new THREE.Group();
   p.add(corpo);
@@ -105,6 +108,9 @@ export function criarPersonagemToon(opcoes = {}) {
     cabeca.add(esfera(0.36, C.cabelo, { pos: [0, 0.42, -0.04], esc: [1.02, 0.92, 0.98] }));
     cabeca.add(esfera(0.15, C.cabelo, { pos: [0, 0.78, -0.08] })); // coque
     [-1, 1].forEach((s) => cabeca.add(capsula(0.1, 0.22, C.cabelo, { pos: [s * 0.3, 0.26, -0.06] })));
+  } else if (bebe) {
+    // um topetinho só
+    cabeca.add(peca(new THREE.ConeGeometry(0.05, 0.16, 10), C.cabelo, { pos: [0.02, 0.74, 0.05], rot: [0.5, 0, -0.4] }));
   } else {
     cabeca.add(esfera(0.355, C.cabelo, { pos: [0, 0.44, -0.05], esc: [1.02, 0.88, 0.98] }));
     // mechas espetadas para a frente/lado
@@ -170,6 +176,22 @@ export function criarPersonagemToon(opcoes = {}) {
     rosto.add(ponte);
   }
 
+  // acessórios: fone de ouvido (opcoes.fone) e celular na mão direita (aparece na pose 'celular')
+  if (opcoes.fone) {
+    const arco = peca(new THREE.TorusGeometry(0.37, 0.028, 8, 32, Math.PI), opcoes.fone === true ? '#1E1E24' : opcoes.fone, { pos: [0, 0.38, -0.02], linha: 0.008 });
+    cabeca.add(arco);
+    [-1, 1].forEach((s) => cabeca.add(peca(new THREE.CylinderGeometry(0.09, 0.09, 0.07, 20), opcoes.fone === true ? '#E8322B' : opcoes.fone, { pos: [s * 0.36, 0.36, -0.01], rot: [0, 0, Math.PI / 2], linha: 0.01 })));
+  }
+  const celular = new THREE.Group();
+  celular.add(peca(new THREE.BoxGeometry(0.09, 0.17, 0.018), '#1E1E24', { linha: 0.006 }));
+  const telaCel = new THREE.Mesh(new THREE.PlaneGeometry(0.075, 0.14), new THREE.MeshBasicMaterial({ color: '#7FD3FF' }));
+  telaCel.position.z = 0.011;
+  celular.add(telaCel);
+  celular.position.set(0.02, -0.44, 0.05);
+  celular.rotation.set(-1.25, 0, 0.3); // tela virada para o rosto
+  bracos[0].add(celular);
+  if (bebe) { p.scale.setScalar(0.42); cabeca.scale.setScalar(1.25); }
+
   p.estado = { bracos: 'normal', expr: 'feliz', andar: 0, pulo: 0 };
 
   p.animar = (t) => {
@@ -205,6 +227,10 @@ export function criarPersonagemToon(opcoes = {}) {
       case 'lado':
         dir.rotation.set(0, 0, -1.45 + Math.sin(t * 5) * 0.06);
         break;
+      case 'celular': // mexendo no celular (mão direita na frente da barriga)
+        dir.rotation.set(-1.3, 0, 0.4);
+        esq.rotation.set(-0.9, 0, -0.35);
+        break;
       case 'controle':
         dir.rotation.set(-1.0, 0, 0.45 + Math.sin(t * 13) * 0.05);
         esq.rotation.set(-1.0, 0, -0.45 - Math.sin(t * 13 + 1) * 0.05);
@@ -235,7 +261,8 @@ export function criarPersonagemToon(opcoes = {}) {
     lingua.visible = bh > 0.6;
     lingua.position.y = -0.03 * bh;
     cabeca.rotation.z = Math.sin(t * 1.7) * 0.04;
-    cabeca.rotation.x = e.falando ? Math.sin(t * 6) * 0.05 : 0;
+    cabeca.rotation.x = (e.falando ? Math.sin(t * 6) * 0.05 : 0) + (e.bracos === 'celular' ? 0.3 : 0);
+    celular.visible = e.bracos === 'celular';
   };
   p.animar(0);
   return p;

@@ -256,3 +256,37 @@ export function gotasSubindo(t, { area = [-100, -3000, 920, 4100], n = 140, seme
 
 /** Guarda-chuva de cabeça pra baixo (aberto para cima, pegando a chuva que sobe). */
 export const guardaChuvaInvertido = (x, y, cor = '#E63946', s = 1) => `<g transform="translate(${x},${y}) scale(${s})"><line x1="0" y1="10" x2="0" y2="-95" stroke="${LINHA}" stroke-width="5"/><path d="M0 10 q12 0 12 -12" fill="none" stroke="${LINHA}" stroke-width="5"/><path d="M-80 -150 Q0 -50 80 -150 Q40 -128 0 -150 Q-40 -128 -80 -150 Z" fill="${cor}" stroke="${LINHA}" stroke-width="5" stroke-linejoin="round"/></g>`;
+
+// ---------- obra / piano ----------
+/** Piano de armário (vertical) em 2D. (x, y) = centro; rot em graus. */
+export const piano2d = (x, y, { s = 1, rot = 0 } = {}) => `<g transform="translate(${x},${y}) rotate(${rot}) scale(${s})">
+  <rect x="-110" y="-120" width="220" height="230" rx="10" fill="#2B1A12" stroke="${LINHA}" stroke-width="6"/>
+  <rect x="-100" y="-110" width="200" height="70" rx="6" fill="#4A2E20" stroke="${LINHA}" stroke-width="4"/>
+  <rect x="-118" y="-10" width="236" height="22" fill="#1B110C" stroke="${LINHA}" stroke-width="4"/>
+  <rect x="-110" y="12" width="220" height="34" fill="#FFFFFF" stroke="${LINHA}" stroke-width="4"/>
+  ${Array.from({ length: 13 }, (_, k) => `<line x1="${-110 + k * 17}" y1="12" x2="${-110 + k * 17}" y2="46" stroke="${LINHA}" stroke-width="2"/>`).join('')}
+  ${Array.from({ length: 12 }, (_, k) => (k % 7 === 2 || k % 7 === 6 ? '' : `<rect x="${-100 + k * 17}" y="12" width="10" height="20" fill="${LINHA}"/>`)).join('')}
+  <rect x="-100" y="110" width="20" height="16" fill="#1B110C"/><rect x="80" y="110" width="20" height="16" fill="#1B110C"/>
+</g>`;
+
+/** Operário 2D com capacete (usa pessoa 'menino' com capacete amarelo por cima). */
+export const operario = (x, y, o = {}) => pessoa(x, y, 'menino', { expr: 'serio', ...o }) +
+  `<g transform="translate(${x},${y}) scale(${(o.esc || 1) * (o.virado || 1)},${o.esc || 1})"><path d="M-58 -258 Q0 -330 58 -258 Z" fill="#FFD21F" stroke="${LINHA}" stroke-width="4"/><rect x="-66" y="-262" width="132" height="12" rx="5" fill="#FFD21F" stroke="${LINHA}" stroke-width="4"/></g>`;
+
+/** Polia na ponta de uma viga, com corda descendo até (x, yFim). partida: 0..1 (corda arrebentando). */
+export function polia(x, y, yFim, { partida = 0 } = {}) {
+  let s = `<rect x="${x - 140}" y="${y - 12}" width="160" height="22" fill="#8A8F99" stroke="${LINHA}" stroke-width="4"/><circle cx="${x}" cy="${y + 18}" r="18" fill="#C0C4CC" stroke="${LINHA}" stroke-width="4"/>`;
+  if (partida <= 0) s += `<line x1="${x}" y1="${y + 36}" x2="${x}" y2="${yFim}" stroke="#C9A36B" stroke-width="6"/>`;
+  else {
+    const g = partida * 60;
+    s += `<path d="M${x} ${y + 36} q${10 + g * 0.4} ${40 + g} ${-6} ${60 + g}" fill="none" stroke="#C9A36B" stroke-width="6"/>`;
+    s += `<path d="M${x} ${yFim} q${-12 - g * 0.3} ${-30 - g} 4 ${-50 - g}" fill="none" stroke="#C9A36B" stroke-width="6"/>`;
+  }
+  return s;
+}
+
+/** Placa de rua (ex.: "AV. PAULISTA"). */
+export const placaRua = (x, y, texto) => `<g transform="translate(${x},${y})"><rect x="-6" y="0" width="12" height="230" fill="#5A6170" stroke="${LINHA}" stroke-width="3"/><rect x="-120" y="-50" width="240" height="56" rx="8" fill="#1F6FB2" stroke="${LINHA}" stroke-width="5"/><text x="0" y="-12" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="28" fill="#fff">${esc(texto)}</text></g>`;
+
+/** Notas musicais saindo (fone de ouvido). */
+export const notas = (x, y, t) => [0, 1, 2].map((i) => { const u = (t * 0.6 + i / 3) % 1; return `<text x="${x + Math.sin(t * 2 + i) * 30 + i * 22}" y="${y - u * 120}" font-size="${34 - i * 4}" fill="#8E44AD" opacity="${(1 - u).toFixed(2)}" font-family="DejaVu Sans,sans-serif" font-weight="900">${i % 2 ? '♪' : '♫'}</text>`; }).join('');
