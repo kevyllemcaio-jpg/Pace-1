@@ -1,0 +1,47 @@
+// "E se você virasse um menino?" — horizontal, 2857 frames
+const TOTAL = 2857;
+const FLASHES = [336, 2613];
+const ks = (y) => 0.5 * (0.94 + y / 2500);
+const G = (who, x, y, o = {}) => Object.assign({ who, x, y, s: ks(y), layer: 'front' }, o);
+const pop = (f, a, b = a + 8) => backOut(prog(f, a, b));
+function walkTo(f, f0, f1, a, b) { const t = prog(f, f0, f1), e = sstep(t); return { x: lerp(a[0], b[0], e), y: lerp(a[1], b[1], e), walk: t > 0 && t < 1 ? Math.hypot(b[0] - a[0], b[1] - a[1]) * e / 42 : null }; }
+const card = (f, f0, text) => [{ type: 'day', text, k: f < f0 + 60 ? pop(f, f0, f0 + 10) : 1 - prog(f, f0 + 60, f0 + 70) }];
+const tag = (f, f0, f1, text, y = 140) => (f >= f0 && f < f1 ? [{ type: 'tag', text, k: pop(f, f0) * (1 - prog(f, f1 - 8, f1)), y }] : []);
+const sp = (x, y, k = 0.4, col) => ({ type: 'sparkle', x, y, k, col });
+const SB = (x, y, o = {}) => G('sofiaB', x, y, Object.assign({ flip: 1 }, o));
+const LEO = (x, y, o = {}) => G('leo', x, y, Object.assign({ flip: -1 }, o));
+
+const SHOTS = [
+  { f0: 0, f1: 86, light: () => 'day', dof: { room: 4 }, cam: [{ f: 0, x: 0, y: -60, z: 1.35 }, { f: 86, x: 0, y: -70, z: 1.5 }],
+    build(f) { return { world: { set: 'bedroom', sun: 1 }, actors: [SB(-150, 330, { expr: 'shocked', pose: 'cheeks', look: [0.3, -0.6], sweat: 1 }), LEO(250, 320, { expr: 'laugh', pose: 'cheeks', look: [-1, 0] })] }; } },
+  { f0: 87, f1: 335, light: () => 'dark', dof: {}, cam: [{ f: 87, x: 400, y: -880, z: 0.85 }, { f: 240, x: 200, y: -600, z: 1.0 }, { f: 335, x: 400, y: -900, z: 0.8 }],
+    build(f) { return { world: { set: 'bedroom', sun: 0 }, actors: [G('sofia', -180, -60, { sit: true, expr: f > 200 ? 'happy' : 'surprised', look: [1, -0.6], flip: 1 }), { type: 'blanket', x: -180, y: 60, layer: 'front' }], fx: [{ type: 'shoot', t: prog(f, 100, 134), x0: 420, y0: -1460, x1: 1100, y1: -1150 }, { type: 'speech', x: 330, y: -500, text: 'QUERIA ENTENDER\nO MEU IRMÃO', fs: 44, k: pop(f, 184) * (1 - prog(f, 236, 242)), tx: -200 }].concat(f > 245 ? [{ type: 'magic', x: 760, y: -1150, r: 260 }] : []), lights: [{ x: 760, y: -1150, r: 700, i: 0.8, col: 'rgba(150,180,255,.3)' }, { x: -180, y: -430, r: 360, i: 0.7 }], screen: tag(f, 284, 335, 'PROMOÇÃO: 2 PEDIDOS!') }; } },
+  { f0: 336, f1: 508, light: () => 'day', dof: {}, cam: [{ f: 336, x: 0, y: -330, z: 1.0 }, { f: 508, x: -100, y: -330, z: 1.2 }], kicks: [{ f: 425, a: 14 }],
+    build(f) { return { world: { set: 'bedroom', sun: 1 }, actors: [G('sofiaB', -180, -60, { sit: true, expr: f > 422 ? 'shocked' : 'bored', look: [0, 0] }), { type: 'blanket', x: -180, y: 60, layer: 'front' }], fx: f > 425 && f < 455 ? [{ type: 'lines', x: -180, y: -460, r: 200, k: 0.9 }] : [], screen: card(f, 338, '7:00') }; } },
+  { f0: 509, f1: 797, light: () => 'day', dof: { room: 3 }, cam: [{ f: 509, x: 0, y: -60, z: 1.35 }, { f: 640, x: 0, y: -60, z: 1.45 }, { f: 797, x: 150, y: -80, z: 1.2 }],
+    build(f) { const brush = f >= 509 && f < 560; const mirror = f >= 640; return { world: { set: 'hall' }, actors: (mirror ? [{ type: 'mirror', x: 300, y: 150, layer: 'back', inner: { who: 'sofiaB', s: 0.6, expr: f > 735 ? 'bored' : 'neutral', look: [0, 0] } }] : []).concat([SB(mirror ? -300 : -60, 330, { pose: brush ? 'brushHand' : 'hang', props: { hbrushHand: brush ? 1 : 0 }, expr: f > 735 ? 'bored' : f > 555 ? 'surprised' : 'neutral', look: mirror ? [1, 0] : [0, -0.6] })]), screen: tag(f, 590, 640, '10 SEGUNDOS') }; } },
+  { f0: 798, f1: 1201, light: () => 'day', dof: {}, cam: [{ f: 798, x: 0, y: -40, z: 1.15 }, { f: 1050, x: 0, y: 40, z: 1.4 }, { f: 1201, x: 0, y: 0, z: 1.25 }],
+    build(f) { const n = f < 1050 ? 0 : Math.min(3, Math.floor((f - 1050) / 18) + 1); return { world: { set: 'bedroom', sun: 1 }, actors: [SB(0, 330, { bermuda: 0, props: { pockets: f >= 962 ? n || 0.5 : 0 }, expr: f > 960 ? 'bliss' : 'neutral', pose: f > 990 && f < 1040 ? 'up' : 'hang', look: [0, 0.6] })], fx: f >= 962 && f < 1000 ? [sp(-150, 200, 0.5), sp(150, 200, 0.5)] : [], screen: card(f, 800, '7:30').concat(tag(f, 1000, 1045, 'BOLSOS!!!')) }; } },
+  { f0: 1202, f1: 1589, light: () => 'day', dof: { room: 3 }, cam: [{ f: 1202, x: 60, y: -60, z: 1.15 }, { f: 1589, x: 60, y: -60, z: 1.3 }],
+    build(f) { const nod = f >= 1360 && f < 1400 ? Math.sin((f - 1360) * 0.6) * 0.15 : 0; return { world: { set: 'hall' }, actors: [SB(-150, 330, { bermuda: 0, props: { pockets: 3 }, expr: f > 1545 ? 'proud' : 'neutral', look: [1, 0], tilt: f > 1545 ? 0.08 : 0 }), LEO(250, 320, { expr: 'neutral', look: [-1, 0], tilt: nod, pose: f > 1290 && f < 1350 ? { L: [12, 6], R: [95, -20] } : 'hang' })], screen: card(f, 1204, '8:00').concat(tag(f, 1403, 1500, 'OI + TUDO BEM + TCHAU')) }; } },
+  { f0: 1590, f1: 1965, light: () => 'day', dof: {}, cam: [{ f: 1590, x: 0, y: -150, z: 0.75 }, { f: 1760, x: 0, y: -150, z: 0.8 }, { f: 1830, x: 500, y: -150, z: 0.85 }, { f: 1965, x: 300, y: -150, z: 0.8 }], kicks: [{ f: 1860, a: 18 }],
+    build(f) {
+      const A = [{ type: 'goal', x: 1050, y: 300, layer: 'back' }];
+      const boys = [['b1', -700, 350], ['b2', -200, 300], ['b3', 300, 380], ['leo', 700, 320]];
+      let ballX, ballY = 360, kx = -900, ky = 340, rot = 0, pose = 'hang', expr = 'bored';
+      if (f < 1765) { const ph = (f - 1590) / 40; const i = Math.floor(ph) % 4, j = (i + 1) % 4, t = ph % 1; ballX = lerp(boys[i][1], boys[j][1], t); ballY = 360 - Math.sin(t * Math.PI) * 120; }
+      else if (f < 1834) { const t = prog(f, 1765, 1834); kx = lerp(-900, 650, t); ballX = kx + 90; pose = 'run'; expr = 'stern'; }
+      else { kx = 650; const t = prog(f, 1834, 1860); rot = Math.PI * Math.min(1, t * 1.2); ky = 340 - Math.sin(t * Math.PI) * 200; ballX = lerp(740, 1050, prog(f, 1846, 1862)); ballY = lerp(200, -300, prog(f, 1846, 1862)); pose = f < 1862 ? 'kick' : 'up'; expr = f < 1862 ? 'stern' : 'proud'; if (f >= 1862) { rot = 0; ky = 340; ballX = 1050; ballY = 250; } }
+      boys.forEach(([w, x, y], i) => { const dodge = f >= 1791 && f < 1834 && kx > x - 120 ? -150 : 0; const cheer = f >= 1880; A.push(G(w, cheer ? lerp(x, 650 + (i - 1.5) * 220, 0.6) : x, y + dodge, { walk: f < 1765 || (f > 1880 && f < 1920) ? f * 0.6 + i : null, pose: cheer ? 'up' : 'hang', expr: f >= 1862 ? 'shocked' : 'happy', look: [kx > x ? 1 : -1, 0], hop: cheer ? Math.max(0, Math.sin(f * 0.35 + i)) * 30 : 0, flip: kx > x ? 1 : -1 })); });
+      A.push(SB(kx, ky, { bermuda: 0, props: { pockets: 3 }, pose, expr, rot, walk: pose === 'run' ? f * 1.1 : null, noShadow: rot > 0.3 }));
+      A.push({ type: 'ball', x: ballX, y: ballY, spin: f * 0.4, layer: 'front' });
+      return { world: { set: 'quadra', plain: true, banner: 'RECREIO' }, actors: A, fx: f >= 1862 && f < 1900 ? [{ type: 'confetti', n: 30, x0: 0, w: 1400, y0: -1100, h: 1400, f0: 1862 }] : [], screen: card(f, 1592, '10:00').concat(tag(f, 1862, 1900, 'GOOOL!')) };
+    } },
+  { f0: 1966, f1: 2361, light: () => 'day', dof: { room: 3 }, cam: [{ f: 1966, x: 150, y: -60, z: 1.15 }, { f: 2361, x: 150, y: -60, z: 1.3 }],
+    build(f) { const leoEat = f >= 2010 && f < 2100, sofEat = f >= 2290 && f < 2340; return { world: { set: 'lunch' }, actors: [LEO(0, 330, { sit: true, expr: leoEat ? 'grin' : 'happy', look: [1, 0], tilt: leoEat ? Math.sin(f * 1.3) * 0.08 : 0, flip: 1 }), SB(330, 330, { sit: true, expr: sofEat ? 'grin' : f > 2255 ? 'proud' : 'surprised', look: [-1, 0], tilt: sofEat ? Math.sin(f * 1.4) * 0.08 : 0, flip: -1 }), { type: 'table', x: 150, y: 430, s: 1, layer: 'front', trays: [0, 330] }], fx: [{ type: 'speech', x: 650, y: -330, text: 'POR QUÊ?', k: pop(f, 2112) * (1 - prog(f, 2160, 2166)), tx: -180 }, { type: 'speech', x: -400, y: -330, text: 'PRA SOBRAR\nRECREIO!', fs: 44, k: pop(f, 2166) * (1 - prog(f, 2250, 2256)), tx: 200 }], screen: card(f, 1968, '12:00').concat(tag(f, 2050, 2100, 'LÉO: 40 SEGUNDOS')).concat(tag(f, 2318, 2361, 'SOFIA: 35 SEGUNDOS')) }; } },
+  { f0: 2362, f1: 2612, light: () => 'dark', dof: {}, cam: [{ f: 2362, x: 400, y: -880, z: 0.85 }, { f: 2520, x: 300, y: -800, z: 0.95 }, { f: 2612, x: 0, y: -60, z: 1.3 }],
+    build(f) { const fill = f >= 2550; return { world: { set: 'bedroom', sun: 0 }, actors: fill ? [SB(0, 330, { bermuda: 0, props: { pockets: 4 }, expr: 'mischief', look: [0, 0.6], pose: 'pillow' })] : [G('sofiaB', -180, -60, { sit: true, expr: f > 2460 ? 'bliss' : 'surprised', look: [1, -0.6] }), { type: 'blanket', x: -180, y: 60, layer: 'front' }], fx: fill ? [sp(-150, -40, 0.4), sp(150, -60, 0.4)] : [{ type: 'shoot', t: prog(f, 2405, 2440), x0: 420, y0: -1460, x1: 1100, y1: -1150 }], lights: [{ x: 760, y: -1150, r: 700, i: 0.8, col: 'rgba(150,180,255,.3)' }, { x: 0, y: -200, r: 600, i: 0.85 }], screen: card(f, 2364, '21:00') }; } },
+  { f0: 2613, f1: TOTAL - 1, light: () => 'day', dof: {}, cam: [{ f: 2613, x: 0, y: -150, z: 0.95 }, { f: TOTAL - 1, x: 60, y: -120, z: 1.15 }],
+    build(f) { const w = walkTo(f, 2613, 2720, [-700, 340], [-150, 340]); return { world: { set: 'street', door: 0 }, actors: [G('sofia', w.x, 340, { walk: w.walk, props: { pockets: 4 }, expr: 'proud', look: [1, 0], flip: 1 }), LEO(w.x + 380, 330, { walk: w.walk, expr: f > 2740 ? 'squint' : 'neutral', look: [-1, 0], flip: 1 })], fx: f >= 2755 ? [{ type: 'thought', x: w.x + 700, y: -420, w: 330, h: 220, hx: w.x + 400, hy: -170, k: pop(f, 2756), text: 'COMO???', fs: 52 }] : [], screen: card(f, 2615, 'NO DIA SEGUINTE') }; } },
+];
+function shotAt(f) { for (const s of SHOTS) if (f >= s.f0 && f <= s.f1) return s; return f < 0 ? SHOTS[0] : SHOTS[SHOTS.length - 1]; }
