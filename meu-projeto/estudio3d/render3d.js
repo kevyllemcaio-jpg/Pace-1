@@ -7,6 +7,7 @@
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
 //   --horizontal  vídeo deitado 1920x1080 (YouTube)
+//   --rapido    prévia rápida em 720x1280 (para conferir o vídeo antes do render final)
 //   --2k        qualidade 2K: 1440x2560 (ou config.qualidade = '2k' no vídeo)
 //   --so-audio  refaz só o áudio (voz + efeitos + música) em cima do vídeo já pronto (rápido)
 //   --so-audio --refazer-final  troca só o final (renderiza o último bloco e emenda no vídeo pronto)
@@ -37,11 +38,14 @@ const finalAntigo = args.includes('--final-antigo');
 const refazerFinal = args.includes('--refazer-final'); // com --so-audio: renderiza de novo só o último bloco
 const horizontal = args.includes('--horizontal'); // vídeo deitado 1920x1080 (YouTube)
 // 2K: --2k ou `qualidade: '2k'` no config do vídeo -> 1440x2560 (vertical) / 2560x1440 (horizontal)
-const doisK = args.includes('--2k') || (() => { try { return /qualidade:\s*['"]2k['"]/.test(fs.readFileSync(path.join(__dirname, 'videos', `${nome}.js`), 'utf8')); } catch (e) { return false; } })();
-const DSF = doisK ? 2 : 1.5;
+const rapido = args.includes('--rapido'); // prévia rápida: 720x1280, compressão veloz
+const doisK = !rapido && (args.includes('--2k') || (() => { try { return /qualidade:\s*['"]2k['"]/.test(fs.readFileSync(path.join(__dirname, 'videos', `${nome}.js`), 'utf8')); } catch (e) { return false; } })());
+const DSF = rapido ? 1 : doisK ? 2 : 1.5;
 const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280;
-const SAIDA = doisK ? (horizontal ? '2560:1440' : '1440:2560') : (horizontal ? '1920:1080' : '1080:1920');
-const CRF = doisK ? '17' : '19';
+const SAIDA = rapido ? (horizontal ? '1280:720' : '720:1280') : doisK ? (horizontal ? '2560:1440' : '1440:2560') : (horizontal ? '1920:1080' : '1080:1920');
+const CRF = rapido ? '23' : doisK ? '17' : '19';
+const PRESET = rapido ? 'veryfast' : 'medium';
+if (rapido && !args.some((a) => a.startsWith('--escala='))) escala = 1;
 if (doisK && !args.some((a) => a.startsWith('--escala='))) escala = 2; // 3D renderizado já em 2K
 const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
 const trechoDe = argNum('de'), trechoAte = argNum('ate'); // recorte de cena (sem áudio)
@@ -94,7 +98,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   const leads = []; // silêncio cortado do começo de cada fala (ritmo corrido)
   // ritmo: 'corrido' -> uma fala emenda na outra (corta o silêncio do começo/fim, quase sem pausa)
   const corrido = config.ritmo === 'corrido';
-  const pausa = corrido ? 0.06 : PAUSA;
+  const pausa = corrido ? (config.pausa ?? 0.18) : PAUSA; // corrido: só um respirinho entre as falas
   if (comVoz) {
     const tempos = falas.map((fala, i) => {
       if (!fala) { audios.push(null); leads.push(0); return null; }
@@ -137,7 +141,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
     fs.mkdirSync(pasta, { recursive: true });
     const arq = path.join(pasta, `${nome}_${trechoDe.toFixed(2)}_${trechoAte.toFixed(2)}.mp4`);
     const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', CRF, '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
     const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
     for (let f = Math.round(trechoDe * FPS); f < Math.round(trechoAte * FPS); f++) {
       await desenhar(f / FPS);
@@ -165,7 +169,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
       const ini = inicios[inicios.length - 1];
       const clipe = path.join(pastaSaida, `.${nome}-final.mp4`);
       const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-        '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', CRF, '-pix_fmt', 'yuv420p', clipe], { stdio: ['pipe', 'inherit', 'inherit'] });
+        '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', clipe], { stdio: ['pipe', 'inherit', 'inherit'] });
       const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
       for (let f = Math.round(ini * FPS); f < Math.round(duracao * FPS); f++) {
         await desenhar(f / FPS);
@@ -177,7 +181,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
       const nIni = Math.round(ini * FPS);
       ffmpeg(['-i', anterior, '-i', clipe, '-filter_complex',
         `[0:v]trim=end_frame=${nIni},setpts=PTS-STARTPTS[a];[1:v]setpts=PTS-STARTPTS[b];[a][b]concat=n=2:v=1:a=0[v]`,
-        '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', CRF, '-pix_fmt', 'yuv420p', semAudio]);
+        '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', semAudio]);
       fs.rmSync(clipe);
     }
   } else {
@@ -194,7 +198,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
     if (fs.existsSync(arq)) continue; // já renderizado antes
     const tmpArq = arq + '.tmp.mp4';
     const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', CRF, '-pix_fmt', 'yuv420p', tmpArq], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', tmpArq], { stdio: ['pipe', 'inherit', 'inherit'] });
     const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
     const ini = k * PEDACO, fim = Math.min(total, ini + PEDACO);
     for (let f = ini; f < fim; f++) {
