@@ -1,0 +1,38 @@
+n1|narrador|Isto é o que João viu na ilha de Patmos. Apocalipse, capítulo um.
+n2|narrador|Revelação de Jesus Cristo, que Deus lhe deu para mostrar aos seus servos as coisas que em breve devem acontecer.
+n3|narrador|Ele a comunicou por meio do seu anjo ao seu servo João.
+n4|narrador|E João deu testemunho da palavra de Deus e do testemunho de Jesus Cristo, de tudo o que viu.
+n5|narrador|Bem-aventurado aquele que lê, e os que ouvem as palavras desta profecia e guardam o que nela está escrito.
+n6|narrador|Pois o tempo está próximo.
+n7|narrador|João, às sete igrejas que estão na Ásia.
+n8|narrador|Graça e paz a vocês, da parte daquele que é, que era e que há de vir;
+n9|narrador|da parte dos sete Espíritos que estão diante do seu trono;
+n10|narrador|e da parte de Jesus Cristo, a fiel testemunha, o primogênito dos mortos e o soberano dos reis da terra.
+n11|narrador|Àquele que nos ama e, pelo seu sangue, nos libertou dos nossos pecados,
+n12|narrador|e nos fez reino, sacerdotes para o seu Deus e Pai, a ele a glória e o domínio pelos séculos dos séculos. Amém.
+n13|narrador|Eis que ele vem com as nuvens, e todo olho o verá, até mesmo aqueles que o traspassaram.
+n14|narrador|E todas as tribos da terra se lamentarão sobre ele. Certamente. Amém.
+d1|deus|Eu sou o Alfa e o Ômega,
+n15|narrador|diz o Senhor Deus,
+d2|deus|aquele que é, que era e que há de vir, o Todo-Poderoso.
+n16|narrador|Eu, João, irmão de vocês e companheiro na tribulação, no reino e na perseverança em Jesus,
+n17|narrador|estava na ilha chamada Patmos, por causa da palavra de Deus e do testemunho de Jesus.
+n18|narrador|Achei-me em espírito, no dia do Senhor.
+n19|narrador|E ouvi, por detrás de mim, uma grande voz, como de trombeta, dizendo:
+j1|filho|O que vês, escreve em livro e manda às sete igrejas:
+j2|filho|Éfeso, Esmirna, Pérgamo, Tiatira, Sardes, Filadélfia e Laodiceia.
+n20|narrador|Voltei-me para ver quem falava comigo.
+n21|narrador|E, ao voltar-me, vi sete candeeiros de ouro.
+n22|narrador|E, no meio dos candeeiros, um semelhante ao Filho do Homem, com vestes talares, cingido à altura do peito com um cinto de ouro.
+n23|narrador|A sua cabeça e os seus cabelos eram brancos como a lã, como a neve. Os seus olhos, como chama de fogo.
+n24|narrador|Os seus pés, semelhantes ao bronze polido, como que refinado numa fornalha. E a sua voz, como voz de muitas águas.
+n25|narrador|Na mão direita ele tinha sete estrelas. Da sua boca saía uma afiada espada de dois gumes.
+n26|narrador|E o seu rosto brilhava como o sol na sua força.
+n27|narrador|Quando o vi, caí a seus pés como morto.
+n28|narrador|Porém ele pôs sobre mim a sua mão direita, dizendo:
+j3|filho|Não temas. Eu sou o primeiro e o último, e aquele que vive.
+j4|filho|Estive morto, mas eis que estou vivo pelos séculos dos séculos, e tenho as chaves da morte e do inferno.
+j5|filho|Escreve, pois, as coisas que viste, as que são e as que hão de acontecer depois destas.
+j6|filho|Quanto ao mistério das sete estrelas que viste na minha mão direita, e aos sete candeeiros de ouro:
+j7|filho|as sete estrelas são os anjos das sete igrejas, e os sete candeeiros são as sete igrejas.
+n29|narrador|Continua em Apocalipse, capítulo dois.
