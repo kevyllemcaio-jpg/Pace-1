@@ -37,7 +37,7 @@ export function criar(ctx) {
   const { cena, camera } = ctx;
   camera.fov = 40; camera.near = 0.05; camera.far = 600; camera.updateProjectionMatrix();
   ctx.sol.shadow.mapSize.set(4096, 4096); // sombras mais nítidas (qualidade)
-  ctx.renderer.toneMapping = THREE.ACESFilmicToneMapping; ctx.renderer.toneMappingExposure = 1.05;
+  ctx.renderer.toneMapping = THREE.ACESFilmicToneMapping; ctx.renderer.toneMappingExposure = 1.35; // mais claro
   const em = (dx) => ({ ...ctx, cena: (() => { const g = new THREE.Group(); g.position.x = dx; cena.add(g); return g; })() });
 
   // ---------- mundos ----------

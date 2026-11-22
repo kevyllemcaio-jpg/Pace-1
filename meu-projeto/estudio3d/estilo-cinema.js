@@ -19,9 +19,9 @@ export function texturaCeu(cores) {
 export function luzCinema(ctx, modo = 'tarde') {
   const { cena, hemi, sol } = ctx;
   const P = (luzCinema.cache ||= {
-    tarde: { ceu: [[0, '#6F8FB8'], [0.45, '#E9A77A'], [0.75, '#F6C68C'], [1, '#F9D9A8']], nevoa: '#E7B48A', perto: 18, longe: 150, hemiC: '#FFE0B8', hemiG: '#6A5468', hi: 1.15, solC: '#FFC27A', si: 2.6, solP: [-30, 22, -60] },
-    dia: { ceu: [[0, '#7FB2E5'], [0.6, '#CFE3F2'], [1, '#F2E6CF']], nevoa: '#DCCFB8', perto: 25, longe: 220, hemiC: '#FFF2DC', hemiG: '#7A8A6A', hi: 1.3, solC: '#FFF1D6', si: 2.4, solP: [30, 50, 30] },
-    vela: { ceu: [[0, '#2A2230'], [1, '#4A3A3A']], nevoa: '#3A2C2A', perto: 4, longe: 22, hemiC: '#FFB67A', hemiG: '#2A2030', hi: 0.55, solC: '#FFB060', si: 1.2, solP: [3, 4, 3] },
+    tarde: { ceu: [[0, '#6F8FB8'], [0.45, '#E9A77A'], [0.75, '#F6C68C'], [1, '#F9D9A8']], nevoa: '#E7B48A', perto: 18, longe: 150, hemiC: '#FFE6C4', hemiG: '#8A7488', hi: 1.55, solC: '#FFC98A', si: 3.0, solP: [-30, 22, -60] },
+    dia: { ceu: [[0, '#7FB2E5'], [0.6, '#CFE3F2'], [1, '#F2E6CF']], nevoa: '#DCCFB8', perto: 25, longe: 220, hemiC: '#FFF4E2', hemiG: '#9AAA8A', hi: 1.6, solC: '#FFF3DC', si: 2.7, solP: [30, 50, 30] },
+    vela: { ceu: [[0, '#2A2230'], [1, '#4A3A3A']], nevoa: '#3A2C2A', perto: 4, longe: 22, hemiC: '#FFC28C', hemiG: '#4A3A44', hi: 0.95, solC: '#FFB870', si: 1.6, solP: [3, 4, 3] },
   })[modo];
   if (!P.tex) P.tex = texturaCeu(P.ceu);
   cena.background = P.tex;
@@ -62,8 +62,8 @@ export function filme(t, { tom = 'rgba(255,170,90,.10)', escuro = 0 } = {}) {
   .titulo { text-transform: uppercase; }
   </style>
   <div style="position:absolute;inset:0;background:${tom};mix-blend-mode:overlay;pointer-events:none"></div>
-  <svg style="position:absolute;inset:0;width:720px;height:1280px;opacity:.16;mix-blend-mode:overlay;pointer-events:none" viewBox="0 0 720 1280"><filter id="gr${seed}"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="${seed}"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1 0"/></filter><rect width="720" height="1280" filter="url(#gr${seed})"/></svg>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(30,15,5,.55) 100%);pointer-events:none"></div>
+  <svg style="position:absolute;inset:0;width:720px;height:1280px;opacity:.10;mix-blend-mode:overlay;pointer-events:none" viewBox="0 0 720 1280"><filter id="gr${seed}"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="${seed}"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1 0"/></filter><rect width="720" height="1280" filter="url(#gr${seed})"/></svg>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 62%, rgba(30,15,5,.32) 100%);pointer-events:none"></div>
   ${escuro > 0 ? `<div style="position:absolute;inset:0;background:#000;opacity:${Math.min(1, escuro)}"></div>` : ''}`;
 }
 

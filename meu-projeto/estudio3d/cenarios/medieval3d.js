@@ -1,6 +1,7 @@
 // Reino medieval (estilo motion design 3D): morro com castelo, vila de casas de enxaimel,
 // barracas de mercado, rio; quarto de pedra com velas; MÃO em close com a MARCA brilhando; livro antigo.
 import * as THREE from 'three';
+import { M as M2d, contornar } from '../personagem-flat.js';
 
 const cache = new Map();
 const M = (cor, o = {}) => { const k = cor + JSON.stringify(o); if (!cache.has(k)) cache.set(k, new THREE.MeshStandardMaterial({ color: cor, roughness: 0.95, ...o })); return cache.get(k); };
@@ -107,7 +108,7 @@ export function texturaMarca(tipo) {
 /** Mão aberta em close (palma para +z) com a marca no centro. */
 export function maoComMarca(tipo, { pele = '#E9A97A' } = {}) {
   const g = new THREE.Group();
-  const P = M(pele);
+  const P = M2d(pele); // mão no mesmo estilo 2D do personagem
   const palma = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 24), P); palma.scale.set(0.92, 1.0, 0.3); palma.castShadow = true; g.add(palma); // palma arredondada
   const borda = new THREE.Mesh(new THREE.CapsuleGeometry(0.14, 0.7, 6, 12), P); borda.rotation.z = Math.PI / 2; borda.position.y = -0.5; g.add(borda);
   [[-0.33, 0.85, 0.75, 0.1], [-0.11, 0.95, 0.85, 0.03], [0.11, 0.92, 0.82, -0.03], [0.33, 0.8, 0.68, -0.1]].forEach(([x, y, h, rz]) => { const f = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, h - 0.2, 6, 12), P); f.position.set(x, y, 0); f.rotation.z = rz; f.castShadow = true; g.add(f); });
@@ -115,6 +116,7 @@ export function maoComMarca(tipo, { pele = '#E9A97A' } = {}) {
   const marca = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.7), new THREE.MeshBasicMaterial({ map: texturaMarca(tipo), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
   marca.position.set(0, 0.02, 0.16); g.add(marca);
   const luz = new THREE.PointLight({ chama: '#FF8A2A', gota: '#3FB6FF', raio: '#FFE04A', terra: '#C98A3A', olho: '#B44BFF' }[tipo], 2.5, 3, 1.5); luz.position.set(0, 0, 0.6); g.add(luz);
+  g.children.forEach((c) => c.isMesh && c.material === P && contornar(c, 0.02));
   g.marca = marca; g.luz = luz;
   return g;
 }

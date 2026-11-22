@@ -1,4 +1,4 @@
-// Personagem no estilo "MOTION DESIGN" (cores chapadas, sombreado suave, sem contorno,
+// Personagem no estilo "MOTION DESIGN" (cores chapadas; por padrão com cara de desenho 2D: dois tons + contorno;
 // proporções normais, rosto simples). Usado no visual "cinema" (luz dourada, neblina, granulado).
 //
 //   const p = criarPersonagemFlat({ roupa, calca, cabelo, pele, fone, mochila, capacete, cabeloTipo })
@@ -6,14 +6,40 @@
 //   p.animar(t)   // olha para +z; pés em y = 0; altura ~1,75
 import * as THREE from 'three';
 
+// ESTILO.modo = '2d' (padrão): cara de DESENHO 2D — dois tons chapados (luz/sombra, sem degradê)
+// e contorno escuro. ESTILO.modo = '3d': sombreado suave, sem contorno.
+export const ESTILO = { modo: '2d' };
+let rampa2 = null;
+function rampa() {
+  if (rampa2) return rampa2;
+  rampa2 = new THREE.DataTexture(new Uint8Array([200, 200, 200, 255, 255, 255, 255, 255]), 2, 1, THREE.RGBAFormat);
+  rampa2.minFilter = rampa2.magFilter = THREE.NearestFilter;
+  rampa2.needsUpdate = true;
+  return rampa2;
+}
 const cache = new Map();
-const M = (cor) => { if (!cache.has(cor)) cache.set(cor, new THREE.MeshStandardMaterial({ color: cor, roughness: 0.95, metalness: 0 })); return cache.get(cor); };
+export const M = (cor) => {
+  const k = ESTILO.modo + cor;
+  if (!cache.has(k)) cache.set(k, ESTILO.modo === '2d' ? new THREE.MeshToonMaterial({ color: cor, gradientMap: rampa() }) : new THREE.MeshStandardMaterial({ color: cor, roughness: 0.95, metalness: 0 }));
+  return cache.get(k);
+};
 const B = (cor) => new THREE.MeshBasicMaterial({ color: cor });
+export const CONTORNO = new THREE.MeshBasicMaterial({ color: '#2A1E18', side: THREE.BackSide });
+/** Contorno de desenho (casco invertido) numa malha — espessura ~constante. */
+export function contornar(m, esp = 0.011) {
+  if (ESTILO.modo !== '2d' || !m.material || m.material.isMeshBasicMaterial) return m;
+  m.geometry.computeBoundingSphere();
+  const o = new THREE.Mesh(m.geometry, CONTORNO);
+  o.scale.setScalar(1 + esp / Math.max(0.02, m.geometry.boundingSphere.radius));
+  o.castShadow = false;
+  m.add(o);
+  return m;
+}
 function malha(geo, mat, pos = [0, 0, 0], esc = [1, 1, 1], rot = [0, 0, 0]) {
   const m = new THREE.Mesh(geo, mat);
   m.position.set(...pos); m.scale.set(...esc); m.rotation.set(...rot);
   m.castShadow = true; m.receiveShadow = true;
-  return m;
+  return contornar(m);
 }
 const cap = (r, h) => new THREE.CapsuleGeometry(r, h, 6, 16);
 const esf = (r) => new THREE.SphereGeometry(r, 28, 20);
