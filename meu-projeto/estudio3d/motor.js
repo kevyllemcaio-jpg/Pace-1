@@ -227,7 +227,7 @@ export function iniciar(video) {
 
     // fundo?(lt, b): HTML desenhado ATRÁS da legenda e do título (ex.: ilustração 2D em tela cheia)
     let html = b.fundo ? b.fundo(lt, b) : '';
-    html += b.semLegenda || (i === 0 && video.config.tituloEstilo === 'meio' && lt < b.dur - 0.6) ? '' : legendaHTML(b, lt);
+    html += video.config.semLegenda || b.semLegenda || (i === 0 && video.config.tituloEstilo === 'meio' && lt < b.dur - 0.6) ? '' : legendaHTML(b, lt); // config.semLegenda: vídeo todo sem legenda
     if (i === 0 && video.config.titulo) {
       const op = 1 - lim((lt - (b.dur - 0.6)) / 0.4);
       if (video.config.tituloEstilo === 'meio') {

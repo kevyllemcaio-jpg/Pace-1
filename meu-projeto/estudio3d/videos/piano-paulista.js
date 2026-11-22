@@ -17,7 +17,8 @@ import { luzCinema, brilhoSol, filme, rotulo3d, mostrador } from '../estilo-cine
 import { carro } from '../mundo.js';
 
 export const config = {
-  titulo: ['E SE UM *PIANO*', 'CAÍSSE NA SUA', '*CABEÇA*?'],
+  // sem título na tela e sem legenda (pedido do usuário)
+  semLegenda: true,
   qualidade: '2k',
   velocidade: '+16%',
   ritmo: 'corrido', // fala emendada, sem pausa entre as frases
