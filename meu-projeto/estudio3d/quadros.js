@@ -20,7 +20,12 @@ const raiz = path.join(__dirname, '..');
   await p.goto(`http://127.0.0.1:${s.address().port}/estudio3d/pagina.html?video=${nome}&escala=1.5${horizontal ? '&formato=horizontal' : ''}`);
   await p.waitForFunction(() => window.PRONTO === true);
   const { voz: vozPadrao = 'pt-BR-AntonioNeural', velocidade = '+10%' } = await p.evaluate(() => MOTOR.config);
-  const falas = await p.evaluate(() => MOTOR.falas());
+  const cfg = await p.evaluate(() => MOTOR.config);
+  if (cfg.narracao) {
+    const narr = JSON.parse(fs.readFileSync(path.join(raiz, 'estudio3d', 'narracao', `${cfg.narracao}.json`), 'utf8'));
+    await p.evaluate((t) => MOTOR.definirTempos(t), narr.blocos.map((b) => (b.inicio == null ? { dur: 0.05, palavras: [] } : { dur: b.fim - b.inicio, palavras: b.palavras.map((q) => ({ ...q, inicio: q.inicio - 0.2, fim: q.fim - 0.2 })) })));
+  }
+  const falas = cfg.narracao ? [] : await p.evaluate(() => MOTOR.falas());
   const vozes = await p.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
   const tempos = falas.map((f, i) => {
     if (!f) return null;
@@ -34,7 +39,7 @@ const raiz = path.join(__dirname, '..');
     const fim = ini.length && total - ini[ini.length - 1] < 1.5 ? ini[ini.length - 1] : total;
     return { dur: 0.2 + fim + 0.35, palavras: JSON.parse(fs.readFileSync(json, 'utf8')) };
   });
-  if (tempos.every(Boolean)) await p.evaluate((t) => MOTOR.definirTempos(t), tempos);
+  if (!cfg.narracao && tempos.every(Boolean)) await p.evaluate((t) => MOTOR.definirTempos(t), tempos);
   console.log('inicios:', (await p.evaluate(() => MOTOR.inicios())).map((x) => x.toFixed(1)).join(' '), ' total:', (await p.evaluate(() => MOTOR.duracao())).toFixed(1));
   for (const t of lista.split(',').map(Number)) {
     const t0 = Date.now();

@@ -99,7 +99,13 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   // ritmo: 'corrido' -> uma fala emenda na outra (corta o silêncio do começo/fim, quase sem pausa)
   const corrido = config.ritmo === 'corrido';
   const pausa = corrido ? (config.pausa ?? 0.18) : PAUSA; // corrido: só um respirinho entre as falas
-  if (comVoz) {
+  // narração GRAVADA pelo usuário (estudio3d/narracao/<nome>.json + .wav, gerados por narracao.py)
+  const narr = config.narracao ? JSON.parse(fs.readFileSync(path.join(__dirname, 'narracao', `${config.narracao}.json`), 'utf8')) : null;
+  if (narr) {
+    const tempos = narr.blocos.map((b) => (b.inicio == null ? { dur: 0.05, palavras: [] } : { dur: b.fim - b.inicio, palavras: b.palavras.map((p) => ({ ...p, inicio: p.inicio - ATRASO_FALA, fim: p.fim - ATRASO_FALA })) }));
+    await page.evaluate((t) => MOTOR.definirTempos(t), tempos);
+    falas.forEach(() => { audios.push(null); leads.push(0); });
+  } else if (comVoz) {
     const tempos = falas.map((fala, i) => {
       if (!fala) { audios.push(null); leads.push(0); return null; }
       const voz = vozes[i] || vozPadrao;
@@ -229,6 +235,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   const faixas = []; // [arquivo, início, volume]
   // o começo silencioso cortado (lead) entra antes do início do bloco; atrim tira o que sobraria antes de 0
   audios.forEach((a, i) => a && faixas.push([a, inicios[i] + ATRASO_FALA - (leads[i] || 0), 1.5, leads[i] || 0]));
+  if (narr) faixas.push([path.join(__dirname, 'narracao', narr.audio), 0, 1.0]);
   sons.forEach((s) => SONS[s.tipo] && faixas.push([arquivoSom(s.tipo), Math.max(0, s.t), 0.55]));
   const entradas = ['-i', semAudio];
   faixas.forEach(([a]) => entradas.push('-i', a));

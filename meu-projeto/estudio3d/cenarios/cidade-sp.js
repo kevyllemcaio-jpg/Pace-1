@@ -170,7 +170,7 @@ export function criarCidadeSP(ctx) {
 /** Piano de armário em 3D (frente = +z). Origem na base. */
 export function piano3d() {
   const g = new THREE.Group();
-  const madeira = M('#3A2418'), escura = M('#22150E');
+  const madeira = M('#6B4430'), escura = M('#3A2418'); // madeira mais clara: lê melhor contra o céu
   g.add(cx(1.45, 1.3, 0.6, madeira, [0, 0.75, 0]));
   g.add(cx(1.5, 0.08, 0.66, escura, [0, 1.44, 0]));
   g.add(cx(1.5, 0.1, 0.42, escura, [0, 0.95, 0.42]));

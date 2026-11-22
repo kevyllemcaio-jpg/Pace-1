@@ -21,6 +21,7 @@ export const config = {
   qualidade: '2k',
   velocidade: '+16%',
   ritmo: 'corrido', // fala emendada, sem pausa entre as frases
+  narracao: 'piano-paulista', // voz gravada pelo usuário (estudio3d/narracao/)
   legendaTopo: 880,
 };
 
@@ -34,6 +35,8 @@ const kmh = (t) => Math.round(9.8 * Math.min(t, T_CAB) * 3.6);
 export function criar(ctx) {
   const { cena, camera } = ctx;
   camera.fov = 40; camera.near = 0.05; camera.far = 600; camera.updateProjectionMatrix();
+  ctx.sol.shadow.mapSize.set(4096, 4096); // sombras mais nítidas (qualidade)
+  ctx.renderer.toneMapping = THREE.ACESFilmicToneMapping; ctx.renderer.toneMappingExposure = 1.05;
   const em = (dx) => ({ ...ctx, cena: (() => { const g = new THREE.Group(); g.position.x = dx; cena.add(g); return g; })() });
 
   // ---------- mundos ----------
@@ -125,7 +128,7 @@ export function criar(ctx) {
       fala: 'E se você tivesse andando pela Paulista e, do nada, um piano caísse na sua cabeça?',
       destaque: ['paulista', 'piano', 'cabeça'],
       semLegenda: true,
-      camera: mao({ pos: [3.3, 0.75, 0.5], alvo: [2.1, 2.6, -14] }),
+      camera: mao(() => { const z = caio.position.z; return { pos: [3.25, 0.8, z + 4.8], alvo: [2.3, 2.3, z - 8] }; }),
       aplicar(lt, b) { E.mundo = 'rua'; caio.position.z = anda(lt, b, -7.5, -4.5); caio.estado = { bracos: 'celular', expr: 'neutro', andar: 1 }; pedestre.position.z = anda(lt, b, -20, -15); },
       camada: (lt, b) => sobre(lt, b),
       sons: [{ em: () => 0.02, tipo: 'impacto' }, { em: () => 0.2, tipo: 'vento' }],
@@ -183,7 +186,7 @@ export function criar(ctx) {
       fala: 'É a gravidade acelerando ele o caminho todo.',
       destaque: ['gravidade'],
       corteSeco: true,
-      camera: mao({ pos: [-4.5, 3, 10], alvo: [2.2, 14, -6] }),
+      camera: mao(() => { const y = yPiano(E.tf); return { pos: [-4.5, 3, 10], alvo: [2.2, mistura(14, y, 0.6), -5] }; }),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(2.0, 2.12, lt / b.dur); caio.position.z = -5.2; caio.estado = { bracos: 'celular', expr: 'neutro', andar: 1 }; },
       camada: (lt, b) => {
         const v = new THREE.Vector3(2.2, yPiano(E.tf), -4).project(camera);
@@ -196,7 +199,7 @@ export function criar(ctx) {
       fala: 'Dois segundos e meio depois, ele chega lá embaixo a mais de oitenta.',
       destaque: ['dois', 'oitenta'],
       corteSeco: true,
-      camera: mao({ pos: [2.4, 0.35, 1.2], alvo: [2.2, 9, -4.5] }, 0.4),
+      camera: mao(() => { const y = yPiano(E.tf); return { pos: [2.5, 0.35, 1.4], alvo: [2.2, Math.max(1.6, y * 0.65), -4.4] }; }, 0.4),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(2.12, 2.36, lt / b.dur); caio.position.z = mistura(-5.2, -4.3, lt / b.dur); caio.rotation.y = Math.PI; caio.estado = { bracos: 'celular', expr: 'neutro', andar: 1 }; },
       camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + 1.8, -4], kmhHtml(E.tf), { dx: 60, dy: 0 })),
       sons: [{ em: 'oitenta', tipo: 'tensao' }],
@@ -214,7 +217,7 @@ export function criar(ctx) {
       fala: 'Duzentos e cinquenta quilos nessa velocidade é igual a um carro batendo a quarenta por hora.',
       destaque: ['energia', 'carro', 'quarenta'],
       corteSeco: true,
-      camera: mao({ pos: [1.6, 1.4, -5], alvo: [-1.5, 0.9, -16] }),
+      camera: mao(() => { const z = carroBate.position.z; return { pos: [2.8, 1.7, z + 9.5], alvo: [-1.5, 0.9, z] }; }),
       aplicar(lt, b) { E.mundo = 'rua'; E.tf = 2.36; carroBate.position.z = mistura(-18, -13, suave(lt / b.dur)); },
       camada: (lt, b) => sobre(lt, b, lt > b.palavra('carro') ? mostrador(360, 300, 40 * lim((lt - b.palavra('carro')) / 1), 100, `${Math.round(40 * lim((lt - b.palavra('carro')) / 1))}`, { unidade: ' km/h' }) : mostrador(360, 300, 250, 300, '250', { unidade: ' kg' })),
       sons: [{ em: 'carro', tipo: 'motor' }, { em: 'quarenta', tipo: 'baque' }],
@@ -287,7 +290,7 @@ export function criar(ctx) {
       fala: 'Lá, todo mundo nasce com uma marca que mostra a sua magia.',
       destaque: ['marca', 'magia'],
       corteSeco: true,
-      camera: mao((lt, b) => ({ pos: [REINO + mistura(-1, 1, lt / b.dur), 1.6, 5], alvo: [REINO, 1.3, -3] })),
+      camera: mao((lt, b) => ({ pos: [REINO + mistura(-1.5, 1.2, lt / b.dur), 1.6, mistura(5.5, 4.2, lt / b.dur)], alvo: [aldeoes[1].position.x, 1.35, aldeoes[1].position.z] })),
       aplicar(lt, b) { E.mundo = 'reino'; aldeoes.forEach((a, i) => (a.estado = { bracos: i === 1 && lt > b.palavra('marca') ? 'mao' : 'normal', expr: i % 2 ? 'feliz' : 'neutro', andar: i === 3 ? 0.6 : 0 })); },
       camada: (lt, b) => sobre(lt, b),
     },
@@ -295,7 +298,7 @@ export function criar(ctx) {
       fala: 'Chama é fogo. Gota é água. Raio é trovão.',
       destaque: ['fogo', 'água', 'trovão'],
       corteSeco: true,
-      camera: { pos: [REINO, 1.5, 5.6], alvo: [REINO, 1.5, 0] },
+      camera: (lt, b) => ({ pos: [REINO + Math.sin(lt * 0.8) * 0.15, 1.5, mistura(6.0, 5.2, lt / b.dur)], alvo: [REINO, 1.5, 0] }),
       aplicar(lt, b) {
         E.mundo = 'reino';
         const qual = lt < b.palavra('gota') - 0.1 ? 'chama' : lt < b.palavra('raio') - 0.1 ? 'gota' : 'raio';

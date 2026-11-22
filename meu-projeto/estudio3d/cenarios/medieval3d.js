@@ -108,12 +108,12 @@ export function texturaMarca(tipo) {
 export function maoComMarca(tipo, { pele = '#E9A97A' } = {}) {
   const g = new THREE.Group();
   const P = M(pele);
-  const palma = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.0, 0.28), P); palma.castShadow = true; g.add(palma);
+  const palma = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 24), P); palma.scale.set(0.92, 1.0, 0.3); palma.castShadow = true; g.add(palma); // palma arredondada
   const borda = new THREE.Mesh(new THREE.CapsuleGeometry(0.14, 0.7, 6, 12), P); borda.rotation.z = Math.PI / 2; borda.position.y = -0.5; g.add(borda);
   [[-0.33, 0.85, 0.75, 0.1], [-0.11, 0.95, 0.85, 0.03], [0.11, 0.92, 0.82, -0.03], [0.33, 0.8, 0.68, -0.1]].forEach(([x, y, h, rz]) => { const f = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, h - 0.2, 6, 12), P); f.position.set(x, y, 0); f.rotation.z = rz; f.castShadow = true; g.add(f); });
   const pol = new THREE.Mesh(new THREE.CapsuleGeometry(0.12, 0.45, 6, 12), P); pol.position.set(-0.6, -0.05, 0.05); pol.rotation.z = 0.8; g.add(pol);
   const marca = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.7), new THREE.MeshBasicMaterial({ map: texturaMarca(tipo), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
-  marca.position.set(0, 0.02, 0.145); g.add(marca);
+  marca.position.set(0, 0.02, 0.16); g.add(marca);
   const luz = new THREE.PointLight({ chama: '#FF8A2A', gota: '#3FB6FF', raio: '#FFE04A', terra: '#C98A3A', olho: '#B44BFF' }[tipo], 2.5, 3, 1.5); luz.position.set(0, 0, 0.6); g.add(luz);
   g.marca = marca; g.luz = luz;
   return g;

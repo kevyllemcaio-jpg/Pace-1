@@ -1,0 +1,1173 @@
+{
+ "audio": "piano-paulista.wav",
+ "duracao": 73.293,
+ "blocos": [
+  {
+   "inicio": 0.0,
+   "fim": 4.78,
+   "texto": "E se você tivesse andando pela paulista e do nada um piano caísse na sua cabeça?",
+   "palavras": [
+    {
+     "texto": "E",
+     "inicio": 0.0,
+     "fim": 0.11
+    },
+    {
+     "texto": "se",
+     "inicio": 0.11,
+     "fim": 0.29
+    },
+    {
+     "texto": "você",
+     "inicio": 0.29,
+     "fim": 0.59
+    },
+    {
+     "texto": "tivesse",
+     "inicio": 0.59,
+     "fim": 0.95
+    },
+    {
+     "texto": "andando",
+     "inicio": 0.95,
+     "fim": 1.31
+    },
+    {
+     "texto": "pela",
+     "inicio": 1.31,
+     "fim": 1.59
+    },
+    {
+     "texto": "paulista",
+     "inicio": 1.59,
+     "fim": 2.23
+    },
+    {
+     "texto": "e",
+     "inicio": 2.23,
+     "fim": 2.45
+    },
+    {
+     "texto": "do",
+     "inicio": 2.45,
+     "fim": 2.59
+    },
+    {
+     "texto": "nada",
+     "inicio": 2.59,
+     "fim": 2.73
+    },
+    {
+     "texto": "um",
+     "inicio": 2.73,
+     "fim": 3.05
+    },
+    {
+     "texto": "piano",
+     "inicio": 3.05,
+     "fim": 3.27
+    },
+    {
+     "texto": "caísse",
+     "inicio": 3.27,
+     "fim": 3.73
+    },
+    {
+     "texto": "na",
+     "inicio": 3.73,
+     "fim": 3.89
+    },
+    {
+     "texto": "sua",
+     "inicio": 3.89,
+     "fim": 4.09
+    },
+    {
+     "texto": "cabeça?",
+     "inicio": 4.09,
+     "fim": 4.61
+    }
+   ]
+  },
+  {
+   "inicio": 4.78,
+   "fim": 7.94,
+   "texto": "O Caio tava indo pro trampo, de fone, olhando o celular,",
+   "palavras": [
+    {
+     "texto": "O",
+     "inicio": 0.03,
+     "fim": 0.13
+    },
+    {
+     "texto": "Caio",
+     "inicio": 0.13,
+     "fim": 0.27
+    },
+    {
+     "texto": "tava",
+     "inicio": 0.27,
+     "fim": 0.45
+    },
+    {
+     "texto": "indo",
+     "inicio": 0.45,
+     "fim": 0.65
+    },
+    {
+     "texto": "pro",
+     "inicio": 0.65,
+     "fim": 0.97
+    },
+    {
+     "texto": "trampo,",
+     "inicio": 0.97,
+     "fim": 1.49
+    },
+    {
+     "texto": "de",
+     "inicio": 1.49,
+     "fim": 1.77
+    },
+    {
+     "texto": "fone,",
+     "inicio": 1.77,
+     "fim": 2.01
+    },
+    {
+     "texto": "olhando",
+     "inicio": 2.11,
+     "fim": 2.29
+    },
+    {
+     "texto": "o",
+     "inicio": 2.29,
+     "fim": 2.51
+    },
+    {
+     "texto": "celular,",
+     "inicio": 2.51,
+     "fim": 2.99
+    }
+   ]
+  },
+  {
+   "inicio": 7.94,
+   "fim": 11.873,
+   "texto": "dez andares acima, dois caras subiam um piano na corda.",
+   "palavras": [
+    {
+     "texto": "dez",
+     "inicio": 0.03,
+     "fim": 0.41
+    },
+    {
+     "texto": "andares",
+     "inicio": 0.41,
+     "fim": 0.87
+    },
+    {
+     "texto": "acima,",
+     "inicio": 0.87,
+     "fim": 1.43
+    },
+    {
+     "texto": "dois",
+     "inicio": 1.65,
+     "fim": 1.73
+    },
+    {
+     "texto": "caras",
+     "inicio": 1.73,
+     "fim": 2.01
+    },
+    {
+     "texto": "subiam",
+     "inicio": 2.01,
+     "fim": 2.43
+    },
+    {
+     "texto": "um",
+     "inicio": 2.43,
+     "fim": 2.73
+    },
+    {
+     "texto": "piano",
+     "inicio": 2.73,
+     "fim": 2.97
+    },
+    {
+     "texto": "na",
+     "inicio": 2.97,
+     "fim": 3.37
+    },
+    {
+     "texto": "corda.",
+     "inicio": 3.37,
+     "fim": 3.833
+    }
+   ]
+  },
+  {
+   "inicio": 11.873,
+   "fim": 15.831,
+   "texto": "Aí a corda arrebentou. Duzentos e cinquenta quilos soltos no ar.",
+   "palavras": [
+    {
+     "texto": "Aí",
+     "inicio": 0.03,
+     "fim": 0.21
+    },
+    {
+     "texto": "a",
+     "inicio": 0.21,
+     "fim": 0.39
+    },
+    {
+     "texto": "corda",
+     "inicio": 0.39,
+     "fim": 0.59
+    },
+    {
+     "texto": "arrebentou.",
+     "inicio": 0.59,
+     "fim": 1.402
+    },
+    {
+     "texto": "Duzentos",
+     "inicio": 1.537,
+     "fim": 2.097
+    },
+    {
+     "texto": "e",
+     "inicio": 2.097,
+     "fim": 2.257
+    },
+    {
+     "texto": "cinquenta",
+     "inicio": 2.257,
+     "fim": 2.657
+    },
+    {
+     "texto": "quilos",
+     "inicio": 2.657,
+     "fim": 3.037
+    },
+    {
+     "texto": "soltos",
+     "inicio": 3.037,
+     "fim": 3.497
+    },
+    {
+     "texto": "no",
+     "inicio": 3.497,
+     "fim": 3.717
+    },
+    {
+     "texto": "ar.",
+     "inicio": 3.717,
+     "fim": 3.988
+    }
+   ]
+  },
+  {
+   "inicio": 15.831,
+   "fim": 19.666,
+   "texto": "Em um segundo ele já tá a trinta e cinco por hora.",
+   "palavras": [
+    {
+     "texto": "Em",
+     "inicio": 0.03,
+     "fim": 0.227
+    },
+    {
+     "texto": "um",
+     "inicio": 0.227,
+     "fim": 0.487
+    },
+    {
+     "texto": "segundo",
+     "inicio": 0.487,
+     "fim": 0.907
+    },
+    {
+     "texto": "ele",
+     "inicio": 0.907,
+     "fim": 1.187
+    },
+    {
+     "texto": "já",
+     "inicio": 1.187,
+     "fim": 1.547
+    },
+    {
+     "texto": "tá",
+     "inicio": 1.547,
+     "fim": 1.707
+    },
+    {
+     "texto": "a",
+     "inicio": 1.707,
+     "fim": 2.067
+    },
+    {
+     "texto": "trinta",
+     "inicio": 2.067,
+     "fim": 2.487
+    },
+    {
+     "texto": "e",
+     "inicio": 2.487,
+     "fim": 2.667
+    },
+    {
+     "texto": "cinco",
+     "inicio": 2.667,
+     "fim": 2.927
+    },
+    {
+     "texto": "por",
+     "inicio": 2.927,
+     "fim": 3.227
+    },
+    {
+     "texto": "hora.",
+     "inicio": 3.227,
+     "fim": 3.674
+    }
+   ]
+  },
+  {
+   "inicio": 19.666,
+   "fim": 21.686,
+   "texto": "No segundo seguinte setenta.",
+   "palavras": [
+    {
+     "texto": "No",
+     "inicio": 0.03,
+     "fim": 0.11
+    },
+    {
+     "texto": "segundo",
+     "inicio": 0.11,
+     "fim": 0.49
+    },
+    {
+     "texto": "seguinte",
+     "inicio": 0.49,
+     "fim": 0.89
+    },
+    {
+     "texto": "setenta.",
+     "inicio": 0.89,
+     "fim": 1.85
+    }
+   ]
+  },
+  {
+   "inicio": 21.686,
+   "fim": 25.08,
+   "texto": "É a gravidade acelerando ele o caminho todo.",
+   "palavras": [
+    {
+     "texto": "É",
+     "inicio": 0.03,
+     "fim": 0.15
+    },
+    {
+     "texto": "a",
+     "inicio": 0.15,
+     "fim": 0.31
+    },
+    {
+     "texto": "gravidade",
+     "inicio": 0.31,
+     "fim": 0.83
+    },
+    {
+     "texto": "acelerando",
+     "inicio": 0.83,
+     "fim": 1.751
+    },
+    {
+     "texto": "ele",
+     "inicio": 1.751,
+     "fim": 2.308
+    },
+    {
+     "texto": "o",
+     "inicio": 2.308,
+     "fim": 2.528
+    },
+    {
+     "texto": "caminho",
+     "inicio": 2.528,
+     "fim": 2.808
+    },
+    {
+     "texto": "todo.",
+     "inicio": 2.808,
+     "fim": 3.289
+    }
+   ]
+  },
+  {
+   "inicio": 25.08,
+   "fim": 29.507,
+   "texto": "Dois segundos e meio depois ele chega lá embaixo a mais de oitenta...",
+   "palavras": [
+    {
+     "texto": "Dois",
+     "inicio": 0.03,
+     "fim": 0.25
+    },
+    {
+     "texto": "segundos",
+     "inicio": 0.25,
+     "fim": 0.61
+    },
+    {
+     "texto": "e",
+     "inicio": 0.61,
+     "fim": 0.85
+    },
+    {
+     "texto": "meio",
+     "inicio": 0.85,
+     "fim": 0.99
+    },
+    {
+     "texto": "depois",
+     "inicio": 0.99,
+     "fim": 1.57
+    },
+    {
+     "texto": "ele",
+     "inicio": 1.57,
+     "fim": 1.85
+    },
+    {
+     "texto": "chega",
+     "inicio": 1.85,
+     "fim": 2.09
+    },
+    {
+     "texto": "lá",
+     "inicio": 2.09,
+     "fim": 2.31
+    },
+    {
+     "texto": "embaixo",
+     "inicio": 2.31,
+     "fim": 2.81
+    },
+    {
+     "texto": "a",
+     "inicio": 2.81,
+     "fim": 3.11
+    },
+    {
+     "texto": "mais",
+     "inicio": 3.11,
+     "fim": 3.35
+    },
+    {
+     "texto": "de",
+     "inicio": 3.35,
+     "fim": 3.57
+    },
+    {
+     "texto": "oitenta...",
+     "inicio": 3.57,
+     "fim": 4.35
+    }
+   ]
+  },
+  {
+   "inicio": 29.507,
+   "fim": 30.967,
+   "texto": "Tá. Mas e o peso?",
+   "palavras": [
+    {
+     "texto": "Tá.",
+     "inicio": 0.03,
+     "fim": 0.37
+    },
+    {
+     "texto": "Mas",
+     "inicio": 0.57,
+     "fim": 0.77
+    },
+    {
+     "texto": "e",
+     "inicio": 0.77,
+     "fim": 0.89
+    },
+    {
+     "texto": "o",
+     "inicio": 0.89,
+     "fim": 1.09
+    },
+    {
+     "texto": "peso?",
+     "inicio": 1.09,
+     "fim": 1.29
+    }
+   ]
+  },
+  {
+   "inicio": 30.967,
+   "fim": 36.223,
+   "texto": "Duzentos e cinquenta quilos nessa velocidade é igual a um carro batendo a quarenta por hora.",
+   "palavras": [
+    {
+     "texto": "Duzentos",
+     "inicio": 0.03,
+     "fim": 0.43
+    },
+    {
+     "texto": "e",
+     "inicio": 0.43,
+     "fim": 0.47
+    },
+    {
+     "texto": "cinquenta",
+     "inicio": 0.47,
+     "fim": 0.89
+    },
+    {
+     "texto": "quilos",
+     "inicio": 0.89,
+     "fim": 1.39
+    },
+    {
+     "texto": "nessa",
+     "inicio": 1.39,
+     "fim": 1.67
+    },
+    {
+     "texto": "velocidade",
+     "inicio": 1.67,
+     "fim": 2.37
+    },
+    {
+     "texto": "é",
+     "inicio": 2.37,
+     "fim": 2.57
+    },
+    {
+     "texto": "igual",
+     "inicio": 2.57,
+     "fim": 2.71
+    },
+    {
+     "texto": "a",
+     "inicio": 2.71,
+     "fim": 2.81
+    },
+    {
+     "texto": "um",
+     "inicio": 2.81,
+     "fim": 3.01
+    },
+    {
+     "texto": "carro",
+     "inicio": 3.01,
+     "fim": 3.27
+    },
+    {
+     "texto": "batendo",
+     "inicio": 3.27,
+     "fim": 3.93
+    },
+    {
+     "texto": "a",
+     "inicio": 3.93,
+     "fim": 4.284
+    },
+    {
+     "texto": "quarenta",
+     "inicio": 4.284,
+     "fim": 4.724
+    },
+    {
+     "texto": "por",
+     "inicio": 4.724,
+     "fim": 4.964
+    },
+    {
+     "texto": "hora.",
+     "inicio": 4.964,
+     "fim": 5.286
+    }
+   ]
+  },
+  {
+   "inicio": 36.223,
+   "fim": 37.813,
+   "texto": "E se ele tivesse de capacete?",
+   "palavras": [
+    {
+     "texto": "E",
+     "inicio": 0.03,
+     "fim": 0.162
+    },
+    {
+     "texto": "se",
+     "inicio": 0.162,
+     "fim": 0.322
+    },
+    {
+     "texto": "ele",
+     "inicio": 0.322,
+     "fim": 0.542
+    },
+    {
+     "texto": "tivesse",
+     "inicio": 0.542,
+     "fim": 0.862
+    },
+    {
+     "texto": "de",
+     "inicio": 0.862,
+     "fim": 1.142
+    },
+    {
+     "texto": "capacete?",
+     "inicio": 1.142,
+     "fim": 1.442
+    }
+   ]
+  },
+  {
+   "inicio": 37.813,
+   "fim": 41.485,
+   "texto": "Capacete de obra aguenta uns cinquenta joules.",
+   "palavras": [
+    {
+     "texto": "Capacete",
+     "inicio": 0.03,
+     "fim": 0.217
+    },
+    {
+     "texto": "de",
+     "inicio": 0.217,
+     "fim": 0.817
+    },
+    {
+     "texto": "obra",
+     "inicio": 0.817,
+     "fim": 1.157
+    },
+    {
+     "texto": "aguenta",
+     "inicio": 1.157,
+     "fim": 1.597
+    },
+    {
+     "texto": "uns",
+     "inicio": 1.597,
+     "fim": 1.797
+    },
+    {
+     "texto": "cinquenta",
+     "inicio": 1.797,
+     "fim": 2.802
+    },
+    {
+     "texto": "joules.",
+     "inicio": 2.802,
+     "fim": 3.502
+    }
+   ]
+  },
+  {
+   "inicio": 41.485,
+   "fim": 44.225,
+   "texto": "Esse piano chega com mais de mil vezes isso.",
+   "palavras": [
+    {
+     "texto": "Esse",
+     "inicio": 0.03,
+     "fim": 0.27
+    },
+    {
+     "texto": "piano",
+     "inicio": 0.27,
+     "fim": 0.57
+    },
+    {
+     "texto": "chega",
+     "inicio": 0.57,
+     "fim": 0.83
+    },
+    {
+     "texto": "com",
+     "inicio": 0.83,
+     "fim": 1.07
+    },
+    {
+     "texto": "mais",
+     "inicio": 1.07,
+     "fim": 1.29
+    },
+    {
+     "texto": "de",
+     "inicio": 1.29,
+     "fim": 1.63
+    },
+    {
+     "texto": "mil",
+     "inicio": 1.63,
+     "fim": 1.83
+    },
+    {
+     "texto": "vezes",
+     "inicio": 1.83,
+     "fim": 2.27
+    },
+    {
+     "texto": "isso.",
+     "inicio": 2.27,
+     "fim": 2.57
+    }
+   ]
+  },
+  {
+   "inicio": 44.225,
+   "fim": 46.465,
+   "texto": "Ou seja, não ia adiantar nada.",
+   "palavras": [
+    {
+     "texto": "Ou",
+     "inicio": 0.03,
+     "fim": 0.29
+    },
+    {
+     "texto": "seja,",
+     "inicio": 0.29,
+     "fim": 0.63
+    },
+    {
+     "texto": "não",
+     "inicio": 0.83,
+     "fim": 0.95
+    },
+    {
+     "texto": "ia",
+     "inicio": 0.95,
+     "fim": 1.15
+    },
+    {
+     "texto": "adiantar",
+     "inicio": 1.15,
+     "fim": 1.71
+    },
+    {
+     "texto": "nada.",
+     "inicio": 1.71,
+     "fim": 2.07
+    }
+   ]
+  },
+  {
+   "inicio": 46.465,
+   "fim": 50.091,
+   "texto": "Todo mundo acha que esse seria o fim, mas não pro Caio.",
+   "palavras": [
+    {
+     "texto": "Todo",
+     "inicio": 0.03,
+     "fim": 0.17
+    },
+    {
+     "texto": "mundo",
+     "inicio": 0.17,
+     "fim": 0.43
+    },
+    {
+     "texto": "acha",
+     "inicio": 0.43,
+     "fim": 0.79
+    },
+    {
+     "texto": "que",
+     "inicio": 0.79,
+     "fim": 1.15
+    },
+    {
+     "texto": "esse",
+     "inicio": 1.15,
+     "fim": 1.35
+    },
+    {
+     "texto": "seria",
+     "inicio": 1.35,
+     "fim": 1.67
+    },
+    {
+     "texto": "o",
+     "inicio": 1.67,
+     "fim": 1.95
+    },
+    {
+     "texto": "fim,",
+     "inicio": 1.95,
+     "fim": 2.25
+    },
+    {
+     "texto": "mas",
+     "inicio": 2.491,
+     "fim": 2.711
+    },
+    {
+     "texto": "não",
+     "inicio": 2.711,
+     "fim": 2.911
+    },
+    {
+     "texto": "pro",
+     "inicio": 2.911,
+     "fim": 3.191
+    },
+    {
+     "texto": "Caio.",
+     "inicio": 3.191,
+     "fim": 3.564
+    }
+   ]
+  },
+  {
+   "inicio": 50.091,
+   "fim": 52.711,
+   "texto": "Ele acordou o bebê num reino medieval.",
+   "palavras": [
+    {
+     "texto": "Ele",
+     "inicio": 0.03,
+     "fim": 0.23
+    },
+    {
+     "texto": "acordou",
+     "inicio": 0.23,
+     "fim": 0.59
+    },
+    {
+     "texto": "o",
+     "inicio": 0.59,
+     "fim": 0.67
+    },
+    {
+     "texto": "bebê",
+     "inicio": 0.67,
+     "fim": 1.17
+    },
+    {
+     "texto": "num",
+     "inicio": 1.17,
+     "fim": 1.39
+    },
+    {
+     "texto": "reino",
+     "inicio": 1.39,
+     "fim": 1.79
+    },
+    {
+     "texto": "medieval.",
+     "inicio": 1.79,
+     "fim": 2.45
+    }
+   ]
+  },
+  {
+   "inicio": 52.711,
+   "fim": 56.504,
+   "texto": "Lá todo mundo nasce com a marca que mostra sua magia.",
+   "palavras": [
+    {
+     "texto": "Lá",
+     "inicio": 0.03,
+     "fim": 0.41
+    },
+    {
+     "texto": "todo",
+     "inicio": 0.41,
+     "fim": 0.71
+    },
+    {
+     "texto": "mundo",
+     "inicio": 0.71,
+     "fim": 1.01
+    },
+    {
+     "texto": "nasce",
+     "inicio": 1.01,
+     "fim": 1.39
+    },
+    {
+     "texto": "com",
+     "inicio": 1.39,
+     "fim": 1.63
+    },
+    {
+     "texto": "a",
+     "inicio": 1.63,
+     "fim": 1.89
+    },
+    {
+     "texto": "marca",
+     "inicio": 1.89,
+     "fim": 2.13
+    },
+    {
+     "texto": "que",
+     "inicio": 2.13,
+     "fim": 2.43
+    },
+    {
+     "texto": "mostra",
+     "inicio": 2.43,
+     "fim": 2.83
+    },
+    {
+     "texto": "sua",
+     "inicio": 2.83,
+     "fim": 3.07
+    },
+    {
+     "texto": "magia.",
+     "inicio": 3.07,
+     "fim": 3.689
+    }
+   ]
+  },
+  {
+   "inicio": 56.504,
+   "fim": 60.004,
+   "texto": "Chama é fogo, gota é água, raio é trovão.",
+   "palavras": [
+    {
+     "texto": "Chama",
+     "inicio": 0.03,
+     "fim": 0.37
+    },
+    {
+     "texto": "é",
+     "inicio": 0.37,
+     "fim": 0.59
+    },
+    {
+     "texto": "fogo,",
+     "inicio": 0.59,
+     "fim": 1.21
+    },
+    {
+     "texto": "gota",
+     "inicio": 1.45,
+     "fim": 1.85
+    },
+    {
+     "texto": "é",
+     "inicio": 1.85,
+     "fim": 2.01
+    },
+    {
+     "texto": "água,",
+     "inicio": 2.01,
+     "fim": 2.27
+    },
+    {
+     "texto": "raio",
+     "inicio": 2.47,
+     "fim": 2.79
+    },
+    {
+     "texto": "é",
+     "inicio": 2.79,
+     "fim": 3.03
+    },
+    {
+     "texto": "trovão.",
+     "inicio": 3.03,
+     "fim": 3.53
+    }
+   ]
+  },
+  {
+   "inicio": 60.004,
+   "fim": 64.798,
+   "texto": "A do Caio apareceu no peito, preta, em forma de olho.",
+   "palavras": [
+    {
+     "texto": "A",
+     "inicio": 0.03,
+     "fim": 0.305
+    },
+    {
+     "texto": "do",
+     "inicio": 0.305,
+     "fim": 0.485
+    },
+    {
+     "texto": "Caio",
+     "inicio": 0.485,
+     "fim": 0.725
+    },
+    {
+     "texto": "apareceu",
+     "inicio": 0.725,
+     "fim": 1.265
+    },
+    {
+     "texto": "no",
+     "inicio": 1.265,
+     "fim": 1.565
+    },
+    {
+     "texto": "peito,",
+     "inicio": 1.565,
+     "fim": 2.147
+    },
+    {
+     "texto": "preta,",
+     "inicio": 2.427,
+     "fim": 2.964
+    },
+    {
+     "texto": "em",
+     "inicio": 3.164,
+     "fim": 3.564
+    },
+    {
+     "texto": "forma",
+     "inicio": 3.564,
+     "fim": 3.944
+    },
+    {
+     "texto": "de",
+     "inicio": 3.944,
+     "fim": 4.364
+    },
+    {
+     "texto": "olho.",
+     "inicio": 4.364,
+     "fim": 4.624
+    }
+   ]
+  },
+  {
+   "inicio": 64.798,
+   "fim": 72.523,
+   "texto": "E no livro mais antigo do reino ela tem um nome. A marca amaldiçoada. A marca do fim.",
+   "palavras": [
+    {
+     "texto": "E",
+     "inicio": 0.03,
+     "fim": 0.13
+    },
+    {
+     "texto": "no",
+     "inicio": 0.13,
+     "fim": 0.19
+    },
+    {
+     "texto": "livro",
+     "inicio": 0.19,
+     "fim": 0.45
+    },
+    {
+     "texto": "mais",
+     "inicio": 0.45,
+     "fim": 0.81
+    },
+    {
+     "texto": "antigo",
+     "inicio": 0.81,
+     "fim": 1.13
+    },
+    {
+     "texto": "do",
+     "inicio": 1.13,
+     "fim": 1.33
+    },
+    {
+     "texto": "reino",
+     "inicio": 1.33,
+     "fim": 1.99
+    },
+    {
+     "texto": "ela",
+     "inicio": 1.99,
+     "fim": 2.67
+    },
+    {
+     "texto": "tem",
+     "inicio": 2.67,
+     "fim": 2.93
+    },
+    {
+     "texto": "um",
+     "inicio": 2.93,
+     "fim": 3.17
+    },
+    {
+     "texto": "nome.",
+     "inicio": 3.17,
+     "fim": 3.43
+    },
+    {
+     "texto": "A",
+     "inicio": 3.63,
+     "fim": 3.87
+    },
+    {
+     "texto": "marca",
+     "inicio": 3.87,
+     "fim": 4.13
+    },
+    {
+     "texto": "amaldiçoada.",
+     "inicio": 4.13,
+     "fim": 5.181
+    },
+    {
+     "texto": "A",
+     "inicio": 5.315,
+     "fim": 5.475
+    },
+    {
+     "texto": "marca",
+     "inicio": 5.475,
+     "fim": 6.095
+    },
+    {
+     "texto": "do",
+     "inicio": 6.095,
+     "fim": 7.015
+    },
+    {
+     "texto": "fim.",
+     "inicio": 7.015,
+     "fim": 7.555
+    }
+   ]
+  },
+  {
+   "inicio": 72.523,
+   "fim": 73.693,
+   "texto": "Parte dois.",
+   "palavras": [
+    {
+     "texto": "Parte",
+     "inicio": 0.03,
+     "fim": 0.25
+    },
+    {
+     "texto": "dois.",
+     "inicio": 0.25,
+     "fim": 0.71
+    }
+   ]
+  }
+ ]
+}
