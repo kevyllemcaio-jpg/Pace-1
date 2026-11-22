@@ -20,9 +20,9 @@ export const config = {
   // sem título na tela e sem legenda (pedido do usuário)
   semLegenda: true,
   qualidade: '2k',
-  velocidade: '+16%',
+  velocidade: '+10%',
   ritmo: 'corrido', // fala emendada, sem pausa entre as frases
-  narracao: 'piano-paulista', // voz gravada pelo usuário (estudio3d/narracao/)
+  voz: 'en-US-BrianMultilingualNeural', // voz multilíngue (mais natural), falando português
   legendaTopo: 880,
 };
 
@@ -325,7 +325,7 @@ export function criar(ctx) {
       sons: [{ em: 'peito', tipo: 'impacto' }, { em: 'olho', tipo: 'tensao' }],
     },
     {
-      fala: 'E no livro mais antigo do reino, ela tem um nome só: a marca do fim.',
+      fala: 'E no livro mais antigo do reino, ela tem um nome só: a marca amaldiçoada. A marca do fim.',
       destaque: ['livro', 'fim'],
       corteSeco: true,
       camera: (lt, b) => ({ pos: [QUARTO + 0.1, mistura(3.4, 2.9, suave(lt / b.dur)), mistura(-1.0, -1.4, suave(lt / b.dur))], alvo: [QUARTO, 0.97, -3] }),
