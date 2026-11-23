@@ -174,7 +174,7 @@ SHOT['7b'] = (u, t, lt) => { setMeadow('gold'); sway(t, 1.5); put(HERO, -0.2, 0,
 SHOT['7c'] = (u, t, lt) => { setMeadow('gold'); sway(t, 2.5); put(HERO, -0.2, 0, -0.2, 0.3); RING.visible = true; face(HERO, 'shock'); const b = prog(lt, 0.15, 1.2);
   put(ASSASSIN, lerp(-2.6, -9, ss(b)), Math.sin(b * Math.PI) * 2.2, lerp(1.8, 6, ss(b)), 1.0); ASSASSIN.rotation.z = b * 5; slimeAt(-0.3, 0.9, t, 0, lerp(2, 1.2, b)); slimeMat.emissiveIntensity = 3 - 2 * b;
   WAVE.visible = b > 0 && b < 1; WAVE.position.set(-0.3, 0.3, 0.9); WAVE.scale.setScalar(0.5 + b * 9); WAVE.material.opacity = 0.9 * (1 - b);
-  FX.push(() => { flash(0.6 * (1 - prog(lt, 0.15, 0.5)), '140,230,255'); if (lt > 1.0) notice(t, prog(lt, 1.0, 1.3), 'HABILIDADE: ???', 'NÃO IDENTIFICADA', '56,214,255', 1000); if (lt > 0.4) sceneText('HABILIDADE DESCONHECIDA!', t, TAKE0 + 0.4, '#8ff7ff', 300, 84); });
+  FX.push(() => { flash(0.6 * (1 - prog(lt, 0.15, 0.5)), '140,230,255'); if (lt > 1.0) notice(t, prog(lt, 1.0, 1.3), 'HABILIDADE: ???', 'NÃO IDENTIFICADA', '56,214,255', 430); if (lt > 0.4) sceneText('HABILIDADE DESCONHECIDA!', t, TAKE0 + 0.4, '#8ff7ff', 300, 84); });
   const sh = (1 - prog(lt, 0.15, 0.9)) * 0.08 * Math.sin(t * 80); return [0.8 + sh, 1.6 + sh, 5.2, -0.5, 1.0, 0.5, 5]; };
 SHOT['8a'] = (u, t, lt) => { setMeadow('dark'); sway(t, 0.6); put(HERO, 0, 0, 0, Math.PI); RING.visible = true; slimeAt(-0.6, -0.3, t, 0, 0.9); SLIME.rotation.y = Math.PI;
   BEAST.visible = true; BEAST.position.set(0, lerp(-14, -1, ss(prog(lt, 0, 2.0))), -24); BEAST.rotation.set(0, 0, Math.sin(t) * 0.03);
@@ -183,7 +183,7 @@ SHOT['8a'] = (u, t, lt) => { setMeadow('dark'); sway(t, 0.6); put(HERO, 0, 0, 0,
 SHOT['8b'] = (u, t, lt) => { setMeadow('dark'); sway(t, 0.6); put(HERO, 0, 0, 0, 0); RING.visible = true; face(HERO, 'stern'); const U = HERO.userData; U.arms[1].rotation.set(-0.9, 0, 0.4); BEAST.visible = true; BEAST.position.set(0, -1, -24);
   const sh = wpos(U.arms[1]); const j = ss(prog(lt, 0, 0.6)); SLIME.visible = true; SLIME.position.set(lerp(-0.6, sh.x + 0.05, j), lerp(0, sh.y + 0.12, j) + Math.sin(j * Math.PI) * 0.6, lerp(-0.3, sh.z, j)); SLIME.scale.setScalar(0.45); SLIME.rotation.set(0, 0, 0);
   fxLight.position.set(0.4, 1.3, 0.6); fxLight.color.set('#ffd23f'); fxLight.intensity = 1.5;
-  FX.push(() => { const p = PW(U.arms[1].children[1]); glow(p[0], p[1], 200, '255,210,63', 0.5); notice(t, prog(lt, 0.5, 0.8), 'NÍVEL ???', 'DESBLOQUEADO', '255,210,63', 1050); sceneText('O VERDADEIRO PODER!', t, TAKE0 + 0.3, '#ffd23f', 300, 96); });
+  FX.push(() => { const p = PW(U.arms[1].children[1]); glow(p[0], p[1], 200, '255,210,63', 0.5); notice(t, prog(lt, 0.5, 0.8), 'NÍVEL ???', 'DESBLOQUEADO', '255,210,63', 430); sceneText('O VERDADEIRO PODER!', t, TAKE0 + 0.3, '#ffd23f', 300, 96); });
   return cam(C(0, 1.7, 3.4, 0, 1.6, 0, 3.4), C(0, 1.75, 2.5, 0, 1.6, 0, 2.5), u); };
 SHOT['8c'] = (u, t, lt) => { setMeadow('dark'); const L = TAKE1 - TAKE0; const creature = lt > L - 2.6;
   if (!creature) { put(HERO, 0, 0, 0, 0); RING.visible = true; face(HERO, 'stern'); fxLight.position.set(0.3, 2.2, 1.2); fxLight.color.set('#ffd23f'); fxLight.intensity = 2; BEAST.visible = true; BEAST.position.set(0, -1, -24);

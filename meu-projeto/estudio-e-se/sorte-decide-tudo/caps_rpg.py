@@ -23,9 +23,11 @@ Style: Cap,Inter Black,86,&H00FFFFFF,&H00FFFFFF,&H00180A0B,&H96000000,1,0,0,0,10
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
 def kw(x): s = x.strip('.,!?…:;"'); return any(k == s or (len(k) > 4 and k in s) for k in KEY) or s.isdigit()
+T4, T5, T5b, T5c = 27.114, 36.709, 41.978, 43.855000000000004
 ev = []
 for i, ch in enumerate(chunks):
     a = ch[0]['a']; b = chunks[i + 1][0]['a'] if i + 1 < len(chunks) else ch[-1]['b'] + 0.5; b = min(b, ch[-1]['b'] + 0.5)
     txt = ' '.join((r'{\c&H3FD2FF&}' + x['t'] + r'{\c&HFFFFFF&}') if kw(x['t']) else x['t'] for x in ch)
-    ev.append(f"Dialogue: 0,{t(a)},{t(b)},Cap,,0,0,0,,{{\\fad(40,0)\\t(0,90,\\fscx108\\fscy108)\\t(90,180,\\fscx100\\fscy100)}}{txt}")
+    pos = '\\an2\\pos(540,990)' if (T4 <= a < T5 or T5b <= a < T5c) else ''
+    ev.append(f"Dialogue: 0,{t(a)},{t(b)},Cap,,0,0,0,,{{{pos}\\fad(40,0)\\t(0,90,\\fscx108\\fscy108)\\t(90,180,\\fscx100\\fscy100)}}{txt}")
 open('work/caps.ass', 'w').write(head + '\n'.join(ev) + '\n'); print(len(chunks), 'blocos')
