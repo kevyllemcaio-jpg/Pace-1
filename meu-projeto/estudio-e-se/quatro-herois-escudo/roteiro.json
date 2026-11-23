@@ -1,0 +1,150 @@
+{
+ "titulo": "Os 4 heróis - escudo",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se tu fosse invocado pra outro mundo com mais três pessoas"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "e recebesse a pior arma de todas?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "O Kai tava jogando no quarto quando o chão começou a brilhar."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Quando abriu o olho, tava num castelo, do lado de três desconhecidos."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "O rei explicou: vocês são os quatro heróis lendários."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "Cada um encostou numa arma do altar."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "O primeiro ganhou a espada."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "O segundo, a lança."
+  },
+  {
+   "id": "b7",
+   "voz": "narrador",
+   "texto": "A terceira, o arco."
+  },
+  {
+   "id": "b8",
+   "voz": "narrador",
+   "texto": "E o Kai, o escudo. Triangular."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "O salão ficou em silêncio."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Depois riu."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Herói do escudo não ataca. Não derrota monstro. Não serve pra nada."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "Quando o rei chamou os aventureiros, cada herói ganhou um grupo."
+  },
+  {
+   "id": "c5",
+   "voz": "narrador",
+   "texto": "O Kai ficou sozinho."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "E escudo desse formato existiu de verdade, lá pelo ano mil e duzentos."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Era leve, e o golpe escorregava pela ponta."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "Sem grupo, ele foi treinar sozinho na floresta."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Um lobo pulou nele."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "Ele só levantou o escudo."
+  },
+  {
+   "id": "e4",
+   "voz": "narrador",
+   "texto": "E o lobo voou duas vezes mais longe do que pulou."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Habilidade única: reflexo. Todo golpe volta em dobro."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Só que os outros três heróis viram tudo de longe."
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "E o herói da espada sorriu. Não era um sorriso bom."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "O Kai conta o segredo pros outros heróis, ou esconde até a primeira batalha?"
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}
