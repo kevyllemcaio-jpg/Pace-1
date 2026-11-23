@@ -90,6 +90,7 @@ Observações:
 | Apocalipse 1 (2D, série bíblica, ep. 1, 2min59) | apocalipse-1.mp4 | pronto |
 | E se você acordasse com um poder novo todo dia? (2D, 1min01) | poder-novo-todo-dia.mp4 | pronto |
 | E se sua sorte decidisse tudo? (3D, RPG, 1min16) | sorte-decide-tudo.mp4 | pronto |
+| E se você ganhasse XP toda vez que ninguém te visse? (anime 2D, 1min08) | xp-sem-ser-visto.mp4 | pronto |
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.

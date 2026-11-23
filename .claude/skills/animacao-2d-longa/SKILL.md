@@ -2217,7 +2217,7 @@ def mix(v):
     sfx += (lp(rng.standard_normal(N), 400) * 0.004)[:, None]  # tom de sala bem baixo
     mus = np.zeros((N, 2)) if clima == 'nenhuma' else trilha(N, clima, mutes, cut)  # "musica": "nenhuma" = sem trilha
     env = lp(np.abs(vm), 5, 1); env /= env.max() + 1e-9; duck = (1 - 0.6 * np.clip(env * 3.2, 0, 1))[:, None]
-    m = voice * 1.0 + mus * 0.36 * duck + sfx * 0.5; m = np.tanh(m * 1.15) / np.tanh(1.15)
+    m = voice * 1.0 + mus * v.R.get('musica_vol', 0.36) * duck + sfx * 0.5  # "musica_vol" no roteiro.json: volume da trilha (padrão 0.36); m = np.tanh(m * 1.15) / np.tanh(1.15)
     raw = f'{v.proj}/mix_raw.wav'; sf.write(raw, m.astype(np.float32), SR)
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', raw, '-af', 'loudnorm=I=-14:TP=-1.5:LRA=7', '-ar', str(SR), f'{v.proj}/mix.wav'], check=True)
     print('mix.wav ok', round(v.end, 1), 's')

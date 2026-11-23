@@ -1,0 +1,126 @@
+{
+ "titulo": "XP sem ser visto",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "noturno",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.16,
+ "tema": "golpe",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "zoom",
+ "legenda_estilo": "centro",
+ "vozes": {
+  "narrador": "externo",
+  "lider": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "E se você ganhasse XP toda vez que ninguém te visse?"
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Eu sou um assassino. Rank E. O mais fraco da guilda."
+  },
+  {
+   "id": "l1",
+   "voz": "lider",
+   "texto": "Você vai na frente. Se morrer, a gente foge."
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "Mas, na entrada da masmorra, o sistema me mostrou uma coisa que ninguém mais viu."
+  },
+  {
+   "id": "n4",
+   "voz": "narrador",
+   "texto": "Missão oculta: derrote monstros sem ser visto. Bônus de XP: vezes dez."
+  },
+  {
+   "id": "n5",
+   "voz": "narrador",
+   "texto": "Enquanto o grupo fazia barulho... eu sumi nas sombras."
+  },
+  {
+   "id": "n6",
+   "voz": "narrador",
+   "texto": "Um goblin. Um corte. Ninguém viu."
+  },
+  {
+   "id": "l2",
+   "voz": "lider",
+   "texto": "Haha! Até o goblin tropeçou de medo de mim!"
+  },
+  {
+   "id": "n7",
+   "voz": "narrador",
+   "texto": "Nível dois. Cinco. Doze. Trinta."
+  },
+  {
+   "id": "n8",
+   "voz": "narrador",
+   "texto": "E o grupo achando que era tudo mérito do líder."
+  },
+  {
+   "id": "n9",
+   "voz": "narrador",
+   "texto": "Até que a gente chegou na última porta."
+  },
+  {
+   "id": "n10",
+   "voz": "narrador",
+   "texto": "O chefe da masmorra derrubou o grupo inteiro em segundos."
+  },
+  {
+   "id": "l3",
+   "voz": "lider",
+   "texto": "Por favor... não me mata!"
+  },
+  {
+   "id": "n11",
+   "voz": "narrador",
+   "texto": "Ele procurou em volta. Mas não conseguia me enxergar."
+  },
+  {
+   "id": "n12",
+   "voz": "narrador",
+   "texto": "Um golpe. Só um."
+  },
+  {
+   "id": "n13",
+   "voz": "narrador",
+   "texto": "Cem mil de XP. Nível noventa e nove."
+  },
+  {
+   "id": "l4",
+   "voz": "lider",
+   "texto": "Fui... fui eu?"
+  },
+  {
+   "id": "n14",
+   "voz": "narrador",
+   "texto": "Aí o sistema ficou vermelho."
+  },
+  {
+   "id": "n15",
+   "voz": "narrador",
+   "texto": "Aviso: você foi visto."
+  },
+  {
+   "id": "n16",
+   "voz": "narrador",
+   "texto": "Só que ninguém estava olhando pra mim."
+  },
+  {
+   "id": "n17",
+   "voz": "narrador",
+   "texto": "A masmorra estava. Desde o começo."
+  }
+ ]
+}
