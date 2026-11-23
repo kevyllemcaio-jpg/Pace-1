@@ -276,6 +276,8 @@ export function iniciar(video) {
   return {
     falas: () => blocos.map((b) => b.fala || null),
     vozes: () => blocos.map((b) => b.voz || null), // voz por bloco (ex.: a mãe com voz feminina)
+    velocidades: () => blocos.map((b) => b.velocidade || null), // velocidade da fala por bloco
+    tons: () => blocos.map((b) => b.tom || null), // tom (pitch) por bloco, ex.: '-25Hz' (voz grossa de monstro)
     config: video.config,
     definirTempos,
     duracao,

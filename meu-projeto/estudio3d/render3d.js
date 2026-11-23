@@ -94,6 +94,8 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   const velocidade = config.velocidade || '+10%';
   const falas = await page.evaluate(() => MOTOR.falas());
   const vozes = await page.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
+  const vels = await page.evaluate(() => (MOTOR.velocidades ? MOTOR.velocidades() : []));
+  const tons = await page.evaluate(() => (MOTOR.tons ? MOTOR.tons() : []));
   const audios = [];
   const leads = []; // silêncio cortado do começo de cada fala (ritmo corrido)
   // ritmo: 'corrido' -> uma fala emenda na outra (corta o silêncio do começo/fim, quase sem pausa)
@@ -109,11 +111,12 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
     const tempos = falas.map((fala, i) => {
       if (!fala) { audios.push(null); leads.push(0); return null; }
       const voz = vozes[i] || vozPadrao;
-      const id = crypto.createHash('sha1').update(`${voz}|${velocidade}|${fala}`).digest('hex').slice(0, 12);
+      const vel = vels[i] || velocidade, tom = tons[i];
+      const id = crypto.createHash('sha1').update(`${voz}|${vel}|${fala}${tom ? '|' + tom : ''}`).digest('hex').slice(0, 12);
       const mp3 = path.join(pastaVoz, `${id}.mp3`), json = path.join(pastaVoz, `${id}.json`);
       if (!fs.existsSync(mp3) || !fs.existsSync(json)) {
         process.stdout.write(`voz: bloco ${i + 1}... `);
-        execFileSync('python3', [path.join(raiz, 'estudio', 'voz.py'), fala, mp3, voz, velocidade, json], { stdio: 'inherit' });
+        execFileSync('python3', [path.join(raiz, 'estudio', 'voz.py'), fala, mp3, voz, vel, json, ...(tom ? [tom] : [])], { stdio: 'inherit' });
         console.log('ok');
       }
       audios.push(mp3);
@@ -193,7 +196,7 @@ const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
-  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/personagem-toon.js', 'estudio3d/rosto-objeto.js', 'estudio3d/desenho2d.js', 'estudio3d/desenho-medieval.js', 'estudio3d/personagem-flat.js', 'estudio3d/estilo-cinema.js', 'estudio3d/cenarios/cidade-sp.js', 'estudio3d/cenarios/medieval3d.js', 'estudio3d/formato-dias.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/personagem-toon.js', 'estudio3d/rosto-objeto.js', 'estudio3d/desenho2d.js', 'estudio3d/desenho-medieval.js', 'estudio3d/personagem-flat.js', 'estudio3d/estilo-cinema.js', 'estudio3d/cenarios/cidade-sp.js', 'estudio3d/cenarios/medieval3d.js', 'estudio3d/formato-dias.js', 'estudio3d/cenarios/campo-rpg.js', 'estudio3d/hud-rpg.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
   pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);

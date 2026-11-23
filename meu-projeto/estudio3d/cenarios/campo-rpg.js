@@ -149,7 +149,8 @@ export function criarSlime() {
     nucleo.scale.set(1 / Math.sqrt(amassa), amassa, 1 / Math.sqrt(amassa));
     corpoMat.emissiveIntensity = 0.35 + e.poder * (1.6 + Math.sin(t * 20) * 0.4);
     aura.material.opacity = e.poder * 0.9; aura.scale.setScalar(1.6 + e.poder * 2.5);
-    olhos.forEach((o) => (o.scale.y = Math.sin(t * 0.9) > 0.98 ? 0.15 : 1));
+    olhos.forEach((o) => (o.scale.y = e.triste ? 0.4 : Math.sin(t * 0.9) > 0.98 ? 0.15 : 1));
+    boca.rotation.z = e.triste ? 0 : Math.PI;
   };
   return g;
 }
@@ -202,9 +203,13 @@ export function criatura() {
   const cab = new THREE.Mesh(new THREE.SphereGeometry(5.5, 28, 18), escuro); cab.position.y = 27; g.add(cab);
   [-1, 1].forEach((s) => {
     const ch = new THREE.Mesh(new THREE.ConeGeometry(1.2, 7, 10), escuro); ch.position.set(s * 4, 32, 0); ch.rotation.z = -s * 0.5; g.add(ch);
-    const braco = new THREE.Mesh(new THREE.CapsuleGeometry(2.4, 14, 6, 12), escuro); braco.position.set(s * 13, 12, 1); braco.rotation.z = s * 0.35; g.add(braco);
+    const ombro = new THREE.Group(); ombro.position.set(s * 9.5, 20, 0); g.add(ombro);
+    const braco = new THREE.Mesh(new THREE.CapsuleGeometry(2.4, 14, 6, 12), escuro); braco.position.set(s * 3.5, -8, 1); braco.rotation.z = s * 0.35; ombro.add(braco);
+    [-1, 0, 1].forEach((k) => { const u = new THREE.Mesh(new THREE.ConeGeometry(0.7, 4, 8), escuro); u.position.set(s * 6 + k * 1.2, -17.5, 1.5); u.rotation.x = Math.PI + 0.3; ombro.add(u); });
+    (g.ombros ||= []).push(ombro);
     const olho = new THREE.Mesh(new THREE.SphereGeometry(0.9, 16, 10), new THREE.MeshBasicMaterial({ color: '#FF2A2A', fog: false })); olho.position.set(s * 2, 27.5, 5); olho.scale.set(1.4, 0.6, 0.5); g.add(olho);
     const bo = brilho('#FF3030', 7, 0.9); bo.position.copy(olho.position); g.add(bo);
+    (g.olhos ||= []).push(olho, bo);
   });
   const aura = brilho('#8A3CFF', 70, 0.35); aura.position.y = 18; g.add(aura);
   g.aura = aura;
