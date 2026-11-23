@@ -1,0 +1,24 @@
+a1|narrador|E se a arma mais desprezada do reino
+a2|narrador|fosse a única que importava?
+b1|narrador|Depois da fenda, o rei chamou o Kai no castelo.
+b2|narrador|Agora todo mundo queria ele no grupo.
+b3|narrador|Até os três heróis.
+c1|narrador|Mas aí o escudo brilhou sozinho.
+c2|narrador|E o sistema abriu uma janela que ninguém nunca tinha visto.
+c3|narrador|Arma original: escudo. Armas copiadas: espada, lança e arco.
+d1|narrador|O escudo era a primeira arma lendária.
+d2|narrador|As outras três tinham sido feitas a partir dele.
+d3|narrador|E o formato triangular não era por acaso.
+e1|narrador|O triângulo é a forma mais firme da engenharia.
+e2|narrador|Por isso pontes e torres usam treliças triangulares.
+e3|narrador|Empurra um quadrado e ele entorta. O triângulo não.
+f1|narrador|Cada ponta do escudo segurava uma das outras armas.
+f2|narrador|Sem o escudo, a espada, a lança e o arco perdiam o poder.
+g1|narrador|O rei sorriu: então esse escudo pertence à coroa.
+g2|narrador|E mandou os guardas pegarem.
+g3|narrador|O Igor sacou a espada.
+g4|narrador|Mas não apontou pro Kai.
+g5|narrador|Apontou pro rei.
+h1|narrador|Fim da primeira temporada.
+h2|narrador|O Igor tá do lado do Kai agora, ou é mais uma armadilha?
+h3|narrador|Curte pra segunda temporada.

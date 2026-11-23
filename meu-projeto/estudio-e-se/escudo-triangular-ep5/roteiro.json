@@ -1,0 +1,140 @@
+{
+ "titulo": "O escudo triangular - ep 5",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se a arma mais desprezada do reino"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "fosse a única que importava?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "Depois da fenda, o rei chamou o Kai no castelo."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Agora todo mundo queria ele no grupo."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "Até os três heróis."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Mas aí o escudo brilhou sozinho."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "E o sistema abriu uma janela que ninguém nunca tinha visto."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Arma original: escudo. Armas copiadas: espada, lança e arco."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "O escudo era a primeira arma lendária."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "As outras três tinham sido feitas a partir dele."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "E o formato triangular não era por acaso."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "O triângulo é a forma mais firme da engenharia."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Por isso pontes e torres usam treliças triangulares."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "Empurra um quadrado e ele entorta. O triângulo não."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Cada ponta do escudo segurava uma das outras armas."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Sem o escudo, a espada, a lança e o arco perdiam o poder."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "O rei sorriu: então esse escudo pertence à coroa."
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "E mandou os guardas pegarem."
+  },
+  {
+   "id": "g3",
+   "voz": "narrador",
+   "texto": "O Igor sacou a espada."
+  },
+  {
+   "id": "g4",
+   "voz": "narrador",
+   "texto": "Mas não apontou pro Kai."
+  },
+  {
+   "id": "g5",
+   "voz": "narrador",
+   "texto": "Apontou pro rei."
+  },
+  {
+   "id": "h1",
+   "voz": "narrador",
+   "texto": "Fim da primeira temporada."
+  },
+  {
+   "id": "h2",
+   "voz": "narrador",
+   "texto": "O Igor tá do lado do Kai agora, ou é mais uma armadilha?"
+  },
+  {
+   "id": "h3",
+   "voz": "narrador",
+   "texto": "Curte pra segunda temporada."
+  }
+ ]
+}
