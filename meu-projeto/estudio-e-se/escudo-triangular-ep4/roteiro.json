@@ -1,0 +1,150 @@
+{
+ "titulo": "O escudo triangular - ep 4",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se os três heróis mais fortes fugissem"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "e só sobrasse o escudo?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "A fenda abriu de manhã, em cima da vila."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "E de dentro dela caíram monstros."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "O Igor, o Téo e a Lia atacaram sozinhos, cada um querendo a glória."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "A espada errou."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "A lança quebrou."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "As flechas acabaram."
+  },
+  {
+   "id": "b7",
+   "voz": "narrador",
+   "texto": "E os três correram."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Aí veio o raio."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Sabe aquela regra? Conta os segundos entre o raio e o trovão e divide por três."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Dá a distância em quilômetros."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "O Kai não contou nem um segundo. O monstro tava em cima deles."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "Ele levantou a barreira na frente da vila inteira."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "A Nina puxou as crianças pra dentro."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "O monstro gigante deu o soco mais forte que tinha."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "A barreira segurou."
+  },
+  {
+   "id": "d5",
+   "voz": "narrador",
+   "texto": "E devolveu em dobro."
+  },
+  {
+   "id": "d6",
+   "voz": "narrador",
+   "texto": "O monstro voou de volta pra dentro da fenda."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "A fenda começou a fechar."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "A vila inteira gritou o nome do Kai."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "E os três heróis viram tudo lá do alto do morro."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Mas antes de fechar, uma voz saiu lá de dentro."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Escudo. Finalmente."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "Quem tá chamando o escudo? E por que ele brilhou quando ouviu?"
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "Curte pra parte cinco."
+  }
+ ]
+}
