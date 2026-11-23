@@ -1,0 +1,225 @@
+{
+ "titulo": "Masmorra dos sonhos",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "noturno",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "golpe",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se tu pudesse dormir"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "e acordar dentro de uma masmorra?"
+  },
+  {
+   "id": "a3",
+   "voz": "narrador",
+   "texto": "E tudo que tu pegasse lá"
+  },
+  {
+   "id": "a4",
+   "voz": "narrador",
+   "texto": "viesse junto pro mundo real?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "O Rafa tem dezessete anos."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Dorme todo dia às onze."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "E toda noite, o cérebro dele passa por ciclos de uns noventa minutos."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "No fim de cada ciclo vem o sono REM, a parte dos sonhos."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "E no REM, o corpo fica paralisado,"
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "pra tu não sair correndo atrás do que tá sonhando."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Foi justo num REM que o Rafa abriu os olhos."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Numa masmorra."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Uma janela apareceu: bem-vindo, sonhador."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "Tempo de sonho: noventa minutos."
+  },
+  {
+   "id": "c5",
+   "voz": "narrador",
+   "texto": "Classe: ladrão."
+  },
+  {
+   "id": "c6",
+   "voz": "narrador",
+   "texto": "Tudo que ele roubar, acorda com ele."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "Primeira sala: três baús."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Um de ouro, um de ferro e um de madeira."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "Ele abriu o de madeira."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "Dentro, uma moeda."
+  },
+  {
+   "id": "d5",
+   "voz": "narrador",
+   "texto": "Seis e meia, o despertador tocou."
+  },
+  {
+   "id": "d6",
+   "voz": "narrador",
+   "texto": "E a moeda tava na mão dele."
+  },
+  {
+   "id": "d7",
+   "voz": "narrador",
+   "texto": "Ele pesquisou no celular: ouro de verdade."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "Na noite seguinte, ele voltou."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Mas agora tinha um goblin vigiando o baú de ouro."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "E aí tem um detalhe:"
+  },
+  {
+   "id": "e4",
+   "voz": "narrador",
+   "texto": "no sonho, o cérebro reage como se fosse real."
+  },
+  {
+   "id": "e5",
+   "voz": "narrador",
+   "texto": "O coração acelera de verdade."
+  },
+  {
+   "id": "e6",
+   "voz": "narrador",
+   "texto": "Ele esperou o goblin virar de costas,"
+  },
+  {
+   "id": "e7",
+   "voz": "narrador",
+   "texto": "agarrou o baú,"
+  },
+  {
+   "id": "e8",
+   "voz": "narrador",
+   "texto": "e o goblin gritou."
+  },
+  {
+   "id": "e9",
+   "voz": "narrador",
+   "texto": "Faltando dez segundos pro despertador, ele correu."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Acordou suando."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "O baú tava no quarto."
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "Fechado."
+  },
+  {
+   "id": "f4",
+   "voz": "narrador",
+   "texto": "E aí veio um barulho."
+  },
+  {
+   "id": "f5",
+   "voz": "narrador",
+   "texto": "Alguém batendo..."
+  },
+  {
+   "id": "f6",
+   "voz": "narrador",
+   "texto": "por dentro."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "Abre o baú e vê o que tem lá dentro,"
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "ou devolve pra masmorra hoje à noite?"
+  },
+  {
+   "id": "g3",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}

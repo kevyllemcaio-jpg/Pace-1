@@ -1,0 +1,41 @@
+a1|narrador|E se tu pudesse dormir
+a2|narrador|e acordar dentro de uma masmorra?
+a3|narrador|E tudo que tu pegasse lá
+a4|narrador|viesse junto pro mundo real?
+b1|narrador|O Rafa tem dezessete anos.
+b2|narrador|Dorme todo dia às onze.
+b3|narrador|E toda noite, o cérebro dele passa por ciclos de uns noventa minutos.
+b4|narrador|No fim de cada ciclo vem o sono REM, a parte dos sonhos.
+b5|narrador|E no REM, o corpo fica paralisado,
+b6|narrador|pra tu não sair correndo atrás do que tá sonhando.
+c1|narrador|Foi justo num REM que o Rafa abriu os olhos.
+c2|narrador|Numa masmorra.
+c3|narrador|Uma janela apareceu: bem-vindo, sonhador.
+c4|narrador|Tempo de sonho: noventa minutos.
+c5|narrador|Classe: ladrão.
+c6|narrador|Tudo que ele roubar, acorda com ele.
+d1|narrador|Primeira sala: três baús.
+d2|narrador|Um de ouro, um de ferro e um de madeira.
+d3|narrador|Ele abriu o de madeira.
+d4|narrador|Dentro, uma moeda.
+d5|narrador|Seis e meia, o despertador tocou.
+d6|narrador|E a moeda tava na mão dele.
+d7|narrador|Ele pesquisou no celular: ouro de verdade.
+e1|narrador|Na noite seguinte, ele voltou.
+e2|narrador|Mas agora tinha um goblin vigiando o baú de ouro.
+e3|narrador|E aí tem um detalhe:
+e4|narrador|no sonho, o cérebro reage como se fosse real.
+e5|narrador|O coração acelera de verdade.
+e6|narrador|Ele esperou o goblin virar de costas,
+e7|narrador|agarrou o baú,
+e8|narrador|e o goblin gritou.
+e9|narrador|Faltando dez segundos pro despertador, ele correu.
+f1|narrador|Acordou suando.
+f2|narrador|O baú tava no quarto.
+f3|narrador|Fechado.
+f4|narrador|E aí veio um barulho.
+f5|narrador|Alguém batendo...
+f6|narrador|por dentro.
+g1|narrador|Abre o baú e vê o que tem lá dentro,
+g2|narrador|ou devolve pra masmorra hoje à noite?
+g3|narrador|Curte pra parte dois.
