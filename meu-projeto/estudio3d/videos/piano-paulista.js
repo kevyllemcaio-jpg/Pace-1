@@ -22,7 +22,7 @@ export const config = {
   qualidade: '2k',
   velocidade: '+10%',
   ritmo: 'corrido', // fala emendada, sem pausa entre as frases
-  voz: 'en-US-BrianMultilingualNeural', // voz multilíngue (mais natural), falando português
+  voz: 'pt-BR-AntonioNeural', // narrador brasileiro nativo (sotaque certo)
   legendaTopo: 880,
 };
 
