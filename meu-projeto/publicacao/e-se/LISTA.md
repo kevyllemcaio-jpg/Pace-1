@@ -91,6 +91,7 @@ Observações:
 | E se você acordasse com um poder novo todo dia? (2D, 1min01) | poder-novo-todo-dia.mp4 | pronto |
 | E se sua sorte decidisse tudo? (3D, RPG, 1min16) | sorte-decide-tudo.mp4 | pronto |
 | E se você ganhasse XP toda vez que ninguém te visse? (anime 2D, 1min04) | xp-sem-ser-visto.mp4 | pronto |
+| E se o humano mais fraco do mundo ganhasse um sistema? (anime 2D, 1min10) | mais-fraco-do-mundo.mp4 | pronto |
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
