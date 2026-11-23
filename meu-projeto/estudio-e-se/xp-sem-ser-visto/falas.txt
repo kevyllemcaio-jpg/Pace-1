@@ -1,21 +1,21 @@
-n1|narrador|E se você ganhasse XP toda vez que ninguém te visse?
-n2|narrador|Eu sou um assassino. Rank E. O mais fraco da guilda.
-l1|lider|Você vai na frente. Se morrer, a gente foge.
-n3|narrador|Mas, na entrada da masmorra, o sistema me mostrou uma coisa que ninguém mais viu.
-n4|narrador|Missão oculta: derrote monstros sem ser visto. Bônus de XP: vezes dez.
-n5|narrador|Enquanto o grupo fazia barulho... eu sumi nas sombras.
-n6|narrador|Um goblin. Um corte. Ninguém viu.
-l2|lider|Haha! Até o goblin tropeçou de medo de mim!
+n1|narrador|E se tu ganhasse XP toda vez que ninguém te visse?
+n2|narrador|Nesse mundo, quem entra numa masmorra ganha uma classe. O Davi tirou assassino. Rank E. O mais fraco da guilda inteira.
+l1|narrador|No primeiro dia, o líder já avisou: tu vai na frente, se morrer, a gente foge.
+n3|narrador|Só que na porta da masmorra apareceu uma janela que só o Davi via.
+n4|narrador|Missão oculta: derrote monstros sem ser visto. Bônus de XP, vezes dez.
+n5|narrador|Enquanto o grupo gritava e batia escudo, ele sumiu na sombra.
+n6|narrador|Primeiro goblin. Um corte. Ninguém viu. Quinhentos de XP.
+l2|narrador|E o líder jurando que o goblin tropeçou de medo dele.
 n7|narrador|Nível dois. Cinco. Doze. Trinta.
-n8|narrador|E o grupo achando que era tudo mérito do líder.
-n9|narrador|Até que a gente chegou na última porta.
-n10|narrador|O chefe da masmorra derrubou o grupo inteiro em segundos.
-l3|lider|Por favor... não me mata!
-n11|narrador|Ele procurou em volta. Mas não conseguia me enxergar.
-n12|narrador|Um golpe. Só um.
+n8|narrador|E o grupo inteiro achando que o mérito era do líder.
+n9|narrador|Aí abriu a última porta.
+n10|narrador|O chefe da masmorra derrubou os três em dez segundos.
+l3|narrador|O líder implorou de joelhos pela vida.
+n11|narrador|O chefe olhou pra todo lado, mas não achou o Davi.
+n12|narrador|Ele subiu pelas costas do monstro e deu um golpe só.
 n13|narrador|Cem mil de XP. Nível noventa e nove.
-l4|lider|Fui... fui eu?
-n14|narrador|Aí o sistema ficou vermelho.
+l4|narrador|O líder olhou pro chefe caído e perguntou: fui eu?
+n14|narrador|Só que aí a janela ficou vermelha.
 n15|narrador|Aviso: você foi visto.
-n16|narrador|Só que ninguém estava olhando pra mim.
-n17|narrador|A masmorra estava. Desde o começo.
+n16|narrador|Ninguém tava olhando pra ele.
+n17|narrador|Ninguém, menos a masmorra. Curte pra parte dois.

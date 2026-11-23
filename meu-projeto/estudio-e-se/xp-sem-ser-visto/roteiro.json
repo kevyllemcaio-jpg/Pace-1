@@ -5,57 +5,56 @@
  "estilo": "noturno",
  "narrador": "narrador",
  "musica": "tenso",
- "musica_vol": 0.16,
+ "musica_vol": 0.12,
  "tema": "golpe",
  "efeitos_auto": false,
  "legendas": true,
  "transicao": "zoom",
  "legenda_estilo": "centro",
  "vozes": {
-  "narrador": "externo",
-  "lider": "externo"
+  "narrador": "externo"
  },
  "pronuncias": {},
  "falas": [
   {
    "id": "n1",
    "voz": "narrador",
-   "texto": "E se você ganhasse XP toda vez que ninguém te visse?"
+   "texto": "E se tu ganhasse XP toda vez que ninguém te visse?"
   },
   {
    "id": "n2",
    "voz": "narrador",
-   "texto": "Eu sou um assassino. Rank E. O mais fraco da guilda."
+   "texto": "Nesse mundo, quem entra numa masmorra ganha uma classe. O Davi tirou assassino. Rank E. O mais fraco da guilda inteira."
   },
   {
    "id": "l1",
-   "voz": "lider",
-   "texto": "Você vai na frente. Se morrer, a gente foge."
+   "voz": "narrador",
+   "texto": "No primeiro dia, o líder já avisou: tu vai na frente, se morrer, a gente foge."
   },
   {
    "id": "n3",
    "voz": "narrador",
-   "texto": "Mas, na entrada da masmorra, o sistema me mostrou uma coisa que ninguém mais viu."
+   "texto": "Só que na porta da masmorra apareceu uma janela que só o Davi via."
   },
   {
    "id": "n4",
    "voz": "narrador",
-   "texto": "Missão oculta: derrote monstros sem ser visto. Bônus de XP: vezes dez."
+   "texto": "Missão oculta: derrote monstros sem ser visto. Bônus de XP, vezes dez."
   },
   {
    "id": "n5",
    "voz": "narrador",
-   "texto": "Enquanto o grupo fazia barulho... eu sumi nas sombras."
+   "texto": "Enquanto o grupo gritava e batia escudo, ele sumiu na sombra."
   },
   {
    "id": "n6",
    "voz": "narrador",
-   "texto": "Um goblin. Um corte. Ninguém viu."
+   "texto": "Primeiro goblin. Um corte. Ninguém viu. Quinhentos de XP."
   },
   {
    "id": "l2",
-   "voz": "lider",
-   "texto": "Haha! Até o goblin tropeçou de medo de mim!"
+   "voz": "narrador",
+   "texto": "E o líder jurando que o goblin tropeçou de medo dele."
   },
   {
    "id": "n7",
@@ -65,32 +64,32 @@
   {
    "id": "n8",
    "voz": "narrador",
-   "texto": "E o grupo achando que era tudo mérito do líder."
+   "texto": "E o grupo inteiro achando que o mérito era do líder."
   },
   {
    "id": "n9",
    "voz": "narrador",
-   "texto": "Até que a gente chegou na última porta."
+   "texto": "Aí abriu a última porta."
   },
   {
    "id": "n10",
    "voz": "narrador",
-   "texto": "O chefe da masmorra derrubou o grupo inteiro em segundos."
+   "texto": "O chefe da masmorra derrubou os três em dez segundos."
   },
   {
    "id": "l3",
-   "voz": "lider",
-   "texto": "Por favor... não me mata!"
+   "voz": "narrador",
+   "texto": "O líder implorou de joelhos pela vida."
   },
   {
    "id": "n11",
    "voz": "narrador",
-   "texto": "Ele procurou em volta. Mas não conseguia me enxergar."
+   "texto": "O chefe olhou pra todo lado, mas não achou o Davi."
   },
   {
    "id": "n12",
    "voz": "narrador",
-   "texto": "Um golpe. Só um."
+   "texto": "Ele subiu pelas costas do monstro e deu um golpe só."
   },
   {
    "id": "n13",
@@ -99,13 +98,13 @@
   },
   {
    "id": "l4",
-   "voz": "lider",
-   "texto": "Fui... fui eu?"
+   "voz": "narrador",
+   "texto": "O líder olhou pro chefe caído e perguntou: fui eu?"
   },
   {
    "id": "n14",
    "voz": "narrador",
-   "texto": "Aí o sistema ficou vermelho."
+   "texto": "Só que aí a janela ficou vermelha."
   },
   {
    "id": "n15",
@@ -115,12 +114,12 @@
   {
    "id": "n16",
    "voz": "narrador",
-   "texto": "Só que ninguém estava olhando pra mim."
+   "texto": "Ninguém tava olhando pra ele."
   },
   {
    "id": "n17",
    "voz": "narrador",
-   "texto": "A masmorra estava. Desde o começo."
+   "texto": "Ninguém, menos a masmorra. Curte pra parte dois."
   }
  ]
 }

@@ -14,6 +14,9 @@ ARQ = dict(corpo='homem', skin='#8D5524', top='tee', suit='#2E7D32', print='#A5D
 GOB = dict(corpo='menino', skin='#6BBF4E', top='tee', suit='#6B4A2E', print='#4A321F', hair='none', figurante=True)
 BOSS = dict(corpo='homem', skin='#5B4A6E', top='tee', suit='#2B2233', print='#1B1522', hair='none', figurante=True)
 CYAN, REDS = '#38D6FF', '#FF2D3A'
+import json as _j
+_D7 = _j.load(open(os.path.join(PROJ, 'audio', 'falas.json')))['n7']['dur']
+M7 = [f'n7+{_D7 * k:.2f}' for k in (0.0, 0.3, 0.54, 0.76)]
 
 
 def rnd(i, k=1.0): return (math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1.0
@@ -217,15 +220,15 @@ def s_goblin(c, t, S):
 def s_risada(c, t, S): s_lider_fala(c, t, S, 'l2', arms=('hip', 'gesture'), bob=5 * abs(math.sin(t * 9)))
 def s_montagem(c, t, S):
     c.drawRect(skia.Rect(-2000, -2000, 4000, 4000), fp('#0A0814'))
-    for i, at in enumerate(('n7+0.0', 'n7+0.9', 'n7+1.6', 'n7+2.4')):
+    for i, at in enumerate(M7):
         tt = S.at(at)
         if t >= tt:
             k = K(t, tt, .2); linhas_velocidade(c, 960, 540, t, .4 * (1 - K(t, tt + .2, .6)), '#9FE8FF')
             corte(c, 960 + (i % 2 * 2 - 1) * 60, 540, 360, (t - tt) / .25, ang=-30 + i * 40)
-    lv = 2 if t < S.at('n7+0.9') else 5 if t < S.at('n7+1.6') else 12 if t < S.at('n7+2.4') else 30
+    lv = 2 if t < S.at(M7[1]) else 5 if t < S.at(M7[2]) else 12 if t < S.at(M7[3]) else 30
     assassino(c, 960, 1100, 1.3, t, face=.2, eyes='half', arms=('present', ('down', 'present', K(t, S.s0, .3))))
     luz_masmorra(c, t, tochas=[], extra=[('pool', 960, 600, 700, .7)])
-    poplabel(c, f"NÍVEL {lv}", 960, 300, t, S.at({2: 'n7', 5: 'n7+0.9', 12: 'n7+1.6', 30: 'n7+2.4'}[lv]), 130, '#FFE14A', rot=-4, font=INTER_K, stroke=16)
+    poplabel(c, f"NÍVEL {lv}", 960, 300, t, S.at({2: M7[0], 5: M7[1], 12: M7[2], 30: M7[3]}[lv]), 130, '#FFE14A', rot=-4, font=INTER_K, stroke=16)
 def s_merito(c, t, S):
     masmorra(c, t)
     lider(c, 960, 1000, 1.1, t, face=0, eyes='closed', mouth='smile', arms=('hip', 'gesture'), sparkle=(t - S.s0) % 1.2 / .3)
@@ -257,7 +260,7 @@ def s_procura(c, t, S):
     luz_masmorra(c, t, tochas=[(600, 380), (1320, 380)], extra=[('pool', 1000, 500, 800, .5)])
     poplabel(c, "?", 1000 + 120, 180, t, S.s0 + .3, 140, '#FFFFFF', font=INTER_K)
 def s_golpe(c, t, S):
-    hit = S.at('n12+0.6')
+    hit = S.at('n12:fim-0.45')
     c.drawRect(skia.Rect(-2000, -2000, 4000, 4000), fp('#140A1E'))
     linhas_velocidade(c, 960, 540, t, 1.0, '#FFFFFF', 90)
     u = K(t, S.s0, hit - S.s0)
@@ -311,13 +314,13 @@ SEQ = [
     dict(topo='ANDAR 1', draw=s_sombras, falas=['n5'], sfx=[('thud', 0.3, .5), ('thud', 0.9, .5)], **V(((1100, 560), (560, 560)), (1.0, 1.05))),
     dict(topo='ANDAR 1', draw=s_goblin, falas=['n6'], sfx=[('whoosh', 'n6+0.9', .9), ('thud', 'n6+1.0', .8), ('ding', 'n6+1.3', .6)], shake=['n6+1.0'], **V(((1100, 520), (980, 560)), (1.15, 1.0))),
     dict(topo='ANDAR 1', draw=s_risada, falas=['l2'], **V((960, 500), (1.05, 1.0))),
-    dict(draw=s_montagem, falas=['n7'], sfx=[('whoosh', 'n7', .7), ('subida', 'n7+0.1', .6), ('whoosh', 'n7+0.9', .7), ('whoosh', 'n7+1.6', .7), ('whoosh', 'n7+2.4', .7), ('ding', 'n7+2.5', .6)], **V((960, 520), (1.0, 1.15))),
+    dict(draw=s_montagem, falas=['n7'], sfx=[('whoosh', M7[0], .7), ('subida', 'n7+0.1', .6), ('whoosh', M7[1], .7), ('whoosh', M7[2], .7), ('whoosh', M7[3], .7), ('ding', M7[3], .6)], **V((960, 520), (1.0, 1.15))),
     dict(topo='ANDAR 7', draw=s_merito, falas=['n8'], **V(((960, 520), (620, 540)), (1.0, 1.1))),
     dict(topo='SALA DO CHEFE', draw=s_porta, falas=['n9'], sfx=[('boom', 'n9+1.0', .8)], **V(((960, 600), (960, 460)), (.95, 1.0))),
     dict(topo='SALA DO CHEFE', draw=s_chefe, falas=['n10'], sfx=[('boom', 'n10+0.8', 1.0)], shake=['n10+0.8'], **V(((960, 300), (960, 560)), (1.0, .85))),
     dict(topo='SALA DO CHEFE', draw=s_implora, falas=['l3'], **V((960, 520), (1.0, 1.08))),
     dict(topo='SALA DO CHEFE', draw=s_procura, falas=['n11'], **V(((1000, 340), (700, 600)), (1.0, 1.0))),
-    dict(draw=s_golpe, falas=['n12'], sfx=[('whoosh', 0.1, .9), ('boom', 'n12+0.6', 1.0)], shake=['n12+0.6'], **V((960, 560), (1.15, 1.0))),
+    dict(draw=s_golpe, falas=['n12'], sfx=[('whoosh', 0.1, .9), ('boom', 'n12:fim-0.45', 1.0)], shake=['n12:fim-0.45'], **V((960, 560), (1.15, 1.0))),
     dict(topo='SALA DO CHEFE', draw=s_queda, falas=['n13'], sfx=[('boom', 0.2, .8), ('subida', 'n13+0.2', .6), ('ding', 'n13+0.3', .7)], **V(((960, 540), (1300, 540)), (.9, 1.0))),
     dict(topo='SALA DO CHEFE', draw=s_fui_eu, falas=['l4'], **V((960, 500), (1.0, 1.1))),
     dict(draw=s_vermelho, falas=['n14'], sfx=[('glitch', 'n14+0.8', .8)], **V((960, 480), (1.0, 1.06))),

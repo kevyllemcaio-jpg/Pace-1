@@ -1,6 +1,6 @@
 # E se você ganhasse XP toda vez que ninguém te visse?
 
-**Arquivos:** `xp-sem-ser-visto.mp4` (vertical 1080x1920, anime 2D, ~1min08; os 2 últimos segundos são a capa) · `capa-xp-sem-ser-visto.jpg`
+**Arquivos:** `xp-sem-ser-visto.mp4` (vertical 1080x1920, anime 2D, ~1min04; os 2 últimos segundos são a capa) · `capa-xp-sem-ser-visto.jpg`
 
 ## Título
 ```
@@ -40,5 +40,5 @@ Parte 2? Comenta aí 👇
 - Anime 2D: assassino de capuz com olhos vermelhos brilhando, guilda, entrada da masmorra, corredores com tochas e sala do chefe.
 - Efeitos de anime: linhas de velocidade, cortes de adaga com brilho, quadros de impacto, faíscas e tremidas.
 - Janelas do sistema (status, missão oculta, vitória, aviso em vermelho com falha).
-- Narração do assassino em primeira pessoa e falas do líder do grupo; trilha tensa bem baixa, efeitos de golpe, notificação e alerta.
+- Narração no estilo do vídeo de referência: um narrador só, em terceira pessoa, corrido, sem pausas entre as frases (inclusive as falas do líder são contadas pelo narrador); trilha tensa bem baixa, efeitos de golpe, notificação e alerta.
 - Edição do canal: troca de cena com movimentos de câmera variados, etiqueta do lugar no topo, legenda no meio da tela.
