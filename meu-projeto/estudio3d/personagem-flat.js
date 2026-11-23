@@ -111,6 +111,27 @@ export function criarPersonagemFlat(o = {}) {
     cabeca.add(malha(new THREE.TorusGeometry(0.17, 0.016, 8, 28, Math.PI), M('#1C1C22'), [0, 0.22, -0.01]));
     [-1, 1].forEach((s) => cabeca.add(malha(new THREE.CylinderGeometry(0.06, 0.06, 0.05, 20), M('#1C1C22'), [s * 0.165, 0.2, 0], [1, 1, 1], [0, 0, Math.PI / 2])));
   }
+  // capuz (assassino): casca aberta na frente + aba que faz sombra nos olhos
+  if (o.capuz) {
+    const cor = M(o.capuz === true ? '#1E1F26' : o.capuz);
+    const casca = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 20, Math.PI / 2 + 0.95, Math.PI * 2 - 1.9, 0, 2.3), cor);
+    casca.material.side = THREE.DoubleSide; casca.position.set(0, 0.21, -0.005); casca.scale.set(1.05, 1.15, 1.05); casca.castShadow = true;
+    cabeca.add(casca);
+    cabeca.add(malha(new THREE.TorusGeometry(0.165, 0.03, 10, 30, Math.PI * 1.15), cor, [0, 0.23, 0.07], [1.05, 1.15, 1], [0, 0, -0.07]));
+    cabeca.add(malha(new THREE.CylinderGeometry(0.2, 0.26, 0.16, 24, 1, true), cor, [0, -0.02, 0]));
+    const sombra = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.07), new THREE.MeshBasicMaterial({ color: '#000', transparent: true, opacity: 0.55 }));
+    sombra.position.set(0, 0.3, 0.155); cabeca.add(sombra);
+  }
+  // adagas (uma em cada mão)
+  const adagas = [];
+  if (o.adagas) bracos.forEach((g) => {
+    const a = new THREE.Group();
+    a.add(malha(new THREE.BoxGeometry(0.03, 0.09, 0.03), M('#3A2A20'), [0, 0, 0]));
+    a.add(malha(new THREE.BoxGeometry(0.1, 0.02, 0.03), M('#8A9099'), [0, 0.055, 0]));
+    a.add(malha(new THREE.ConeGeometry(0.03, 0.3, 4), M('#D7DDE4'), [0, 0.22, 0], [1, 1, 0.3]));
+    a.position.set(0, -0.66, 0.03); a.rotation.x = Math.PI / 2;
+    g.add(a); adagas.push(a);
+  });
   const capacete = new THREE.Group();
   capacete.add(malha(new THREE.SphereGeometry(0.18, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2), M('#F2C200'), [0, 0, 0], [1, 0.9, 1.05]));
   capacete.add(malha(new THREE.CylinderGeometry(0.22, 0.22, 0.015, 28), M('#F2C200'), [0, 0, 0.02]));
@@ -118,11 +139,14 @@ export function criarPersonagemFlat(o = {}) {
   capacete.visible = !!o.capacete;
   cabeca.add(capacete);
 
+  cabeca.scale.setScalar(o.escCabeca || 1);
   p.estado = { bracos: 'normal', expr: 'neutro', andar: 0 };
   p.capacete = capacete;
+  Object.assign(p, { cabeca, bracos, pernas, corpo, tronco, adagas });
   p.animar = (t) => {
     const e = p.estado;
-    const passo = Math.sin(t * 7) * 0.45 * (e.andar || 0);
+    const vel = e.correr ? 14 : 7;
+    const passo = Math.sin(t * vel) * (e.correr ? 0.9 : 0.45) * (e.andar || 0);
     pernas[0].rotation.x = passo; pernas[1].rotation.x = -passo;
     corpo.position.y = Math.abs(Math.sin(t * 7)) * 0.025 * (e.andar || 0);
     tronco.rotation.y = Math.sin(t * 7) * 0.05 * (e.andar || 0);
@@ -135,6 +159,12 @@ export function criarPersonagemFlat(o = {}) {
       case 'aceno': d.rotation.set(0, 0, -2.5 + Math.sin(t * 10) * 0.35); break;
       case 'cabeca': d.rotation.set(-0.5, 0, 2.6); es.rotation.set(-0.5, 0, -2.6); break;
       case 'mao': d.rotation.set(-1.2, 0, -0.5); break; // mostra a mão (marca)
+      case 'adagas': d.rotation.set(-1.3, 0, 0.25); es.rotation.set(-1.3, 0, -0.25); break;
+      case 'ataque': d.rotation.set(-2.6, 0, 0.3); es.rotation.set(-0.4, 0, -0.9); break;
+      case 'corre': d.rotation.set(-Math.sin(t * 14) * 1.1, 0, 0.15); es.rotation.set(Math.sin(t * 14) * 1.1, 0, -0.15); break;
+      case 'defende': d.rotation.set(-1.9, 0, 0.9); es.rotation.set(-1.9, 0, -0.9); break;
+      case 'abre': d.rotation.set(-0.3, 0, 1.1); es.rotation.set(-0.3, 0, -1.1); break;
+      case 'olhaMao': d.rotation.set(-1.6, 0, -0.6); break;
     }
     celular.visible = e.bracos === 'celular';
     const ex = e.expr;

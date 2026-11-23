@@ -21,6 +21,8 @@ export function luzCinema(ctx, modo = 'tarde') {
   const P = (luzCinema.cache ||= {
     tarde: { ceu: [[0, '#6F8FB8'], [0.45, '#E9A77A'], [0.75, '#F6C68C'], [1, '#F9D9A8']], nevoa: '#E7B48A', perto: 18, longe: 150, hemiC: '#FFE6C4', hemiG: '#8A7488', hi: 1.55, solC: '#FFC98A', si: 3.0, solP: [-30, 22, -60] },
     dia: { ceu: [[0, '#7FB2E5'], [0.6, '#CFE3F2'], [1, '#F2E6CF']], nevoa: '#DCCFB8', perto: 25, longe: 220, hemiC: '#FFF4E2', hemiG: '#9AAA8A', hi: 1.6, solC: '#FFF3DC', si: 2.7, solP: [30, 50, 30] },
+    campo: { ceu: [[0, '#4E8FD8'], [0.5, '#9CC8EE'], [0.8, '#D6EAF6'], [1, '#EEF4EA']], nevoa: '#CFE2EE', perto: 45, longe: 330, hemiC: '#F4FAFF', hemiG: '#7FA060', hi: 1.7, solC: '#FFF1D6', si: 2.6, solP: [25, 45, 30] },
+    noite: { ceu: [[0, '#0C0A1E'], [0.55, '#2A1840'], [0.85, '#5A2A4A'], [1, '#7A3A3A']], nevoa: '#2A1A3A', perto: 30, longe: 260, hemiC: '#8A8AD0', hemiG: '#2A2A3A', hi: 0.9, solC: '#B8A0FF', si: 1.1, solP: [-20, 30, 20] },
     vela: { ceu: [[0, '#2A2230'], [1, '#4A3A3A']], nevoa: '#3A2C2A', perto: 4, longe: 22, hemiC: '#FFC28C', hemiG: '#4A3A44', hi: 0.95, solC: '#FFB870', si: 1.6, solP: [3, 4, 3] },
   })[modo];
   if (!P.tex) P.tex = texturaCeu(P.ceu);

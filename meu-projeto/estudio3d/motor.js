@@ -153,7 +153,7 @@ export function iniciar(video) {
     let acc = 0;
     blocos.forEach((b, i) => {
       const tp = tempos ? tempos[i] : null;
-      b.dur = tp ? tp.dur : b.dur || 4;
+      b.dur = (tp ? tp.dur : b.dur || 4) + (b.pausaDepois || 0); // pausaDepois: respiro antes de uma revelação
       b.palavras = (tp && tp.palavras) || [];
       b.inicio = acc;
       b.grupos = gruposLegenda(b.palavras.map((p) => ({ ...p, inicio: p.inicio + ATRASO_FALA, fim: p.fim + ATRASO_FALA })));
