@@ -1,0 +1,145 @@
+{
+ "titulo": "O escudo triangular - ep 3",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se o defeito da tua arma"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "fosse, na verdade, uma fechadura?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "Faltando dois dias pra fenda, o Kai foi atrás de um ferreiro."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Todos recusaram. Ninguém conserta a arma do herói do escudo."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "Menos uma."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "A Nina. Uma ferreira baixinha que ninguém contratava."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "Ela olhou a rachadura e disse: isso não é rachadura."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "É uma fechadura."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Ela esquentou o escudo na forja até ficar vermelho."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "E jogou na água."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Isso tem nome: têmpera."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "O aço esfria tão rápido que o carbono fica preso lá dentro, e ele fica bem mais duro."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "A rachadura brilhou."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "E fechou sozinha."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "Nova habilidade: barreira."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "O escudo protege todo mundo que estiver perto dele."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "Pra testar, a Nina jogou o martelo no Kai."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "O martelo bateu na barreira"
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "e voltou na testa dela."
+  },
+  {
+   "id": "e4",
+   "voz": "narrador",
+   "texto": "Ela riu: tô dentro. Vou com você na fenda."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Naquela noite, o céu começou a rachar mais cedo."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "A fenda não ia esperar três dias."
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "Ela ia abrir amanhã."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "Os dois enfrentam a fenda sozinhos, ou chamam os outros heróis?"
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "Curte pra parte quatro."
+  }
+ ]
+}

@@ -98,6 +98,7 @@ Observações:
 | O escudo triangular — Ep. 1 (minissérie 2D, 58 s) | escudo-triangular-ep1.mp4 | pronto |
 | O escudo triangular — Os 4 heróis invocados (2D, 1min03) | quatro-herois-escudo.mp4 | pronto |
 | O escudo triangular — Ep. 2: O roubo (2D, 56 s) | escudo-triangular-ep2.mp4 | pronto |
+| O escudo triangular — Ep. 3: A ferreira (2D, 53 s) | escudo-triangular-ep3.mp4 | pronto |
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
