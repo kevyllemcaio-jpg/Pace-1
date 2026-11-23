@@ -1,0 +1,26 @@
+a1|narrador|E se tentassem roubar a tua arma
+a2|narrador|e ela voltasse sozinha pra tua mão?
+b1|narrador|Depois da floresta, o Igor, o herói da espada, chamou o Kai pra treinar.
+b2|narrador|Só que não era treino.
+b3|narrador|Ele queria testar o escudo.
+b4|narrador|Deu o golpe mais forte que tinha.
+b5|narrador|E o golpe voltou em dobro.
+b6|narrador|O Igor voou por cima da cerca do castelo.
+c1|narrador|E olha que espada nem é tão pesada assim.
+c2|narrador|Uma espada medieval de verdade pesava só um quilo e pouco.
+c3|narrador|Era leve pra ser rápida, não pra esmagar.
+d1|narrador|Naquela noite, o Igor entrou no quarto do Kai.
+d2|narrador|Pegou o escudo
+d3|narrador|e saiu correndo pelo corredor.
+d4|narrador|No meio da escada, o escudo começou a esquentar.
+d5|narrador|Mais quente.
+d6|narrador|E sumiu da mão dele.
+d7|narrador|Apareceu de volta do lado da cama do Kai.
+e1|narrador|O sistema explicou: arma lendária só obedece o dono.
+e2|narrador|Quem tenta roubar, sente o próprio golpe de volta.
+f1|narrador|Na manhã seguinte, o rei reuniu os quatro heróis.
+f2|narrador|Uma fenda vai se abrir no céu em três dias.
+f3|narrador|E só os heróis podem fechar.
+g1|narrador|O Igor olhou pro Kai com raiva.
+g2|narrador|Ele vai se vingar, ou vai precisar do escudo pra sobreviver à fenda?
+g3|narrador|Curte pra parte três.
