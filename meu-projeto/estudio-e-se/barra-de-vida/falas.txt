@@ -1,0 +1,30 @@
+a1|narrador|E se tu acordasse vendo
+a2|narrador|a barra de vida de todo mundo?
+b1|narrador|O Caio tem dezesseis anos.
+b2|narrador|Numa segunda-feira, abriu o olho e tinha uma barra verde em cima da cabeça da mãe dele.
+b3|narrador|Cem por cento.
+b4|narrador|No ônibus, o motorista: sessenta.
+b5|narrador|Tava acordado fazia dezessete horas.
+b6|narrador|E ficar dezessete horas sem dormir deixa o reflexo parecido com o de quem bebeu.
+c1|narrador|Na escola, o colega do lado: quarenta.
+c2|narrador|Não tinha tomado água desde ontem.
+c3|narrador|E perder só dois por cento da água do corpo já atrapalha a atenção.
+c4|narrador|O Caio jogou uma garrafa pra ele.
+c5|narrador|A barra subiu.
+d1|narrador|Aí ele entendeu: dava pra ver quem tava em perigo antes de acontecer.
+d2|narrador|Na saída, uma senhora atravessando a rua.
+d3|narrador|A barra dela piscando vermelho.
+d4|narrador|Dez por cento.
+d5|narrador|Ele correu,
+d6|narrador|puxou ela pro canto
+d7|narrador|um segundo antes do carro passar.
+d8|narrador|A barra voltou pro verde.
+e1|narrador|No susto, o corpo solta adrenalina.
+e2|narrador|O coração dispara e a energia vai pros músculos em segundos.
+f1|narrador|Foi aí que ele olhou pro espelho de uma loja.
+f2|narrador|E viu a própria barra.
+f3|narrador|Um por cento.
+f4|narrador|E caindo.
+g1|narrador|Ele vai atrás de descobrir o que tá derrubando a barra dele,
+g2|narrador|ou usa o tempo que sobra pra salvar mais gente?
+g3|narrador|Curte pra parte dois.

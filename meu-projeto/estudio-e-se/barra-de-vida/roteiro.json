@@ -1,0 +1,170 @@
+{
+ "titulo": "Barra de vida",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "saude",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se tu acordasse vendo"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "a barra de vida de todo mundo?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "O Caio tem dezesseis anos."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Numa segunda-feira, abriu o olho e tinha uma barra verde em cima da cabeça da mãe dele."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "Cem por cento."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "No ônibus, o motorista: sessenta."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "Tava acordado fazia dezessete horas."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "E ficar dezessete horas sem dormir deixa o reflexo parecido com o de quem bebeu."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Na escola, o colega do lado: quarenta."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Não tinha tomado água desde ontem."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "E perder só dois por cento da água do corpo já atrapalha a atenção."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "O Caio jogou uma garrafa pra ele."
+  },
+  {
+   "id": "c5",
+   "voz": "narrador",
+   "texto": "A barra subiu."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "Aí ele entendeu: dava pra ver quem tava em perigo antes de acontecer."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Na saída, uma senhora atravessando a rua."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "A barra dela piscando vermelho."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "Dez por cento."
+  },
+  {
+   "id": "d5",
+   "voz": "narrador",
+   "texto": "Ele correu,"
+  },
+  {
+   "id": "d6",
+   "voz": "narrador",
+   "texto": "puxou ela pro canto"
+  },
+  {
+   "id": "d7",
+   "voz": "narrador",
+   "texto": "um segundo antes do carro passar."
+  },
+  {
+   "id": "d8",
+   "voz": "narrador",
+   "texto": "A barra voltou pro verde."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "No susto, o corpo solta adrenalina."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "O coração dispara e a energia vai pros músculos em segundos."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Foi aí que ele olhou pro espelho de uma loja."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "E viu a própria barra."
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "Um por cento."
+  },
+  {
+   "id": "f4",
+   "voz": "narrador",
+   "texto": "E caindo."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "Ele vai atrás de descobrir o que tá derrubando a barra dele,"
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "ou usa o tempo que sobra pra salvar mais gente?"
+  },
+  {
+   "id": "g3",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}
