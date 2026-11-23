@@ -1,0 +1,140 @@
+{
+ "titulo": "O escudo triangular - ep 1",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se tu ganhasse a arma mais inútil do reino"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "e ela fosse a mais forte do mundo?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "No reino de Valdora, quem faz dezoito anos puxa uma arma da Pedra Antiga."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Uns tiram espada. Outros, lança. Os sortudos, cajado de mago."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "O Kai puxou isso."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "Um escudo triangular. Rachado."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "A praça inteira riu."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "E o capitão da guarda nem olhou pra ele: escudo não mata monstro."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "E ele tinha razão numa coisa."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Escudo desse formato existiu de verdade, lá pelo ano mil e duzentos."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Era mais leve, e o golpe escorregava pela ponta."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "Feito pra defender. Não pra atacar."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "Sem grupo, o Kai foi treinar sozinho na floresta."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Um lobo pulou nele."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "Ele só levantou o escudo."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "O lobo bateu"
+  },
+  {
+   "id": "d5",
+   "voz": "narrador",
+   "texto": "e voou longe. Duas vezes mais longe do que pulou."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "Aí apareceu uma janela."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Habilidade única: reflexo."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "Todo golpe que acerta o escudo volta em dobro."
+  },
+  {
+   "id": "e4",
+   "voz": "narrador",
+   "texto": "Quanto mais forte o inimigo, mais forte o escudo."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Lá no fundo da floresta, uma coisa enorme começou a se mexer."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Ele testa o escudo no monstro gigante, ou volta pro reino pra mostrar pra todo mundo?"
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}
