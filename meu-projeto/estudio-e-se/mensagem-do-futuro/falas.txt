@@ -1,0 +1,26 @@
+a1|narrador|E se o teu celular recebesse uma mensagem
+a2|narrador|dez segundos antes de tudo acontecer?
+b1|narrador|A Bia tava no ponto quando chegou:
+b2|narrador|não entra no ônibus.
+b3|narrador|O número era o dela mesma.
+b4|narrador|Ela riu. E entrou.
+b5|narrador|Dez segundos depois, o ônibus freou do nada.
+b6|narrador|E ela bateu a cabeça no banco.
+c1|narrador|Aí chegou outra: agora tu acredita?
+c2|narrador|Dez segundos parece pouco.
+c3|narrador|Mas o cérebro leva só uns dois décimos de segundo pra reagir ao que vê.
+c4|narrador|Dez segundos é uma eternidade.
+d1|narrador|No dia seguinte, ela usou.
+d2|narrador|Desviou da bolada no recreio.
+d3|narrador|Respondeu antes do professor perguntar.
+d4|narrador|Pegou o celular antes de cair no bueiro.
+e1|narrador|Até que chegou uma mensagem diferente.
+e2|narrador|Não abre a porta.
+e3|narrador|A campainha tocou.
+e4|narrador|Ela olhou pelo olho mágico.
+e5|narrador|Não tinha ninguém.
+e6|narrador|O celular vibrou de novo.
+e7|narrador|Tarde demais. Eu já tô aqui dentro.
+e8|narrador|E o número era o dela.
+f1|narrador|Ela responde a mensagem, ou corre pra fora de casa?
+f2|narrador|Curte pra parte dois.

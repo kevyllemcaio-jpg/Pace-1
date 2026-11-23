@@ -94,6 +94,7 @@ Observações:
 | E se o humano mais fraco do mundo ganhasse um sistema? (anime 2D, 1min10) | mais-fraco-do-mundo.mp4 | pronto |
 | E se tu pudesse dormir e acordar numa masmorra? (anime 2D, padrão da referência, 1min12) | masmorra-dos-sonhos.mp4 | pronto |
 | E se tu acordasse vendo a barra de vida de todo mundo? (2D, padrão da referência, 1min01) | barra-de-vida.mp4 | pronto |
+| E se o teu celular recebesse uma mensagem 10 s antes? (2D, viral, 48 s) | mensagem-do-futuro.mp4 | pronto |
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
