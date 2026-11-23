@@ -379,7 +379,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: mao((lt, b) => { const a = assassino.position; return { pos: [a.x + 0.8, 1.0, a.z + mistura(3.4, 2.7, suave(lt / b.dur))], alvo: [a.x, 1.6, a.z] }; }, 0.5),
       aplicar(lt, b) { E.mundo = 'campo'; fumaca.forEach((f) => (f.material.opacity = 0)); heroi.position.set(1.4, 0, 0.5); heroi.estado = { bracos: 'normal', expr: 'neutro' }; assassino.visible = true; assassino.scale.set(1, 1, 1); assassino.position.set(-0.4, 0, -2.1); assassino.estado = { bracos: lt > b.palavra('assassino') ? 'ataque' : 'adagas', expr: 'serio' }; },
-      camada: (lt, b) => tela(lt, b, textoTela('<b>Perigo!</b>', lt, b.palavra('assassino')) + (lt > b.palavra('assassino') ? tag(camera, [0.35, 1.15, -2.1], 'ASSASSINO · NV 47', '#FF6B6B') : '')),
+      camada: (lt, b) => tela(lt, b, textoTela('<b>Perigo!</b>', lt, b.palavra('assassino')) + (lt > b.palavra('assassino') ? tag(camera, [-0.4, 0.75, -2.1], 'ASSASSINO · NV 47', '#FF6B6B') : '')),
       sons: [{ em: 'assassino', tipo: 'impacto' }, { em: 'nada', tipo: 'whoosh' }],
     },
     {
