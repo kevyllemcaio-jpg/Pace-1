@@ -61,7 +61,7 @@ function grama(cena, { cx = 0, cz = 0, raio = 26, n = 36000, evitar = null } = {
     const a = r() * Math.PI * 2, rr = Math.sqrt(r()) * raio;
     const x = cx + Math.cos(a) * rr, z = cz + Math.sin(a) * rr;
     if (evitar && evitar(x, z)) continue;
-    d.position.set(x, 0, z); d.rotation.set(0, r() * Math.PI, 0); const s = 0.55 + r() * 0.7; d.scale.set(s, s * (0.55 + r() * 0.5), s);
+    d.position.set(x, 0, z); d.rotation.set(0, r() * Math.PI, 0); const s = 0.55 + r() * 0.7, baixa = x * x + z * z < 20 ? 0.55 : 1; d.scale.set(s, s * (0.55 + r() * 0.5) * baixa, s);
     d.updateMatrix(); m.setMatrixAt(k, d.matrix);
     c.set(cores[Math.floor(r() * cores.length)]); m.setColorAt(k, c); k++;
   }
@@ -108,7 +108,7 @@ export function criarCampo(ctx) {
   });
   // morros verdes
   [[-40, -90, 30], [30, -100, 36], [0, -110, 26]].forEach(([x, z, rr]) => { const m = new THREE.Mesh(esf(rr, 32, 16), M('#6DB548')); m.scale.y = 0.3; m.position.set(x, 0, z); cena.add(m); });
-  const nuvens = [[-40, 60, -200, 50], [30, 70, -220, 60], [90, 55, -190, 40], [-100, 65, -210, 56]].map(([x, y, z, s]) => nuvem(cena, [x, y, z], s));
+  const nuvens = [[-45, 80, -230, 30], [25, 90, -250, 36], [85, 75, -220, 26], [-105, 85, -240, 32]].map(([x, y, z, s]) => nuvem(cena, [x, y, z], s));
   return {
     LAGO,
     animar(t) {

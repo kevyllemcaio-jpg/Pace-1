@@ -331,7 +331,7 @@ export function criar(ctx) {
         E.mundo = 'campo'; aneis.visible = true;
         const k = lim(lt / (b.dur * 0.8));
         classes.forEach((c) => { c.g.visible = true; c.g.scale.setScalar(1); c.c.material.opacity = 1 - k * 0.7; });
-        colunaLuz.visible = true; colunaLuz.position.set(0, 0, 0); colunaLuz.scale.set(0.6 + k * 0.5, 1, 0.6 + k * 0.5); colunaLuz.children[0].material.opacity = 0.05 + k * 0.08;
+        colunaLuz.visible = true; colunaLuz.position.set(0, 0, 0); colunaLuz.scale.set(0.6 + k * 0.5, 1, 0.6 + k * 0.5); colunaLuz.children[0].material.opacity = 0.03 + k * 0.05;
         heroi.estado = { bracos: 'abre', expr: 'surpreso' };
       },
       camada: (lt, b) => tela(lt, b),
@@ -343,7 +343,7 @@ export function criar(ctx) {
       corteSeco: true,
       pausaDepois: 0.45,
       camera: mao({ pos: [1.8, 1.2, 4.6], alvo: [0, 1.3, 0] }),
-      aplicar(lt, b) { E.mundo = 'campo'; E.treme = lim((lt - b.palavra('tremer')) / 0.3) * 1.4; classes.forEach((c) => (c.g.visible = Math.sin(T(b, lt) * 30) > -0.3)); colunaLuz.visible = true; heroi.estado = { bracos: 'defende', expr: 'medo' }; },
+      aplicar(lt, b) { E.mundo = 'campo'; E.treme = lim((lt - b.palavra('tremer')) / 0.3) * 1.4; classes.forEach((c) => { c.c.material.opacity = 0.6; c.g.visible = Math.sin(T(b, lt) * 30) > -0.3; }); colunaLuz.visible = false; heroi.estado = { bracos: 'defende', expr: 'medo' }; },
       camada: (lt, b) => tela(lt, b, painel(lt, b.dur + 1, `<div class="t" style="color:#FF8A8A">${glitch('SISTEMA INSTÁVEL', T(b, lt))}</div><div style="font-size:34px;font-weight:900;color:#FF6B6B">${glitch('ERRO 404: CLASSE ???', T(b, lt))}</div>`, { top: 240, abre: b.palavra('tremer') - 0.1, borda: '#FF6B6B', fecha: 99 })),
       sons: [{ em: 'tremer', tipo: 'glitch' }, { em: 'tremer', tipo: 'tensao' }],
     },
@@ -352,7 +352,7 @@ export function criar(ctx) {
       destaque: ['mensagem'],
       corteSeco: true,
       camera: mao((lt, b) => ({ pos: [0, 1.6, mistura(4.6, 3.5, salto(lt / 0.6))], alvo: [0, 1.4, 0] })),
-      aplicar(lt, b) { E.mundo = 'campo'; E.treme = 0; classes.forEach((c) => (c.g.visible = false)); colunaLuz.visible = true; colunaLuz.scale.set(1.2, 1, 1.2); colunaLuz.children[0].material.opacity = 0.12; heroi.estado = { bracos: 'normal', expr: lt > b.palavra('mensagem') ? 'feliz' : 'surpreso' }; },
+      aplicar(lt, b) { E.mundo = 'campo'; E.treme = 0; classes.forEach((c) => (c.g.visible = false)); colunaLuz.visible = true; colunaLuz.scale.set(1.2, 1, 1.2); colunaLuz.children[0].material.opacity = 0.07; heroi.estado = { bracos: 'normal', expr: lt > b.palavra('mensagem') ? 'feliz' : 'surpreso' }; },
       camada: (lt, b) => tela(lt, b, painel(lt, b.dur + 1, `<div class="t" style="color:#FFE9A0">NOTIFICAÇÃO</div><div style="font-size:42px;font-weight:900;line-height:1.15">CLASSE <span style="color:#FFD21F">SECRETA</span><br>DESBLOQUEADA!</div>`, { top: 230, abre: b.palavra('mensagem') - 0.1, borda: '#FFD21F', fecha: 99 })),
       sons: [{ em: 'mensagem', tipo: 'sino' }, { em: 'mensagem', tipo: 'brilho' }],
     },
@@ -378,7 +378,7 @@ export function criar(ctx) {
       destaque: ['assassino'],
       corteSeco: true,
       camera: mao((lt, b) => { const a = assassino.position; return { pos: [a.x + 0.8, 1.0, a.z + mistura(3.4, 2.7, suave(lt / b.dur))], alvo: [a.x, 1.6, a.z] }; }, 0.5),
-      aplicar(lt, b) { E.mundo = 'campo'; fumaca.forEach((f) => (f.material.opacity = 0)); heroi.position.set(0, 0, 0.5); heroi.estado = { bracos: 'normal', expr: 'neutro' }; assassino.visible = true; assassino.scale.set(1, 1, 1); assassino.position.set(-0.4, 0, -2.1); assassino.estado = { bracos: lt > b.palavra('assassino') ? 'ataque' : 'adagas', expr: 'serio' }; },
+      aplicar(lt, b) { E.mundo = 'campo'; fumaca.forEach((f) => (f.material.opacity = 0)); heroi.position.set(1.4, 0, 0.5); heroi.estado = { bracos: 'normal', expr: 'neutro' }; assassino.visible = true; assassino.scale.set(1, 1, 1); assassino.position.set(-0.4, 0, -2.1); assassino.estado = { bracos: lt > b.palavra('assassino') ? 'ataque' : 'adagas', expr: 'serio' }; },
       camada: (lt, b) => tela(lt, b, textoTela('<b>Perigo!</b>', lt, b.palavra('assassino')) + (lt > b.palavra('assassino') ? tag(camera, [0.35, 1.15, -2.1], 'ASSASSINO · NV 47', '#FF6B6B') : '')),
       sons: [{ em: 'assassino', tipo: 'impacto' }, { em: 'nada', tipo: 'whoosh' }],
     },
@@ -424,7 +424,7 @@ export function criar(ctx) {
       fala: 'Foi então que o slime revelou seu verdadeiro poder.',
       destaque: ['slime', 'poder'],
       corteSeco: true,
-      camera: mao((lt, b) => ({ pos: [mistura(-2.2, -2.8, lt / b.dur), 1.5, 6.0], alvo: [-0.2, 0.9, 0.2] })),
+      camera: mao((lt, b) => ({ pos: [mistura(-1.0, -1.6, lt / b.dur), 1.1, 5.4], alvo: [0.5, 0.7, 1.1] })),
       aplicar(lt, b) {
         E.mundo = 'campo'; rastro.material.opacity = 0; assassino.scale.set(1, 1, 1);
         heroi.position.set(1.9, 0, 2.5); heroi.rotation.set(0, -0.6, 0); heroi.estado = { bracos: 'defende', expr: 'medo' };
