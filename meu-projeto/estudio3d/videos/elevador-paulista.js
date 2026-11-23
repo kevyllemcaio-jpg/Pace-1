@@ -1,17 +1,17 @@
-// "E SE UM PIANO CAÍSSE NA SUA CABEÇA?" — visual CINEMA (motion design 3D): São Paulo em 3D com luz
+// "E SE UM ELEVADOR CAÍSSE NA SUA CABEÇA?" — visual CINEMA (motion design 3D): São Paulo em 3D com luz
 // dourada, neblina, granulado; personagem flat; dados como objetos; depois renasce num reino medieval
 // onde todo mundo nasce com uma marca de magia… e a dele é amaldiçoada. História/narração originais.
 //
 // Física conferida (queda livre):
-//  - piano 250 kg, solto a ~30 m (10º andar). Ganha 9,8 m/s (≈35 km/h) por segundo: 1 s ≈ 35 km/h, 2 s ≈ 71 km/h.
+//  - cabine de elevador 600 kg (sendo consertada, pendurada no cabo), solta a ~30 m (10º andar). Ganha 9,8 m/s (≈35 km/h) por segundo: 1 s ≈ 35 km/h, 2 s ≈ 71 km/h.
 //  - Até a cabeça (1,8 m): t ≈ 2,4 s; v ≈ 23,5 m/s ≈ 85 km/h ("mais de 80").
-//  - Energia ≈ ½·250·23,5² ≈ 69 kJ = carro de 1 t a ~42 km/h (½·1000·11,7² ≈ 68 kJ) -> "a 40 por hora".
+//  - Energia ≈ ½·600·23,5² ≈ 166 kJ = carro de 1 t a ~65 km/h (½·1000·18,2² ≈ 166 kJ) -> "a mais de 60 por hora".
 //  - Capacete de obra: ensaio de impacto da ordem de 50 J (≈5 kg de 1 m; ANSI: 3,6 kg de 1,5 m ≈ 54 J).
-//    69.000 / 50 ≈ 1.380 -> "mais de mil vezes".
+//    166.000 / 50 ≈ 3.300 -> "mais de três mil vezes".
 import * as THREE from 'three';
 import { suave, lim, mistura, som } from '../motor.js';
 import { criarPersonagemFlat, criarBebeFlat } from '../personagem-flat.js';
-import { criarCidadeSP, piano3d, balancim, corda } from '../cenarios/cidade-sp.js';
+import { criarCidadeSP, elevador3d, caixaFerramentas, balancim, corda } from '../cenarios/cidade-sp.js';
 import { criarReino, criarQuartoPedra, maoComMarca, livroAntigo3d, texturaMarca } from '../cenarios/medieval3d.js';
 import { luzCinema, brilhoSol, filme, rotulo3d, mostrador } from '../estilo-cinema.js';
 import { carro } from '../mundo.js';
@@ -28,7 +28,9 @@ export const config = {
 
 const REINO = 1000, QUARTO = 2000, LAB = 3000; // "mundos" lado a lado (x)
 const POLIA = [2.2, 35.8, -4];
-const Y_PIANO0 = 29.2;           // base do piano pendurado
+const Y_PIANO0 = 29.2;           // base da cabine pendurada
+const TOPO = 2.65;               // gancho no topo da cabine
+const ALT = 2.7;                 // altura do rótulo km/h acima da base
 const T_CAB = 2.4;
 const yPiano = (t) => Math.max(1.85, Y_PIANO0 - 4.9 * t * t);
 const kmh = (t) => Math.round(9.8 * Math.min(t, T_CAB) * 3.6);
@@ -68,11 +70,12 @@ export function criar(ctx) {
   const op2 = criarPersonagemFlat({ roupa: '#2F4E9A', calca: '#2F4E9A', capacete: true, pele: '#E9A97A' });
   const pedestre = criarPersonagemFlat({ roupa: '#3A6EA5', calca: '#2A2A30', pele: '#8D5524', cabelo: '#1A1A1A' });
   cena.add(caio, op1, op2, pedestre);
-  const plat = balancim(); plat.position.set(3.35, 28.6, -6.2); plat.rotation.y = -Math.PI / 2; cena.add(plat);
-  op1.position.set(3.0, 28.65, -6.8); op1.rotation.y = -0.9; op2.position.set(3.0, 28.65, -5.6); op2.rotation.y = -0.6;
-  const piano = piano3d(); piano.rotation.y = -Math.PI / 2; cena.add(piano);
-  const cordaSup = corda(POLIA, [2.2, Y_PIANO0 + 1.5, -4]); cena.add(cordaSup);
-  const cordaInf = corda([2.2, Y_PIANO0 + 1.5, -4], [2.2, Y_PIANO0 + 1.45, -4]); cena.add(cordaInf);
+  const plat = balancim(); plat.position.set(3.35, 29.3, -6.2); plat.rotation.y = -Math.PI / 2; cena.add(plat);
+  op1.position.set(3.0, 29.35, -6.8); op1.rotation.y = -0.9; op2.position.set(3.0, 29.35, -5.6); op2.rotation.y = -0.6;
+  const piano = elevador3d('600 kg'); piano.rotation.y = -Math.PI / 2; cena.add(piano);
+  const caixa = caixaFerramentas(); caixa.position.set(3.4, 29.35, -7.3); caixa.rotation.y = 0.4; cena.add(caixa);
+  const cordaSup = corda(POLIA, [2.2, Y_PIANO0 + TOPO, -4], '#5A5E66'); cena.add(cordaSup);
+  const cordaInf = corda([2.2, Y_PIANO0 + TOPO, -4], [2.2, Y_PIANO0 + TOPO - 0.05, -4], '#5A5E66'); cena.add(cordaInf);
   const carroBate = carro('#C0392B'); carroBate.position.set(-1.5, 0, -12); carroBate.rotation.y = Math.PI; cena.add(carroBate);
   // medievais
   const aldeoes = [['#8C3B2E', '#5A3A22', 'coque', '#E9A97A'], ['#3E6B4A', '#4A3B33', 'curto', '#C98B5E'], ['#6B4A8A', '#3A2A20', 'careca', '#8D5524'], ['#A0692E', '#3A2A20', 'curto', '#F0C49C']].map(([r, c, cab, pele], i) => {
@@ -108,9 +111,9 @@ export function criar(ctx) {
     piano.position.set(2.2 + (E.caiu ? 0.15 : 0), y, -4);
     piano.rotation.set(E.tf > 0 && !E.caiu ? E.tf * 0.18 : 0, -Math.PI / 2, E.tf > 0 && !E.caiu ? Math.sin(E.tf * 2) * 0.12 : E.caiu ? 0.06 : 0);
     const solta = E.tf > 0 || E.caiu || E.cortada;
-    cordaSup.atualizar(POLIA, solta ? [2.2, POLIA[1] - 1.2, -4] : [2.2, Y_PIANO0 + 1.5, -4]);
+    cordaSup.atualizar(POLIA, solta ? [2.2, POLIA[1] - 1.2, -4] : [2.2, Y_PIANO0 + TOPO, -4]);
     cordaInf.visible = !solta || (E.tf > 0 && E.tf < 0.6);
-    cordaInf.atualizar([2.2, y + 1.5 + 1.2, -4], [2.2, y + 1.45, -4]);
+    cordaInf.atualizar([2.2, y + TOPO + 1.2, -4], [2.2, y + TOPO - 0.05, -4]);
     caio.capacete.visible = E.capacete;
     [caio, op1, op2, pedestre, mae, ...aldeoes].forEach((p) => p.animar(t));
     quarto.animar(t);
@@ -124,10 +127,10 @@ export function criar(ctx) {
   const sobre = (lt, b, extra = '') => filme(T(b, lt)) + extra;
 
   const blocos = [
-    // ===================== PARTE 1 — o piano =====================
+    // ===================== PARTE 1 — o elevador =====================
     {
-      fala: 'E se você tivesse andando pela Paulista e, do nada, um piano caísse na sua cabeça?',
-      destaque: ['paulista', 'piano', 'cabeça'],
+      fala: 'E se você tivesse andando pela Paulista e, do nada, um elevador caísse na sua cabeça?',
+      destaque: ['paulista', 'elevador', 'cabeça'],
       semLegenda: true,
       camera: mao(() => { const z = caio.position.z; return { pos: [3.25, 0.8, z + 4.8], alvo: [2.3, 2.3, z - 8] }; }),
       aplicar(lt, b) { E.mundo = 'rua'; caio.position.z = anda(lt, b, -7.5, -4.5); caio.estado = { bracos: 'celular', expr: 'neutro', andar: 1 }; pedestre.position.z = anda(lt, b, -20, -15); },
@@ -143,24 +146,24 @@ export function criar(ctx) {
       camada: (lt, b) => sobre(lt, b),
     },
     {
-      fala: 'Dez andares acima, dois caras subiam um piano na corda.',
-      destaque: ['dez', 'piano'],
+      fala: 'Dez andares acima, dois caras tavam consertando um elevador, pendurado no cabo.',
+      destaque: ['dez', 'elevador'],
       corteSeco: true,
-      camera: (lt, b) => { const k = suave(lt / (b.dur * 0.8)); return { pos: [-1.5, mistura(8, 27, k), mistura(4, 2, k)], alvo: [3.5, mistura(12, 30, k), -5] }; },
-      aplicar(lt, b) { E.mundo = 'rua'; op1.estado = { bracos: 'aponta', expr: 'serio' }; op2.estado = { bracos: 'normal', expr: 'neutro' }; },
+      camera: (lt, b) => { const k = suave(lt / (b.dur * 0.8)); return { pos: [mistura(-1.5, -3.2, k), mistura(8, 30.8, k), mistura(4, -1.0, k)], alvo: [mistura(3.5, 2.8, k), mistura(12, 30.4, k), mistura(-5, -5.4, k)] }; },
+      aplicar(lt, b) { E.mundo = 'rua'; op1.estado = { bracos: 'aponta', expr: 'serio' }; op2.estado = { bracos: 'mao', expr: 'neutro' }; },
       camada: (lt, b) => sobre(lt, b),
-      sons: [{ em: 'piano', tipo: 'martelo' }],
+      sons: [{ em: 'elevador', tipo: 'martelo' }, { em: 'cabo', tipo: 'martelo' }],
     },
     {
-      fala: 'Aí a corda arrebentou. Duzentos e cinquenta quilos, soltos no ar.',
-      destaque: ['arrebentou', 'duzentos'],
+      fala: 'Aí o cabo arrebentou. Seiscentos quilos, soltos no ar.',
+      destaque: ['arrebentou', 'seiscentos'],
       corteSeco: true,
-      camera: mao((lt, b) => (lt < b.palavra('duzentos') ? { pos: [0.6, 34.6, -1.6], alvo: [2.2, 35.6, -4] } : { pos: [-0.6, 29.6, 0.5], alvo: [2.4, 29.6, -4.5] }), 0.6),
+      camera: mao((lt, b) => (lt < b.palavra('seiscentos') ? { pos: [0.6, 34.6, -1.6], alvo: [2.2, 35.6, -4] } : { pos: [-1.6, 30.4, 1.4], alvo: [2.4, 30.3, -4.5] }), 0.6),
       aplicar(lt, b) {
         E.mundo = 'rua';
         const corte = b.palavra('arrebentou') + 0.15;
         E.cortada = lt > corte;
-        E.tf = lt > b.palavra('duzentos') ? 0.04 * lim((lt - b.palavra('duzentos')) / 1) : 0;
+        E.tf = lt > b.palavra('seiscentos') ? 0.04 * lim((lt - b.palavra('seiscentos')) / 1) : 0;
         const medo = lt > corte;
         op1.estado = { bracos: medo ? 'cabeca' : 'aponta', expr: medo ? 'medo' : 'serio' }; op2.estado = { bracos: medo ? 'cima' : 'normal', expr: medo ? 'medo' : 'neutro' };
       },
@@ -170,17 +173,17 @@ export function criar(ctx) {
     {
       fala: 'Em um segundo, ele já tá a trinta e cinco por hora.',
       destaque: ['primeiro', 'trinta'],
-      camera: mao((lt, b) => { const y = yPiano(E.tf); return { pos: [-0.2, y + 0.5, -0.6], alvo: [2.2, y + 0.4, -4] }; }, 0.5),
+      camera: mao((lt, b) => { const y = yPiano(E.tf); return { pos: [-1.0, y + 1.0, 0.2], alvo: [2.2, y + 1.1, -4] }; }, 0.5),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(0.04, 1.0, lt / b.dur); },
-      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + 1.8, -4], kmhHtml(E.tf), { dx: 40, dy: -20 })),
+      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + ALT, -4], kmhHtml(E.tf), { dx: 40, dy: -20 })),
       sons: [{ em: () => 0.1, tipo: 'passagem' }],
     },
     {
       fala: 'No segundo seguinte, setenta.',
       destaque: ['setenta'],
-      camera: mao((lt, b) => { const y = yPiano(E.tf); return { pos: [-0.4, y - 0.8, -0.2], alvo: [2.2, y + 0.6, -4] }; }, 0.5),
+      camera: mao((lt, b) => { const y = yPiano(E.tf); return { pos: [-1.2, y - 0.6, 0.6], alvo: [2.2, y + 1.1, -4] }; }, 0.5),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(1.0, 2.0, lt / b.dur); },
-      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + 1.8, -4], kmhHtml(E.tf), { dx: 40, dy: -20 })),
+      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + ALT, -4], kmhHtml(E.tf), { dx: 40, dy: -20 })),
       sons: [{ em: 'setenta', tipo: 'dia' }],
     },
     {
@@ -193,7 +196,7 @@ export function criar(ctx) {
         const v = new THREE.Vector3(2.2, yPiano(E.tf), -4).project(camera);
         const x = (v.x + 1) * 360 + 70, y = (1 - v.y) * 640;
         const seta = `<svg style="position:absolute;inset:0;width:720px;height:1280px" viewBox="0 0 720 1280"><line x1="${x}" y1="${y - 60}" x2="${x}" y2="${y + 110}" stroke="#E0463A" stroke-width="6"/><path d="M${x - 14} ${y + 100} L${x} ${y + 130} L${x + 14} ${y + 100} Z" fill="#E0463A"/></svg>`;
-        return sobre(lt, b, seta + rotulo3d(camera, [2.2, yPiano(E.tf) + 1.8, -4], kmhHtml(E.tf), { dx: -80, dy: -20 }));
+        return sobre(lt, b, seta + rotulo3d(camera, [2.2, yPiano(E.tf) + ALT, -4], kmhHtml(E.tf), { dx: -80, dy: -20 }));
       },
     },
     {
@@ -202,7 +205,7 @@ export function criar(ctx) {
       corteSeco: true,
       camera: mao(() => { const y = yPiano(E.tf); return { pos: [2.5, 0.35, 1.4], alvo: [2.2, Math.max(1.6, y * 0.65), -4.4] }; }, 0.4),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = mistura(2.12, 2.36, lt / b.dur); caio.position.z = mistura(-5.2, -4.3, lt / b.dur); caio.rotation.y = Math.PI; caio.estado = { bracos: 'celular', expr: 'neutro', andar: 1 }; },
-      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + 1.8, -4], kmhHtml(E.tf), { dx: 60, dy: 0 })),
+      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [2.2, yPiano(E.tf) + ALT, -4], kmhHtml(E.tf), { dx: 60, dy: 0 })),
       sons: [{ em: 'oitenta', tipo: 'tensao' }],
     },
     {
@@ -211,17 +214,17 @@ export function criar(ctx) {
       corteSeco: true,
       camera: mao({ pos: [1.6, 1.1, 3.0], alvo: [2.2, 1.6, -4] }),
       aplicar(lt, b) { E.mundo = 'rua'; E.cortada = true; E.tf = 2.2; caio.position.z = -4.3; caio.rotation.y = 0; caio.estado = { bracos: 'celular', expr: 'neutro', andar: 0 }; },
-      camada: (lt, b) => sobre(lt, b, mostrador(360, 300, 250 * lim(lt / 0.8), 300, `${Math.round(250 * lim(lt / 0.8))}`, { unidade: ' kg' })),
+      camada: (lt, b) => sobre(lt, b, mostrador(360, 300, 600 * lim(lt / 0.8), 800, `${Math.round(600 * lim(lt / 0.8))}`, { unidade: ' kg' })),
       sons: [{ em: 'peso', tipo: 'pop' }],
     },
     {
-      fala: 'Duzentos e cinquenta quilos nessa velocidade é igual a um carro batendo a quarenta por hora.',
-      destaque: ['energia', 'carro', 'quarenta'],
+      fala: 'Seiscentos quilos nessa velocidade é igual a um carro batendo a mais de sessenta por hora.',
+      destaque: ['carro', 'sessenta'],
       corteSeco: true,
       camera: mao(() => { const z = carroBate.position.z; return { pos: [2.8, 1.7, z + 9.5], alvo: [-1.5, 0.9, z] }; }),
       aplicar(lt, b) { E.mundo = 'rua'; E.tf = 2.36; carroBate.position.z = mistura(-18, -13, suave(lt / b.dur)); },
-      camada: (lt, b) => sobre(lt, b, lt > b.palavra('carro') ? mostrador(360, 300, 40 * lim((lt - b.palavra('carro')) / 1), 100, `${Math.round(40 * lim((lt - b.palavra('carro')) / 1))}`, { unidade: ' km/h' }) : mostrador(360, 300, 250, 300, '250', { unidade: ' kg' })),
-      sons: [{ em: 'carro', tipo: 'motor' }, { em: 'quarenta', tipo: 'baque' }],
+      camada: (lt, b) => sobre(lt, b, lt > b.palavra('carro') ? mostrador(360, 300, 65 * lim((lt - b.palavra('carro')) / 1), 100, `${Math.round(65 * lim((lt - b.palavra('carro')) / 1))}`, { unidade: ' km/h' }) : mostrador(360, 300, 600, 800, '600', { unidade: ' kg' })),
+      sons: [{ em: 'carro', tipo: 'motor' }, { em: 'sessenta', tipo: 'baque' }],
     },
     {
       fala: 'E se ele tivesse de capacete?',
@@ -242,11 +245,11 @@ export function criar(ctx) {
       sons: [{ em: 'cinquenta', depois: 0.5, tipo: 'baque' }],
     },
     {
-      fala: 'Esse piano chega com mais de mil vezes isso.',
-      destaque: ['mil'],
+      fala: 'Esse elevador chega com mais de três mil vezes isso.',
+      destaque: ['três', 'mil'],
       camera: mao({ pos: [LAB - 0.6, 2.4, 5.2], alvo: [LAB - 0.6, 1.6, 0.5] }),
       aplicar(lt, b) { E.mundo = 'lab'; peso.position.set(LAB, 1.3, 0); discos.forEach((d, i) => (d.visible = i < 40 * lim(lt / (b.dur * 0.7)))); },
-      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [LAB - 1.2, 2.2, 1], `×${Math.round(1380 * lim(lt / (b.dur * 0.7))).toLocaleString('pt-BR')}`, { dx: 0, dy: -60 })),
+      camada: (lt, b) => sobre(lt, b, rotulo3d(camera, [LAB - 1.2, 2.2, 1], `×${(Math.round(3300 * lim(lt / (b.dur * 0.7)) / 10) * 10).toLocaleString('pt-BR')}`, { dx: 0, dy: -60 })),
       sons: [0.2, 0.5, 0.8, 1.1].map((d) => ({ em: () => d, tipo: 'tique' })).concat([{ em: 'mil', tipo: 'dia' }]),
     },
     {

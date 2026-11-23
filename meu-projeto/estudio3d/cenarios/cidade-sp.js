@@ -39,6 +39,21 @@ export function texturaCalcada(rep = [2, 8]) {
     for (let i = 0; i < w; i += 12) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i, h); g.stroke(); g.beginPath(); g.moveTo(0, i); g.lineTo(w, i); g.stroke(); }
   }, rep);
 }
+/** Calçada de concreto: placas cinza-claras com juntas e leve variação (lê limpo de perto e de longe). */
+export function texturaConcreto(rep = [1.6, 100]) {
+  return tex(512, 512, (g, w, h) => {
+    const n = 4, l = w / n;
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const v = 200 + Math.floor(r() * 14);
+      g.fillStyle = `rgb(${v},${v - 4},${v - 12})`; g.fillRect(i * l, j * l, l, l);
+    }
+    // granulado fino do concreto
+    for (let k = 0; k < 9000; k++) { const c = r() < 0.5 ? 'rgba(0,0,0,.05)' : 'rgba(255,255,255,.06)'; g.fillStyle = c; g.fillRect(r() * w, r() * h, 2, 2); }
+    // juntas entre as placas
+    g.fillStyle = 'rgba(70,64,58,.45)';
+    for (let i = 0; i <= n; i++) { g.fillRect(i * l - 2, 0, 4, h); g.fillRect(0, i * l - 2, w, 4); }
+  }, rep);
+}
 /** Fachada com janelas (andares de 3 m). */
 function texturaFachada(cor, colunas, andares, { acesa = 0.25 } = {}) {
   return tex(256, 256 * (andares / colunas), (g, w, h) => {
@@ -126,7 +141,7 @@ export function criarCidadeSP(ctx) {
   const { cena } = ctx;
   rnd = 7;
   // chão: calçada direita, meio-fio, asfalto, calçada esquerda
-  const calc = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 200), M('#ffffff', { map: texturaCalcada([3, 180]) }));
+  const calc = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 200), M('#ffffff', { map: texturaConcreto() }));
   calc.rotation.x = -Math.PI / 2; calc.position.set(2.5, 0.01, -60); calc.receiveShadow = true; cena.add(calc);
   const calc2 = calc.clone(); calc2.position.x = -7.6; cena.add(calc2);
   cena.add(cx(0.2, 0.18, 200, M('#B9B4AA'), [0.9, 0.09, -60]), cx(0.2, 0.18, 200, M('#B9B4AA'), [-6.0, 0.09, -60]));
@@ -184,6 +199,33 @@ export function piano3d() {
   return g;
 }
 
+/** Cabine de elevador em 3D (portas = +z), com a estrutura amarela e o gancho do cabo no topo. Origem na base. */
+export function elevador3d(kg = '600 kg') {
+  const g = new THREE.Group();
+  const aco = M('#AEB5BE', { metalness: 0.45, roughness: 0.45 }), porta = M('#D7DCE2', { metalness: 0.5, roughness: 0.35 });
+  const escuro = M('#3A3E44'), amarelo = M('#F2C200');
+  g.add(cx(1.4, 2.3, 1.3, aco, [0, 1.2, 0]));
+  g.add(cx(1.44, 0.12, 1.34, escuro, [0, 0.06, 0]));
+  g.add(cx(0.6, 1.95, 0.05, porta, [-0.31, 1.1, 0.66]), cx(0.6, 1.95, 0.05, porta, [0.31, 1.1, 0.66]));
+  g.add(cx(0.025, 1.95, 0.06, escuro, [0, 1.1, 0.665]), cx(1.4, 0.22, 0.07, escuro, [0, 2.2, 0.66]));
+  // estrutura (montantes + travessa) e gancho
+  g.add(cx(0.1, 2.6, 0.14, amarelo, [-0.75, 1.3, 0]), cx(0.1, 2.6, 0.14, amarelo, [0.75, 1.3, 0]), cx(1.6, 0.16, 0.22, amarelo, [0, 2.55, 0]));
+  g.add(cx(0.14, 0.14, 0.14, escuro, [0, 2.7, 0]));
+  // etiqueta de carga
+  const t = tex(256, 128, (c) => { c.fillStyle = '#F4F1EA'; c.fillRect(0, 0, 256, 128); c.fillStyle = '#D23B2B'; c.fillRect(0, 0, 256, 30); c.fillStyle = '#16161A'; c.font = '900 64px Inter, sans-serif'; c.fillText(kg, 18, 104); });
+  const et = new THREE.Mesh(new THREE.PlaneGeometry(0.56, 0.28), new THREE.MeshBasicMaterial({ map: t }));
+  et.position.set(0, 1.55, 0.695); g.add(et);
+  return g;
+}
+
+/** Caixa de ferramentas. */
+export function caixaFerramentas() {
+  const g = new THREE.Group();
+  g.add(cx(0.5, 0.22, 0.24, M('#C0392B'), [0, 0.11, 0]), cx(0.3, 0.05, 0.04, escuroCx(), [0, 0.26, 0]));
+  return g;
+}
+const escuroCx = () => M('#2A2D33');
+
 /** Balancim (plataforma de obra) com guarda-corpo. */
 export function balancim() {
   const g = new THREE.Group();
@@ -195,9 +237,9 @@ export function balancim() {
   return g;
 }
 
-export const corda = (a, b) => {
+export const corda = (a, b, cor = '#C9A36B') => {
   const geo = new THREE.CylinderGeometry(0.025, 0.025, 1, 6);
-  const m = new THREE.Mesh(geo, M('#C9A36B'));
+  const m = new THREE.Mesh(geo, M(cor, cor === '#C9A36B' ? {} : { metalness: 0.6, roughness: 0.4 }));
   m.atualizar = (A, Bp) => {
     const va = new THREE.Vector3(...A), vb = new THREE.Vector3(...Bp);
     m.position.copy(va).add(vb).multiplyScalar(0.5);
