@@ -105,6 +105,7 @@ Observações:
 | O escudo triangular (longo, 16:9) — Ep. 2: O Ladrão de Mapas (2D, 10min26) | escudo-triangular-longo-ep2.mp4 | pronto |
 | O escudo triangular (longo, 16:9) — Ep. 3: A Ferreira (2D, 10min00) | escudo-triangular-longo-ep3.mp4 | pronto |
 | O escudo triangular (longo, 16:9) — Ep. 4: A Fenda (2D, 10min01) | escudo-triangular-longo-ep4.mp4 | pronto |
+| O escudo triangular (longo, 16:9) — Ep. 5: A Arma Verdadeira (2D, 9min54, final da temporada 1) | escudo-triangular-longo-ep5.mp4 | pronto |
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
