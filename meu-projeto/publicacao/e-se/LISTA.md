@@ -123,3 +123,8 @@ Observações:
 | E SE a Sua CRUSH Fosse Embora PRA SEMPRE? | crush-foi-embora.mp4 | pronto |
 | E SE a Sua CRUSH Perdesse a Coisa Que Ela Mais Ama? | gato-na-tempestade.mp4 | pronto |
 | E SE Você Ficasse PRESO na ESCOLA à Noite com a Sua CRUSH? | presos-na-escola-a-noite.mp4 | pronto |
+
+## Gêmeos do que viralizou (mesma estrutura, cenário e ritmo)
+| Título | Baseado em | Arquivo | Status |
+|---|---|---|---|
+| E SE Você Fosse o ÚNICO MENINO no Aniversário da Sua Irmã? | festa-do-pijama.mp4 (25 mil views, 71% retenção) | unico-menino-no-aniversario.mp4 | pronto |
