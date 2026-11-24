@@ -1,0 +1,169 @@
+# EPISÓDIO 1 — A INVOCAÇÃO
+cerco|atk=lobo;n=5;e=medo;topo=FLORESTA_SOMBRIA|Cinco lobos cercando um cara sozinho no meio da floresta, à noite, e a única coisa que ele tem na mão é um escudo.
+objeto|obj=escudo;racha=1;brilho=.2|Um escudo triangular, todo rachado, que o reino inteiro chamou de lixo.
+close|who=kai;e=medo;bg=floresta_noite|E o pior: três dias atrás esse cara tava em casa, jogando videogame de pijama.
+texto|txt=COMO ELE VEIO PARAR AQUI?|Então como foi que ele veio parar aqui? Volta comigo.
+cena|k=invocacao;topo=TRÊS_DIAS_ANTES|Esse é o Kai. Vinte e dois anos, desempregado, e campeão de um jogo que ninguém conhece.
+close|who=kai0;e=feliz;bg=quarto|A vida dele era simples: dormir tarde, acordar tarde e jogar o dia inteiro.
+close|who=kai0;e=confiante;bg=quarto|E no jogo, ele sempre escolhia a mesma classe: o tanque, o cara que segura o dano.
+texto|txt=NINGUÉM ESCOLHE O TANQUE|Ninguém gosta do tanque. Ele não mata ninguém, ele só aguenta.
+close|who=kai0;e=sorriso;bg=quarto|Mas o Kai dizia que time sem tanque morre no primeiro chefe.
+cena|k=invocacao|Só que naquela noite, um círculo de luz apareceu no chão do quarto dele.
+close|who=kai0;e=choque;bg=escuro;sfx=whoosh|Ele nem teve tempo de largar o controle. Foi puxado pra baixo.
+texto|txt=FLASH|Tudo ficou branco.
+close|who=kai0;e=medo;bg=escuro|Ele sentiu o corpo caindo, caindo, como se o chão tivesse virado um poço sem fundo.
+grupo|bg=salao;who=igor,teo,lia,kai0;e=choque,surpreso,surpreso,choque;topo=CASTELO_DE_VALDORA|Quando abriu o olho, tava num salão de pedra gigante, com mais três pessoas do lado.
+close|who=igor;e=confiante;bg=salao|O primeiro, Igor. Alto, cabelo arrumado, cara de quem foi capitão do time da escola.
+close|who=teo;e=feliz;bg=salao|O segundo, Téo. Grandão, risada alta, falava com todo mundo como se fosse amigo de infância.
+close|who=lia;e=serio;bg=salao|E a terceira, Lia. Quieta, olhar frio, e já tava medindo cada saída do salão.
+grupo|bg=salao;who=igor,teo,lia;e=surpreso|Os três também eram do nosso mundo. Um tava na academia, outro na faculdade, a outra no ponto de ônibus.
+close|who=kai0;e=choque;bg=salao|E o Kai, de pijama de dinossauro, segurando um controle sem pilha.
+grupo|bg=salao;who=rei,guarda,guarda;e=feliz|Na frente deles, um rei de barba branca abriu os braços e sorriu.
+close|who=rei;e=feliz;bg=salao|Ele disse que eles eram os quatro heróis lendários, chamados pra salvar o reino de Valdora.
+texto|txt=QUATRO HERÓIS,QUATRO ARMAS|Quatro heróis, quatro armas sagradas. Cada um ia receber uma.
+cena|k=altar;brilho=0;who=igor;e=confiante|Igor subiu no altar primeiro, e a espada brilhou na mão dele.
+objeto|obj=espada;txt=ESPADA_SAGRADA;velocidade=1|A espada sagrada. Corta pedra como se fosse manteiga.
+cena|k=altar;brilho=1;who=teo;e=riso|Depois o Téo. A lança acendeu e o salão inteiro aplaudiu.
+cena|k=altar;brilho=2;who=lia;e=serio|Depois a Lia. O arco escolheu ela sem nem ela encostar.
+cena|k=altar;brilho=3;who=kai;e=choque|E por último, o Kai. Ele subiu, estendeu a mão, e o que veio foi isso.
+objeto|obj=escudo;racha=1;brilho=.1;sfx=thud|Um escudo. Triangular. Rachado no meio.
+detalhe|bg=salao;who=kai;wx=960;wy=1000;s=1.3;x=880;y=690;r=110;txt=REPARA_NO_CENTRO|Repara no círculo dourado no meio do escudo. Guarda essa imagem na cabeça, porque ela vai importar lá na frente.
+grupo|bg=salao;who=igor,teo,lia;acao=rir|Silêncio. E aí alguém riu. E depois todo mundo riu.
+close|who=igor;e=riso;bg=salao|O Igor falou alto: escudo não ataca, escudo não mata, escudo não serve pra nada.
+close|who=kai;e=triste;bg=salao|O Kai ficou parado. Cara vermelha. Segurando aquele escudo como se fosse um prêmio de consolação.
+painel|titulo=SISTEMA;linhas=ARMA: ESCUDO,ATAQUE: ???;amarelo=1|Só que aí apareceu um painel na frente dele. Um painel que só ele enxergava.
+quiz|q=QUANTO_DE_ATAQUE_TEM_O_ESCUDO?;a=500;b=50;c=ZERO;bg=salao|Antes de eu te contar: quanto de ataque tu acha que esse escudo tem? Quinhentos, cinquenta, ou zero? Pensa rápido.
+painel|titulo=SISTEMA;linhas=ATAQUE: 0,HABILIDADE: BLOQUEADA;cor=#FF5F5F|Se tu chutou zero, acertou. Ataque zero. Habilidade bloqueada. Nem o sistema botava fé nele.
+grupo|bg=salao;who=igor,teo,lia;e=confiante|Os outros três também viram painéis. Ataque oitocentos. Ataque seiscentos e cinquenta. Ataque setecentos.
+close|who=kai;e=serio;bg=salao|Mas o Kai, que jogava de tanque há dez anos, olhou pra aquele número e pensou outra coisa.
+texto|txt=E SE NINGUÉM ENTENDEU?|E se ninguém ali entendeu pra que serve um escudo?
+mapa|exp=castelo;em=castelo;topo=O_REINO|O rei abriu um mapa enorme na mesa. O reino de Valdora.
+mapa|exp=castelo,vila;em=vila|A capital, a Vila Pedraverde, e em volta dela tudo coberto de névoa.
+mapa|exp=castelo,vila;em=floresta|Ninguém sabia direito o que tinha nessas terras. Os mapas antigos se perderam.
+close|who=rei;e=serio;bg=salao|Quem trouxesse o mapa completo, disse o rei, ganharia terras, título e um lugar do lado do trono.
+close|who=igor;e=confiante;bg=salao|O Igor já tava sorrindo. Ele adorava ganhar.
+mapa|exp=castelo,vila;em=montanhas|Montes de Ferro. Lago Espelho. Deserto Rubro. Só nomes, sem caminho.
+cena|k=fenda_profecia;txt=30_DIAS|E bem no centro, um lugar marcado em roxo: a Fenda.
+close|who=rei;e=serio;bg=salao|A profecia dizia: em trinta dias a Fenda abre, e o que sair dela engole o reino.
+quiz|q=O_QUE_SAI_DA_FENDA?;a=UM_DRAGÃO;b=UM_EXÉRCITO;c=ALGO_PIOR;bg=salao|E aí, o que tu acha que sai de dentro de uma Fenda dessas? Um dragão, um exército, ou alguma coisa pior? Guarda teu palpite, que a resposta vem.
+close|who=rei;e=confiante;bg=salao|Mas antes, disse o rei, cada herói tem que provar que merece a arma. Três provas, amanhã de manhã.
+desafio|n=1;titulo=PROVA_DO_ALVO;sub=ACERTAR_O_CENTRO_A_50_METROS;bg=vila;topo=AS_PROVAS|Desafio número um. A prova do alvo. Acertar o centro a cinquenta metros.
+cena|k=alvo;who=lia;acerto=1|A Lia foi primeiro. Uma flecha só, bem no meio.
+cena|k=alvo;who=teo;acerto=1|O Téo cravou a lança no centro, e o Igor fez o mesmo jogando a espada girando. Três de três.
+close|who=kai;e=medo;bg=vila|E o Kai? Ele tinha um escudo. Como é que se acerta um alvo com um escudo?
+quiz|q=COMO_ACERTAR_O_ALVO_COM_UM_ESCUDO?;a=ARREMESSAR;b=DESISTIR;c=CORRER_ATÉ_ELE;bg=vila|E aí, se fosse tu: arremessa o escudo, desiste da prova, ou sai correndo até o alvo e bate nele?
+close|who=kai;e=serio;bg=vila|Ele girou o corpo inteiro e arremessou o escudo como um disco.
+objeto|obj=escudo;velocidade=1;racha=1|O escudo voou, rodando, rodando...
+texto|txt=ERROU POR UM METRO|E errou o alvo por um metro. Bateu na parede e caiu.
+grupo|bg=vila;who=povo0,povo1,povo2;acao=rir|A plateia gargalhou. Um nobre gritou: devolve o escudo pro ferreiro!
+fato|k=escudo1200;topo=CURIOSIDADE|Mas olha que curioso: escudos assim, em forma de gota ou triângulo, viraram moda na Europa lá por volta do ano mil e duzentos.
+fato|k=escorrega|A ponta de baixo protegia a perna do cavaleiro, e a parte de cima deixava o golpe escorregar pro lado, em vez de bater de frente.
+texto|txt=FEITO PRA DESVIAR,NÃO PRA ATACAR|Ou seja: o escudo triangular não foi feito pra atacar. Foi feito pra desviar.
+close|who=kai;e=triste;bg=vila|Mas ninguém ali sabia disso. Prova um: Kai, zero.
+desafio|n=2;titulo=PROVA_DA_FORÇA;sub=SEGURAR_A_PEDRA_DO_TROLL;bg=vila|Desafio número dois. A prova da força. Uma pedra de quinhentos quilos jogada por uma catapulta.
+close|who=guarda;e=serio;bg=vila|O capitão da guarda explicou: a pedra vem a cem quilômetros por hora. Quem não segurar, sai do torneio.
+grupo|bg=vila;who=povo0,povo1,povo2,povo3;e=surpreso|Todo mundo deu três passos pra trás.
+cena|k=pedra;who=igor;ok=1|O Igor partiu a pedra no meio com a espada.
+cena|k=pedra;who=teo;ok=1|O Téo desviou com a lança girando, e a Lia rachou a pedra no ar com uma flecha só.
+close|who=kai;e=medo;bg=vila|Agora era a vez do Kai. E a catapulta já tava carregada.
+quiz|q=O_QUE_ACONTECE_COM_O_KAI?;a=VOA_LONGE;b=SEGURA_A_PEDRA;c=ALGO_ESTRANHO;bg=vila|Palpite rápido: o Kai voa longe, segura a pedra, ou acontece alguma coisa estranha?
+reflexo|atk=chefe;hit=.9;bg=vila;topo=PROVA_DA_FORÇA|A pedra veio. O Kai levantou o escudo, fechou o olho e...
+texto|txt=A PEDRA VOLTOU|A pedra voltou. Voltou voando pro lado da catapulta com o dobro da força.
+quiz|q=O_QUE_ACONTECE_COM_O_KAI?;a=VOA_LONGE;b=SEGURA_A_PEDRA;c=ALGO_ESTRANHO;certa=C;bg=vila|Quem marcou a letra C, pode comemorar.
+grupo|bg=vila;who=guarda,guarda,povo1;acao=medo|A catapulta virou lenha. Os guardas saíram correndo.
+close|who=kai;e=surpreso;bg=vila|O Kai abriu o olho e não viu nada. Só poeira.
+close|who=igor;e=raiva;bg=vila|E o Igor, que tava do lado da catapulta, gritou: o escudo dele quebrou a nossa máquina!
+grupo|bg=vila;who=povo0,povo2,povo3;e=raiva|Ninguém viu a pedra voltar. Viram só a catapulta destruída e o herói do escudo no meio da poeira.
+painel|titulo=SISTEMA;linhas=HABILIDADE: REFLEXO,DEVOLVE O DANO EM DOBRO;amarelo=1|Só o Kai viu o painel. Habilidade desbloqueada: Reflexo. Devolve o dano em dobro.
+close|who=kai;e=confiante;bg=vila|Ele começou a entender. O escudo não tinha ataque porque o ataque dele era o ataque do inimigo.
+texto|txt=PROVA 2: DESCLASSIFICADO|Mas o juiz anotou: prova dois, desclassificado por dano ao reino.
+desafio|n=3;titulo=ESCOLHA_DE_GRUPO;sub=QUEM_VAI_COM_QUEM;bg=salao|Desafio número três, o mais cruel. Cada herói recebe voluntários pra montar o seu grupo.
+grupo|bg=salao;who=igor,guarda,guarda,povo1;e=confiante|Atrás do Igor, uma fila. Doze cavaleiros.
+grupo|bg=salao;who=teo,povo0,lia,povo3;e=feliz,feliz,serio,serio|Atrás do Téo, dez. Atrás da Lia, oito.
+grupo|bg=salao;who=kai;e=triste;s=1.1|Atrás do Kai: ninguém. Nem um.
+close|who=kai;e=triste;bg=salao|Ele olhou pro lado e viu um cavaleiro que ia vir. O Igor cochichou alguma coisa, e o cavaleiro voltou.
+cena|k=moedas;topo=O_PAGAMENTO|E na hora do dinheiro: cem moedas pro Igor, cem pro Téo, cem pra Lia. E dez pro Kai.
+objeto|obj=moedas;n=10|Dez moedas. Não dava nem pra comprar uma espada usada.
+close|who=rei;e=serio;bg=salao|O rei falou na frente de todo mundo: o herói do escudo vai sozinho. Talvez assim ele aprenda.
+close|who=kai;e=serio;bg=salao|O Kai não respondeu. Pegou as dez moedas, colocou o escudo nas costas e saiu.
+comenta|txt=INJUSTIÇA;top=SE_TU_ACHA_QUE_O_REI_ERROU,_COMENTA:|Se tu acha que o rei foi injusto com ele, comenta aí embaixo: injustiça. Quero ver quantos tão do lado do Kai.
+mapa|exp=castelo,vila;rota=castelo,vila;topo=A_JORNADA|No mapa, os outros heróis foram pro norte, pelas estradas seguras.
+mapa|exp=castelo,vila;rota=vila,floresta|E o Kai foi mandado pro sul. Direto pra Floresta Sombria.
+grupo|bg=estrada;who=kai;acao=andar;dx=300;s=1.05|Ele andou o dia inteiro pela estrada. Passou por moinho, por ovelha, por rio.
+close|who=kai;e=triste;bg=estrada|Sem mapa, sem guia, sem ninguém pra conversar. Só ele e o barulho do moinho.
+texto|txt=DIA 1 DE 30|Dia um de trinta. E ele ainda nem tinha matado um slime.
+close|who=kai;e=cansado;bg=estrada|O pé doía. O escudo pesava. E a única coisa no bolso eram dez moedas.
+grupo|bg=estrada;who=kai,povo1;e=serio,feliz|Um velho na beira da estrada disse: rapaz, ninguém entra naquela floresta depois que o sol se põe.
+close|who=kai;e=confiante;bg=estrada|O Kai sorriu e falou: então eu vou ser o primeiro.
+comenta|txt=EU_ENTRARIA;top=E_TU,_ENTRARIA_NESSA_FLORESTA?|E tu, entraria numa floresta dessas à noite, sozinho? Se sim, comenta: eu entraria.
+desafio|n=4;titulo=SOBREVIVER_À_NOITE;sub=FLORESTA_SOMBRIA_ATÉ_O_AMANHECER;bg=floresta_noite|Desafio número quatro. Sobreviver uma noite inteira sozinho na Floresta Sombria.
+grupo|bg=floresta;who=kai;acao=andar;dx=200;topo=FLORESTA_SOMBRIA|A floresta era linda de dia. Raio de sol entre os pinheiros, cogumelo, passarinho.
+grupo|bg=floresta_noite;who=kai;e=medo|Mas o sol caiu rápido. E aí a floresta mudou.
+cena|k=fogueira;e=cansado|Ele juntou galho, fez uma fogueira e sentou com as costas numa árvore.
+objeto|obj=fogueira|O fogo era a única luz num raio de quilômetros.
+close|who=kai;e=triste;bg=floresta_noite|Ele comeu o último pedaço de pão e pensou em casa. Na cama dele. No videogame ligado.
+texto|txt=SERÁ QUE ALGUÉM SENTIU FALTA?|Será que alguém tinha percebido que ele sumiu?
+close|who=kai;e=medo;bg=floresta_noite|Aí ele ouviu um galho quebrar. Depois outro.
+cena|k=fogueira;olhos=1;e=medo|E no escuro, dois olhos amarelos. Depois quatro. Depois oito.
+close|who=lobo;e=raiva;bg=floresta_noite|Um lobo saiu da moita. Maior que um cachorro. Muito maior.
+close|who=kai;e=medo;bg=floresta_noite|O Kai levantou o escudo tremendo. Era a primeira luta de verdade da vida dele.
+reflexo|atk=lobo;hit=.7;bg=floresta_noite|O lobo pulou. Bateu de cara no escudo.
+texto|txt=CAIN!|E foi arremessado pra trás, rolando pelo chão.
+painel|titulo=SISTEMA;linhas=REFLEXO: 1x,DANO DEVOLVIDO: 40|Reflexo. Dano devolvido. O lobo levantou mancando e sumiu no mato.
+close|who=kai;e=surpreso;bg=floresta_noite|O Kai respirou. Funcionou. Funcionou de verdade.
+texto|txt=MAS ERA SÓ O PRIMEIRO|Só que ele esqueceu de um detalhe. Aquele era só o primeiro.
+desafio|n=5;titulo=A_MATILHA;sub=CINCO_LOBOS_AO_MESMO_TEMPO;bg=floresta_noite|E o próximo desafio chegou sem aviso nenhum.
+cerco|atk=lobo;n=5;e=medo|Cinco lobos saíram do escuro ao mesmo tempo, cercando ele por todos os lados.
+fato|k=matilha;topo=CURIOSIDADE|E isso é real: lobo quase nunca ataca sozinho. Ele caça em grupo, e o grupo cerca a presa pra ela não ter pra onde correr.
+fato|k=matilha|Enquanto um distrai pela frente, os outros esperam a presa virar as costas.
+close|who=kai;e=serio;bg=floresta_noite|O Kai sabia disso. Ele jogava de tanque. Tanque cercado é tanque morto.
+quiz|q=CERCADO_POR_5_LOBOS._O_QUE_FAZER?;a=CORRER;b=SUBIR_NA_ÁRVORE;c=COSTAS_NA_ÁRVORE;bg=floresta_noite|Agora tu pensa como tanque. Cinco lobos em volta. Corre, sobe na árvore, ou encosta as costas nela?
+close|who=kai;e=confiante;bg=floresta_noite|O Kai escolheu a C. Correr, lobo alcança. Subir, ele cansa e cai. Mas encostado na árvore, sobra um lado só pra defender.
+reflexo|atk=lobo;hit=.5;bg=floresta_noite|O primeiro pulou. Reflexo.
+close|who=lobo;e=choque;bg=floresta_noite|O segundo nem entendeu o que aconteceu com o irmão. Pulou do mesmo jeito. Voou do mesmo jeito.
+detalhe|bg=floresta_noite;who=kai;wx=960;wy=1000;s=1.1;x=960;y=980;r=120;txt=REPARA_NOS_PÉS|Repara no pé dele. O terceiro veio pela lateral, e o Kai não girou só o braço: girou o corpo inteiro junto com o escudo.
+fato|k=reacao;topo=CURIOSIDADE|Sabe quanto tempo um humano leva pra reagir a algo que vê? Uns dois décimos de segundo.
+close|who=kai;e=serio;bg=floresta_noite|E dez anos de videogame deram ao Kai exatamente isso: reflexo rápido.
+cerco|atk=lobo;n=2;e=confiante;brilho=.6|Sobraram dois. Eles se olharam. E o Kai bateu o escudo no chão.
+painel|titulo=SISTEMA;linhas=REFLEXO x3,VIDA: 62%|Reflexo três vezes. Vida em sessenta e dois por cento. O braço dele já tava dormente.
+texto|txt=BUM|O barulho ecoou na floresta inteira.
+grupo|bg=floresta_noite;who=lobo,lobo;acao=correr;dx=600|Os dois lobos fugiram com o rabo entre as pernas.
+cena|k=nivel;de=1;para=4|Nível um. Nível dois. Nível três. Nível quatro.
+close|who=kai;e=riso;bg=floresta_noite|O Kai caiu sentado e começou a rir sozinho. Tremendo, mas rindo.
+cena|k=fogueira;e=feliz|E quando o sol nasceu, ele ainda tava ali, vivo, do lado da fogueira apagada.
+texto|txt=1_NOITE,5_LOBOS,0_CAVALEIROS|Uma noite, cinco lobos, zero cavaleiros. Desafio quatro e cinco: concluídos.
+close|who=kai;e=feliz;bg=floresta|Ele levantou, espreguiçou e colocou a mão no bolso pra contar as dez moedas.
+texto|txt=O BOLSO TAVA VAZIO|O bolso tava vazio.
+cena|k=roubo;topo=O_LADRÃO|E correndo entre as árvores, com a bolsinha na mão, um goblin dando risada.
+desafio|n=6;titulo=PEGA_O_LADRÃO;sub=RECUPERAR_AS_10_MOEDAS;bg=floresta|Desafio número seis. Pega o ladrão.
+cena|k=roubo|O Kai saiu correndo atrás. Pulando raiz, desviando de galho.
+close|who=goblin;e=riso;bg=floresta|O goblin era rápido. Mais rápido que ele.
+fato|k=texto;txt=GOBLIN:_LENDA_EUROPEIA;topo=CURIOSIDADE|E sabe de onde vem a palavra goblin? Do folclore europeu. Era o nome de espíritozinhos travessos que roubavam coisas das casas à noite.
+close|who=kai;e=raiva;bg=floresta|Ou seja, esse aqui tava fazendo exatamente o trabalho dele.
+close|who=kai;e=cansado;bg=floresta|E escudo é pesado. Correr com escudo nas costas é castigo.
+mapa|exp=castelo,vila,floresta;rota=floresta,caverna;em=caverna|O goblin entrou numa trilha que nem aparecia no mapa, subindo pro leste.
+grupo|bg=caverna;who=kai;e=surpreso;topo=CAVERNA_DOS_CRISTAIS|E acabou numa caverna. Uma caverna cheia de cristal brilhando.
+fato|k=cristal;topo=CURIOSIDADE|Sabe por que cristal brilha assim? A luz entra, bate nas faces lá dentro e fica quicando antes de sair. Parece que tá preso.
+close|who=kai;e=serio;bg=caverna|O Kai entrou devagar. O goblin tava lá no fundo, contando as moedas.
+grupo|bg=caverna;who=goblin,goblin,goblin;e=riso|Mas não tava sozinho. Tinha mais três.
+close|who=kai;e=confiante;bg=caverna|Dessa vez ele nem precisou pensar. Parede nas costas antes do primeiro goblin se mexer.
+reflexo|atk=goblin;hit=.5;bg=caverna|O primeiro veio com uma faquinha. Reflexo. Voou longe.
+close|who=goblin;e=choque;bg=caverna|O segundo jogou uma pedra. Ela voltou e acertou bem no meio da testa dele. Galo na hora.
+grupo|bg=caverna;who=goblin,goblin;acao=correr;dx=-700|Os outros dois largaram tudo e fugiram.
+painel|titulo=SISTEMA;linhas=NÍVEL 6,REFLEXO: NÍVEL 2;amarelo=1|Nível seis. E o reflexo subiu de nível também.
+objeto|obj=moedas;n=10;bg=caverna|As dez moedas. Todas ali.
+cena|k=cristal_mapa|Mas no fundo da caverna tinha outra coisa. Um cristal diferente, com linhas desenhadas dentro.
+close|who=kai;e=surpreso;bg=caverna|Quando o Kai encostou, o cristal acendeu e as linhas saíram voando pro ar.
+mapa|exp=castelo,vila,floresta,caverna,montanhas;em=montanhas|Era um pedaço do mapa antigo. A névoa sumiu dos Montes de Ferro.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago;em=lago|E do Lago Espelho. Caminhos que ninguém no reino conhecia.
+painel|titulo=SISTEMA;linhas=FRAGMENTO DE MAPA 1/5,NOVAS REGIÕES DESCOBERTAS;amarelo=1|Fragmento de mapa: um de cinco.
+close|who=kai;e=confiante;bg=caverna|Os outros heróis tinham cavaleiro, dinheiro e aplauso. O Kai tinha uma coisa que nenhum deles tinha.
+texto|txt=ELE SABIA O CAMINHO|Ele sabia o caminho.
+cena|k=olhos_moita;bg=floresta;e=surpreso|Só que lá fora, escondidos atrás das árvores, três pessoas tinham visto tudo.
+close|who=lia;e=surpreso;bg=floresta|A Lia viu os lobos voando. Viu os goblins voando.
+close|who=teo;e=choque;bg=floresta|O Téo ficou de boca aberta.
+close|who=igor;e=sorriso;bg=floresta|E o Igor só sorriu. Um sorriso que não tinha nada de amigo.
+close|who=igor;e=serio;bg=escuro|Porque o Igor entendeu uma coisa naquela hora: se o escudo for forte, a espada deixa de ser a estrela.
+texto|txt=29 DIAS PRA FENDA|Faltam vinte e nove dias pra Fenda abrir.
+close|who=kai;e=serio;bg=caverna|E agora me diz: se tu fosse o Kai, tu contaria pro reino o que esse escudo faz, ou guardaria segredo?
+texto|txt=CONTA OU ESCONDE?|Conta ou esconde? Comenta aí. E curte pra parte dois.

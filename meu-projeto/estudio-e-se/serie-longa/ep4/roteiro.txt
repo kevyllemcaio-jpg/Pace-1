@@ -1,0 +1,143 @@
+# EPISÓDIO 4 — A FENDA
+grupo|bg=fenda;who=kai;e=serio;s=1.1;topo=A_FENDA|Um rasgo roxo no céu, do tamanho de uma montanha. E na frente dele, um cara com um escudo.
+close|who=kai;e=surpreso;bg=fenda;brilho=1|E aí, lá de dentro, uma voz falou o nome da arma dele. Como se conhecesse ela há mil anos.
+texto|txt=EPISÓDIO 4,A FENDA|Episódio quatro. A Fenda.
+grupo|bg=salao;who=rei,guarda,guarda;e=serio;topo=CASTELO_DE_VALDORA|Naquela mesma noite, o rei chamou os quatro heróis no salão.
+close|who=rei;e=serio;bg=salao|A Fenda abriu antes do tempo. Amanhã de manhã, vocês marcham até ela e fecham ela. De qualquer jeito.
+close|who=igor;e=confiante;bg=salao|O Igor deu um passo à frente. Eu lidero. Meus cavaleiros vão pelo Vale Estreito. É o caminho mais curto.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;rota=castelo,fenda;em=fenda|No mapa, o Vale Estreito era uma linha reta do castelo até a Fenda. Meio dia de marcha.
+close|who=kai;e=serio;bg=salao|Mas o Kai conhecia aquele mapa melhor que ninguém. E no fragmento dois, o vale tinha uma marca vermelha.
+texto|txt=VALE = ARMADILHA|O vale era uma armadilha. Paredes altas dos dois lados, saída estreita. O lugar perfeito pra ser cercado.
+close|who=kai;e=serio;bg=salao|Ele falou isso na frente de todo mundo. E o salão ficou em silêncio.
+close|who=igor;e=riso;bg=salao|Até o Igor rir. Agora o herói do escudo é estrategista? Tu vai pelo caminho que quiser. Eu vou pelo meu.
+close|who=rei;e=serio;bg=salao|E o rei concordou com o Igor. Sem nem olhar o mapa.
+close|who=teo;e=serio;bg=salao|O Téo olhou pro Kai, olhou pro Igor, e foi com o Igor. Era o lado do rei.
+close|who=lia;e=confiante;bg=salao|Mas a Lia pegou o arco e parou do lado do Kai. Eu vou pelo deserto.
+close|who=nina;e=confiante;bg=salao|E a Nina, que nem era heroína, levantou o martelo. Eu também.
+grupo|bg=vila_noite;who=igor,guarda;e=serio,neutro;esp=500;topo=MEIA-NOITE|Naquela noite, o Igor foi atrás do capitão da guarda. Esse brasão no teu peito. De onde vem a espada que vocês me deram?
+close|who=guarda;e=serio;bg=vila_noite|O capitão olhou pros lados e respondeu baixo: herói não faz pergunta. Herói obedece.
+close|who=igor;e=serio;bg=vila_noite|Foi a primeira vez que o Igor dormiu mal desde que chegou nesse mundo.
+close|who=nina;e=confiante;bg=forja|E a Nina passou a madrugada na forja da vila, fazendo vinte flechas com ponta de cristal azul. Elas brilhavam no escuro.
+close|who=lia;e=sorriso;bg=forja|Se as sombras têm medo de luz, disse a Nina, tua flecha agora é uma lanterna voadora.
+quiz|q=TU_IA_POR_QUAL_CAMINHO?;a=VALE_COM_O_IGOR;b=DESERTO_COM_O_KAI;bg=salao|E tu? Ia pelo vale, com o rei e os cavaleiros, ou pelo deserto, com o herói que todo mundo zoa? Pensa bem antes de responder.
+texto|txt=DOIS CAMINHOS|Dois caminhos. Dois grupos. E só um ia chegar inteiro.
+desafio|n=1;titulo=O_DESERTO_RUBRO;sub=ATRAVESSAR_EM_UM_DIA;bg=deserto|Desafio número um. Atravessar o Deserto Rubro em um dia.
+grupo|bg=deserto;who=kai,lia,nina;acao=andar;dx=250;topo=DESERTO_RUBRO|Areia vermelha até onde o olho alcançava. Sol queimando. Nenhuma sombra.
+close|who=lia;e=surpreso;bg=deserto|Aí a areia começou a fazer um barulho grave, tipo um avião passando longe. Sem vento nenhum.
+quiz|q=DUNA_PODE_FAZER_BARULHO_SOZINHA?;a=PODE;b=É_MONSTRO;c=É_IMAGINAÇÃO;bg=deserto|Pergunta: uma duna pode fazer barulho sozinha, é monstro, ou é imaginação da Lia?
+fato|k=texto;txt=DUNAS_QUE_CANTAM:_EXISTEM_DE_VERDADE;topo=CURIOSIDADE|Pode. Existem as dunas que cantam. Quando a areia escorrega pela encosta, os grãos vibram juntos e fazem um ronco que dá pra ouvir a quilômetros. Tem no Marrocos, na China, nos Estados Unidos.
+fato|k=texto;txt=SÓ_CERCA_DE_20%_DOS_DESERTOS_SÃO_DUNAS;topo=CURIOSIDADE|E um detalhe que pouca gente sabe: só uns vinte por cento dos desertos do mundo são cobertos de dunas. O resto é pedra, cascalho e chão rachado.
+close|who=nina;e=cansado;bg=deserto|A Nina reclamava a cada duna. Ferreira é acostumada com calor, ela dizia. Mas calor de forja, não de inferno.
+fato|k=texto;txt=DESERTO:_50°C_DE_DIA,_0°C_À_NOITE;topo=CURIOSIDADE|E olha que doido: num deserto, a areia pode passar de cinquenta graus de dia e chegar perto de zero de noite. Sem nuvem, o calor escapa todo pro céu.
+close|who=kai;e=serio;bg=deserto|Por isso o Kai seguiu o mapa: andar no começo da manhã, parar no meio do dia, andar de novo no fim da tarde.
+close|who=nina;e=cansado;bg=deserto|Lá pela tarde, o cantil da Nina secou. E ela apontou pra um cacto. Dá pra beber dali, né?
+quiz|q=SEM_ÁGUA_NO_DESERTO:_BEBE_DO_CACTO?;a=BEBE;b=NÃO_BEBE;bg=deserto|Tu beberia? Sim ou não?
+fato|k=texto;txt=CACTO_NÃO_É_CANTIL;topo=CURIOSIDADE|Não bebe. Isso é mito de filme. A maioria dos cactos tem seiva amarga e ácida, que dá vômito e dor de barriga. Aí tu perde ainda mais água.
+close|who=kai;e=serio;bg=deserto|O Kai dividiu o cantil dele em três. Um gole por hora. Ninguém reclamou.
+grupo|bg=deserto;who=kai,lia,nina;e=cansado|Eles pararam na sombra de uma ruína antiga, cheia de símbolos na parede.
+close|who=lia;e=surpreso;bg=deserto|A Lia passou a mão numa pedra e chamou o Kai. Olha isso.
+objeto|obj=escudo;racha=0;brilho=.6;bg=deserto;txt=O_MESMO_SÍMBOLO|Na pedra tinha um triângulo. O mesmo formato do escudo dele.
+desafio|n=2;titulo=O_ENIGMA_DA_RUÍNA;sub=ABRIR_A_PORTA_DE_PEDRA;bg=deserto|Desafio número dois. O enigma da ruína.
+close|who=kai;e=serio;bg=deserto|No meio da ruína, uma porta de pedra com três placas no chão e uma frase escrita.
+texto|txt=SÓ QUEM PROTEGE PASSA|Só quem protege passa.
+close|who=nina;e=raiva;bg=deserto|A Nina pisou numa placa. Nada. A Lia pisou em outra. Nada. Pisaram as duas juntas. Nada.
+quiz|q=SÓ_QUEM_PROTEGE_PASSA._COMO_ABRE?;a=PISA_NAS_TRÊS;b=QUEBRA_A_PORTA;c=PROTEGE_ALGUÉM;bg=deserto|Tua vez de resolver. Pisa nas três placas, quebra a porta, ou faz outra coisa? Lê a frase de novo.
+close|who=kai;e=confiante;bg=deserto|E o Kai entendeu. Ele botou as duas meninas em cima das placas e se colocou na frente delas, com o escudo levantado.
+texto|txt=CLAC|A terceira placa afundou sozinha. A porta abriu.
+cena|k=cristal_mapa|Lá dentro, flutuando numa luz vermelha, o terceiro fragmento do mapa.
+detalhe|bg=deserto;x=960;y=420;r=220;txt=REPARA_NA_PAREDE|Mas repara na parede atrás do fragmento. Um desenho antigo: quatro pessoas na frente de um rasgo no céu. E uma delas segura um triângulo.
+close|who=kai;e=choque;bg=deserto|As outras três tinham espada, lança e arco. Esse desenho tinha quinhentos anos. E era o time deles.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;em=fenda|Três de cinco. E o mapa mostrou uma coisa que gelou o Kai.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;rota=castelo,fenda;em=fenda|O Vale Estreito tava cheio de pontinhos roxos. Centenas. Esperando.
+close|who=kai;e=choque;bg=deserto|O Igor tava marchando direto pra dentro de uma emboscada.
+texto|txt=NOITE NO DESERTO|Mas antes do vale, veio a noite. E com ela, o frio. E o cristal do mapa apagou sem luz.
+quiz|q=QUAL_ESTRELA_MOSTRA_O_SUL?;a=CRUZEIRO_DO_SUL;b=ÓRION;c=URSA_MAIOR;bg=deserto_noite|Sem mapa, a Lia olhou pro céu. Se tu tivesse que achar o sul pelas estrelas, qual tu procurava?
+fato|k=texto;txt=CRUZEIRO_DO_SUL_APONTA_O_SUL;topo=CURIOSIDADE|O Cruzeiro do Sul. Prolonga o braço maior da cruz umas quatro vezes e meia pra baixo, e tu tá olhando pro sul. Navegador usa isso há séculos.
+grupo|bg=deserto_noite;who=kai,lia,nina;acao=andar;dx=250|A Lia guiou a noite inteira pelas estrelas, sem errar uma duna.
+desafio|n=3;titulo=A_TEMPESTADE;sub=CHEGAR_AO_VALE_ANTES_DO_IGOR;bg=tempestade|Desafio número três. Chegar no vale antes do Igor. Só que o céu tinha outros planos.
+cena|k=tempestade;raio=0;e=serio;topo=A_TEMPESTADE|O vento virou. Nuvem preta cobriu o deserto em minutos. E veio a chuva.
+cena|k=tempestade;hit=.4;e=choque|E veio o raio. Caiu a vinte metros deles.
+close|who=lia;e=medo;bg=tempestade|A Lia gritou pra todo mundo deitar. Mas o Kai ficou de pé, contando.
+detalhe|bg=tempestade;who=nina;wx=960;wy=1000;s=1.2;x=960;y=430;r=170;txt=REPARA_NO_CABELO|Repara no cabelo da Nina. Arrepiado, em pé, sem vento nenhum.
+fato|k=texto;txt=CABELO_ARREPIOU_NA_TEMPESTADE:_AGACHA;topo=CURIOSIDADE|Isso é sinal real de perigo: quando o cabelo arrepia numa tempestade, o ar em volta tá carregado e um raio pode cair ali perto. A orientação é sair de lugar alto e agachar.
+fato|k=trovao;topo=CURIOSIDADE|Tem uma regra que todo mundo devia saber. Quando vê o raio, conta os segundos até o trovão. Cada três segundos, um quilômetro de distância.
+fato|k=trovao|Porque a luz chega quase na hora, mas o som anda devagar. Uns trezentos e quarenta metros por segundo.
+close|who=kai;e=serio;bg=tempestade|Um. Dois. Trovão. A tempestade tava menos de um quilômetro deles. E chegando.
+quiz|q=VIU_O_RAIO,_CONTOU_6_SEGUNDOS._DISTÂNCIA?;a=1_KM;b=2_KM;c=6_KM;bg=tempestade|Teste rápido com a regra: tu vê o raio e conta seis segundos até o trovão. Ele caiu a que distância?
+quiz|q=VIU_O_RAIO,_CONTOU_6_SEGUNDOS._DISTÂNCIA?;a=1_KM;b=2_KM;c=6_KM;certa=B;bg=tempestade|Dois quilômetros. Seis dividido por três. Agora tu nunca mais esquece.
+texto|txt=E ALGO SAIU DA AREIA|E aí, com a areia molhada, alguma coisa saiu do chão.
+close|who=gigante;e=raiva;bg=tempestade|Um verme de areia gigante, roxo, com os mesmos olhos das sombras da vila. A Fenda tava espalhando os monstros.
+close|who=nina;e=medo;bg=tempestade|A Nina levantou o martelo. A Lia puxou três flechas.
+quiz|q=COMO_O_KAI_VENCE_O_VERME?;a=FOGE;b=BARREIRA;c=USA_O_RAIO;bg=tempestade|E o Kai? Foge, levanta a barreira, ou usa a própria tempestade? Uma delas é completamente maluca.
+close|who=kai;e=confiante;bg=tempestade|Ele subiu na duna mais alta e levantou o escudo pro céu.
+cena|k=tempestade;hit=.8;e=raiva;atk=gigante|O raio caiu no escudo. E o escudo devolveu. Em dobro. Direto no verme.
+texto|txt=REFLEXO DE RAIO|Reflexo de raio.
+grupo|bg=tempestade;who=lia,nina;acao=medo|O verme sumiu num estouro de areia de vidro. A Lia e a Nina ficaram paradas, de boca aberta.
+painel|titulo=SISTEMA;linhas=REFLEXO ELEMENTAL,NÍVEL 20;amarelo=1|Reflexo elemental. Nível vinte.
+close|who=kai;e=cansado;bg=tempestade|O Kai caiu sentado, cabelo em pé, fumaça saindo da armadura. Nunca mais, ele disse.
+desafio|n=4;titulo=O_VALE_ESTREITO;sub=SALVAR_OS_CAVALEIROS;bg=fenda|Desafio número quatro. O Vale Estreito.
+grupo|bg=fenda;who=kai,lia,nina;acao=correr;dx=400;topo=VALE_ESTREITO|Eles chegaram no alto do vale no fim da tarde. E lá embaixo, era exatamente o que o mapa mostrou.
+cerco|atk=sombra;n=7;e=medo;bg=fenda|Os cavaleiros do Igor cercados. Sombras descendo pelas paredes dos dois lados.
+close|who=igor;e=medo;bg=fenda|O Igor lutava no meio, espada brilhando. Mas pra cada sombra que ele cortava, vinham duas.
+close|who=teo;e=cansado;bg=fenda|O Téo tava ferido no braço. Os cavaleiros caíam um por um.
+close|who=teo;e=medo;bg=fenda|E uma sombra já tava em cima dele, pronta pro golpe.
+close|who=lia;e=serio;bg=fenda|A Lia olhou pro Kai. Tu não deve nada pra ele. Ele roubou de ti.
+close|who=kai;e=serio;bg=fenda|O Kai respondeu: escudo não escolhe quem protege.
+comenta|txt=SALVA_OU_DEIXA;top=E_TU,_SALVAVA_O_IGOR?_COMENTA:|E tu, no lugar dele? Salvava quem te roubou? Comenta: salva ou deixa.
+grupo|bg=fenda;who=kai;acao=correr;dx=600|E desceu a parede do vale escorregando, direto pro meio do cerco.
+close|who=teo;e=choque;bg=fenda|A sombra desceu o golpe no Téo. E bateu num escudo que não tava ali meio segundo antes.
+close|who=teo;e=surpreso;bg=fenda|Por que tu me salvou? Eu fui com eles. O Kai nem olhou pra trás: porque tu tava na frente do golpe.
+cerco|atk=sombra;n=7;e=raiva;bg=fenda;barreira=1;brilho=1;sfx=brilho|Barreira.
+texto|txt=A CÚPULA ABRIU|A cúpula azul abriu em volta de todos os cavaleiros feridos.
+close|who=igor;e=choque;bg=fenda|O Igor olhou pra cima e viu quem tava segurando a barreira. E não conseguiu falar nada.
+cena|k=alvo;who=lia;acerto=1|Lá de cima, a Lia atirava flecha atrás de flecha.
+close|who=nina;e=raiva;bg=fenda|E a Nina desceu rolando a encosta com o martelo e caiu em cima de três sombras de uma vez.
+painel|titulo=SISTEMA;linhas=VIDA: 40%,BARREIRA: 30 ALVOS;cor=#FF5F5F|Trinta pessoas dentro da barreira. Cada golpe nelas, o Kai sentia.
+close|who=kai;e=cansado;bg=fenda|Igor! Ele gritou. Tu tem a espada mais forte do reino. Para de cortar sombra e abre caminho!
+close|who=igor;e=raiva;bg=fenda|O Igor hesitou um segundo. E depois fez uma coisa que nunca tinha feito. Obedeceu.
+grupo|bg=fenda;who=igor,teo;acao=correr;dx=500|Espada e lança juntas, abrindo um corredor no meio das sombras.
+texto|txt=TANQUE,ESPADA,LANÇA,ARCO|Tanque na frente. Espada e lança abrindo. Arco cobrindo de cima.
+fato|k=texto;txt=FORMAÇÃO:_ESCUDO_NA_FRENTE;topo=CURIOSIDADE|E isso é tática real. Exército antigo andava em bloco: escudo na frente, lança logo atrás, arqueiro no fundo. Sozinho, cada um cai. Juntos, viram uma parede.
+grupo|bg=fenda;who=kai,igor,teo,lia;e=raiva|E pela primeira vez, os quatro heróis lutaram como um time.
+comenta|txt=TIME;top=QUER_VER_OS_4_JUNTOS_DE_NOVO?_COMENTA:|Se tu quer ver esses quatro lutando juntos de novo, comenta: time.
+grupo|bg=fenda;who=sombra,sombra,sombra;acao=correr;dx=800|As sombras recuaram pro alto do vale.
+painel|titulo=SISTEMA;linhas=CAVALEIROS SALVOS: 30,NÍVEL 24;amarelo=1|Trinta cavaleiros salvos. Nível vinte e quatro.
+close|who=igor;e=triste;bg=fenda|O Igor ficou parado na frente do Kai. Abriu a boca. Fechou. E só falou: obrigado.
+close|who=kai;e=serio;bg=fenda|O Kai não respondeu. Só apontou pro céu. A Fenda tava a menos de um quilômetro.
+desafio|n=5;titulo=O_GUARDIÃO_DA_FENDA;sub=OS_QUATRO_HERÓIS_JUNTOS;bg=fenda|Desafio número cinco. O guardião da Fenda.
+grupo|bg=fenda;who=kai,igor,teo,lia;acao=andar;dx=200;topo=O_CORAÇÃO_DA_FENDA|Eles subiram juntos até a borda. O chão tremia. O ar tinha gosto de ferro.
+close|who=gigante;e=raiva;bg=fenda|E do rasgo no céu desceu ele. Dez metros de sombra sólida, com dois olhos roxos do tamanho de uma porta.
+painel|titulo=GUARDIÃO_DA_FENDA;linhas=NÍVEL 60,ATAQUE: ???;cor=#C77DFF|Nível sessenta. Os quatro juntos não chegavam nisso.
+reflexo|atk=gigante;hit=.6;bg=fenda|O primeiro golpe veio no Kai. Reflexo. O guardião recuou um passo.
+close|who=kai;e=cansado;bg=fenda|Um passo só. E o Kai foi arremessado dez metros pra trás.
+close|who=igor;e=raiva;bg=fenda|O Igor atacou a perna. A espada sagrada mal arranhou.
+cena|k=alvo;who=lia;acerto=0|A Lia atirou no olho. A flecha atravessou a sombra sem acertar nada.
+close|who=teo;e=medo;bg=fenda|O Téo gritou: não tem como! Ele não é de verdade!
+close|who=kai;e=serio;bg=fenda|Mas o Kai percebeu uma coisa.
+detalhe|bg=fenda;who=gigante;wx=1100;wy=1050;s=1.8;x=1100;y=420;r=200;txt=REPARA_NO_PEITO|Repara no peito dele depois do reflexo. Fica transparente. Meio segundo, e volta a ficar sólido.
+texto|txt=MEIO SEGUNDO|Meio segundo. Era a única brecha.
+close|who=kai;e=confiante;bg=fenda|Ele gritou o plano: eu seguro o golpe, vocês atacam no meio segundo depois. Todos juntos. No mesmo lugar.
+quiz|q=QUEM_DÁ_O_GOLPE_FINAL?;a=O_IGOR;b=A_LIA;c=TODOS_JUNTOS;bg=fenda|Antes de ver: quem tu acha que derruba o guardião? O Igor, a Lia, ou todos juntos no mesmo segundo?
+reflexo|atk=gigante;hit=.5;bg=fenda|O guardião desceu o punho. O Kai segurou. Reflexo.
+grupo|bg=fenda;who=igor,teo,lia;e=raiva|E no meio segundo, espada, lança e flecha acertaram o mesmo ponto, no peito.
+texto|txt=CRAAAC|O guardião rachou como vidro.
+grupo|bg=fenda;who=kai,igor,teo,lia;acao=medo|E explodiu em mil pedaços de luz roxa que voltaram pro céu.
+quiz|q=QUEM_DÁ_O_GOLPE_FINAL?;a=O_IGOR;b=A_LIA;c=TODOS_JUNTOS;certa=C;bg=fenda|Letra C. Nenhum deles sozinho. Os quatro, no mesmo meio segundo.
+cena|k=nivel;de=24;para=35|Nível vinte e cinco. Trinta. Trinta e cinco.
+close|who=teo;e=riso;bg=fenda|O Téo caiu de costas, rindo e chorando ao mesmo tempo.
+grupo|bg=fenda;who=kai;e=serio;s=1.1|Mas a Fenda não fechou. Ela continuava ali, pulsando. Como se tivesse esperando alguém.
+close|who=kai;e=surpreso;bg=fenda;brilho=1|E o escudo do Kai começou a brilhar sozinho. Puxando ele pra frente.
+grupo|bg=fenda;who=kai;acao=andar;dx=200;brilho=1|Ele andou até a borda. Os outros gritaram. Ele não ouviu.
+cena|k=voz;txt=ESCUDO...|E aí veio a voz. Grave. Antiga. Vinda de dentro da Fenda.
+cena|k=voz;txt=FINALMENTE|Escudo. Finalmente.
+close|who=kai;e=choque;bg=fenda;brilho=1|Finalmente? Como assim, finalmente?
+cena|k=voz;txt=TU_VOLTOU|Tu voltou. Depois de quinhentos anos, tu voltou.
+painel|titulo=SISTEMA;linhas=ARMA VERDADEIRA: BLOQUEADA,REQUISITO: ???;cor=#C77DFF|E o sistema mostrou uma linha que nunca tinha aparecido. Arma verdadeira: bloqueada.
+cena|k=fenda_profecia;txt=A_FENDA_ENCOLHEU|A Fenda encolheu. Não fechou. Encolheu. Como se tivesse recebido o que queria.
+grupo|bg=fenda;who=kai,igor,teo,lia,nina;e=surpreso|Os cinco ficaram parados na borda, olhando pro céu, sem entender nada.
+close|who=igor;e=serio;bg=fenda|O Igor foi o primeiro a falar. Se a Fenda conhece o escudo, o rei também conhece. Ele sempre soube mais do que contou.
+close|who=lia;e=serio;bg=fenda|Até a Lia virar pro Kai. Quinhentos anos? O que tu não tá contando pra gente?
+close|who=kai;e=medo;bg=fenda|E o Kai respondeu com a verdade: eu não sei.
+close|who=rei;e=serio;bg=escuro|E lá longe, no castelo, o rei olhava pela janela. E sorria.
+quiz|q=O_KAI_JÁ_ESTEVE_AQUI?;a=JÁ_ESTEVE;b=A_FENDA_MENTE;c=É_OUTRA_PESSOA;bg=fenda|Agora é contigo: o Kai já esteve nesse mundo antes, a Fenda tá mentindo, ou ela tá confundindo ele com outra pessoa?
+texto|txt=A, B OU C?|Deixa a letra aí embaixo. O último episódio responde tudo. Curte pra não perder.

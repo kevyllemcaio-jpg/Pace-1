@@ -1,0 +1,145 @@
+# EPISÓDIO 3 — A FERREIRA
+objeto|obj=escudo;racha=1;brilho=.1;sfx=thud|O escudo do Kai tava a um golpe de quebrar no meio. E a Fenda abria em três dias.
+close|who=nina;e=confiante;bg=forja|E a única pessoa no reino capaz de consertar ele odiava heróis.
+texto|txt=EPISÓDIO 3,A FERREIRA|Episódio três. A ferreira.
+cena|k=fenda_profecia;txt=3_DIAS|E descobriu o pior: a Fenda não ia abrir em vinte e oito dias. Ia abrir em três.
+grupo|bg=estrada;who=kai,lia;e=serio,serio;esp=420|Na beira do lago, a Lia saiu de trás das árvores.
+close|who=lia;e=serio;bg=estrada|Eu vi o mapa. Eu vi o alerta. O que tu vai fazer?
+close|who=kai;e=serio;bg=estrada|O Kai levantou o escudo. A rachadura tinha crescido. Ia do topo até quase a ponta.
+painel|titulo=SISTEMA;linhas=DURABILIDADE: 8%,ALERTA: ESCUDO VAI QUEBRAR;cor=#FF5F5F;racha=1|Durabilidade: oito por cento.
+close|who=kai;e=medo;bg=estrada|Se o escudo quebrasse, o Kai virava só um cara de pijama num mundo de monstros.
+close|who=lia;e=confiante;bg=estrada|A Lia apontou pro mapa. Aquele martelo nos Montes de Ferro. Lá mora a Nina. A melhor ferreira do reino.
+close|who=lia;e=serio;bg=estrada|Mas ela não trabalha pra herói. Nunca. Ninguém sabe por quê.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;rota=lago,forja;em=forja;topo=MONTES_DE_FERRO|Do lago até a forja: um dia inteiro de subida. Sobrava tempo pra uma tentativa só.
+quiz|q=QUAL_CAMINHO_ATÉ_A_FORJA?;a=ESTRADA:_1_DIA;b=TRILHA:_MEIO_DIA;bg=estrada|E aqui tem escolha. A estrada larga leva um dia. A trilha dos penhascos leva meio, mas é perigosa. Qual tu pegava?
+close|who=kai;e=serio;bg=estrada|O Kai foi de trilha. Com a Fenda acelerando, cada hora valia mais que o medo.
+desafio|n=1;titulo=A_SUBIDA;sub=CHEGAR_À_FORJA_ANTES_DO_ANOITECER;bg=estrada|Se escurecer no meio da montanha, não tem volta.
+grupo|bg=estrada;who=kai,lia;acao=andar;dx=300|Os dois subiram juntos. A Lia não falava muito. Mas também não ia embora.
+close|who=kai;e=surpreso;bg=estrada|Por que tu tá me ajudando? Ela respondeu sem olhar: porque o Igor mente. E eu odeio mentiroso.
+texto|txt=CRAC|Aí veio um barulho lá de cima.
+close|who=kai;e=choque;bg=estrada|Pedra. Muita pedra. Uma avalanche descendo a encosta direto em cima deles.
+fato|k=texto;txt=AVALANCHE:_ATÉ_100_KM/H;topo=CURIOSIDADE|Uma avalanche de pedras pode descer a mais de cem quilômetros por hora. Correr não adianta.
+close|who=kai;e=raiva;bg=estrada|O Kai puxou a Lia pra trás dele, cravou o escudo no chão inclinado e se abaixou.
+reflexo|atk=chefe;hit=.5;bg=estrada|A primeira pedra bateu e escorregou pro lado.
+detalhe|bg=estrada;who=kai;wx=960;wy=1000;s=1.3;x=880;y=640;r=130;txt=REPARA_NA_RACHADURA|Repara na rachadura. A cada pedra que batia, ela andava mais um dedo pra baixo.
+painel|titulo=SISTEMA;linhas=DURABILIDADE: 4%;cor=#FF5F5F;racha=1|Quatro por cento.
+texto|txt=A POEIRA BAIXOU|Até que a última pedra passou, e a poeira foi baixando devagar.
+close|who=lia;e=choque;bg=estrada|A Lia olhou pra trás. As pedras tinham passado dos dois lados, como água desviando de um poste.
+close|who=lia;e=surpreso;bg=estrada|Tu tá louco? E se o escudo quebrasse? O Kai só respondeu: não quebrou.
+texto|txt=A PONTE DE CORDA|Meia hora depois, mais um problema. Uma ponte de corda sobre um abismo. E três tábuas faltando bem no meio.
+quiz|q=TRÊS_TÁBUAS_FALTANDO._E_AGORA?;a=PULA;b=VOLTA;c=USA_O_ESCUDO;bg=estrada|Tu pula o buraco, volta tudo pela estrada, ou inventa alguma coisa com o escudo?
+close|who=kai;e=confiante;bg=estrada|O Kai deitou o escudo em cima do buraco e usou como degrau. Passou ele, passou a Lia, e puxou o escudo pela alça.
+fato|k=texto;txt=PONTE_INCA:_REFEITA_TODO_ANO;topo=CURIOSIDADE|E ponte de corda é coisa séria. No Peru existe uma ponte inca feita de capim trançado que até hoje é desmontada e refeita pelas comunidades todo ano, à mão.
+grupo|bg=forja;who=kai,lia;e=cansado,serio;topo=FORJA_DA_NINA|E no fim da tarde, eles chegaram. Uma forja de pedra encravada na montanha, com fumaça saindo da chaminé.
+cena|k=forja_nina|Lá dentro, uma moça baixinha de avental batia num ferro vermelho como se ele tivesse ofendido a mãe dela.
+close|who=nina;e=raiva;bg=forja|Ela nem olhou. Se é herói, a porta é ali.
+close|who=kai;e=serio;bg=forja|O Kai colocou o escudo na bancada. Ela olhou de canto. E parou de martelar.
+close|who=nina;e=surpreso;bg=forja|Ela pegou o escudo, virou, passou o dedo na rachadura e ficou muda.
+close|who=nina;e=serio;bg=forja|Esse metal não é desse mundo, ela disse. Onde tu arrumou isso?
+close|who=kai;e=triste;bg=forja|O Kai contou tudo. O altar, as risadas, a catapulta, o Igor, o lago.
+close|who=nina;e=raiva;bg=forja|E aí a Nina contou a história dela. Cinco anos atrás, homens do castelo levaram a melhor espada que o pai dela já fez. Disseram que era pra um herói. E nunca pagaram.
+comenta|txt=JUSTIÇA_PRA_NINA;top=SE_TU_TÁ_DO_LADO_DELA,_COMENTA:|Se tu também ficou com raiva disso, comenta aí: justiça pra Nina.
+texto|txt=O PAI DELA PERDEU TUDO|O pai dela perdeu a forja na cidade. Morreu devendo. E ela veio pra montanha trabalhar sozinha.
+close|who=nina;e=serio;bg=forja|Então ela disse: eu conserto. Mas não de graça. Tu vai ter que passar nos meus testes.
+desafio|n=2;titulo=O_TESTE_DO_SOM;sub=DESCOBRIR_ONDE_O_METAL_QUEBROU;bg=forja|Mas antes do martelo, um teste de ouvido.
+close|who=nina;e=serio;bg=forja|A Nina pendurou o escudo num gancho e bateu de leve com uma varinha de ferro. Escuta.
+quiz|q=COMO_SE_ACHA_UMA_TRINCA_ESCONDIDA?;a=PELO_PESO;b=PELO_SOM;c=PELA_COR;bg=forja|Pergunta pra ti: como um ferreiro acha uma trinca que o olho não vê? Pelo peso, pelo som, ou pela cor?
+fato|k=texto;txt=PEÇA_INTEIRA_SOA_LIMPO:_TRINCADA_SOA_ABAFADO;topo=CURIOSIDADE|Pelo som. Metal inteiro vibra e soa limpo, tipo sino. Metal trincado soa abafado. Até hoje tem inspetor que testa roda de trem batendo com martelinho.
+close|who=nina;e=surpreso;bg=forja|E o escudo soou abafado em três lugares. Três trincas por dentro que nem o Kai sabia que existiam.
+desafio|n=3;titulo=O_TESTE_DO_MARTELO;sub=AGUENTAR_10_MARTELADAS;bg=forja|E aí veio o teste de verdade. Dez marteladas da Nina, sem soltar o escudo.
+close|who=kai;e=surpreso;bg=forja|Só dez? Fácil. Ela sorriu. Um sorriso que deu medo.
+cena|k=martelada;n=1|Primeira martelada. O Kai deslizou meio metro pra trás.
+cena|k=martelada;n=2|Segunda. O braço tremeu inteiro.
+close|who=kai;e=choque;bg=forja|Ela não era forte. Ela era absurdamente forte.
+fato|k=texto;txt=FERREIRO:_ATÉ_3000_GOLPES/DIA;topo=CURIOSIDADE|Ferreiro medieval podia dar mais de três mil marteladas num dia de trabalho. O braço de um ferreiro era mais forte que o de muito soldado.
+cena|k=martelada;n=5|Terceira. Quarta. Quinta.
+close|who=kai;e=cansado;bg=forja|E o detalhe: o Kai não podia usar o reflexo. Se usasse, o martelo voltava na cara dela.
+texto|txt=SEGURAR SEM DEVOLVER|Ele tinha que segurar sem devolver. Coisa que ele nunca tinha feito.
+cena|k=martelada;n=8|Seis. Sete. Oito.
+painel|titulo=SISTEMA;linhas=DURABILIDADE: 1%;cor=#FF5F5F;racha=1|Um por cento.
+cena|k=martelada;n=10|Nove. Dez.
+close|who=nina;e=surpreso;bg=forja|A Nina baixou o martelo. Tu segurou o golpe e não devolveu. Por quê?
+close|who=kai;e=serio;bg=forja|Porque tu não é inimiga. Escudo é pra proteger, não pra machucar quem tá do lado.
+close|who=nina;e=feliz;bg=forja|Ela ficou quieta. Depois riu. Tá bom, herói. Agora a gente trabalha.
+desafio|n=4;titulo=O_MINÉRIO_AZUL;sub=BUSCAR_NAS_MINAS_ANTES_DA_MEIA-NOITE;bg=caverna|Pra fechar trinca de metal de outro mundo, só minério azul. E ele só existia nas minas abandonadas atrás da forja.
+grupo|bg=caverna;who=kai,lia;e=serio;topo=MINAS_ABANDONADAS|O Kai e a Lia entraram com uma tocha. A mina era fria, apertada, cheia de trilho velho.
+close|who=lia;e=serio;bg=caverna|A Lia ia na frente com o arco. O Kai atrás, protegendo as costas.
+close|who=lia;e=serio;bg=caverna|No terceiro túnel, a chama da tocha começou a encolher. Ficou azulada. Quase apagou.
+quiz|q=A_TOCHA_ESTÁ_APAGANDO._POR_QUÊ?;a=VENTO;b=FALTA_DE_AR_BOM;c=FANTASMA;bg=caverna|O que tu acha que tava acontecendo? Vento, falta de ar bom, ou fantasma?
+fato|k=texto;txt=MINEIROS_LEVAVAM_CANÁRIOS;topo=CURIOSIDADE|Falta de ar bom. Mina velha junta gás. E até uns cem anos atrás, mineiros levavam um canário na gaiola: se o passarinho passasse mal, todo mundo saía correndo.
+close|who=kai;e=serio;bg=caverna|O Kai puxou a Lia de volta e pegaram o túnel de cima, onde o ar circulava. Mais longo. Mais seguro.
+grupo|bg=caverna;who=goblin,goblin,goblin,goblin,goblin;e=raiva|E no fundo, uma tribo inteira de goblins tava minerando o mesmo minério azul.
+close|who=goblin;e=choque;bg=caverna|E um deles tinha um rosto conhecido. O ladrãozinho da floresta. Com o galo na testa ainda roxo.
+close|who=goblin;e=medo;bg=caverna|Quando ele viu o escudo, gritou alguma coisa em língua de goblin. E a tribo inteira levantou as picaretas.
+close|who=lia;e=confiante;bg=caverna|A Lia sussurrou: eu ataco de longe, tu segura eles na frente.
+texto|txt=PRIMEIRA VEZ EM TIME|Pela primeira vez, o Kai não tava lutando sozinho.
+reflexo|atk=goblin;hit=.5;bg=caverna|Os goblins correram. O Kai segurou a fila inteira no escudo.
+cena|k=alvo;who=lia;acerto=1|E por cima do ombro dele, as flechas da Lia acertavam um por um.
+fato|k=texto;txt=TANQUE_+_ATIRADOR;topo=CURIOSIDADE|Isso tem nome em jogo e na história: o escudo na frente, o arqueiro atrás. Os exércitos medievais usavam exatamente isso, com paredes de escudo protegendo arqueiros.
+grupo|bg=caverna;who=goblin,goblin;acao=correr;dx=-700|A tribo fugiu, largando os carrinhos cheios de minério azul.
+painel|titulo=SISTEMA;linhas=COMBO EM GRUPO,NÍVEL 14;amarelo=1|Combo em grupo. Nível quatorze.
+close|who=lia;e=sorriso;bg=caverna|A Lia sorriu pela primeira vez. Nada mal, tanque.
+close|who=lia;e=serio;bg=caverna|Na saída da mina, a Lia falou mais do que tinha falado a semana inteira. No nosso mundo, eu era a última escolhida pra qualquer time.
+close|who=kai;e=sorriso;bg=caverna|O Kai riu. Eu também. Por isso eu jogava de tanque. Ninguém disputa o tanque.
+desafio|n=5;titulo=A_TÊMPERA;sub=SEGURAR_O_FOGO_A_900_GRAUS;bg=forja|Com o minério na mão, faltava a parte mais difícil.
+cena|k=forja_nina|De volta na forja, a Nina derreteu o minério e começou a trabalhar no escudo a noite inteira.
+fato|k=tempera;topo=CURIOSIDADE|E aqui entra um segredo dos ferreiros: a têmpera. O metal é aquecido até ficar vermelho e depois mergulhado na água fria de uma vez.
+fato|k=tempera|O choque deixa o aço duríssimo. Mas se errar o tempo, ele racha. Por isso os ferreiros antigos guardavam esse segredo a sete chaves.
+close|who=nina;e=serio;bg=forja|O problema: o fogo tinha que ficar no máximo a noite inteira. Alguém tinha que soprar o fole sem parar.
+close|who=kai;e=cansado;bg=forja|E esse alguém era o Kai. Seis horas puxando o fole no calor de uma fornalha.
+quiz|q=POR_QUE_SOPRAR_ESQUENTA_O_FOGO?;a=MAIS_OXIGÊNIO;b=MAIS_VENTO;c=MAIS_PRESSÃO;bg=forja|E aí, sabe por que soprar deixa o fogo mais quente, e não apaga ele? Pensa aí.
+fato|k=texto;txt=OXIGÊNIO:_FORJA_PASSA_DE_1000°C;topo=CURIOSIDADE|Oxigênio. Cada sopro do fole empurra ar novo no carvão, e a forja passa de mil graus. Sem fole, nenhum ferreiro da história teria derretido ferro direito.
+texto|txt=2H... 4H... 6H|Duas horas. Quatro horas. Seis horas.
+close|who=nina;e=serio;bg=forja|Lá pelas três da manhã, a Nina puxou um caderno velho de baixo da bancada. Era do pai dela.
+detalhe|bg=forja;who=nina;wx=1300;wy=1000;s=1.0;x=760;y=520;r=150;txt=O_DESENHO_DO_PAI|Repara no desenho. Um escudo em triângulo, com um círculo no meio. Desenhado há mais de trinta anos.
+close|who=kai;e=choque;bg=forja|O pai dela já tinha visto esse escudo. Ou ouvido falar. Antes do Kai nascer.
+cena|k=tempera|E na hora certa, a Nina mergulhou o escudo na água. O vapor subiu até o teto.
+objeto|obj=escudo;racha=0;brilho=1;txt=ESCUDO_RESTAURADO|Quando a fumaça baixou, a rachadura tinha sumido. O escudo brilhava azul.
+close|who=nina;e=feliz;bg=forja|A Nina pendurou o escudo no gancho e bateu com a varinha. Dessa vez ele soou limpo. Igual sino.
+painel|titulo=SISTEMA;linhas=DURABILIDADE: 100%,NOVA HABILIDADE: BARREIRA;amarelo=1;racha=0|Durabilidade cem por cento. E uma nova habilidade: Barreira.
+close|who=kai;e=surpreso;bg=forja|Barreira? O que é isso? E ele não teve tempo de descobrir com calma.
+grupo|bg=forja;who=kai,nina;e=surpreso,confiante;esp=500|Ele levantou o escudo, pensou na palavra, e uma cúpula azul se abriu em volta da forja inteira.
+close|who=nina;e=riso;bg=forja|A Nina jogou o martelo nela de brincadeira. O martelo voltou e quase acertou ela. As duas riram. O Kai não.
+texto|txt=BUM|Porque nessa hora, a montanha inteira tremeu.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;em=fenda;topo=A_FENDA|No horizonte, no centro do reino, o céu ficou roxo.
+cena|k=fenda_profecia;txt=ELA_ABRIU_ANTES|A Fenda não esperou três dias. Ela abriu antes.
+grupo|bg=vila_fenda;who=povo0,povo1,crianca0,crianca1;acao=correr;dx=-500;topo=VILA_PEDRAVERDE|E lá embaixo, na Vila Pedraverde, as pessoas corriam.
+close|who=sombra;e=raiva;bg=vila_fenda|Criaturas de sombra tavam saindo pelo céu como fumaça preta.
+desafio|n=6;titulo=PROTEGER_A_VILA;sub=ATÉ_OS_HERÓIS_CHEGAREM;bg=vila_fenda|E os cavaleiros do rei tavam a meio dia de distância.
+grupo|bg=estrada;who=kai,lia,nina;acao=correr;dx=400|Descer pela trilha levava duas horas. Eles não tinham duas horas.
+close|who=kai;e=confiante;bg=estrada|Então o Kai sentou no escudo numa encosta de cascalho, a Nina e a Lia se agarraram atrás, e ele soltou.
+texto|txt=TRENÓ DE ESCUDO|Três pessoas descendo uma montanha num escudo, a sessenta por hora.
+comenta|txt=TRENÓ;top=TU_DESCERIA_ASSIM?_COMENTA:|Se tu teria coragem de descer assim, comenta: trenó.
+close|who=kai;e=serio;bg=vila_fenda|Quando chegaram, a praça tava cheia de gente encurralada, e as sombras fechando o cerco.
+cerco|atk=sombra;n=6;e=serio;bg=vila_fenda|Seis sombras. Crianças atrás dele. E um escudo só.
+close|who=crianca0;e=medo;bg=vila_fenda|Uma menina segurou na capa dele. A mesma que a avó tinha puxado pra longe dois dias antes.
+close|who=kai;e=raiva;bg=vila_fenda|O Kai levantou o escudo e gritou o nome da habilidade nova.
+cerco|atk=sombra;n=6;e=raiva;bg=vila_fenda;barreira=1;brilho=1;sfx=brilho|Barreira.
+texto|txt=UMA CÚPULA DE LUZ|Uma cúpula de luz azul se abriu em volta de todo mundo.
+cerco|atk=sombra;n=6;e=serio;bg=vila_fenda;barreira=1;brilho=1|As sombras bateram na cúpula e voltaram queimando.
+painel|titulo=SISTEMA;linhas=BARREIRA: PROTEGE TODOS EM VOLTA,CUSTO: VIDA DO HERÓI;cor=#FF5F5F|Mas o sistema avisou: a barreira protege todo mundo, e cobra da vida do herói.
+close|who=kai;e=cansado;bg=vila_fenda|A cada pancada nas paredes, o Kai sentia como se fosse no próprio corpo.
+close|who=kai;e=serio;bg=vila_fenda|Mas aí o Kai reparou numa coisa. As sombras desviavam dos lampiões acesos da praça.
+quiz|q=DO_QUE_AS_SOMBRAS_TÊM_MEDO?;a=ÁGUA;b=LUZ;c=BARULHO;bg=vila_fenda|Já sacou? Do que essas sombras têm medo? Água, luz, ou barulho?
+close|who=kai;e=raiva;bg=vila_fenda|Luz. Ele gritou pros moradores: acendam tudo! Lampião, vela, fogão, tocha!
+grupo|bg=vila_fenda;who=povo0,povo1,povo2,crianca1;acao=correr;dx=300|E a vila que tinha medo dele obedeceu na hora. Janela por janela, a praça foi acendendo.
+fato|k=texto;txt=TOQUE_DE_RECOLHER_=_COBRIR_O_FOGO;topo=CURIOSIDADE|E sabe o toque de recolher? Na Idade Média, um sino mandava todo mundo cobrir o fogo de casa à noite, pra cidade não pegar fogo. Em francês: couvre-feu. Daí veio a palavra inglesa curfew.
+cena|k=alvo;who=lia;acerto=1|A Lia atirava de dentro da cúpula.
+close|who=nina;e=raiva;bg=vila_fenda|E a Nina saía de vez em quando, dava uma martelada numa sombra e voltava correndo.
+painel|titulo=SISTEMA;linhas=VIDA: 20%,VIDA: 9%;cor=#FF5F5F|Vida em vinte por cento. Depois nove.
+close|who=kai;e=cansado;bg=vila_fenda|A visão escureceu. As pernas tremeram. Mas ele não abaixou o escudo.
+texto|txt=E AÍ OUVIU CAVALOS|E aí, no fim da rua, ele ouviu cavalos.
+grupo|bg=vila_fenda;who=igor,teo,guarda,guarda;acao=correr;dx=-300|O Igor e o Téo chegaram com os cavaleiros e caíram em cima das sombras.
+grupo|bg=vila_fenda;who=sombra,sombra;acao=correr;dx=700|Em minutos, as sombras recuaram pro céu.
+close|who=kai;e=cansado;bg=vila_fenda|A barreira apagou. E o Kai caiu de joelhos.
+grupo|bg=vila;who=povo0,povo1,povo2,crianca0;acao=aplaudir|O povo saiu de trás da cúpula. Ninguém ferido. Nenhum.
+close|who=crianca0;e=feliz;bg=vila|A menina abraçou a perna do Kai.
+close|who=teo;e=serio;bg=vila|O Téo olhou em volta: a cúpula apagando, as lâmpadas acesas, ninguém ferido. E olhou pro Kai de um jeito diferente.
+close|who=igor;e=raiva;bg=vila|Mas o Igor desceu do cavalo, olhou em volta, e falou alto pra todo mundo ouvir: a vila tá salva graças aos cavaleiros da espada.
+close|who=crianca0;e=raiva;bg=vila|A menina puxou a capa do Igor. Não foi tu. Foi o moço do escudo. Mas adulto nenhum repetiu.
+close|who=nina;e=raiva;bg=vila|Até que a Nina deu um passo à frente e apontou o martelo pro Igor.
+close|who=nina;e=raiva;bg=vila|Esse brasão no peito dos teus cavaleiros. Foram eles que levaram a espada do meu pai.
+close|who=igor;e=choque;bg=vila|Pela primeira vez, o Igor ficou sem resposta.
+cena|k=fenda_profecia;txt=A_FENDA_CONTINUA_ABERTA|E no céu, a Fenda continuava aberta. As sombras só tinham recuado. Elas iam voltar.
+quiz|q=O_REI_SABIA_DA_ESPADA?;a=SABIA;b=NÃO_SABIA;c=ELE_QUE_MANDOU;bg=vila_fenda|E agora é contigo: se foram os homens do castelo, o rei sabia, não sabia, ou foi ele que mandou?
+texto|txt=A, B OU C?|Deixa a letra nos comentários. No próximo episódio, a gente chega mais perto da resposta. Curte pra parte quatro.
