@@ -109,3 +109,10 @@ Observações:
 
 ## Padrão 3D (a partir de agora)
 - Cabelo das personagens no 3D: módulo `estudio-e-se/kit-3d/hair3d.js`, com franja recortada, mechas laterais, cabelo longo/curto com pontas onduladas, rabo de cavalo com elástico, coques com prendedor e brilho. Ele entra antes do `_kid.js` na montagem.
+
+## Duplo sentido (título com "malícia", história inocente)
+| Título | Arquivo | Status |
+|---|---|---|
+| E SE Você Tivesse que BEIJAR a Sua CRUSH na Frente da Escola Inteira? | beijar-crush-na-peca.mp4 | pronto |
+| E SE a VIZINHA Te Chamasse pra MONTAR a CAMA Dela? (adulto) | vizinha-montar-cama.mp4 | em produção |
+| E SE Você Fosse o ÚNICO MENINO no ACAMPAMENTO das Meninas? | — | em produção |
