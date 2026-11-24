@@ -56,7 +56,7 @@ Observações:
 | N4 | E SE Você Ficasse PRESO no Banheiro das Meninas? | "PRESO NO BANHEIRO DELAS!" | pronto (preso-no-banheiro.mp4) |
 | N5 | E SE Sua Irmã Te Levasse pro CHÁ DE BONECAS? | "SOCORRO, IRMÃ!" | ideia |
 | N6 | E SE Seu DIÁRIO Fosse Lido em Voz Alta na Sala? | "LERAM MEU DIÁRIO?!" | pronto (diario-lido-na-sala.mp4) |
-| N7 | E SE Todo Mundo VISSE o Seu Histórico do Celular? | "APAGA! APAGA!" | ideia |
+| N7 | E SE Todo Mundo VISSE o Seu Histórico do Celular? | "MEU HISTÓRICO NO TELÃO?!" | pronto (historico-no-telao.mp4) |
 | N8 | E SE Sua CRUSH Pudesse Ouvir Seus Pensamentos (Só Ela)? | "ELA OUVE TUDO?!" | pronto (crush-ouve-pensamentos.mp4) |
 | N9 | E SE a Sua MÃE Ouvisse Seus Pensamentos? | "MINHA MÃE OUVE TUDO?!" | pronto (mae-ouve-pensamentos.mp4) |
 | N10 | E SE os PROFESSORES Ouvissem Tudo na Prova? | "COLA MENTAL" | ideia |
