@@ -116,3 +116,10 @@ Observações:
 | E SE Você Tivesse que BEIJAR a Sua CRUSH na Frente da Escola Inteira? | beijar-crush-na-peca.mp4 | pronto |
 | E SE a VIZINHA Te Chamasse pra MONTAR a CAMA Dela? (adulto) | vizinha-montar-cama.mp4 | pronto |
 | E SE Você Fosse o ÚNICO MENINO no ACAMPAMENTO das Meninas? | unico-menino-no-acampamento.mp4 | pronto |
+
+## Drama (sem comédia, cenas acontecendo)
+| Título | Arquivo | Status |
+|---|---|---|
+| E SE a Sua CRUSH Fosse Embora PRA SEMPRE? | crush-foi-embora.mp4 | pronto |
+| E SE a Sua CRUSH Perdesse a Coisa Que Ela Mais Ama? | gato-na-tempestade.mp4 | em produção |
+| E SE Você Ficasse PRESO na ESCOLA à Noite com a Sua CRUSH? | — | em produção |
