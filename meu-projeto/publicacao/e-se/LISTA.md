@@ -50,7 +50,7 @@ Observações:
 ## Novas ideias (na linha dos 3 que mais deram certo)
 | # | Título | Capa | Status |
 |---|---|---|---|
-| N1 | E SE Você Fosse o ÚNICO MENINO num Acampamento de Meninas? | "1 BARRACA, 20 MENINAS" | ideia |
+| N1 | E SE Você Fosse o ÚNICO MENINO num Acampamento de Meninas? | "20 MENINAS E SÓ EU?!" | pronto (unico-menino-no-acampamento.mp4) |
 | N2 | E SE Você Fosse o ÚNICO MENINO no Time de Vôlei das Meninas? | "ME ESCALARAM?!" | ideia |
 | N3 | E SE Você Fosse o ÚNICO MENINO na Aula de Balé? | "TUTU ROSA?!" | ideia |
 | N4 | E SE Você Ficasse PRESO no Banheiro das Meninas? | "PRESO NO BANHEIRO DELAS!" | pronto (preso-no-banheiro.mp4) |
@@ -115,4 +115,4 @@ Observações:
 |---|---|---|
 | E SE Você Tivesse que BEIJAR a Sua CRUSH na Frente da Escola Inteira? | beijar-crush-na-peca.mp4 | pronto |
 | E SE a VIZINHA Te Chamasse pra MONTAR a CAMA Dela? (adulto) | vizinha-montar-cama.mp4 | pronto |
-| E SE Você Fosse o ÚNICO MENINO no ACAMPAMENTO das Meninas? | — | em produção |
+| E SE Você Fosse o ÚNICO MENINO no ACAMPAMENTO das Meninas? | unico-menino-no-acampamento.mp4 | pronto |
