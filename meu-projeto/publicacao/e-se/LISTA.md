@@ -105,6 +105,7 @@ Observações:
 | O escudo triangular — T2 Ep. 7: Os procurados (2D, 76 s) | escudo-triangular-t2-ep7.mp4 | pronto |
 | O escudo triangular — T2 Ep. 8: O espião (2D, 71 s) | escudo-triangular-t2-ep8.mp4 | pronto |
 | O escudo triangular — T2 Ep. 9: A lua vermelha (2D, 72 s) | escudo-triangular-t2-ep9.mp4 | pronto |
+| O escudo triangular — T2 Ep. 10: O triângulo (2D, 74 s, fim da temporada 2) | escudo-triangular-t2-ep10.mp4 | pronto |
 | O escudo triangular (longo, 16:9) — Ep. 1: A Invocação (2D, 10min51) | escudo-triangular-longo-ep1.mp4 | pronto |
 | O escudo triangular (longo, 16:9) — Ep. 2: O Ladrão de Mapas (2D, 10min26) | escudo-triangular-longo-ep2.mp4 | pronto |
 | O escudo triangular (longo, 16:9) — Ep. 3: A Ferreira (2D, 10min00) | escudo-triangular-longo-ep3.mp4 | pronto |
