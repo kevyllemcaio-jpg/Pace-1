@@ -133,3 +133,8 @@ Observações:
 | Título | Baseado em | Arquivo | Status |
 |---|---|---|---|
 | E SE Você Fosse o ÚNICO MENINO no Aniversário da Sua Irmã? | festa-do-pijama.mp4 (25 mil views, 71% retenção) | unico-menino-no-aniversario.mp4 | pronto |
+
+## 3D (Blender, personagens em blocos)
+| Título | Arquivo | Status |
+|---|---|---|
+| E SE Você Só Tivesse 100 PALAVRAS Por Dia? (Zeca) | cem-palavras.mp4 | pronto |
