@@ -1,0 +1,23 @@
+# TEMPORADA 2 — EP 6: A FUGA
+grupo|who=igor,rei;e=raiva,choque;esp=380;bg=salao;topo=CASTELO_DE_VALDORA|O herói da espada apontando a espada pro próprio rei.
+close|who=kai;e=surpreso;bg=salao|E o Kai, parado atrás, sem entender de que lado o Igor tava.
+close|who=igor;e=serio;bg=salao|Corre, escudo. Eu seguro eles.
+close|who=rei;e=raiva;bg=salao|O rei gritou: traidores! Peguem os dois!
+grupo|who=guarda,guarda,guarda;e=raiva;acao=correr;dx=-300;bg=salao|Vinte guardas entraram pelas portas do salão.
+cerco|atk=guarda;n=5;e=serio;bg=salao;barreira=1;brilho=1;sfx=brilho|O Kai levantou o escudo. Barreira.
+reflexo|atk=guarda;hit=.45;bg=salao|Lança bateu, voltou. Espada bateu, voltou.
+close|who=lia;e=confiante;bg=salao|Da janela, a Lia gritou: aqui em cima!
+grupo|who=kai,igor;acao=correr;dx=400;bg=salao|Os dois correram pela escada da torre.
+fato|k=texto;txt=ESCADA_EM_ESPIRAL:_SENTIDO_HORÁRIO;topo=CURIOSIDADE|Sabe por que escada de castelo gira pra direita? Quem sobe, destro, fica com a espada presa na parede.
+close|who=igor;e=raiva;bg=escuro|Por isso subir lutando era quase impossível. Descer era fácil.
+grupo|who=kai,igor,lia,nina;e=serio;bg=vila_noite|No alto da torre, a Nina esperava com uma corda.
+objeto|obj=escudo;racha=0;brilho=.8;velocidade=1|O Kai sentou no escudo e desceu a muralha como um trenó, com o Igor agarrado nas costas.
+grupo|who=kai,igor,lia,nina;acao=correr;dx=500;bg=floresta_noite|E os quatro sumiram na Floresta Sombria.
+close|who=teo;e=triste;bg=salao|Só um herói ficou pra trás. O Téo.
+close|who=rei;e=sorriso;bg=salao|E o rei colocou a mão no ombro dele e sorriu.
+objeto|obj=pergaminho_livro;txt=PROCURADOS|No dia seguinte, cada parede do reino tinha um cartaz.
+texto|txt=MIL MOEDAS,POR CADA UM|Mil moedas por cada um dos quatro.
+close|who=kai;e=serio;bg=floresta_noite|O Kai olhou pro Igor: por que tu me salvou?
+close|who=igor;e=serio;bg=floresta_noite|O Igor respondeu: porque o rei mentiu pra mim também. E eu vou provar.
+close|who=teo;e=serio;bg=escuro|Mas o Téo ficou no castelo. Ele é traidor, ou tá jogando do lado deles?
+texto|txt=TRAIDOR OU ESPIÃO?|Comenta aí. E curte pra parte sete.

@@ -1,0 +1,23 @@
+# T2 EP 9: A LUA VERMELHA
+grupo|who=guarda,guarda,guarda,guarda;e=raiva;bg=vila_noite;topo=VILA_PEDRAVERDE|De madrugada, cinquenta guardas cercaram o celeiro.
+close|who=kai;e=serio;bg=vila_noite|Os cinco lá dentro. Sem saída. E o sol ainda nem tinha nascido.
+grupo|who=povo0,povo1,povo2,crianca0;e=raiva;bg=vila_noite|Mas aí a vila acordou. Com lampião, com vassoura, com panela.
+close|who=crianca0;e=raiva;bg=vila_noite|A menina gritou na frente dos guardas: eles salvaram a gente. Vocês não!
+grupo|who=guarda,guarda;e=surpreso;bg=vila_noite|Os guardas pararam. Ninguém queria atacar a própria vila.
+grupo|who=kai,igor,lia,nina,teo;acao=correr;dx=400;bg=estrada|E os cinco escaparam pelos fundos, direto pra estrada do castelo.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;rota=vila,castelo;em=castelo|Um dia inteiro de viagem. Chegaram no castelo ao pôr do sol.
+cena|k=fenda_profecia;txt=LUA_VERMELHA|E a lua nasceu. Mas não era branca. Era vermelha.
+fato|k=texto;txt=LUA_DE_SANGUE:_ECLIPSE_LUNAR;topo=CURIOSIDADE|Isso existe. No eclipse lunar, a Terra fica entre o Sol e a Lua, e a única luz que chega na Lua passa pela nossa atmosfera. Sai vermelha, igual pôr do sol.
+grupo|who=rei,guarda,guarda;e=confiante;bg=vila_fenda|No alto da torre, o rei levantou a coroa pro céu.
+objeto|obj=fenda;txt=ELA_ABRIU|E a fenda abriu. Bem em cima do castelo.
+grupo|who=sombra,sombra,sombra;acao=correr;dx=-300;bg=vila_fenda|As sombras desceram como chuva preta.
+close|who=kai;e=serio;bg=vila_fenda|O Kai levantou o escudo. Os outros quatro ficaram atrás dele.
+cerco|atk=sombra;n=6;e=raiva;bg=vila_fenda;barreira=1;brilho=1;sfx=brilho|Barreira. A maior que ele já tinha feito.
+grupo|who=igor,lia,teo,nina;e=raiva;bg=vila_fenda|Espada, flecha, lança e martelo. As sombras caíam uma por uma.
+close|who=rei;e=raiva;bg=vila_fenda|Mas o rei não queria as sombras. Ele queria o escudo.
+grupo|who=rei,teo;e=raiva,medo;esp=300;bg=vila_fenda|Ele desceu da torre e agarrou o Téo pelo braço.
+close|who=rei;e=confiante;bg=vila_fenda|O escudo pela vida dele, Kai. Tu escolhe.
+close|who=teo;e=medo;bg=vila_fenda|Não faz isso, gritou o Téo.
+close|who=kai;e=triste;bg=vila_fenda|O Kai olhou pro escudo. Olhou pro Téo.
+close|who=kai;e=serio;bg=escuro|Agora me diz: tu entregava o escudo pra salvar o Téo, ou não?
+texto|txt=ENTREGA OU NÃO?|Comenta aí. E curte pro final da temporada.

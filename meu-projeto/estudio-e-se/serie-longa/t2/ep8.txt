@@ -1,0 +1,23 @@
+# T2 EP 8: O ESPIÃO
+close|who=teo;e=serio;bg=vila_noite;topo=O_CELEIRO|O Téo entrou no celeiro com uma flecha da Lia apontada pro peito.
+close|who=lia;e=raiva;bg=vila_noite|Tu ficou do lado do rei. Por que a gente devia confiar em ti?
+close|who=teo;e=triste;bg=vila_noite|Porque o rei me mandou espionar vocês. E eu vim contar tudo.
+texto|txt=ESPIÃO DUPLO|Um espião. Mas espião de quem?
+close|who=teo;e=serio;bg=vila_noite|Ele abriu um pano no chão. Dentro tinha uma espada com cabo de bronze.
+objeto|obj=espada;txt=A_ESPADA_DO_PAI|A Nina caiu de joelhos. Era a espada do pai dela.
+close|who=nina;e=triste;bg=forja|Cinco anos procurando. E ela tava no quarto do rei o tempo todo.
+close|who=teo;e=serio;bg=vila_noite|E tem mais. O rei vai abrir uma fenda nova. Dentro do castelo.
+cena|k=fenda_profecia;txt=LUA_CHEIA|Na noite de lua cheia. Daqui a dois dias.
+close|who=kai;e=choque;bg=vila_noite|Abrir de propósito? Por quê?
+close|who=teo;e=serio;bg=vila_noite|Porque quem controla a fenda controla as sombras. E quem controla as sombras não precisa mais de exército.
+close|who=igor;e=raiva;bg=vila_noite|O Igor apertou o punho. Ele invocou a gente pra isso. Pra ser a chave.
+painel|titulo=SISTEMA;linhas=ESCUDO = CHAVE DA FENDA,SEM ELE A FENDA NÃO ABRE;cor=#C77DFF|E o sistema confirmou. Sem o escudo original, a fenda não abre.
+close|who=kai;e=serio;bg=vila_noite|Então é simples. O rei precisa de mim.
+close|who=lia;e=serio;bg=vila_noite|A Lia baixou o arco. Pela primeira vez, ela acreditou no Téo.
+fato|k=texto;txt=POMBO-CORREIO:_ATÉ_1000_KM;topo=CURIOSIDADE|O Téo mandava os recados pro rei por pombo-correio. Um pombo desses volta pra casa de até mil quilômetros de distância.
+close|who=teo;e=sorriso;bg=vila_noite|E hoje eu mandei uma mentira: que vocês fugiram pro norte.
+texto|txt=CRU CRU|Aí um barulho no telhado.
+close|who=teo;e=choque;bg=vila_noite|Um pombo pousou na janela. Com um bilhete do rei.
+texto|txt=EU SEI ONDE,VOCÊS ESTÃO|Eu sei onde vocês estão.
+close|who=kai;e=medo;bg=escuro|O rei descobriu a mentira. Ou alguém no celeiro é o verdadeiro espião?
+texto|txt=QUEM É O ESPIÃO?|Comenta quem tu acha. E curte pra parte nove.

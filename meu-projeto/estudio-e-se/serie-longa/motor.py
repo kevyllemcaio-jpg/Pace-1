@@ -127,10 +127,15 @@ def T_desafio(c, t, S, p):
     f2 = skia.Font(INTER_K, sz); c.drawString(tt, -f2.measureText(tt) / 2, 10, f2, fp('#FFFFFF'))
     if L(p, 'sub'): f3 = skia.Font(INTER_B, 44); st = L(p, 'sub').replace('_', ' '); c.drawString(st, -f3.measureText(st) / 2, 120, f3, fp('#BFF4FF'))
     c.restore(); particulas(c, t, '#F2C14E', 30, 160)
+def VW(): return 1000 if kit.SH > kit.SW else 1600
+def quebra(tx, n=14):  # quebra frase longa em 2 linhas no vertical
+    if kit.SH <= kit.SW or len(tx) <= n: return [tx]
+    w = tx.split(' '); best = min(range(1, len(w)), key=lambda k: abs(len(' '.join(w[:k])) - len(' '.join(w[k:])))) if len(w) > 1 else 1
+    return [' '.join(w[:best]), ' '.join(w[best:])]
 def T_texto(c, t, S, p):
     fundo(c, t, L(p, 'bg', 'escuro'), 10 if L(p, 'bg') else 0)
-    linhas_ = lista(L(p, 'txt', '').replace('_', ' ')) or ['']
-    for i, tx in enumerate(linhas_): poplabel(c, tx, 960, 460 + i * 150 - (len(linhas_) - 1) * 75, t, S.s0 + .1 + i * .35, fit(tx, 150, 1600, INTER_K), L(p, 'cor', '#FFE14A') if i == len(linhas_) - 1 else '#FFFFFF', font=INTER_K, stroke=16)
+    linhas_ = sum([quebra(x) for x in lista(L(p, 'txt', '').replace('_', ' '))], []) or ['']
+    for i, tx in enumerate(linhas_): poplabel(c, tx, 960, 460 + i * 150 - (len(linhas_) - 1) * 75, t, S.s0 + .1 + i * .35, fit(tx, 150, VW(), INTER_K), L(p, 'cor', '#FFE14A') if i == len(linhas_) - 1 else '#FFFFFF', font=INTER_K, stroke=16)
     particulas(c, t, '#FFE14A', 20, 140)
 def T_objeto(c, t, S, p):
     fundo(c, t, L(p, 'bg', 'escuro'), 10 if L(p, 'bg', 'escuro') != 'escuro' else 0); o = L(p, 'obj', 'escudo'); b = float(L(p, 'brilho', .3)); rot = math.sin(t * 1.5) * 5
@@ -224,9 +229,9 @@ def T_fato(c, t, S, p):
     elif k == 'reacao':
         fundo(c, t, 'raiox'); poplabel(c, "0,2 s", 960, 540, t, S.s0 + .3, 200, '#FFE14A', font=INTER_K, stroke=16)
     else:
-        fundo(c, t, 'raiox'); tx = L(p, 'txt', '').replace('_', ' '); partes = [x.strip() for x in tx.split(':')] if ':' in tx else [tx]
+        fundo(c, t, 'raiox'); tx = L(p, 'txt', '').replace('_', ' '); partes = sum([quebra(x.strip(), 16) for x in (tx.split(':') if ':' in tx else [tx])], [])
         for g in range(8): line(c, 0, 135 * g, 1920, 135 * g, 1, '#2A6A80'); line(c, 240 * g, 0, 240 * g, 1080, 1, '#2A6A80')
-        for i, q in enumerate(partes): poplabel(c, q, 960, 420 + i * 190 - (len(partes) - 1) * 40, t, S.s0 + .2 + i * .4, fit(q, 140 if i else 100, 1600, INTER_K), '#FFE14A' if i == len(partes) - 1 else '#BFF4FF', font=INTER_K, stroke=14)
+        for i, q in enumerate(partes): poplabel(c, q, 960, 420 + i * 190 - (len(partes) - 1) * 40, t, S.s0 + .2 + i * .4, fit(q, 140 if i else 100, VW(), INTER_K), '#FFE14A' if i == len(partes) - 1 else '#BFF4FF', font=INTER_K, stroke=14)
 def T_cena(c, t, S, p):  # cenas especiais
     k = L(p, 'k')
     if k == 'invocacao':
@@ -377,13 +382,28 @@ def foco(tipo, p):
     if tipo == 'mapa': return dict(focus=(960, 520), zoom=(1.0, 1.1))
     if tipo in ('reflexo', 'cerco'): return dict(focus=(960, 600), zoom=(1.05, 1.0))
     return dict(focus=(960, 540), zoom=(1.0, 1.06))
+def foco_v(tipo, p):  # versão vertical (9:16): o quadro vê ~600 px de largura do mundo no zoom 1
+    if p.get('fv'): x, y, z = [float(v) for v in p['fv'].split(',')]; return dict(focus_v=(x, y), zoom_v=(z, z * 1.05))
+    if tipo == 'grupo':
+        n = len(lista(p.get('who', 'kai'))); w = float(p.get('esp', 300)) * (n - 1) + 420 * float(p.get('s', 1.0)); z = max(.45, min(1.15, 640 / w))
+        dx = float(p.get('dx', 0))
+        return dict(focus_v=((960, 760), (960 + dx, 760)) if dx else (960, 760), zoom_v=(z, z * 1.06))
+    if tipo == 'close': return dict(focus_v=(960, 600), zoom_v=(.95, 1.02))
+    if tipo == 'mapa': return dict(focus_v=(960, 540), zoom_v=(.36, .38))
+    if tipo in ('reflexo', 'cerco'): return dict(focus_v=(960, 720), zoom_v=(.55, .52))
+    if tipo in ('quiz',): return dict(focus_v=(960, 540), zoom_v=(.38, .4))
+    if tipo in ('desafio', 'comenta', 'painel'): return dict(focus_v=(960, 520), zoom_v=(.52, .55))
+    if tipo in ('texto', 'fato', 'objeto'): return dict(focus_v=(960, 540), zoom_v=(.55, .58))
+    if tipo == 'cena': return dict(focus_v=(960, 640), zoom_v=(.6, .64))
+    if tipo == 'detalhe': return dict(focus_v=(float(p.get('x', 960)), float(p.get('y', 540))), zoom_v=(.7, .75))
+    return dict(focus_v=(960, 560), zoom_v=(.6, .64))
 def montar(arq):
     seq = []
     for i, (tipo, p, texto) in enumerate(ler_roteiro(arq)):
         fid = f'f{i:03d}'; fn = TIPOS[tipo]
         def draw(c, t, S, _fn=fn): _fn(c, t, S, S.d['p'])
         draw.__name__ = f'cena_{tipo}'
-        d = dict(draw=draw, falas=[fid], p=p, **foco(tipo, p))
+        d = dict(draw=draw, falas=[fid], p=p, **foco(tipo, p), **foco_v(tipo, p))
         if p.get('topo'): d['topo'] = p['topo'].replace('_', ' ')
         sfx = []
         for (nm, when, g) in SFX.get(tipo, []): sfx.append((nm, f"{fid}+{p.get('hit', .5)}" if when == 'HIT' else when, g))
