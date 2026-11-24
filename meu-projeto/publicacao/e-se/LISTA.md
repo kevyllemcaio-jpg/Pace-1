@@ -58,7 +58,7 @@ Observações:
 | N6 | E SE Seu DIÁRIO Fosse Lido em Voz Alta na Sala? | "LERAM MEU DIÁRIO?!" | pronto (diario-lido-na-sala.mp4) |
 | N7 | E SE Todo Mundo VISSE o Seu Histórico do Celular? | "APAGA! APAGA!" | ideia |
 | N8 | E SE Sua CRUSH Pudesse Ouvir Seus Pensamentos (Só Ela)? | "ELA OUVE TUDO?!" | pronto (crush-ouve-pensamentos.mp4) |
-| N9 | E SE a Sua MÃE Ouvisse Seus Pensamentos? | "MÃE, NÃO!" | ideia |
+| N9 | E SE a Sua MÃE Ouvisse Seus Pensamentos? | "MINHA MÃE OUVE TUDO?!" | pronto (mae-ouve-pensamentos.mp4) |
 | N10 | E SE os PROFESSORES Ouvissem Tudo na Prova? | "COLA MENTAL" | ideia |
 | N11 | E SE Aparecesse na Sua Testa o Que Você Sente? | "TÁ ESCRITO!" | ideia |
 | N12 | E SE Você Não Pudesse MENTIR por 24 Horas na Escola? | "SÓ VERDADE?!" | em produção |
