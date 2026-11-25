@@ -9,7 +9,7 @@ import { criarAvatarBloco } from '../personagem-bloco.js';
 import { ZECA } from '../personagens-bloco.js';
 
 export const config = { semLegenda: true, musica: false };
-const NOME = 'E SE...?';
+const NOME = 'CAIOTYK';
 const SUB = 'Histórias animadas que você nunca imaginou';
 
 function gradiente(cores, w = 4, h = 512) {
@@ -46,7 +46,7 @@ export function criar(ctx) {
     const terra = new THREE.Mesh(new RoundedBoxGeometry(5, 1.4, 3, 4, 0.12), new THREE.MeshStandardMaterial({ color: '#B97A45', roughness: 0.8 })); terra.position.set(-1.9, -1.2, 0); cena.add(terra);
     [[-6.5, 2.2, -3, '#FFC21A', 1.0], [6.4, 2.6, -3, '#FF5A8A', 1.1], [4.2, -0.6, -1.5, '#7CF29A', 0.8], [-9.5, -0.4, -4, '#B07CFF', 1.2], [9.4, 0.4, -4, '#FFC21A', 1.3], [-4.2, 3.4, -5, '#7FE0FF', 0.7]].forEach(([x, y, z, cor, s], i) => { const b = blocoPergunta(cor, s); b.position.set(x, y, z); b.rotation.set(0.3 * i, 0.5 + i, 0.15); cena.add(b); blocos3d.push(b); });
     [[-11, 4.5, -10, 1.6], [11, 5, -12, 2], [0, 6.2, -14, 1.4], [-2, -3.5, -12, 1.8], [7, -3.2, -9, 1.5]].forEach(([x, y, z, s]) => nuvem(cena, [x, y, z], s));
-    zeca.position.set(-2.3, 0, 0.3); zeca.rotation.y = 0.35;
+    zeca.position.set(-2.5, 0, 0.3); zeca.rotation.y = 0.35;
     camera.fov = 28; camera.updateProjectionMatrix();
   } else {
     [[-1.1, 2.4, -1.5, '#FFC21A', 0.45], [1.15, 2.2, -1.3, '#FF5A8A', 0.4], [1.0, 1.15, -1.8, '#7CF29A', 0.35]].forEach(([x, y, z, cor, s], i) => { const b = blocoPergunta(cor, s); b.position.set(x, y, z); b.rotation.set(0.3, 0.6 + i, 0.2); cena.add(b); blocos3d.push(b); });
@@ -61,8 +61,8 @@ export function criar(ctx) {
     zeca.animar(0.55);
   };
   const texto = HORIZONTAL
-    ? () => `<div style="position:absolute;left:600px;top:262px;width:430px;font-family:Inter,sans-serif;font-weight:900;color:#fff">
-        <div style="font-size:112px;line-height:.95;-webkit-text-stroke:16px #0E1A3A;paint-order:stroke fill;text-shadow:0 8px 0 rgba(0,0,0,.25)">E SE<span style="color:#FFD21F">...?</span></div>
+    ? () => `<div style="position:absolute;left:566px;top:270px;width:462px;font-family:Inter,sans-serif;font-weight:900;color:#fff">
+        <div style="font-size:88px;line-height:.95;letter-spacing:-1px;-webkit-text-stroke:15px #0E1A3A;paint-order:stroke fill;text-shadow:0 8px 0 rgba(0,0,0,.25)">CAIO<span style="color:#FFD21F">TYK</span></div>
         <div style="margin-top:14px;font-size:27px;line-height:1.15;background:#0E1A3A;border-radius:14px;padding:10px 16px;display:inline-block">${SUB}</div></div>`
     : () => '';
   const blocos = [{
