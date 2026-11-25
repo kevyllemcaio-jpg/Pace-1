@@ -1,8 +1,8 @@
-# O MAIS FRACO DA CIDADE (3D animado, Bolinha)
+# O MAIS FRACO DA CIDADE (2D animado, Bolinha)
 
-**Arquivos:** `mais-fraco.mp4` (vertical 1080x1920, 3D animado no Blender, ~3 min 10 s; os **2 últimos segundos são a capa**) · `capa-mais-fraco.jpg`
+**Arquivos:** `mais-fraco.mp4` (vertical 1080x1920, desenho 2D animado a 30 fps, 3 min 12 s; os **2 últimos segundos são a capa**) · `capa-mais-fraco.jpg`
 
-Refação do teu vídeo "CUIDADO COM ESTE TREINADOR", agora **totalmente animado** (personagens andando, correndo, caindo, lutando).
+Refação do teu vídeo "CUIDADO COM ESTE TREINADOR", agora em **desenho 2D totalmente animado** (personagens andando, correndo, caindo, lutando).
 - **Elenco:** o Zeca (versão nova com rosto expressivo) como protagonista, o Bruno do cachecol amarelo, o Lucas do gorro laranja, o Mestre e uma criatura de gelo original.
 - **Narração:** tem mudanças (números, dias, 150 degraus, os amigos chegando a 62).
 - **Bugs do original corrigidos:** personagens atravessando objetos e câmera atrás de paredes.
@@ -31,5 +31,5 @@ Qual seria o seu número? Comenta 👇
 | Visibilidade | Programado |
 | Público-alvo | Decida pelo seu público real; marcar errado pode gerar penalidade. |
 | Uso de IA | **Sim** (narração com voz sintética) |
-| Tags | `mais fraco, treinador, história, animação 3d, shorts, bolinha, amizade` |
+| Tags | `mais fraco, treinador, história, animação, shorts, bolinha, amizade` |
 | Categoria | Filmes e animação |
