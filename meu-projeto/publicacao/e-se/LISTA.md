@@ -145,3 +145,4 @@ Observações:
 | Título | Arquivo | Status |
 |---|---|---|
 | VOCÊ DECIDE #1: A carteira rosa (Bolinha, 2D) | voce-decide-1.mp4 | pronto |
+| A TERRA DOS PERDIDOS #1: O Fiapo (ideia própria, 2D) | terra-dos-perdidos-1.mp4 | pronto |
