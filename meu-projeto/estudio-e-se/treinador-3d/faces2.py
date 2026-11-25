@@ -8,7 +8,7 @@ SIMPLE = True
 def eye(d, im, cx, cy, iris, kind, look=(0, 0), lash=(30, 18, 14), fem=False, small=False):
     if SIMPLE and kind not in ('fechado', 'feliz_f', 'dor'):
         sq = {'semi': 0.55, 'serio': 0.6}.get(kind, 1.0); big = 1.25 if kind in ('surpreso', 'medo') else 1.0
-        w2, h2 = 46 * big, 64 * big * sq; col = (28, 22, 26)
+        w2, h2 = (26 if CLASSIC else 46) * big, (44 if CLASSIC else 64) * big * sq; col = (28, 22, 26)
         d.ellipse((cx - w2, cy - h2, cx + w2, cy + h2), fill=col)
         d.ellipse((cx - w2 * 0.55, cy - h2 * 0.7, cx - w2 * 0.05, cy - h2 * 0.2), fill=(255, 255, 255))
         if fem:
@@ -73,11 +73,12 @@ EXPR = {  # olho, boca, ângulo sobrancelha, altura sobrancelha
     'feliz': ('n', 'feliz', 6, 0), 'sorriso': ('n', 'sorriso', 4, 0), 'neutro': ('n', 'neutro', 0, 0), 'serio': ('serio', 'serio', -16, 20),
     'medo': ('medo', 'medo', 22, -26), 'surpreso': ('surpreso', 'surpreso', 10, -34), 'triste': ('n', 'triste', 20, -6), 'raiva': ('serio', 'raiva', -24, 26),
     'dor': ('dor', 'dor', -22, 22), 'piscando': ('fechado', 'sorriso', 4, 4), 'risada': ('feliz_f', 'feliz', 8, -8), 'determinado': ('semi', 'sorriso', -18, 18)}
+CLASSIC = False
 def gen(prefix, iris, brow_col, freckles=False, fem=False, small=False, old=False, bthick=26):
     for k, (ek, mk, ba, bh) in EXPR.items():
         im = Image.new('RGBA', (S, S), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
         bl = Image.new('RGBA', (S, S), (0, 0, 0, 0)); db = ImageDraw.Draw(bl)
-        for s in (-1, 1): db.ellipse((512 + s * 250 - 70, 590, 512 + s * 250 + 70, 650), fill=(255, 120, 130, 90))
+        for s in (-1, 1): db.ellipse((512 + s * 250 - 70, 590, 512 + s * 250 + 70, 650), fill=(255, 120, 130, 0 if CLASSIC else 90))
         im.alpha_composite(bl.filter(ImageFilter.GaussianBlur(18))); d = ImageDraw.Draw(im)
         if freckles:
             for s in (-1, 1):
@@ -95,4 +96,7 @@ gen('lu', '#C9822A', (90, 52, 32), freckles=True)
 gen('me', '#3B3B48', (235, 235, 235), small=True, old=True, bthick=34)
 gen('vm', '#6A4A2A', (40, 26, 18))
 gen('vf', '#9B5DE5', (50, 30, 20), fem=True)
+CLASSIC = True
+for _p, _f in (('cl', False), ('clf', True)): gen(_p, '#000000', (35, 25, 25), fem=_f, bthick=18)
+gen('clv', '#000000', (230, 230, 230), bthick=24)
 print('ok')

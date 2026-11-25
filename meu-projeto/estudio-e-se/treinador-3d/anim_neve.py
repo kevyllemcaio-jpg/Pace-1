@@ -16,7 +16,7 @@ VIT = make('vitima', dict(VILA[3], num=100, faces='f2/vm', scarf='#5A9BD5', bean
 MON = Monstro()
 CAST = [Z, B, L, M, VIT] + V
 for a in CAST: a.base_num = a.o.get('num')
-pedra = [sphere(f'pedra{i}', 0.42, (0, 0.62, 1.7), mat('pedraC', '#8A8A92', 0.8), a.root, scale=(1.1, 0.9, 1)) for i, a in enumerate((Z, B, L))]
+pedra = [sphere(f'pedra{i}', 0.42, (0, 0.66, 1.95), mat('pedraC', '#8A8A92', 0.8), a.root, scale=(1.1, 0.9, 1)) for i, a in enumerate((Z, B, L))]
 gorroChao = cube('gorroChao', (0.7, 0.6, 0.3), (0, 0, 0.15), mat('gorroC', '#5A9BD5', 0.85), 0.12)
 def tx_rachado():
     from PIL import Image, ImageDraw
@@ -68,7 +68,7 @@ def head(a, x=0, y=0, z=0): a.J['head'].rotation_euler = (R(x), R(y), R(z))
 def put(a, x, y, z=0, rz=0, lean=0, roll=0, e='neutro', t=0, num=None):
     a.root.location = (x, y, z); a.root.rotation_euler = (R(lean), R(roll), R(rz)); a.shown = True
     face(a, e, t, hash(a.name) % 7)
-    if num is not None and hasattr(a, 'setnum'): a.setnum(num, (255, 80, 80) if num == 100 else (255, 214, 90))
+    if num is not None and hasattr(a, 'setnum'): a.setnum(num, (235, 60, 60) if a is Z else ((255, 200, 60) if a is M else (70, 190, 255)))
 def idle(a, t, k=1.0):
     h = hash(a.name) % 7; s = math.sin(t * 2.4 + h); w = math.sin(t * 0.7 + h)
     arms(a, 4 * s * k, 6 + 3 * s, -4 * s * k, 6 + 3 * s); head(a, 3 * s, 4 * w * k, 9 * math.sin(t * 0.55 + h) * k); legs(a, 0, 0)
@@ -81,8 +81,8 @@ def run(a, t): walk(a, t, 3.0, 55, 65); a.root.rotation_euler.x = R(12)
 def shiver(a, t, k=1):
     a.root.location.x += 0.03 * k * math.sin(t * 70); a.root.rotation_euler.y += R(1.5 * k * math.sin(t * 53)); arms(a, 60 + 4 * math.sin(t * 61), -25, 60 + 4 * math.cos(t * 57), -25); head(a, 10 + 3 * math.sin(t * 40) * k, 0, 0)
 def lie(a, x, y, rz=0, e='dor', t=0, num=None): put(a, x, y, 0.27, rz, -88, 0, e, t, num); arms(a, 0, 20, 0, 20); legs(a, 0, 0)
-def sitg(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.72, rz, 0, 0, e, t, num); legs(a, -90, -90)
-def kneel(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.7, rz, 0, 0, e, t, num); legs(a, 90, 90)
+def sitg(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.92, rz, 0, 0, e, t, num); legs(a, -90, -90)
+def kneel(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.9, rz, 0, 0, e, t, num); legs(a, 90, 90)
 MT = [0.0]
 def mon(x, y, rz=0, sc=1.25, **pz):
     t = MT[0]; pz.setdefault('chest', 25 + 3 * math.sin(t * 2.2)); pz.setdefault('head', (4 * math.sin(t * 1.7), 0, 10 * math.sin(t * 0.9)))
@@ -97,7 +97,7 @@ def climb(a, u, x, t, e='determinado', ox=300, num=None, f=1.6):
 def reset():
     for a in CAST: a.shown = False; a.root.location = (0, -200, -60); a.root.rotation_euler = (0, 0, 0); arms(a, 0, 4, 0, 4); legs(a, 0, 0); head(a)
     for a in CAST:
-        if hasattr(a, 'setnum') and a.base_num is not None: a.setnum(a.base_num, (255, 80, 80) if a.base_num == 100 else (255, 214, 90))
+        if hasattr(a, 'setnum') and a.base_num is not None: a.setnum(a.base_num, (235, 60, 60) if a is Z else ((255, 200, 60) if a is M else (70, 190, 255)))
     MON.shown = False; MON.root.location = (0, -300, -60)
     for p in pedra: p.hide_render = True
     gorroChao.location = (0, -300, -50); racha.location = (0, -300, -50)

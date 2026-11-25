@@ -4,8 +4,8 @@ R = math.radians
 class Monstro:
     """criatura de gelo original: corcunda, cabeça com cristais, braços longos terminando em agulhas"""
     def __init__(self, name='monstro'):
-        self.root = root = empty(name); body = mat('mon_pele', '#5B6FD6', 0.55); dark = mat('mon_esc', '#2E3A86', 0.6)
-        gelo = mat('mon_gelo', '#BFEFFF', 0.08, emit='#9BE7FF', es=1.5); olho = mat('mon_olho', '#FFFFFF', 0.2, emit='#7FF6FF', es=12)
+        self.root = root = empty(name); body = mat('mon_pele', '#9A78C8', 0.75); dark = mat('mon_esc', '#7A58A8', 0.8)
+        gelo = mat('mon_gelo', '#E9DFCF', 0.5); olho = mat('mon_olho', '#2A1030', 0.3, emit='#FFB45A', es=2)
         self.hips = empty(name + '_hips', (0, 0, 2.2), root)
         self.legs = []
         for s in (-1, 1):
@@ -30,8 +30,16 @@ class Monstro:
             el = empty(f'{name}_cot{s}', (0, 0, -1.45), sh); self.arms.append(el)
             cube(f'{name}_antebr{s}', (0.45, 0.45, 1.3), (0, 0, -0.6), dark, 0.16, el)
             nd = empty(f'{name}_agulhaE{s}', (0, 0, -1.25), el); self.needles.append(nd)
-            bpy.ops.mesh.primitive_cone_add(radius1=0.14, radius2=0.0, depth=2.6, location=(0, 0, -1.3)); c = bpy.context.object; c.name = f'{name}_agulha{s}'; c.parent = nd; c.rotation_euler = (math.pi, 0, 0)
-            c.data.materials.append(gelo); bpy.ops.object.shade_smooth()
+            for k, (dx, dy) in enumerate(((0, 0), (0.1, 0.06), (-0.1, 0.05), (0.05, -0.1), (-0.06, -0.08))):
+                bpy.ops.mesh.primitive_cone_add(radius1=0.07, radius2=0.0, depth=2.8, location=(dx, dy, -1.4)); c = bpy.context.object; c.name = f'{name}_agulha{s}{k}'; c.parent = nd; c.rotation_euler = (math.pi + dy * 0.4, dx * 0.4, 0)
+                c.data.materials.append(gelo); bpy.ops.object.shade_smooth()
+            cyl(f'{name}_amarra{s}', 0.17, 0.25, (0, 0, -0.1), mat('mon_amarra', '#C02030', 0.6), nd)
+        for ob in self.root.children_recursive:
+            if ob.type == 'MESH' and 'agulha' not in ob.name and 'olho' not in ob.name and 'amarra' not in ob.name:
+                for m in ob.modifiers:
+                    if m.type == 'BEVEL': m.width = 0.25; m.segments = 2
+                sd = ob.modifiers.new('ss', 'SUBSURF'); sd.levels = 2; sd.render_levels = 2
+            if 'chifre' in ob.name: ob.scale = (0.6, 0.6, 0.45)
         self.pose()
     def pose(self, ombroL=(20, 0, -15), cotL=(-30, 0, 0), ombroR=(20, 0, 15), cotR=(-30, 0, 0), chest=25, head=(0, 0, 0), legs=(0, 0)):
         L, Le, Rr, Re = self.arms
