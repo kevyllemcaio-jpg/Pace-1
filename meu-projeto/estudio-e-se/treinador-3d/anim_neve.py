@@ -1,7 +1,7 @@
 import sys, os, math, time, json, random; sys.path.insert(0, '/root/b3d')
 import bpy
 from lib import *; from sets_neve import *; from chars2 import *; from monstro import Monstro
-R = math.radians; FPS = 12
+R = math.radians; FPS = int(os.environ.get('AFPS', 10))
 OUT = os.environ.get('OUT', '/root/b3d/fr_neve'); os.makedirs(OUT, exist_ok=True)
 ws = json.load(open('/root/shorts/treinador/work/words.json'))
 ST = {}
@@ -55,7 +55,8 @@ def lp(a, b, t):
 def camv(t, T, p0, l0, p1=None, l1=None, lens=32, shake=0):
     k = ez(t / T); p1 = p1 or p0; l1 = l1 or l0; p = lp(p0, p1, k); l = lp(l0, l1, k)
     if shake: p = (p[0] + shake * math.sin(t * 53), p[1], p[2] + shake * math.cos(t * 47))
-    cam.location = p; tgt.location = l; cam.data.lens = lens
+    hx = 0.025 * math.sin(t * 1.3) + 0.012 * math.sin(t * 3.1); hz = 0.02 * math.sin(t * 1.7 + 1) + 0.01 * math.sin(t * 2.9)
+    cam.location = (p[0] + hx, p[1], p[2] + hz); tgt.location = (l[0] + hx * 0.5, l[1], l[2] + hz * 0.5); cam.data.lens = lens
 OPEN = {'feliz', 'sorriso', 'neutro', 'serio', 'medo', 'surpreso', 'triste', 'determinado'}
 def face(a, e, t, seed=0):
     ph = (t + seed * 0.77) % 3.3
@@ -69,19 +70,25 @@ def put(a, x, y, z=0, rz=0, lean=0, roll=0, e='neutro', t=0, num=None):
     face(a, e, t, hash(a.name) % 7)
     if num is not None and hasattr(a, 'setnum'): a.setnum(num, (255, 80, 80) if num == 100 else (255, 214, 90))
 def idle(a, t, k=1.0):
-    s = math.sin(t * 2.4 + hash(a.name) % 5); arms(a, 3 * s * k, 5 + 2 * s, -3 * s * k, 5 + 2 * s); head(a, 2 * s, 0, 3 * math.sin(t * 0.9 + hash(a.name) % 3)); legs(a, 0, 0)
-    a.root.location.z += 0.015 * (1 + s)
+    h = hash(a.name) % 7; s = math.sin(t * 2.4 + h); w = math.sin(t * 0.7 + h)
+    arms(a, 4 * s * k, 6 + 3 * s, -4 * s * k, 6 + 3 * s); head(a, 3 * s, 4 * w * k, 9 * math.sin(t * 0.55 + h) * k); legs(a, 0, 0)
+    a.root.location.z += 0.02 * (1 + s); a.root.rotation_euler.y += R(2.5 * w * k); a.root.location.x += 0.05 * w * k
 def walk(a, t, f=1.7, amp=30, armamp=None):
     p = t * f * 2 * math.pi; s = math.sin(p); armamp = amp if armamp is None else armamp
-    legs(a, amp * s, -amp * s); arms(a, -armamp * s, 5, armamp * s, 5); head(a, 0, 0, 0); a.root.location.z += 0.06 * abs(math.cos(p))
+    legs(a, amp * s, -amp * s); arms(a, -armamp * s, 6 + 3 * abs(s), armamp * s, 6 + 3 * abs(s)); head(a, -3 * abs(math.cos(p)), 0, 4 * s)
+    a.root.location.z += 0.09 * abs(math.cos(p)); a.root.rotation_euler.y += R(3.5 * s); a.root.rotation_euler.z += R(4 * s)
 def run(a, t): walk(a, t, 3.0, 55, 65); a.root.rotation_euler.x = R(12)
 def shiver(a, t, k=1):
-    a.root.location.x += 0.03 * k * math.sin(t * 70); arms(a, 60, -25, 60, -25); head(a, 8, 0, 0)
+    a.root.location.x += 0.03 * k * math.sin(t * 70); a.root.rotation_euler.y += R(1.5 * k * math.sin(t * 53)); arms(a, 60 + 4 * math.sin(t * 61), -25, 60 + 4 * math.cos(t * 57), -25); head(a, 10 + 3 * math.sin(t * 40) * k, 0, 0)
 def lie(a, x, y, rz=0, e='dor', t=0, num=None): put(a, x, y, 0.27, rz, -88, 0, e, t, num); arms(a, 0, 20, 0, 20); legs(a, 0, 0)
 def sitg(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.72, rz, 0, 0, e, t, num); legs(a, -90, -90)
 def kneel(a, x, y, rz=0, e='neutro', t=0, num=None): put(a, x, y, -0.7, rz, 0, 0, e, t, num); legs(a, 90, 90)
+MT = [0.0]
 def mon(x, y, rz=0, sc=1.25, **pz):
-    MON.place(x, y, 0, rz, True, sc); MON.pose(**pz); MON.shown = True
+    t = MT[0]; pz.setdefault('chest', 25 + 3 * math.sin(t * 2.2)); pz.setdefault('head', (4 * math.sin(t * 1.7), 0, 10 * math.sin(t * 0.9)))
+    pz.setdefault('ombroL', (20 + 8 * math.sin(t * 1.5), 0, -15)); pz.setdefault('ombroR', (20 + 8 * math.sin(t * 1.5 + 1), 0, 15))
+    MON.place(x, y, 0.05 * math.sin(t * 2.2), rz, True, sc); MON.pose(**pz); MON.shown = True
+    pb(bpy.data.materials['mon_olho']).inputs['Emission Strength'].default_value = 10 + 5 * math.sin(t * 6)
 def monwalk(t, f=1.1):
     s = math.sin(t * f * 2 * math.pi); return dict(legs=(28 * s, -28 * s), ombroL=(20 - 20 * s, 0, -15), ombroR=(20 + 20 * s, 0, 15), chest=25 + 4 * s)
 def climb(a, u, x, t, e='determinado', ox=300, num=None, f=1.6):
@@ -390,10 +397,28 @@ def s27(t, T): numshot(93, 84, 'dia')(t, T)
 def s31(t, T): numshot(84, 73, 'dia')(t, T)
 def s34(t, T): numshot(73, 62, 'dia')(t, T)
 SHOTS = {i: globals()[f's{i}'] for i in range(63)}
+PREV = {}
+def joints():
+    for a in CAST:
+        for k in ('armL', 'armR', 'head'): yield a.J[k]
+    for o in MON.arms + [MON.head, MON.chest]: yield o
 def frame(fi):
     t = fi / FPS
     i = max(k for k in range(NSEG) if BOUND[k] <= t) if t < TOTAL else NSEG - 1
-    reset(); SHOTS[i](t - BOUND[i], BOUND[i + 1] - BOUND[i]); apply_vis()
+    MT[0] = t; reset(); SHOTS[i](t - BOUND[i], BOUND[i + 1] - BOUND[i]); apply_vis()
+    # pose suavizada: calcula a pose dos 2 quadros anteriores (mesma cena) e mistura
+    if os.environ.get('SMOOTH', '1') == '1' and t - BOUND[i] > 0.2:
+        cur = {o.name: tuple(o.rotation_euler) for o in joints()}
+        acc = {k: [0.0, 0.0, 0.0] for k in cur}; wsum = 0
+        for dt, wgt in ((0.0, 0.5), (1 / 24, 0.3), (2 / 24, 0.2)):
+            if dt:
+                reset(); SHOTS[i](t - dt - BOUND[i], BOUND[i + 1] - BOUND[i])
+            for o in joints():
+                e = tuple(o.rotation_euler) if dt else cur[o.name]
+                for j in range(3): acc[o.name][j] += e[j] * wgt
+            wsum += wgt
+        MT[0] = t; reset(); SHOTS[i](t - BOUND[i], BOUND[i + 1] - BOUND[i]); apply_vis()
+        for o in joints(): o.rotation_euler = tuple(v / wsum for v in acc[o.name])
 if __name__ == '__main__':
     import argparse; ap = argparse.ArgumentParser(); ap.add_argument('--shots', default=''); ap.add_argument('--every', type=int, default=1); ap.add_argument('--mids', type=int, default=0); ap.add_argument('--part', default='0/1'); a = ap.parse_args()
     N = int(TOTAL * FPS) + 1; fr = range(N)

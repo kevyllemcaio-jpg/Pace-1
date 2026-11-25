@@ -1,7 +1,7 @@
 import sys, os, json, math, random, glob
-from PIL import Image, ImageDraw, ImageFont
-W, H, FPS = 1080, 1920, 12
-IN = '/root/b3d/fr_neve'; OUT = os.environ.get('CF', '/root/b3d/cf_neve'); os.makedirs(OUT, exist_ok=True)
+from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+W, H, FPS = 1080, 1920, int(os.environ.get('CFPS', 12))
+IN = os.environ.get('CIN', '/root/b3d/fr_neve'); EXT = os.environ.get('CEXT', 'png'); OUT = os.environ.get('CF', '/root/b3d/cf_neve'); os.makedirs(OUT, exist_ok=True)
 ws = json.load(open('/root/shorts/treinador/work/words.json')); ST = {}
 for w in ws: ST.setdefault(w['seg'], w['inicio'])
 NSEG = max(ST) + 1; TOTAL = ws[-1]['fim'] + 0.6
@@ -21,9 +21,10 @@ def tag(fr, txt, k):
     fr.alpha_composite(L, ((W - L.width) // 2, 230 - L.height // 2))
 def comp(fi):
     t = fi / FPS; i = max(k for k in range(NSEG) if BOUND[k] <= t); tt = t - BOUND[i]
-    p = f'{IN}/f_{fi:05d}.png'
+    p = f'{IN}/f_{fi:05d}.{EXT}'
     if not os.path.exists(p): return None
-    fr = Image.open(p).convert('RGB').resize((W, H), Image.LANCZOS).convert('RGBA')
+    fr = Image.open(p).convert('RGB').resize((W, H), Image.LANCZOS)
+    fr = ImageEnhance.Contrast(ImageEnhance.Color(fr).enhance(float(os.environ.get('SAT', 1.6)))).enhance(1.07).convert('RGBA')
     if i not in INTERIOR:
         lay = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay); n = 140 if i in NOITE else 90
         for (x, y, r, sp) in FL[:n]:

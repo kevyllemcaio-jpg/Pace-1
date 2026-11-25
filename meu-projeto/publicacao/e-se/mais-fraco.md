@@ -1,6 +1,6 @@
 # O MAIS FRACO DA CIDADE (2D animado, Bolinha)
 
-**Arquivos:** `mais-fraco-2d.mp4` (desenho 2D, 3 min 12 s, capa nos 2 s finais) · `capa-mais-fraco-2d.jpg` · versão 3D: `mais-fraco.mp4` (em produção)
+**Arquivos:** `mais-fraco-2d.mp4` (desenho 2D, 3 min 12 s, capa nos 2 s finais) · `capa-mais-fraco-2d.jpg` · versão 3D: `mais-fraco.mp4` (3D animado a 30 fps, 3 min 12 s) · `capa-mais-fraco.jpg`
 
 Refação do teu vídeo "CUIDADO COM ESTE TREINADOR", agora em **desenho 2D totalmente animado** (personagens andando, correndo, caindo, lutando).
 - **Elenco:** o Zeca (versão nova com rosto expressivo) como protagonista, o Bruno do cachecol amarelo, o Lucas do gorro laranja, o Mestre e uma criatura de gelo original.

@@ -81,6 +81,11 @@ class Avatar:
         self.pose('normal'); self.face('feliz')
     def face(self, expr):
         if getattr(self, '_fc', None) == expr: return
+        if self.o.get('ball', 1) and getattr(self, '_ball', False):
+            self._fc = expr; p = f"{FACE_DIR}/{self.o['faces']}_{expr}.png"; nm = '_'.join(p.split('/')[-2:])
+            img = bpy.data.images.get(nm)
+            if not img: img = bpy.data.images.load(p); img.name = nm
+            self.face_node.image = img; return
         self._fc = expr
         p = f"{FACE_DIR}/{self.o['faces']}_{expr}.png"; img = bpy.data.images.get(p.split('/')[-1]) or bpy.data.images.load(p); self.face_node.image = img
     def counter(self, n):
@@ -158,7 +163,7 @@ def add_extras(av):
     if o.get('beard'):
         cube(f'{name}_beard', (0.6, 0.1, 0.24), (0, -0.4, 0.16), mat(name + '_beardm', o['beard'], 0.9), 0.06, neck)
     return av
-ZECA_T = dict(ZECA, num=100, faces='f2/zk', spiky=1, scarf='#E63946', nobolt=1)
+ZECA_T = dict(skin='#F5F5F5', headcol='#F7F7F7', top='#F2B705', top2='#D99E00', pants='#1F4E9C', sole='#FFFFFF', hair='#9a6a3a', bald=1, glove='#FFFFFF', faces='f2/bo', num=100, nobolt=1, hoodie=0, collar=1)
 BRUNO = dict(skin='#C98E66', top='#2A9D8F', top2='#21867A', pants='#3A4A7A', sole='#F2F2F2', hair='#1B1212', faces='f2/br', longhair=1, scarf='#FFD23F', num=44, hoodie=0)
 LUCAS = dict(skin='#F1C9A5', top='#3A6BD9', top2='#2D55AF', pants='#2B2D42', sole='#E63946', hair='#5A3420', faces='f2/lu', beanie='#FF8A1F', beanie2='#FFFFFF', num=44)
 MESTRE = dict(skin='#E0B08A', top='#8A5A33', top2='#6B4226', pants='#4A3526', sole='#3A2A20', hair='#E8E8E8', faces='f2/me', short=1, cane=1, beard='#E8E8E8', num=4)
@@ -170,12 +175,93 @@ VILA = [dict(skin='#F1C9A5', top='#E63946', pants='#2D3B55', hair='#7A4A2A', fac
         dict(skin='#8B5A3C', top='#22B573', pants='#2D3B55', hair='#1B1212', faces='f2/vm', short=1, num=36),
         dict(skin='#F1C9A5', top='#9AA0A8', pants='#3A3A40', hair='#5A3420', faces='f2/vm', short=1, num=99, beanie='#7A1E1E', beanie2='#E8E8E8'),
         dict(skin='#E8B48A', top='#F4A261', pants='#2D3B55', hair='#3A2316', faces='f2/vf', bun=1, num=53)]
+def soft(ob, lvl=1):
+    if ob is None: return
+    for m in ob.modifiers:
+        if m.type == 'BEVEL': m.width = max(m.width, 0.1); m.segments = 2
+    sd = ob.modifiers.new('ss', 'SUBSURF'); sd.levels = lvl; sd.render_levels = lvl
+def body_v2(av):
+    # corpo estilo boneco moderno: braços arredondados, mãos com dedos, formas suaves
+    name, o = av.name, av.o; sk = bpy.data.materials[name + '_skin']; top = bpy.data.materials[name + '_top']; top2 = bpy.data.materials[name + '_top2']
+    for sd in ('L', 'R'):
+        for k in ('arm', 'cuff', 'hand', 'palma', 'dedos', 'polegar'):
+            ob = bpy.data.objects.get(f'{name}_{k}{sd}')
+            if ob: bpy.data.objects.remove(ob, do_unlink=True)
+    for sd, sx in (('L', 1), ('R', -1)):
+        sh = av.J['arm' + sd]; sh.location.x = -sx * 0.70
+        sphere(f'{name}_omb{sd}', 0.23, (0, 0, -0.04), top, sh, scale=(1, 1, 0.9))
+        bpy.ops.mesh.primitive_cone_add(radius1=0.215, radius2=0.19, depth=0.62, vertices=24, location=(0, 0, -0.34)); a = bpy.context.object; a.name = f'{name}_braco{sd}'; a.parent = sh; a.data.materials.append(top); bpy.ops.object.shade_smooth()
+        sphere(f'{name}_cot{sd}', 0.19, (0, 0, -0.63), top, sh, scale=(1, 1, 0.5))
+        cyl(f'{name}_punho{sd}', 0.2, 0.09, (0, 0, -0.66), top2, sh, bevel=0.03)
+        cyl(f'{name}_pulso{sd}', 0.1, 0.12, (0, 0, -0.73), sk, sh, bevel=0)
+        p = cube(f'{name}_palma{sd}', (0.18, 0.31, 0.27), (sx * 0.01, 0, -0.85), sk, 0.06, sh); soft(p)
+        for f in range(4):
+            fy = -0.11 + f * 0.073
+            seg1 = cyl(f'{name}_d{sd}{f}a', 0.044, 0.12, (sx * 0.02, fy, -1.0), sk, sh, verts=12, bevel=0)
+            seg2 = cyl(f'{name}_d{sd}{f}b', 0.042, 0.1, (sx * 0.075, fy, -1.07), sk, sh, rot=(0, math.radians(sx * 55), 0), verts=12, bevel=0)
+            for sg in (seg1, seg2): sphere(sg.name + 'p', 0.044, (sg.location.x, sg.location.y, sg.location.z - 0.055), sk, sh)
+        cyl(f'{name}_pol{sd}', 0.05, 0.15, (sx * 0.07, -0.17, -0.87), sk, sh, rot=(math.radians(20), math.radians(sx * 35), 0), verts=12, bevel=0)
+        sphere(f'{name}_polp{sd}', 0.05, (sx * 0.1, -0.2, -0.94), sk, sh)
+    for k in ('torso', 'head', 'legL', 'legR', 'shoeL', 'shoeR', 'soleL', 'soleR', 'bag', 'hood', 'pocket'):
+        soft(bpy.data.objects.get(f'{name}_{k}'))
+def ball_head(av):
+    # cabeça redonda (forma do Bolinha) com o rosto projetado na esfera
+    name, o = av.name, av.o; neck = av.J['head']
+    keep = {f'{name}_band2', f'{name}_cup-1', f'{name}_cup1', f'{name}_pad-1', f'{name}_pad1'} if o.get('phones') else set()
+    for c in list(neck.children_recursive):
+        if c.name not in keep: bpy.data.objects.remove(c, do_unlink=True)
+    R0 = 0.56; base = o.get('headcol', o['skin'])
+    m = bpy.data.materials.new(name + '_ballhead'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
+    c = tuple((int(base[i:i+2], 16) / 255) ** 2.2 for i in (1, 3, 5))
+    b.inputs['Roughness'].default_value = 0.35; b.inputs['Coat Weight'].default_value = 0.3 if 'Coat Weight' in b.inputs else 0
+    fe = empty(f'{name}_faceE', (0, -R0, 0.48), neck)
+    tc = nt.nodes.new('ShaderNodeTexCoord'); tc.object = fe
+    sp = nt.nodes.new('ShaderNodeSeparateXYZ'); nt.links.new(tc.outputs['Object'], sp.inputs[0])
+    mx = nt.nodes.new('ShaderNodeMath'); mx.operation = 'MULTIPLY_ADD'; mx.inputs[1].default_value = 1 / 0.52; mx.inputs[2].default_value = 0.5; nt.links.new(sp.outputs['X'], mx.inputs[0])
+    mz = nt.nodes.new('ShaderNodeMath'); mz.operation = 'MULTIPLY_ADD'; mz.inputs[1].default_value = 1 / 0.52; mz.inputs[2].default_value = 0.5; nt.links.new(sp.outputs['Z'], mz.inputs[0])
+    cb = nt.nodes.new('ShaderNodeCombineXYZ'); nt.links.new(mx.outputs[0], cb.inputs[0]); nt.links.new(mz.outputs[0], cb.inputs[1])
+    tx = nt.nodes.new('ShaderNodeTexImage'); tx.extension = 'CLIP'; tx.image = bpy.data.images.load(f"{FACE_DIR}/{o['faces']}_feliz.png"); nt.links.new(cb.outputs[0], tx.inputs[0])
+    fr = nt.nodes.new('ShaderNodeMath'); fr.operation = 'LESS_THAN'; fr.inputs[1].default_value = 0.25; nt.links.new(sp.outputs['Y'], fr.inputs[0])
+    al = nt.nodes.new('ShaderNodeMath'); al.operation = 'MULTIPLY'; nt.links.new(tx.outputs['Alpha'], al.inputs[0]); nt.links.new(fr.outputs[0], al.inputs[1])
+    mix = nt.nodes.new('ShaderNodeMix'); mix.data_type = 'RGBA'; mix.inputs['A'].default_value = (*c, 1)
+    nt.links.new(al.outputs[0], mix.inputs['Factor']); nt.links.new(tx.outputs['Color'], mix.inputs['B']); nt.links.new(mix.outputs['Result'], b.inputs['Base Color'])
+    av.face_node = tx
+    h = sphere(f'{name}_head', R0, (0, 0, 0.48), m, neck, scale=(1, 0.96, 1.0))
+    hm = mat(name + '_hair', o['hair'], 0.55)
+    if o.get('beanie'):
+        bm = mat(name + '_bean', o['beanie'], 0.85)
+        sphere(f'{name}_beanie', R0 + 0.05, (0, 0.03, 0.8), bm, neck, scale=(1, 1, 0.62))
+        cyl(f'{name}_beanieB', R0 + 0.02, 0.14, (0, 0.02, 0.8), mat(name + '_bean2', o.get('beanie2', '#FFFFFF'), 0.9), neck, bevel=0.05)
+        sphere(f'{name}_pom', 0.15, (0, 0.03, 1.2), mat(name + '_pomm', o.get('beanie2', '#FFFFFF'), 0.95), neck)
+    elif o.get('hair') and not o.get('bald'):
+        cap = sphere(f'{name}_hairCap', R0 + 0.03, (0, 0.05, 0.56), hm, neck, scale=(1.02, 1.0, 0.92))
+        bpy.ops.object.modifier_add(type='BOOLEAN') if False else None
+        sphere(f'{name}_hairFr', 0.2, (0, -0.42, 0.9), hm, neck, scale=(2.2, 0.8, 0.7))
+        if o.get('longhair') or o.get('pigtails') or o.get('bun'):
+            cube(f'{name}_hairLong', (1.05, 0.4, 0.9), (0, 0.32, 0.32), hm, 0.18, neck)
+        if o.get('bun'): sphere(f'{name}_bun', 0.24, (0, 0.2, 1.12), hm, neck)
+        if o.get('pigtails'):
+            for s_ in (-1, 1): sphere(f'{name}_tail{s_}', 0.22, (s_ * 0.62, 0.15, 0.25), hm, neck, scale=(0.85, 0.85, 2.0))
+    if o.get('beard'): sphere(f'{name}_beard', 0.3, (0, -0.42, 0.18), mat(name + '_beardm', o['beard'], 0.9), neck, scale=(1.2, 0.6, 0.8))
+    if o.get('glasses'):
+        gm = mat('oculos', '#1A1A22', 0.3)
+        for s_ in (-1, 1): bpy.ops.mesh.primitive_torus_add(major_radius=0.13, minor_radius=0.02, location=(s_ * 0.18, -0.57, 0.52), rotation=(math.pi / 2, 0, 0)); g = bpy.context.object; g.parent = neck; g.data.materials.append(gm)
+def ball_hands(av):
+    name, o = av.name, av.o; hm = mat(name + '_glove', o.get('glove', o['skin']), 0.45)
+    for sd in ('L', 'R'):
+        for k in ('palma', 'pol', 'polp'):
+            ob = bpy.data.objects.get(f'{name}_{k}{sd}')
+            if ob: bpy.data.objects.remove(ob, do_unlink=True)
+        for ob in [x for x in bpy.data.objects if x.name.startswith(f'{name}_d{sd}')]: bpy.data.objects.remove(ob, do_unlink=True)
+        sh = av.J['arm' + sd]
+        sphere(f'{name}_luva{sd}', 0.2, (0, -0.02, -0.86), hm, sh, scale=(0.95, 1.05, 1.0))
+        sphere(f'{name}_luvaP{sd}', 0.08, (0, -0.19, -0.8), hm, sh)
 def make(name, o):
     av = Avatar(name, o); add_extras(av)
     for nm in (f'{name}_band', f'{name}_cntP'):
         ob = bpy.data.objects.get(nm)
         if ob: bpy.data.objects.remove(ob, do_unlink=True)
-    sc = o.get('headsc', 1.16); av.J['head'].scale = (sc, sc, sc)
+    sc = o.get('headsc', 1.0); av.J['head'].scale = (sc, sc, sc)
     if o.get('spiky'):
         hm = bpy.data.materials[name + '_hair']; neck = av.J['head']
         for i, (x, y, rx, ry) in enumerate(((-0.22, -0.05, -15, -20), (0.0, -0.1, -20, 0), (0.22, -0.05, -15, 20), (-0.12, 0.2, 15, -12), (0.14, 0.22, 18, 12))):
@@ -183,7 +269,64 @@ def make(name, o):
             c = bpy.context.object; c.name = f'{name}_sp2{i}'; c.data.materials.append(hm); c.parent = neck
             md = c.modifiers.new('bv', 'BEVEL'); md.width = 0.04; md.segments = 2
     av.blink_t = 0
+    av._post_ball = True
+    if o.get('collar'): bpy.ops.mesh.primitive_torus_add(major_radius=0.36, minor_radius=0.11, location=(0, 0, 2.0)); cc = bpy.context.object; cc.name = name + '_gola'; cc.parent = av.root; cc.data.materials.append(bpy.data.materials[name + '_top2']); bpy.ops.object.shade_smooth()
+    tor = bpy.data.objects.get(f'{name}_torso')
+    if tor: tor.scale = (1.06, 1.0, 1.0)
+    if o.get('messy'):
+        hm = bpy.data.materials[name + '_hair']; neck = av.J['head']
+        for nm in (f'{name}_spike0', f'{name}_spike1', f'{name}_spike2', f'{name}_spike3'):
+            ob = bpy.data.objects.get(nm)
+            if ob: bpy.data.objects.remove(ob, do_unlink=True)
+        import random as _r; rr = _r.Random(11)
+        for i in range(16):
+            x = -0.36 + (i % 4) * 0.24 + rr.uniform(-0.04, 0.04); y = -0.3 + (i // 4) * 0.2
+            bpy.ops.mesh.primitive_cone_add(radius1=0.17, depth=0.5 + rr.uniform(0, 0.15), vertices=4, location=(x, y, 0.98),
+                rotation=(math.radians(-55 + (i // 4) * 22 + rr.uniform(-8, 8)), math.radians(x * 50 + rr.uniform(-10, 10)), math.radians(45)))
+            c = bpy.context.object; c.name = f'{name}_mess{i}'; c.data.materials.append(hm); c.parent = neck
+            md = c.modifiers.new('bv', 'BEVEL'); md.width = 0.04; md.segments = 2
+        for s_ in (-1, 1):
+            bpy.ops.mesh.primitive_cone_add(radius1=0.15, depth=0.45, vertices=4, location=(s_ * 0.36, -0.28, 0.82), rotation=(math.radians(-70), math.radians(s_ * 35), math.radians(45)))
+            c = bpy.context.object; c.name = f'{name}_fran{s_}'; c.data.materials.append(hm); c.parent = neck
+    if o.get('necklace'):
+        root = av.root
+        for s_ in (-1, 1): cyl(f'{name}_colar{s_}', 0.012, 0.36, (s_ * 0.1, -0.27, 1.86), mat('colarC', '#D8D8D8', 0.3, 0.8), root, rot=(0, math.radians(s_ * -30), 0), bevel=0)
+        cube(f'{name}_gema', (0.11, 0.05, 0.15), (0, -0.29, 1.7), mat('gema', '#22E37A', 0.15, emit='#22E37A', es=2), 0.02, root)
     if o.get('nobolt'):
         ob = bpy.data.objects.get(f'{name}_bolt')
         if ob: bpy.data.objects.remove(ob, do_unlink=True)
+    if o.get('ball', 1): ball_head(av); av._ball = True; av._fc = None; av.face('feliz')
     return av
+def toonify(avs, thick=2.6):
+    # estilo cartoon: contorno escuro (Freestyle só nos personagens) + materiais foscos e chapados
+    S = bpy.context.scene; col = bpy.data.collections.get('toon') or bpy.data.collections.new('toon')
+    if col.name not in S.collection.children: S.collection.children.link(col)
+    mats = set()
+    for a in avs:
+        objs = [a.root] + list(a.root.children_recursive)
+        for ob in objs:
+            if ob.name not in col.objects and not ob.name.endswith('_numP'): col.objects.link(ob)
+            if ob.type == 'MESH':
+                for m in ob.data.materials:
+                    if m: mats.add(m)
+    for m in mats:
+        b = m.node_tree.nodes.get('Principled BSDF') if m.use_nodes else None
+        if not b: continue
+        if not m.name.endswith('_ballhead'): b.inputs['Roughness'].default_value = 0.9
+        if 'Specular IOR Level' in b.inputs: b.inputs['Specular IOR Level'].default_value = 0.15 if not m.name.endswith('_ballhead') else 0.35
+    # contorno por "casca invertida" (barato no Cycles)
+    om = bpy.data.materials.get('contorno')
+    if not om:
+        om = bpy.data.materials.new('contorno'); om.use_nodes = True; nt = om.node_tree; nt.nodes.clear()
+        out = nt.nodes.new('ShaderNodeOutputMaterial'); em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = (0.03, 0.012, 0.035, 1); em.inputs['Strength'].default_value = 1
+        tr = nt.nodes.new('ShaderNodeBsdfTransparent'); gm = nt.nodes.new('ShaderNodeNewGeometry'); mx = nt.nodes.new('ShaderNodeMixShader')
+        lp = nt.nodes.new('ShaderNodeLightPath'); inv = nt.nodes.new('ShaderNodeMath'); inv.operation = 'SUBTRACT'; inv.inputs[0].default_value = 1; nt.links.new(lp.outputs['Is Camera Ray'], inv.inputs[1])
+        mxm = nt.nodes.new('ShaderNodeMath'); mxm.operation = 'MAXIMUM'; nt.links.new(gm.outputs['Backfacing'], mxm.inputs[0]); nt.links.new(inv.outputs[0], mxm.inputs[1])
+        nt.links.new(mxm.outputs[0], mx.inputs[0]); nt.links.new(em.outputs[0], mx.inputs[1]); nt.links.new(tr.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], out.inputs['Surface'])
+    for a in avs:
+        for ob in [a.root] + list(a.root.children_recursive):
+            if ob.type != 'MESH' or ob.name.endswith('_numP') or ob.name.endswith('_faceP') or ob.name.endswith('_bolt') or 'cord' in ob.name: continue
+            if 'contorno' in ob.data.materials: continue
+            n = len(ob.data.materials); ob.data.materials.append(om)
+            sd = ob.modifiers.new('contorno', 'SOLIDIFY'); sd.thickness = thick * 0.012; sd.offset = 1; sd.use_flip_normals = True; sd.material_offset = n; sd.use_rim = False
+    S.render.use_freestyle = False

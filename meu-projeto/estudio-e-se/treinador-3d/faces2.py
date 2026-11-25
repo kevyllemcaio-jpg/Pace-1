@@ -4,7 +4,16 @@ import math
 S = 1024
 def hx(c): return tuple(int(c[i:i+2], 16) for i in (1, 3, 5))
 def lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
+SIMPLE = True
 def eye(d, im, cx, cy, iris, kind, look=(0, 0), lash=(30, 18, 14), fem=False, small=False):
+    if SIMPLE and kind not in ('fechado', 'feliz_f', 'dor'):
+        sq = {'semi': 0.55, 'serio': 0.6}.get(kind, 1.0); big = 1.25 if kind in ('surpreso', 'medo') else 1.0
+        w2, h2 = 46 * big, 64 * big * sq; col = (28, 22, 26)
+        d.ellipse((cx - w2, cy - h2, cx + w2, cy + h2), fill=col)
+        d.ellipse((cx - w2 * 0.55, cy - h2 * 0.7, cx - w2 * 0.05, cy - h2 * 0.2), fill=(255, 255, 255))
+        if fem:
+            for s_ in (-1, 1): d.line((cx + s_ * w2 * 0.8, cy - h2 * 0.6, cx + s_ * (w2 + 26), cy - h2 * 1.0), fill=col, width=12)
+        return d
     w, h = (92, 120) if not small else (70, 66)
     if kind in ('fechado', 'feliz_f'):  # arco ^
         d.arc((cx - w, cy - 50, cx + w, cy + 70), 200, 340, fill=lash, width=22); return
@@ -39,7 +48,7 @@ def eye(d, im, cx, cy, iris, kind, look=(0, 0), lash=(30, 18, 14), fem=False, sm
         for s in (-1, 1): d.line((cx + s * w2 * 0.92, cy - h2 * 0.45, cx + s * (w2 + 34), cy - h2 * 0.85), fill=lash, width=14)
     return d
 def brow(d, cx, cy, ang, col, s, thick=26, curve=1):
-    L = 82; dx = math.cos(math.radians(ang)) * L; dy = math.sin(math.radians(ang)) * L
+    L = 62; dx = math.cos(math.radians(ang)) * L; dy = math.sin(math.radians(ang)) * L
     pts = [(cx - dx, cy + dy * s), (cx, cy - 10 * curve), (cx + dx, cy - dy * s)]
     d.line(pts, fill=col, width=thick, joint='curve')
     for p in (pts[0], pts[2]): d.ellipse((p[0] - thick / 2, p[1] - thick / 2, p[0] + thick / 2, p[1] + thick / 2), fill=col)
@@ -68,18 +77,19 @@ def gen(prefix, iris, brow_col, freckles=False, fem=False, small=False, old=Fals
     for k, (ek, mk, ba, bh) in EXPR.items():
         im = Image.new('RGBA', (S, S), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
         bl = Image.new('RGBA', (S, S), (0, 0, 0, 0)); db = ImageDraw.Draw(bl)
-        for s in (-1, 1): db.ellipse((512 + s * 250 - 80, 590, 512 + s * 250 + 80, 660), fill=(255, 120, 130, 150))
+        for s in (-1, 1): db.ellipse((512 + s * 250 - 70, 590, 512 + s * 250 + 70, 650), fill=(255, 120, 130, 90))
         im.alpha_composite(bl.filter(ImageFilter.GaussianBlur(18))); d = ImageDraw.Draw(im)
         if freckles:
             for s in (-1, 1):
                 for (fx, fy) in ((-30, 0), (0, 14), (28, -4), (12, 30)): d.ellipse((512 + s * 250 + fx - 7, 600 + fy - 7, 512 + s * 250 + fx + 7, 600 + fy + 7), fill=(170, 100, 70, 200))
         ey = 480 if not old else 500
-        for s in (-1, 1): eye(d, im, 512 + s * 180, ey, iris, 'n' if ek == 'n' else ek, fem=fem, small=small); d = ImageDraw.Draw(im)
-        for s in (-1, 1): brow(d, 512 + s * 180, ey - (150 if not small else 110) + bh, ba * -s if False else ba, brow_col, -s, thick=bthick)
+        for s in (-1, 1): eye(d, im, 512 + s * 170, ey, iris, 'n' if ek == 'n' else ek, fem=fem, small=small); d = ImageDraw.Draw(im)
+        for s in (-1, 1): brow(d, 512 + s * 170, ey - (125 if not small else 110) + bh, ba * -s if False else ba, brow_col, -s, thick=bthick)
         d.arc((492, 620, 532, 650), 20, 160, fill=(190, 120, 95), width=8)
         mouth(d, mk)
         im.crop((112, 170, 912, 970)).resize((512, 512), Image.LANCZOS).save(f'/root/b3d/f2/{prefix}_{k}.png')
 gen('zk', '#2F8CFF', (43, 26, 16), freckles=True)
+gen('bo', '#2F8CFF', (40, 30, 36))
 gen('br', '#2FBF71', (27, 18, 18))
 gen('lu', '#C9822A', (90, 52, 32), freckles=True)
 gen('me', '#3B3B48', (235, 235, 235), small=True, old=True, bthick=34)
