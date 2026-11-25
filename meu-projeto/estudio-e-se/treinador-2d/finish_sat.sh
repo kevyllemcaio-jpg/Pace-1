@@ -8,7 +8,7 @@ G=$(python3 -c "print(-14-($L))")
 mkdir -p out
 VF=""
 if [ -f work/words.json ] && [ "${NOCAPS:-0}" != 1 ]; then python3 /root/shorts/caps.py work/words.json work/caps.ass >/dev/null; VF="-vf eq=saturation=1.35:contrast=1.05,ass=work/caps.ass"; fi
-ffmpeg -y -v error -framerate 30 -i frames/f%04d.jpg -i work/mix.wav $VF -filter:a "volume=${G}dB,alimiter=limit=0.89:level=false" -c:v libx264 -crf 20 -preset medium -pix_fmt yuv420p -c:a aac -b:a 192k -ar 44100 -ac 2 -shortest out/main.mp4
+ffmpeg -y -v error -framerate 30 -i frames/f%04d.jpg -i work/mix.wav $VF -filter:a "volume=${G}dB,alimiter=limit=0.89:level=false" -c:v libx264 -crf 22 -maxrate 3600k -bufsize 7200k -preset medium -pix_fmt yuv420p -c:a aac -b:a 192k -ar 44100 -ac 2 -shortest out/main.mp4
 python3 - "$CF" "$L1" "$L2" "out/capa-$SLUG.jpg" "$TY" <<'PY'
 import sys
 from PIL import Image, ImageDraw, ImageFont
@@ -33,7 +33,7 @@ im.save(out, quality=93)
 PY
 ffmpeg -y -v error -i out/main.mp4 -loop 1 -framerate 30 -t 2 -i out/capa-$SLUG.jpg -f lavfi -t 2 -i anullsrc=r=44100:cl=stereo \
  -filter_complex "[0:v]fps=30,format=yuv420p,setsar=1[v0];[1:v]scale=${SIZE:-1080:1920},format=yuv420p,setsar=1[v1];[0:a]aresample=44100,aformat=channel_layouts=stereo[a0];[v0][a0][v1][2:a]concat=n=2:v=1:a=1[v][a]" \
- -map "[v]" -map "[a]" -c:v libx264 -crf 20 -preset medium -c:a aac -b:a 192k -movflags +faststart out/$SLUG.mp4
+ -map "[v]" -map "[a]" -c:v libx264 -crf 22 -maxrate 3600k -bufsize 7200k -preset medium -c:a aac -b:a 192k -movflags +faststart out/$SLUG.mp4
 echo "loudness: $(ffmpeg -i out/main.mp4 -af ebur128 -f null - 2>&1 | grep -E '^\s+I:' | tail -1)"
 echo "qa: $(ffmpeg -i out/main.mp4 -vf 'freezedetect=n=0.001:d=0.4,blackdetect=d=0.1' -map 0:v -f null - 2>&1 | grep -cE 'freeze_start|black_start') issues"
 echo "duration: $(ffprobe -v error -show_entries format=duration -of csv=p=0 out/$SLUG.mp4)"

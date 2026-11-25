@@ -179,9 +179,11 @@ function drawMonstro(ctx, e, f) {
 // ---- neve (tela) + flash
 const _scrN = drawScreen;
 drawScreen = function (g, items, f) {
-  _scrN(g, items.filter((i) => i.type !== 'neve' && i.type !== 'big'), f);
+  _scrN(g, items.filter((i) => i.type !== 'neve' && i.type !== 'big' && i.type !== 'tag'), f);
+  for (const it of items) if (it.type === 'tag' && it.k > 0) { g.setTransform(1, 0, 0, 1, 0, 0); g.save(); g.translate(W / 2, it.y || 170); g.scale(it.k, it.k); let fs = 90; g.font = `900 ${fs}px Inter Black, Arial Black, Arial`; while (g.measureText(it.text).width > W - 200 && fs > 40) { fs -= 4; g.font = `900 ${fs}px Inter Black, Arial Black, Arial`; } const w = g.measureText(it.text).width + 80, h = fs * 1.45;
+    g.fillStyle = 'rgba(20,10,40,.85)'; g.beginPath(); g.roundRect(-w / 2, -h * 0.58, w, h, 26); g.fill(); g.lineWidth = 8; g.strokeStyle = '#ff5fa2'; g.stroke(); g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(it.text, 0, 0); g.restore(); }
   for (const it of items) {
     if (it.type === 'neve') { g.setTransform(1, 0, 0, 1, 0, 0); const n = it.n || 110; for (let i = 0; i < n; i++) { const sp = 0.4 + hash(i + 3) * 0.8, r = 4 + hash(i) * 9; const y = (hash(i + 11) * H + f * (3 + 5 * sp)) % H, x = (hash(i + 5) * W + Math.sin(f * 0.03 + i) * 40 + W) % W; g.beginPath(); g.arc(x, y, r, 0, 6.3); g.fillStyle = `rgba(255,255,255,${0.55 + 0.4 * sp})`; g.fill(); } }
-    if (it.type === 'big') { const k = it.k; if (k <= 0) continue; g.setTransform(1, 0, 0, 1, 0, 0); g.save(); g.translate(W / 2, it.y || 760); g.scale(k, k); g.rotate(-0.04); g.font = '900 300px Arial Black, Arial'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 26; g.strokeStyle = '#1c1222'; g.strokeText(it.text, 0, 0); g.fillStyle = it.col || '#ffd23f'; g.fillText(it.text, 0, 0); g.restore(); }
+    if (it.type === 'big') { const k = it.k; if (k <= 0) continue; g.setTransform(1, 0, 0, 1, 0, 0); g.save(); g.translate(W / 2, it.y || 760); g.scale(k, k); g.rotate(-0.04); let bf = 300; g.font = `900 ${bf}px Arial Black, Arial`; while (g.measureText(it.text).width > W - 120 && bf > 80) { bf -= 10; g.font = `900 ${bf}px Arial Black, Arial`; } g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 26; g.strokeStyle = '#1c1222'; g.strokeText(it.text, 0, 0); g.fillStyle = it.col || '#ffd23f'; g.fillText(it.text, 0, 0); g.restore(); }
   }
 };
