@@ -31,9 +31,10 @@ S.push({ f0: 0, f1: EN[0] + 14, light: () => 'day', dof: {}, cam: [{ f: 0, x: 0,
 LV.forEach((L, k) => {
   const a = k === 0 ? EN[0] + 15 : ST[2 * k + 1] - 6, sEnd = ST[2 * k + 2], b = k === 4 ? EN[2 * k + 2] + 20 : ST[2 * k + 3] - 7;
   const C = crowd(L.n, L.seed, L.area, { who: L.allBoy ? () => 'boy' : L.decoy ? (i) => L.decoy(i) || KIDS[Math.floor(hash(L.seed + i * 7) * KIDS.length)] : null });
-  const H = C[L.hero]; H.who = L.who;
-  // ninguém na frente cobre o rosto do Bolinha (ele fica na profundidade certa, sem aparecer por cima de todos)
-  for (const c of C) if (c !== H && c.y >= H.y - 40 && c.y - H.y < 520 && Math.abs(c.x - H.x) < 270) c.x = H.x + (c.x >= H.x ? 270 : -270);
+  // escolhe um lugar na multidão onde o rosto do Bolinha já aparece naturalmente (ninguém é afastado, sem buraco)
+  const free = (i) => !C.some((c, j) => j !== i && c.y > C[i].y && c.y - C[i].y < 300 && Math.abs(c.x - C[i].x) < 170);
+  let hi = L.hero; for (let d = 0; d < C.length; d++) { const a = L.hero + d, b = L.hero - d; if (a < C.length && free(a) && C[a].y > 250) { hi = a; break; } if (b >= 0 && free(b) && C[b].y > 250) { hi = b; break; } }
+  L.hero = hi; const H = C[hi]; H.who = L.who;
   S.push({ f0: a, f1: b, light: () => L.light, dof: {}, kicks: [{ f: sEnd, a: 8 }],
     cam: [{ f: a, x: 0, y: L.cy, z: L.z }, { f: sEnd, x: 0, y: L.cy, z: L.z }, { f: sEnd + 20, x: H.x, y: H.y - 200, z: 1.0, e: 'o' }, { f: b, x: H.x, y: H.y - 210, z: 1.05 }],
     build: (f) => {
