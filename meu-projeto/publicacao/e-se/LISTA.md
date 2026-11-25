@@ -138,3 +138,4 @@ Observações:
 | Título | Arquivo | Status |
 |---|---|---|
 | E SE Você Só Tivesse 100 PALAVRAS Por Dia? (Zeca) | cem-palavras.mp4 | pronto |
+| O MAIS FRACO DA CIDADE (Zeca, animado) | mais-fraco.mp4 | pronto |
