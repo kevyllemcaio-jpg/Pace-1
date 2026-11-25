@@ -32,11 +32,13 @@ LV.forEach((L, k) => {
   const a = k === 0 ? EN[0] + 15 : ST[2 * k + 1] - 6, sEnd = ST[2 * k + 2], b = k === 4 ? EN[2 * k + 2] + 20 : ST[2 * k + 3] - 7;
   const C = crowd(L.n, L.seed, L.area, { who: L.allBoy ? () => 'boy' : L.decoy ? (i) => L.decoy(i) || KIDS[Math.floor(hash(L.seed + i * 7) * KIDS.length)] : null });
   const H = C[L.hero]; H.who = L.who;
+  // ninguém na frente cobre o rosto do Bolinha (ele fica na profundidade certa, sem aparecer por cima de todos)
+  for (const c of C) if (c !== H && c.y >= H.y - 40 && c.y - H.y < 520 && Math.abs(c.x - H.x) < 270) c.x = H.x + (c.x >= H.x ? 270 : -270);
   S.push({ f0: a, f1: b, light: () => L.light, dof: {}, kicks: [{ f: sEnd, a: 8 }],
     cam: [{ f: a, x: 0, y: L.cy, z: L.z }, { f: sEnd, x: 0, y: L.cy, z: L.z }, { f: sEnd + 20, x: H.x, y: H.y - 200, z: 1.0, e: 'o' }, { f: b, x: H.x, y: H.y - 210, z: 1.05 }],
     build: (f) => {
       const t = f / FPS, rev = prog(f, sEnd, sEnd + 18), search = f >= EN[2 * k + 1] && f < sEnd;
-      const acts = C.map((c, i) => K(c.who, c.x + Math.sin(t * 0.8 + c.ph) * 18, c.y, { expr: i === L.hero && rev > 0 ? 'proud' : c.expr, pose: c.pose, flip: c.flip, hop: Math.max(0, Math.sin(t * 3 + c.ph)) * 14, scarf: L.scarf ? ['#e63946', '#ffd23f', '#3a86ff', '#22b573'][i % 4] : null, layer: i === L.hero ? 'front' : 'back' }));
+      const acts = C.map((c, i) => K(c.who, c.x + Math.sin(t * 0.8 + c.ph) * 18, c.y, { expr: i === L.hero && rev > 0 ? 'proud' : c.expr, pose: c.pose, flip: c.flip, hop: Math.max(0, Math.sin(t * 3 + c.ph)) * 14, scarf: L.scarf ? ['#e63946', '#ffd23f', '#3a86ff', '#22b573'][i % 4] : null }));
       const lights = L.light === 'dark' ? [{ x: Math.sin(t * 1.3) * 900, y: 400 + Math.cos(t * 0.9) * 400, r: 520, i: 1, col: 'rgba(255,240,180,.35)' }].concat(rev > 0 ? [{ x: H.x, y: H.y - 150, r: 500 * rev, i: 1 }] : []) : [];
       const clock = search ? [{ type: 'relogio', k: pop(f, EN[2 * k + 1]) * 0.7, n: Math.max(1, 5 - Math.floor((f - EN[2 * k + 1]) / 30)), p: prog(f, EN[2 * k + 1], sEnd) }] : [];
       return { world: L.set, actors: acts, lights, fx: [{ type: 'spot', x: H.x, y: H.y - 180, r: 330, k: rev }, { type: 'seta', x: H.x, y: H.y - 560, k: pop(f, sEnd + 10) }],
