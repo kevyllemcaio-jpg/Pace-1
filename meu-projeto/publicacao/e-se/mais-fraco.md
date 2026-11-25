@@ -1,4 +1,4 @@
-# O MAIS FRACO DA CIDADE (3D animado, Zeca)
+# O MAIS FRACO DA CIDADE (3D animado, Bolinha)
 
 **Arquivos:** `mais-fraco.mp4` (vertical 1080x1920, 3D animado no Blender, ~3 min 10 s; os **2 últimos segundos são a capa**) · `capa-mais-fraco.jpg`
 
@@ -18,7 +18,7 @@ Alternativas:
 ## Descrição
 ```
 Nesta cidade, o número no seu peito diz o quanto você é fraco. E a cada 12 anos, uma criatura sai da montanha e leva o mais fraco. 😨
-O Zeca nasceu com 100. Os amigos dele tinham 44… e fizeram uma coisa que ninguém esperava. ❄️👊
+O Bolinha nasceu com 100. Os amigos dele tinham 44… e fizeram uma coisa que ninguém esperava. ❄️👊
 
 Qual seria o seu número? Comenta 👇
 
@@ -31,5 +31,5 @@ Qual seria o seu número? Comenta 👇
 | Visibilidade | Programado |
 | Público-alvo | Decida pelo seu público real; marcar errado pode gerar penalidade. |
 | Uso de IA | **Sim** (narração com voz sintética) |
-| Tags | `mais fraco, treinador, história, animação 3d, shorts, zeca, amizade` |
+| Tags | `mais fraco, treinador, história, animação 3d, shorts, bolinha, amizade` |
 | Categoria | Filmes e animação |
