@@ -19,27 +19,28 @@ function crowd(n, seed, area, opts = {}) {
   return out;
 }
 const LV = [
-  { set: { set: 'yard' }, n: 26, seed: 11, area: [-1050, 1050, 80, 1150], hero: 17, who: 'boy', light: 'day', z: 0.48, cy: 450 },
-  { set: { set: 'street' }, n: 36, seed: 23, area: [-1050, 1050, 60, 1150], hero: 22, who: 'boycap', light: 'day', z: 0.48, cy: 450, decoy: (i) => (i % 3 === 0 ? 'v4' : null) },
-  { set: { set: 'vila', mode: 'dia' }, n: 44, seed: 37, area: [-1050, 1050, 60, 1150], hero: 31, who: 'boy', light: 'day', z: 0.48, cy: 450, scarf: true },
-  { set: { set: 'vila', mode: 'noite' }, n: 40, seed: 51, area: [-1050, 1050, 60, 1150], hero: 9, who: 'boy', light: 'dark', z: 0.48, cy: 450 },
-  { set: { set: 'yard' }, n: 50, seed: 67, area: [-1050, 1050, 60, 1150], hero: 38, who: 'boyr', light: 'day', z: 0.48, cy: 450, allBoy: true },
+  { set: { set: 'yard' }, n: 40, seed: 11, area: [-1050, 1050, 80, 1150], hero: 17, who: 'boy', light: 'day', z: 0.46, cy: 470 },
+  { set: { set: 'street' }, n: 48, seed: 23, area: [-1050, 1050, 60, 1150], hero: 22, who: 'boycap', light: 'day', z: 0.46, cy: 470, decoy: (i) => (i % 3 === 0 ? 'v4' : null) },
+  { set: { set: 'vila', mode: 'dia' }, n: 54, seed: 37, area: [-1050, 1050, 60, 1150], hero: 31, who: 'boy', light: 'day', z: 0.46, cy: 470, scarf: true },
+  { set: { set: 'vila', mode: 'noite' }, n: 50, seed: 51, area: [-1050, 1050, 60, 1150], hero: 9, who: 'boy', light: 'dark', z: 0.46, cy: 470 },
+  { set: { set: 'yard' }, n: 60, seed: 67, area: [-1050, 1050, 60, 1150], hero: 38, who: 'boyr', light: 'day', z: 0.46, cy: 470, allBoy: true },
 ];
 const S = [];
 S.push({ f0: 0, f1: EN[0] + 14, light: () => 'day', dof: {}, cam: [{ f: 0, x: 0, y: -300, z: 1.0 }, { f: EN[0], x: 0, y: -320, z: 1.15 }],
   build: (f) => ({ world: { set: 'yard' }, actors: [K('boy', 0, 300, { expr: 'mischief', pose: 'wave', hop: Math.abs(Math.sin(f * 0.15)) * 40 })], screen: big(f, 6, EN[0] + 14, 'ACHE O', '#ffd23f', 560).concat(big(f, 16, EN[0] + 14, 'BOLINHA', '#ff5fa2', 820), tag(f, 60, EN[0] + 14, '5 NÍVEIS · 5 SEGUNDOS', 1500)) }) });
 LV.forEach((L, k) => {
   const a = k === 0 ? EN[0] + 15 : ST[2 * k + 1] - 6, sEnd = ST[2 * k + 2], b = k === 4 ? EN[2 * k + 2] + 20 : ST[2 * k + 3] - 7;
-  const C = crowd(L.n, L.seed, L.area, { who: L.allBoy ? () => 'boy' : L.decoy ? (i) => L.decoy(i) || KIDS[Math.floor(hash(L.seed + i * 7) * KIDS.length)] : null });
+  const PALS = k === 1 ? ['pal2'] : ['pal1', 'pal2', 'pal3', 'pal4', 'pal5'];
+  const C = crowd(L.n, L.seed, L.area, { who: L.allBoy ? () => 'boy' : (i) => (hash(L.seed + i * 29) < 0.22 ? PALS[i % PALS.length] : (L.decoy && L.decoy(i)) || KIDS[Math.floor(hash(L.seed + i * 7) * KIDS.length)]) });
   // escolhe um lugar na multidão onde o rosto do Bolinha já aparece naturalmente (ninguém é afastado, sem buraco)
-  const free = (i) => !C.some((c, j) => j !== i && c.y > C[i].y && c.y - C[i].y < 300 && Math.abs(c.x - C[i].x) < 170);
-  let hi = L.hero; for (let d = 0; d < C.length; d++) { const a = L.hero + d, b = L.hero - d; if (a < C.length && free(a) && C[a].y > 250) { hi = a; break; } if (b >= 0 && free(b) && C[b].y > 250) { hi = b; break; } }
+  const ok = (i) => { const h = C[i]; const face = C.some((c, j) => j !== i && c.y > h.y && c.y - h.y < 110 && Math.abs(c.x - h.x) < 120); const body = C.some((c, j) => j !== i && c.y - h.y >= 110 && c.y - h.y < 330 && Math.abs(c.x - h.x) < 140); return !face && body && h.y < 800; };
+  let hi = L.hero; for (let d = 0; d < C.length; d++) { const a = L.hero + d, b = L.hero - d; if (a < C.length && ok(a)) { hi = a; break; } if (b >= 0 && ok(b)) { hi = b; break; } }
   L.hero = hi; const H = C[hi]; H.who = L.who;
   S.push({ f0: a, f1: b, light: () => L.light, dof: {}, kicks: [{ f: sEnd, a: 8 }],
     cam: [{ f: a, x: 0, y: L.cy, z: L.z }, { f: sEnd, x: 0, y: L.cy, z: L.z }, { f: sEnd + 20, x: H.x, y: H.y - 200, z: 1.0, e: 'o' }, { f: b, x: H.x, y: H.y - 210, z: 1.05 }],
     build: (f) => {
       const t = f / FPS, rev = prog(f, sEnd, sEnd + 18), search = f >= EN[2 * k + 1] && f < sEnd;
-      const acts = C.map((c, i) => K(c.who, c.x + Math.sin(t * 0.8 + c.ph) * 18, c.y, { expr: i === L.hero && rev > 0 ? 'proud' : c.expr, pose: c.pose, flip: c.flip, hop: Math.max(0, Math.sin(t * 3 + c.ph)) * 14, scarf: L.scarf ? ['#e63946', '#ffd23f', '#3a86ff', '#22b573'][i % 4] : null }));
+      const acts = C.map((c, i) => K(c.who, c.x + Math.sin(t * 0.8 + c.ph) * 18, c.y, { expr: i === L.hero && rev > 0 ? 'proud' : c.expr, pose: c.pose, flip: c.flip, hop: Math.max(0, Math.sin(t * 3 + c.ph)) * 14, scarf: L.scarf ? ['#e63946', '#ffd23f', '#3a86ff', '#22b573'][i % 4] : null, layer: rev > 0 && i !== L.hero ? 'back' : 'front' }));
       const lights = L.light === 'dark' ? [{ x: Math.sin(t * 1.3) * 900, y: 400 + Math.cos(t * 0.9) * 400, r: 520, i: 1, col: 'rgba(255,240,180,.35)' }].concat(rev > 0 ? [{ x: H.x, y: H.y - 150, r: 500 * rev, i: 1 }] : []) : [];
       const clock = search ? [{ type: 'relogio', k: pop(f, EN[2 * k + 1]) * 0.7, n: Math.max(1, 5 - Math.floor((f - EN[2 * k + 1]) / 30)), p: prog(f, EN[2 * k + 1], sEnd) }] : [];
       return { world: L.set, actors: acts, lights, fx: [{ type: 'spot', x: H.x, y: H.y - 180, r: 330, k: rev }, { type: 'seta', x: H.x, y: H.y - 560, k: pop(f, sEnd + 10) }],

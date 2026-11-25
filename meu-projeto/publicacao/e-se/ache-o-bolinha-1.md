@@ -5,11 +5,11 @@
 **Tipo de vídeo criado por mim: jogo de olho.** Não tem história narrada. Cada nível mostra uma multidão animada e o público tem **5 segundos** (com relógio na tela) para achar o Bolinha. Depois, um holofote e uma seta revelam onde ele estava. Quem erra volta o vídeo, o que ajuda a retenção, e no fim o público comenta o placar (x/5).
 
 ## Níveis
-1. **Pátio:** 26 crianças.
-2. **Rua:** 36 pessoas, com o Bolinha disfarçado de boné vermelho no meio de vários bonés.
-3. **Neve:** 44 pessoas, todo mundo de cachecol.
+1. **Pátio:** 40 crianças, com sósias de pele clara e roupa amarela misturados.
+2. **Rua:** 48 pessoas, com o Bolinha disfarçado de boné vermelho no meio de vários bonés.
+3. **Neve:** 54 pessoas, todo mundo de cachecol.
 4. **Apagaram a luz:** só uma lanterna se mexendo pelo escuro.
-5. **Impossível:** 50 sósias do Bolinha. O verdadeiro é o único de tênis vermelho.
+5. **Impossível:** 60 sósias do Bolinha. O verdadeiro é o único de tênis vermelho.
 
 ## Título
 ```

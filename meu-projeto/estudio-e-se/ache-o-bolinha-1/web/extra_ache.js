@@ -1,6 +1,12 @@
 // ACHE O BOLINHA — multidões, holofote de revelação, placar
 CAST.boycap = Object.assign({}, CAST.boy, { hair: 'cap', hc: '#e63946' });
 CAST.boyr = Object.assign({}, CAST.boy, { slip: '#e63946' });
+// sósias de distração: pele bem clara, cabelo claro ou boné branco, roupa amarela
+CAST.pal1 = { skin: '#f4efe8', hair: 'bob', hc: '#f3e2b0', pj: '#F2B705', pj2: '#ffd34d', pat: 'none', pants: '#1F4E9C', slip: '#ffffff' };
+CAST.pal2 = { skin: '#f6f1ea', hair: 'cap', hc: '#f4f4f4', pj: '#F2B705', pj2: '#ffd34d', pat: 'none', pants: '#2b3a67', slip: '#ffffff' };
+CAST.pal3 = { skin: '#f2ebe2', hair: 'curly', hc: '#efe0bd', pj: '#e9b10a', pj2: '#ffd34d', pat: 'none', pants: '#1F4E9C', slip: '#ffffff' };
+CAST.pal4 = { skin: '#f5f0ea', hair: 'none', hc: '#ffffff', pj: '#ffd23f', pj2: '#fff3b0', pat: 'none', pants: '#3a2a55', slip: '#ffffff', glasses: true };
+CAST.pal5 = { skin: '#f7f2ec', hair: 'buns', hc: '#f6e7c1', band: '#ffd23f', pj: '#F2B705', pj2: '#ffd34d', pat: 'none', pants: '#1F4E9C', slip: '#ffffff' };
 const _fxA = drawFx;
 drawFx = function (ctx, fx, f) {
   _fxA(ctx, (fx || []).filter((e) => e.type !== 'spot' && e.type !== 'seta'), f);
