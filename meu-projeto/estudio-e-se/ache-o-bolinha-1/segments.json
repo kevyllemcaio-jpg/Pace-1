@@ -1,0 +1,73 @@
+[
+ {
+  "t": "Ache o Bolinha. Cinco níveis, cada um mais difícil. Conta quantos você acha.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 0.5
+ },
+ {
+  "t": "Nível um. No pátio. Valendo!",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 5.0
+ },
+ {
+  "t": "Achou? Tava aqui.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 1.0
+ },
+ {
+  "t": "Nível dois. Ele tá de boné. Valendo!",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 5.0
+ },
+ {
+  "t": "Aqui, ó. Disfarçado.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 1.0
+ },
+ {
+  "t": "Nível três. Na neve. Valendo!",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 5.0
+ },
+ {
+  "t": "Tava aqui, de cachecol.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 1.0
+ },
+ {
+  "t": "Nível quatro. Apagaram a luz. Valendo!",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 5.0
+ },
+ {
+  "t": "Aqui! Atrás da lanterna.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 1.0
+ },
+ {
+  "t": "Nível cinco. Cinquenta sósias. Só um é o verdadeiro. Valendo!",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 5.0
+ },
+ {
+  "t": "Esse! O único de tênis vermelho.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%",
+  "gap": 1.0
+ },
+ {
+  "t": "Quantos você achou? Comenta seu placar. Se achou os cinco, você tem olho de águia.",
+  "v": "pt-BR-AntonioNeural",
+  "r": "+15%"
+ }
+]
