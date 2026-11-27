@@ -1,0 +1,117 @@
+{
+ "titulo": "Thor — Ep. 3: A última pergunta",
+ "formato": "9:16",
+ "qualidade": "rapida",
+ "estilo": "fofo",
+ "narrador": "narrador",
+ "musica": "triste",
+ "tema": "humor",
+ "vozes": {
+  "narrador": "externo:pt-BR-AntonioNeural",
+  "thor": "externo:pt-BR-AntonioNeural",
+  "pai": "externo:pt-BR-AntonioNeural",
+  "julia": "externo:pt-BR-ThalitaMultilingualNeural"
+ },
+ "pronuncias": {},
+ "elenco": {
+  "thor": {
+   "especie": "cachorro",
+   "skin": "#D9963F"
+  },
+  "pai": {
+   "corpo": "homem",
+   "skin": "#C98F62",
+   "top": "tee",
+   "suit": "#2E7D6B",
+   "print": "#F2C14E",
+   "hair": "short",
+   "hair_col": "#2A1A14",
+   "moustache": true
+  },
+  "julia": {
+   "corpo": "menina",
+   "skin": "#B9825A",
+   "top": "hoodie",
+   "suit": "#8E5BE8",
+   "shirt": "#F4EFE2",
+   "hair": "rabo",
+   "hair_col": "#1C1B22",
+   "lashes": true,
+   "hat_band": "#FF5A8A"
+  }
+ },
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "Faltava uma hora pro Thor parar de falar. E a família tinha uma última pergunta.",
+   "vel": 0.95
+  },
+  {
+   "id": "j1",
+   "voz": "julia",
+   "texto": "Thor... você é feliz aqui com a gente?",
+   "vel": 0.92
+  },
+  {
+   "id": "t1",
+   "voz": "thor",
+   "texto": "Vocês querem a verdade?",
+   "vel": 0.92
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Todo mundo prendeu a respiração.",
+   "vel": 0.95
+  },
+  {
+   "id": "t2",
+   "voz": "thor",
+   "texto": "A ração é ruim. O banho é pior. E o carteiro... eu não confio no carteiro.",
+   "vel": 0.92
+  },
+  {
+   "id": "p1",
+   "voz": "pai",
+   "texto": "Tá, mas e a gente?",
+   "vel": 0.92
+  },
+  {
+   "id": "t3",
+   "voz": "thor",
+   "texto": "Vocês? Vocês são a melhor parte do meu dia. Todos os dias.",
+   "vel": 0.92
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "A Júlia abraçou o Thor. E o seu Roberto fingiu que não estava chorando.",
+   "vel": 0.95
+  },
+  {
+   "id": "t4",
+   "voz": "thor",
+   "texto": "Só mais uma coisa...",
+   "vel": 0.92
+  },
+  {
+   "id": "n4",
+   "voz": "narrador",
+   "texto": "Mas o relógio bateu meia-noite. E o Thor só conseguiu dizer:",
+   "vel": 0.95
+  },
+  {
+   "id": "t5",
+   "voz": "thor",
+   "texto": "Au.",
+   "vel": 0.92
+  },
+  {
+   "id": "n5",
+   "voz": "narrador",
+   "texto": "Até hoje a família não sabe o que ele ia contar.",
+   "vel": 0.95
+  }
+ ]
+}

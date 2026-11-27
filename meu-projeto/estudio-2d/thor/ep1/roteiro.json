@@ -1,0 +1,111 @@
+{
+ "titulo": "Thor — Ep. 1: Ele acordou falando",
+ "formato": "9:16",
+ "qualidade": "rapida",
+ "estilo": "fofo",
+ "narrador": "narrador",
+ "musica": "divertido",
+ "tema": "humor",
+ "vozes": {
+  "narrador": "externo:pt-BR-AntonioNeural",
+  "thor": "externo:pt-BR-AntonioNeural",
+  "pai": "externo:pt-BR-AntonioNeural",
+  "julia": "externo:pt-BR-ThalitaMultilingualNeural"
+ },
+ "pronuncias": {},
+ "elenco": {
+  "thor": {
+   "especie": "cachorro",
+   "skin": "#D9963F"
+  },
+  "pai": {
+   "corpo": "homem",
+   "skin": "#C98F62",
+   "top": "tee",
+   "suit": "#2E7D6B",
+   "print": "#F2C14E",
+   "hair": "short",
+   "hair_col": "#2A1A14",
+   "moustache": true
+  },
+  "julia": {
+   "corpo": "menina",
+   "skin": "#B9825A",
+   "top": "hoodie",
+   "suit": "#8E5BE8",
+   "shirt": "#F4EFE2",
+   "hair": "rabo",
+   "hair_col": "#1C1B22",
+   "lashes": true,
+   "hat_band": "#FF5A8A"
+  }
+ },
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "Numa segunda-feira normal, o Thor, um vira-lata caramelo de seis anos, acordou... falando.",
+   "vel": 0.95
+  },
+  {
+   "id": "j1",
+   "voz": "julia",
+   "texto": "Thor? Foi você que disse bom dia?",
+   "vel": 0.92
+  },
+  {
+   "id": "t1",
+   "voz": "thor",
+   "texto": "Fui eu. E já que agora eu falo... tenho umas coisas pra contar.",
+   "vel": 0.92
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "A família inteira correu pra sala. E o Thor não perdeu tempo.",
+   "vel": 0.95
+  },
+  {
+   "id": "t2",
+   "voz": "thor",
+   "texto": "Primeira: seu Roberto, eu sei onde o senhor esconde o chocolate.",
+   "vel": 0.92
+  },
+  {
+   "id": "p1",
+   "voz": "pai",
+   "texto": "Thor! Isso é mentira!",
+   "vel": 0.92
+  },
+  {
+   "id": "t3",
+   "voz": "thor",
+   "texto": "Atrás do micro-ondas. Embaixo da caixa de remédio. Três barras.",
+   "vel": 0.92
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "A Júlia caiu na risada. Mas aí o Thor olhou pra ela.",
+   "vel": 0.95
+  },
+  {
+   "id": "t4",
+   "voz": "thor",
+   "texto": "Segunda: Júlia... eu sei o que tem embaixo da sua cama.",
+   "vel": 0.92
+  },
+  {
+   "id": "j2",
+   "voz": "julia",
+   "texto": "Thor. Não.",
+   "vel": 0.92
+  },
+  {
+   "id": "n4",
+   "voz": "narrador",
+   "texto": "E foi aí que a família entendeu: um cachorro vê tudo. E ele ainda tinha o dia inteiro pra falar.",
+   "vel": 0.95
+  }
+ ]
+}

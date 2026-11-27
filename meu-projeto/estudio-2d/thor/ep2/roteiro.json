@@ -1,0 +1,99 @@
+{
+ "titulo": "Thor — Ep. 2: A chantagem",
+ "formato": "9:16",
+ "qualidade": "rapida",
+ "estilo": "fofo",
+ "narrador": "narrador",
+ "musica": "divertido",
+ "tema": "humor",
+ "vozes": {
+  "narrador": "externo:pt-BR-AntonioNeural",
+  "thor": "externo:pt-BR-AntonioNeural",
+  "pai": "externo:pt-BR-AntonioNeural",
+  "julia": "externo:pt-BR-ThalitaMultilingualNeural"
+ },
+ "pronuncias": {},
+ "elenco": {
+  "thor": {
+   "especie": "cachorro",
+   "skin": "#D9963F"
+  },
+  "pai": {
+   "corpo": "homem",
+   "skin": "#C98F62",
+   "top": "tee",
+   "suit": "#2E7D6B",
+   "print": "#F2C14E",
+   "hair": "short",
+   "hair_col": "#2A1A14",
+   "moustache": true
+  },
+  "julia": {
+   "corpo": "menina",
+   "skin": "#B9825A",
+   "top": "hoodie",
+   "suit": "#8E5BE8",
+   "shirt": "#F4EFE2",
+   "hair": "rabo",
+   "hair_col": "#1C1B22",
+   "lashes": true,
+   "hat_band": "#FF5A8A"
+  }
+ },
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "O Thor ainda tinha vinte e três horas de fala. E a família tentou um acordo.",
+   "vel": 0.95
+  },
+  {
+   "id": "p1",
+   "voz": "pai",
+   "texto": "Thor, o que você quer pra ficar quieto?",
+   "vel": 0.92
+  },
+  {
+   "id": "t1",
+   "voz": "thor",
+   "texto": "Picanha. Todo domingo. E dormir na cama.",
+   "vel": 0.92
+  },
+  {
+   "id": "j1",
+   "voz": "julia",
+   "texto": "Pai, ele tá chantageando a gente!",
+   "vel": 0.92
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Mas o Thor tinha visto coisa demais pra ficar calado.",
+   "vel": 0.95
+  },
+  {
+   "id": "t2",
+   "voz": "thor",
+   "texto": "Júlia, embaixo da cama tem a sua prova de matemática. Nota três.",
+   "vel": 0.92
+  },
+  {
+   "id": "p2",
+   "voz": "pai",
+   "texto": "Três, Júlia?!",
+   "vel": 0.92
+  },
+  {
+   "id": "t3",
+   "voz": "thor",
+   "texto": "Calma, seu Roberto. O senhor também tem segredo. Lembra da batida no carro?",
+   "vel": 0.92
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "Silêncio total. E ninguém tinha percebido que o celular estava numa ligação... com a mãe da Júlia.",
+   "vel": 0.95
+  }
+ ]
+}
