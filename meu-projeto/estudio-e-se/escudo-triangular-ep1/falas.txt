@@ -1,0 +1,24 @@
+a1|narrador|E se tu ganhasse a arma mais inútil do reino
+a2|narrador|e ela fosse a mais forte do mundo?
+b1|narrador|No reino de Valdora, quem faz dezoito anos puxa uma arma da Pedra Antiga.
+b2|narrador|Uns tiram espada. Outros, lança. Os sortudos, cajado de mago.
+b3|narrador|O Kai puxou isso.
+b4|narrador|Um escudo triangular. Rachado.
+b5|narrador|A praça inteira riu.
+b6|narrador|E o capitão da guarda nem olhou pra ele: escudo não mata monstro.
+c1|narrador|E ele tinha razão numa coisa.
+c2|narrador|Escudo desse formato existiu de verdade, lá pelo ano mil e duzentos.
+c3|narrador|Era mais leve, e o golpe escorregava pela ponta.
+c4|narrador|Feito pra defender. Não pra atacar.
+d1|narrador|Sem grupo, o Kai foi treinar sozinho na floresta.
+d2|narrador|Um lobo pulou nele.
+d3|narrador|Ele só levantou o escudo.
+d4|narrador|O lobo bateu
+d5|narrador|e voou longe. Duas vezes mais longe do que pulou.
+e1|narrador|Aí apareceu uma janela.
+e2|narrador|Habilidade única: reflexo.
+e3|narrador|Todo golpe que acerta o escudo volta em dobro.
+e4|narrador|Quanto mais forte o inimigo, mais forte o escudo.
+f1|narrador|Lá no fundo da floresta, uma coisa enorme começou a se mexer.
+f2|narrador|Ele testa o escudo no monstro gigante, ou volta pro reino pra mostrar pra todo mundo?
+f3|narrador|Curte pra parte dois.

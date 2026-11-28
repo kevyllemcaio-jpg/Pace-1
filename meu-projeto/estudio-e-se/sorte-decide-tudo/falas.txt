@@ -1,0 +1,24 @@
+1a|0|E se você acordasse em um mundo onde absolutamente tudo depende da sua sorte?
+1b|0|Um mundo onde uma única escolha pode transformar você em um herói lendário...
+1c|.35|ou em alguém completamente inútil?
+2a|0|Nesse mundo, ninguém escolhe o próprio destino.
+2b|0|Quando você completa dezoito anos, recebe uma classe aleatória.
+2c|0|E algumas pessoas simplesmente nascem com uma sorte absurda.
+3a|0|Quando chegou minha vez, três opções apareceram na minha frente.
+3b|0|Uma espada, um anel misterioso e uma armadura lendária.
+3c|0|Mas havia um detalhe: eu só poderia escolher uma.
+4a|0|Então o sistema revelou meus atributos.
+4b|0|Força, velocidade, inteligência, resistência e sorte.
+4c|0|E quando vi o último número, percebi que alguma coisa estava muito errada.
+5a|0|Enquanto todos recebiam classes comuns, eu estava prestes a descobrir algo completamente diferente.
+5b|0|O sistema começou a tremer...
+5c|.35|e uma mensagem apareceu na minha frente.
+6a|0|Mas minha sorte não significava que eu estava seguro.
+6b|0|Um assassino apareceu do nada.
+6c|0|E, antes que eu pudesse reagir, uma criatura aparentemente inofensiva começou a se aproximar.
+7a|0|Eu tentei fugir, mas não havia saída.
+7b|0|Foi então que o slime revelou seu verdadeiro poder.
+7c|0|Uma habilidade que nem mesmo o sistema conseguia identificar.
+8a|0|Foi aí que percebi que minha sorte não era normal.
+8b|0|Eu não tinha recebido apenas uma classe rara...
+8c|.35|eu tinha desbloqueado algo que poderia mudar completamente aquele mundo.

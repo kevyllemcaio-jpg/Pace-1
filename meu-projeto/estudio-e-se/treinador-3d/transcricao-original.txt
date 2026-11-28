@@ -1,0 +1,98 @@
+[   0.0-   3.1] Nesta cidade, o número no seu peito diz o quanto você é fraco.
+[   3.1-   6.0] O 1 é o mais forte, o 100 o mais fraco.
+[   6.0-  10.6] E a cada 10 anos, uma criatura sai da fenda da montanha e leva o mais fraco da cidade.
+[  11.3-  14.0] Dez anos atrás, o mais fraco era ele, e ele tentou correr.
+[  14.0-  17.4] A criatura pegou ele, arrastou de um lado da rua pro outro e levou embora.
+[  17.4-  18.9] Ninguém nunca mais viu ele.
+[  18.9-  21.2] Por isso, na minha cidade, todo mundo treina.
+[  21.2-  22.6] Menos eu, eu nasci com 100.
+[  22.6-  25.2] E neste inverno, a criatura voltava em 30 dias.
+[  25.2-  27.3] Meus dois melhores amigos tinham 45.
+[  27.3-  29.9] Bruno, o do Cache Col vermelho e Lucas, o do Gorro Azul.
+[  29.9-  33.1] E eles me disseram, se ela leva o mais fraco, você vai deixar de ser.
+[  33.1-  34.1] A gente treina com você.
+[  34.1-  35.7] Num poste, achamos um cartaz.
+[  35.7-  36.8] Treine com o mestre.
+[  36.8-  37.6] 30 dias.
+[  37.6-  38.9] Na praça, ao amanhecer.
+[  38.9-  40.6] Ao amanhecer, a praça estava vazia.
+[  40.6-  42.4] Só tinha um velho parado embaixo do arco.
+[  42.4-  43.8] Ele viu meu número e riu.
+[  43.8-  44.4] 100.
+[  44.4-  46.7] Depois, viu meus amigos do meu lado e parou de rir.
+[  46.7-  48.2] Foi pra floresta, e a gente seguiu.
+[  48.2-  51.1] 149 de graus de gelo, até a cabana no topo.
+[  51.1-  52.1] De... é um.
+[  52.1-  53.3] A cachoeira congelada.
+[  53.3-  56.1] A gente ficou embaixo da água gelada, até não senti o corpo.
+[  56.1-  56.8] Eu caí primeiro.
+[  56.8-  59.4] Toda vez que eu caia, o velho dizia uma palavra só.
+[  59.4-  60.1] De novo.
+[  60.1-  61.3] Desci pra 92.
+[  61.3-  62.0] Dia 6.
+[  62.0-  64.0] Uma pedra nas costas, escada acima.
+[  64.0-  66.8] Eu caia em cada degrau, e meus amigos desciam pra me buscar.
+[  66.8-  67.6] 81.
+[  67.6-  68.2] Dia 12.
+[  68.2-  69.4] As tábuas sobre o barranco.
+[  69.4-  70.6] No meio, eu escorreguei.
+[  70.6-  73.0] Lucas me pegou pelo braço, e Bruno puxou nós dois.
+[  73.0-  73.8] 72.
+[  73.8-  74.7] Dia 25.
+[  74.7-  76.4] As mãos abertas dentro da neve.
+[  76.4-  78.3] Se você fechava a mão, ele enfiava de novo.
+[  78.3-  79.1] 61.
+[  79.1-  81.3] No dia 29, meus amigos chegaram a 30.
+[  81.3-  82.4] Eu fiquei em 61.
+[  82.4-  84.5] Ainda era o número mais alto da cidade.
+[  84.5-  86.0] Amanhã, ela ia me levar.
+[  86.1-  87.1] Falei que tava tudo bem.
+[  87.1-  89.0] Naquela noite, esperei sozinho no ar.
+[  89.0-  90.7] Em cada janela tinha um rosto.
+[  90.7-  91.3] 40.
+[  91.3-  92.0] 35.
+[  92.0-  92.9] 52.
+[  92.9-  93.8] Aí eu ouvi.
+[  93.8-  95.2] Agulhas raspando a rua.
+[  95.2-  99.1] A criatura saiu da floresta, veio direto até mim e apontou uma agulha pro meu número.
+[  99.1- 101.1] E atrás de mim, dois números mudaram.
+[ 101.1- 101.9] 61.
+[ 101.9- 102.7] 61.
+[ 102.7- 103.7] Eles estavam tremendo.
+[ 103.7- 107.5] Tinha um passado a noite toda na neve, sem dormir, pra ficar fracos de propósito.
+[ 107.5- 110.8] Se você leva o mais fraco, disse Bruno, vai ter que levar os três.
+[ 110.8- 113.7] A agulha dela passou de um 61 pro outro, pro outro.
+[ 113.7- 115.1] E gritou, depois atacou.
+[ 115.1- 116.6] A primeira agulha veio direto em mim.
+[ 116.6- 117.1] Eu desviei.
+[ 117.1- 119.0] Ela cravou na rua e o gelo rachou.
+[ 119.0- 119.9] Mas ficou presa.
+[ 119.9- 121.7] Bruno pulou e bateu na cara dela.
+[ 121.7- 122.1] 1.
+[ 122.1- 122.6] 2.
+[ 122.6- 123.4] 3 vezes.
+[ 123.4- 124.8] Ela jogou a outra agulha em mim.
+[ 124.8- 125.4] Eu segurei.
+[ 125.4- 127.5] E ela me arrastou de um lado da rua pro outro.
+[ 127.5- 128.3] Igual fez com ele.
+[ 128.3- 129.7] Depois me acertou no peito.
+[ 129.7- 130.2] E eu caí.
+[ 130.2- 131.5] Cada golpe do ia.
+[ 131.5- 133.0] Mas a gente já tinha sentido coisa pior.
+[ 133.0- 134.7] Todo dia, durante um mês.
+[ 134.7- 135.7] Então a gente levantou.
+[ 135.7- 136.3] Os três.
+[ 136.3- 137.3] Eu agarrei uma agulha.
+[ 137.3- 138.5] Lucas agarrou a outra.
+[ 138.5- 139.1] Ela puxou.
+[ 139.1- 140.1] A gente não soltou.
+[ 140.1- 141.5] E Bruno respirou uma vez.
+[ 141.5- 141.9] Pulou.
+[ 141.9- 142.3] Girou.
+[ 142.3- 143.8] E deu um chute no pescoço dela.
+[ 143.8- 145.3] Ela saiu voando rua abaixo.
+[ 145.3- 146.7] Caiu e não levantou mais.
+[ 146.7- 147.9] Ela levava o mais fraco.
+[ 147.9- 151.2] E os mais fracos da cidade eram os únicos que tinham treinado pra lutar.
+[ 151.2- 154.7] Na manhã seguinte, todas as crianças da cidade estavam subindo aquela escada.
+[ 154.7- 156.2] E lá em cima, o velho sorriu.

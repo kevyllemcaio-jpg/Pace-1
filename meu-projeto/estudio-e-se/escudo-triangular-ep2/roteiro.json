@@ -1,0 +1,150 @@
+{
+ "titulo": "O escudo triangular - ep 2",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "historia",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se tentassem roubar a tua arma"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "e ela voltasse sozinha pra tua mão?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "Depois da floresta, o Igor, o herói da espada, chamou o Kai pra treinar."
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "Só que não era treino."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "Ele queria testar o escudo."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "Deu o golpe mais forte que tinha."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "E o golpe voltou em dobro."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "O Igor voou por cima da cerca do castelo."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "E olha que espada nem é tão pesada assim."
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Uma espada medieval de verdade pesava só um quilo e pouco."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Era leve pra ser rápida, não pra esmagar."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "Naquela noite, o Igor entrou no quarto do Kai."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Pegou o escudo"
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "e saiu correndo pelo corredor."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "No meio da escada, o escudo começou a esquentar."
+  },
+  {
+   "id": "d5",
+   "voz": "narrador",
+   "texto": "Mais quente."
+  },
+  {
+   "id": "d6",
+   "voz": "narrador",
+   "texto": "E sumiu da mão dele."
+  },
+  {
+   "id": "d7",
+   "voz": "narrador",
+   "texto": "Apareceu de volta do lado da cama do Kai."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "O sistema explicou: arma lendária só obedece o dono."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Quem tenta roubar, sente o próprio golpe de volta."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Na manhã seguinte, o rei reuniu os quatro heróis."
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Uma fenda vai se abrir no céu em três dias."
+  },
+  {
+   "id": "f3",
+   "voz": "narrador",
+   "texto": "E só os heróis podem fechar."
+  },
+  {
+   "id": "g1",
+   "voz": "narrador",
+   "texto": "O Igor olhou pro Kai com raiva."
+  },
+  {
+   "id": "g2",
+   "voz": "narrador",
+   "texto": "Ele vai se vingar, ou vai precisar do escudo pra sobreviver à fenda?"
+  },
+  {
+   "id": "g3",
+   "voz": "narrador",
+   "texto": "Curte pra parte três."
+  }
+ ]
+}

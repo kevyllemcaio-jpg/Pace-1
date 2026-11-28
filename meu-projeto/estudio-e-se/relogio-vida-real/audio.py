@@ -1,0 +1,35 @@
+import numpy as np, wave, subprocess
+SR = 44100
+dur = float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0','voice.mp3']))
+N = int(dur*SR); rng = np.random.default_rng(61)
+exec(open('synth.py').read())
+mus = np.zeros(N); sfx = np.zeros(N); F = lambda f: f/30
+def power_up(d=0.7):
+    tt = t_(d); f = 200 + 1600*(tt/d)**1.5; x = np.sin(2*np.pi*np.cumsum(f)/SR) + 0.4*np.sign(np.sin(2*np.pi*np.cumsum(f*0.5)/SR)); return x * 0.4 * np.minimum(1, (d-tt)/0.05)
+def power_down(d=0.9):
+    tt = t_(d); f = 900*np.exp(-tt*3) + 60; return np.sign(np.sin(2*np.pi*np.cumsum(f)/SR)) * 0.3 * np.minimum(1, (d-tt)/0.1)
+def beep(): tt = t_(0.12); return np.sin(2*np.pi*1600*tt) * env(len(tt), 0.002, 0.08)
+def fire(d): x = noise_band(d, 200, 2500); tt = t_(d); return x * (0.6+0.4*np.sin(2*np.pi*6*tt)) * np.minimum(1, tt/0.2) * np.minimum(1, (d-tt)/0.3)
+def flap(): x = noise_band(0.15, 300, 1500); return x * env(len(x), 0.002, 0.05)
+def rumble(d): x = noise_band(d, 30, 200); tt = t_(d); return x * np.minimum(1, tt/0.2) * np.minimum(1, (d-tt)/0.3)
+march(mus, 0, F(1061), 130, True)
+t = t_(F(1343)-F(1061)); put(mus, (np.sin(2*np.pi*55*t) + 0.5*np.sin(2*np.pi*58*t)) * np.minimum(1, t/0.3) * np.minimum(1, (F(1343)-F(1061)-t)/0.3), F(1061), 0.35)
+march(mus, F(1343), F(1620), 112, False)
+march(mus, F(1620), dur, 132, True)
+fade = np.ones(N); k = int(1.0*SR); fade[-k:] = np.linspace(1, 0, k); mus *= fade
+for f in [93, 217, 408, 470, 683, 832, 912, 1034, 1254, 1440, 1620, 1748]: put(sfx, whoosh(), F(f)-0.15, 0.35)
+put(sfx, whoosh(1.0), F(155), 0.5); put(sfx, ting(2637), F(195), 0.4)
+put(sfx, lowhit()*0.5, F(323), 0.5); put(sfx, scrape(0.2)*0.5, F(323), 0.5)
+for k in range(8): put(sfx, pop()*0.6, F(355)+k*0.15, 0.3)
+for k in range(10): put(sfx, ting(1800+k*120), F(410)+k*0.06, 0.15)
+for f in [500, 803, 877, 954, 1343]: put(sfx, click(), F(f)-0.3, 0.6); put(sfx, power_up(), F(f)-0.25, 0.5)
+put(sfx, boing()*0.5, F(543), 0.5); put(sfx, fire(3.5), F(560), 0.5)
+for k in range(6): put(sfx, flap(), F(960)+k*0.3, 0.5)
+put(sfx, cheer(1.0)*0.4, F(975), 0.4)
+for k in range(10): put(sfx, beep(), F(1073)+k*0.3, 0.5)
+put(sfx, rumble(3.0), F(1114), 0.7); put(sfx, lowhit(), F(1221), 1.0)
+put(sfx, boing()*0.6, F(1355), 0.6); put(sfx, ting(3136), F(1467), 0.5)
+put(sfx, scrape(0.2)*0.5, F(1589), 0.6); put(sfx, lowhit()*0.6, F(1589), 0.6)
+put(sfx, power_down(), F(1630), 0.7); put(sfx, cheer(2.0), F(1665), 0.6)
+put(sfx, pop(), F(1778), 0.5)
+wr('music.wav', mus); wr('sfx.wav', sfx); print('ok', dur)

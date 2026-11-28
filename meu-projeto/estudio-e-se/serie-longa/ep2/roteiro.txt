@@ -1,0 +1,145 @@
+# EPISÓDIO 2 — O LADRÃO DE MAPAS
+close|who=kai;e=choque;bg=vila_noite;topo=VILA_PEDRAVERDE|O Kai acordou no meio da noite, enfiou a mão no bolso, e o fragmento do mapa não tava mais lá.
+objeto|obj=escudo;racha=1;brilho=.1|A única coisa que ele tinha de valor nesse reino. Sumiu.
+close|who=igor;e=sorriso;bg=salao|E no dia seguinte, quem apareceu no castelo com o fragmento na mão foi o Igor.
+texto|txt=QUEM ENTROU NO QUARTO?|Mas quem entrou naquele quarto? Volta um dia comigo, e presta atenção em tudo.
+quiz|q=QUEM_ROUBOU_O_FRAGMENTO?;a=O_IGOR;b=UM_GOBLIN;c=A_LIA;bg=vila_noite|Antes, deixa teu palpite: quem roubou o fragmento? O Igor, um goblin, ou a Lia? No fim do episódio eu te conto se tu acertou.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago;rota=caverna,vila;em=vila;topo=UM_DIA_ANTES|Depois da caverna, o Kai voltou pra Vila Pedraverde, com dez moedas e um escudo rachado.
+grupo|bg=vila;who=kai;acao=andar;dx=300|A vila tava cheia. Dia de feira. Barraca de pano listrado, cheiro de pão, criança correndo.
+grupo|bg=vila;who=crianca0,crianca1,povo2;acao=correr;dx=-400|E todo mundo olhando torto pra ele. A notícia da catapulta já tinha chegado.
+grupo|bg=vila;who=povo2,povo3;e=raiva|Uma senhora puxou o neto pra longe. Um guarda cuspiu no chão quando ele passou.
+close|who=povo1;e=raiva;bg=vila|Olha lá o herói do escudo, o que quebrou a catapulta do rei.
+close|who=kai;e=serio;bg=vila|O Kai ignorou. Ele tinha um problema maior: dez moedas não compravam nem uma armadura de couro.
+desafio|n=1;titulo=GANHAR_DINHEIRO;sub=TRANSFORMAR_10_MOEDAS_EM_100;bg=vila|Desafio número um. Transformar dez moedas em cem, antes do pôr do sol.
+painel|titulo=SISTEMA;linhas=MOEDAS: 10,META: 100,PRAZO: PÔR DO SOL;amarelo=1|Dez moedas. Meta: cem. Prazo: o sol se pôr.
+close|who=kai;e=serio;bg=vila|Ele tentou vender o escudo primeiro. Mas o escudo voltou pra mão dele sozinho. Não dava pra se livrar dele.
+grupo|bg=vila;who=kai,povo0;e=serio,feliz|Ele foi no mural de missões da guilda. Missão de matar dragão: cinco mil moedas. Missão de escoltar carroça: oitenta.
+quiz|q=COM_ATAQUE_ZERO,_QUAL_MISSÃO?;a=DRAGÃO:_5000;b=CARROÇA:_80;c=SLIME:_5;bg=vila|Se tu tivesse ataque zero, qual missão tu pegava? O dragão de cinco mil, a carroça de oitenta, ou o slime de cinco moedas?
+close|who=povo0;e=serio;bg=vila|O mercador olhou pro escudo e riu. Eu preciso de alguém que mate ladrão, não que fique parado.
+close|who=kai;e=confiante;bg=vila|O Kai respondeu: tu não precisa matar o ladrão. Tu precisa que a carroça chegue inteira.
+texto|txt=ACEITO|O mercador pensou dois segundos e disse: aceito. Mas se perder uma maçã, tu não recebe nada.
+grupo|bg=estrada;who=kai,povo0;acao=andar;dx=250;topo=ESTRADA_DO_MOINHO|E lá foram os dois pela estrada do moinho. Carroça cheia de fruta, cavalo velho, sol quente.
+close|who=povo0;e=feliz;bg=estrada|O mercador falava sem parar. Contou que a estrada tava perigosa desde que começaram os tremores no centro do reino.
+close|who=kai;e=surpreso;bg=estrada|Tremores? O Kai lembrou da Fenda. Trinta dias. Será que eram trinta mesmo?
+close|who=kai;e=serio;bg=estrada|O Kai foi na frente, de olho em cada moita.
+grupo|bg=estrada;who=goblin,goblin,goblin,goblin;e=riso|E na curva do rio, quatro goblins pularam no meio da estrada.
+desafio|n=2;titulo=ESCOLTA;sub=NENHUMA_MAÇÃ_PODE_CAIR;bg=estrada|Desafio número dois. Proteger a carroça. Nenhuma maçã pode cair.
+close|who=goblin;e=riso;bg=estrada|Um deles era maior, com uma clava cheia de prego. O chefe do bando.
+fato|k=texto;txt=EMBOSCADA:_CURVA_+_ÁGUA;topo=CURIOSIDADE|E não foi por acaso que eles atacaram na curva do rio. Emboscada clássica: a carroça perde velocidade na curva e não tem pra onde fugir com água do lado.
+close|who=kai;e=serio;bg=estrada|O Kai já tinha visto isso em mil jogos. O mapa sempre esconde o perigo na curva.
+reflexo|atk=goblin;hit=.5;bg=estrada|O primeiro veio correndo. Reflexo. Caiu no rio.
+reflexo|atk=goblin;hit=.4;bg=estrada|O segundo tentou pegar a carroça por trás. O Kai pulou na frente. Reflexo.
+close|who=chefe;e=raiva;bg=estrada|Aí veio o grandão. E ele não bateu no escudo. Ele bateu na roda da carroça.
+texto|txt=A CARROÇA TOMBOU|A carroça inclinou. As maçãs começaram a rolar.
+quiz|q=SE_PROTEGE_OU_PROTEGE_A_CARGA?;a=SE_PROTEGE;b=SALVA_AS_MAÇÃS;bg=estrada|Meio segundo pra decidir. Se protege e perde a missão, ou salva as maçãs e toma a clava? O que tu faria?
+close|who=kai;e=raiva;bg=estrada|Ele largou a defesa, enfiou o escudo debaixo da roda e segurou a carroça no braço.
+reflexo|atk=chefe;hit=.6;bg=estrada|E a clava do chefe acertou o escudo em cheio. Reflexo. Em dobro.
+grupo|bg=estrada;who=goblin,goblin;acao=correr;dx=700|O chefe saiu rolando estrada abaixo, e o resto do bando correu atrás dele.
+objeto|obj=moedas;n=80;bg=estrada|Nenhuma maçã no chão. Oitenta moedas na mão.
+painel|titulo=SISTEMA;linhas=MISSÃO CONCLUÍDA,MOEDAS: 90,NÍVEL 5;amarelo=1|Missão concluída. Noventa moedas. Nível cinco.
+close|who=povo0;e=feliz;bg=estrada|O mercador ainda deu mais dez de gorjeta. Cem moedas. Desafio um concluído.
+texto|txt=AGORA, A ARMA|Agora ele podia finalmente comprar uma arma de verdade. Pelo menos era o que ele achava.
+grupo|bg=vila;who=kai,povo3;e=feliz,serio;topo=A_LOJA_DE_ARMAS|Na loja de armas, ele pegou a primeira espada da parede. E a espada caiu da mão dele.
+painel|titulo=SISTEMA;linhas=ERRO,O HERÓI DO ESCUDO NÃO PODE,USAR OUTRAS ARMAS|O sistema apitou vermelho. O herói do escudo não pode usar outras armas.
+close|who=povo3;e=surpreso;bg=vila|O dono da loja arregalou o olho. Ele já tinha ouvido falar: as armas sagradas têm ciúme.
+close|who=kai;e=triste;bg=vila|Nem espada, nem lança, nem arco. Só escudo. Pra sempre.
+objeto|obj=espada;txt=PESO_REAL?|E olha que coisa: a espada que ele derrubou parecia pesadíssima. Mas era?
+fato|k=texto;txt=ESPADA_REAL:_1_A_1,5_KG;topo=CURIOSIDADE|Uma espada medieval de verdade pesava em média de um quilo a um quilo e meio. Menos que um notebook.
+fato|k=texto;txt=FILME_EXAGERA|Aquelas espadas gigantes de dez quilos dos filmes? Quase não existiam em batalha. Ninguém aguentaria lutar o dia inteiro com aquilo.
+objeto|obj=lanca;txt=A_ARMA_DO_POVO|E a arma mais comum dos exércitos nem era a espada. Era a lança. Barata, comprida, e qualquer camponês aprendia a usar em uma semana.
+close|who=kai;e=serio;bg=vila|Então o Kai gastou as cem moedas no que ele podia usar: armadura de couro, bota, comida, e uma bolsa nova.
+grupo|bg=vila;who=kai;acao=andar;dx=200;brilho=.3|Saiu da loja com cara nova. Couro marrom, bota de viagem, capa. Pela primeira vez parecia um aventureiro.
+painel|titulo=SISTEMA;linhas=DEFESA +15,VIDA MÁXIMA +20|Defesa mais quinze. Vida máxima mais vinte.
+grupo|bg=vila;who=igor,guarda,guarda;e=confiante;topo=O_DESAFIO_DO_IGOR|E aí, no meio da praça, ele ouviu uma voz conhecida. O Igor, com seis cavaleiros atrás.
+close|who=igor;e=sorriso;bg=vila|E aí, escudinho? Ouvi dizer que tu tá ficando forte. Que tal um treino amigável?
+close|who=kai;e=serio;bg=vila|O Kai sabia que não tinha nada de amigável nisso. Mas se recusasse, a vila inteira ia chamar ele de covarde.
+desafio|n=3;titulo=DUELO_NA_PRAÇA;sub=KAI_CONTRA_IGOR;bg=vila|Desafio número três. Duelo na praça. Kai contra o herói da espada.
+grupo|bg=vila;who=povo0,povo1,povo2,povo3,crianca0;e=surpreso|A vila inteira fez um círculo em volta. Até o padeiro largou o pão.
+close|who=teo;e=surpreso;bg=vila|O Téo apareceu no meio da multidão, comendo uma coxa de frango, curioso pra ver no que ia dar.
+texto|txt=AS REGRAS|Regra do duelo: quem sair do círculo ou cair três vezes, perde.
+grupo|bg=vila;who=igor,kai;e=confiante,serio;esp=600|O Igor puxou a espada sagrada. Ela brilhou dourada no sol.
+objeto|obj=espada;velocidade=1;txt=ESPADA_SAGRADA|Uma arma lendária contra um escudo rachado. Parecia piada.
+comenta|txt=ESCUDO_OU_ESPADA;top=QUEM_GANHA_ESSE_DUELO?_COMENTA:|Antes do primeiro golpe: quem tu acha que ganha esse duelo? Comenta escudo ou espada, e vamos ver quem acertou.
+close|who=igor;e=raiva;bg=vila|O Igor atacou primeiro. Rápido. Muito rápido.
+fato|k=reacao;topo=CURIOSIDADE|Um golpe de espada bem treinado leva menos de meio segundo pra chegar. Quase o mesmo tempo que tu leva pra piscar duas vezes.
+reflexo|atk=igor;hit=.5;bg=vila|E bateu de frente no escudo. Reflexo.
+texto|txt=O IGOR VOOU|O Igor voou três metros pra trás e caiu sentado na fonte da praça.
+grupo|bg=vila;who=povo0,povo1,povo2;acao=rir|E a vila, que antes ria do Kai, agora tava rindo do Igor.
+close|who=igor;e=raiva;bg=vila|O Igor levantou molhado, vermelho de raiva. Atacou de novo. Dessa vez pela lateral.
+texto|txt=QUEDA 1 DE 3|Queda um de três.
+fato|k=angulo;topo=CURIOSIDADE|Mas lembra pra que serve o escudo triangular? Desviar. Quando o golpe bate inclinado, a força escorrega pro lado.
+close|who=kai;e=confiante;bg=vila|O Kai inclinou o escudo, e a espada escorregou, e o Igor passou direto por ele e caiu de cara no chão.
+grupo|bg=vila;who=povo1,povo2,crianca1;acao=aplaudir|A praça explodiu em aplauso. Pela primeira vez, pro herói do escudo.
+texto|txt=QUEDA 2,QUEDA 3|Na segunda, o Igor tentou por baixo e o Kai pisou na lâmina. Na terceira, ele escorregou sozinho na água da fonte.
+painel|titulo=DUELO;linhas=VENCEDOR: KAI;amarelo=1;cor=#F2C14E|Vencedor: o herói do escudo, sem dar um golpe sequer.
+close|who=teo;e=riso;bg=vila|O Téo deixou o frango cair de tanto rir.
+close|who=igor;e=raiva;bg=vila|O Igor não falou nada. Só olhou. E aquele olhar dizia: isso não vai ficar assim.
+desafio|n=4;titulo=A_NOITE_NA_ESTALAGEM;sub=GUARDAR_O_FRAGMENTO;bg=vila_noite|Desafio número quatro. E esse o Kai nem sabia que tava jogando: guardar o fragmento até o amanhecer.
+grupo|bg=vila_noite;who=kai;acao=andar;dx=200|O Kai alugou um quarto na estalagem. Três moedas, cama dura, janela pra rua.
+close|who=kai;e=cansado;bg=quarto|Ele colocou o fragmento de cristal debaixo do travesseiro e apagou.
+texto|txt=ESCONDE DEBAIXO DO TRAVESSEIRO|O lugar mais óbvio do mundo pra esconder alguma coisa.
+close|who=kai;e=cansado;bg=quarto|Ele tava tão cansado que nem tirou a bota. Dormiu de armadura, com o escudo do lado da cama.
+texto|txt=ERRO|Erro número um: dormir.
+grupo|bg=vila_noite;who=sombra;e=serio|Duas horas da manhã. Uma sombra subiu pela janela.
+close|who=sombra;e=serio;bg=quarto|Ela andou sem fazer barulho, enfiou a mão debaixo do travesseiro e tirou o cristal.
+close|who=kai;e=cansado;bg=quarto|O Kai se mexeu. A sombra parou. Ele virou pro outro lado e continuou dormindo.
+texto|txt=E A SOMBRA SUMIU|E a sombra sumiu pela janela do jeito que entrou.
+close|who=kai;e=choque;bg=quarto|Quando o Kai acordou com um barulho na rua, já era tarde. O cristal não tava mais lá.
+painel|titulo=SISTEMA;linhas=FRAGMENTO DE MAPA: 0/5,ITEM PERDIDO|Fragmento de mapa: zero de cinco.
+grupo|bg=salao;who=rei,igor,guarda;e=feliz,confiante;topo=CASTELO_DE_VALDORA|No dia seguinte, no castelo, o Igor ajoelhou na frente do rei e levantou um cristal brilhando.
+detalhe|bg=salao;who=igor;wx=960;wy=1000;s=1.2;x=960;y=980;r=150;txt=REPARA_NA_BOTA|Repara na bota do Igor. Ele jurou que passou a noite no castelo. Mas ela tava suja da mesma lama vermelha da rua da estalagem.
+close|who=igor;e=sorriso;bg=salao|Majestade, eu encontrei isso numa caverna no leste, depois de derrotar um bando de goblins.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago;em=caverna|O cristal acendeu e o mapa se abriu no salão. A Caverna dos Cristais. Os Montes de Ferro. O Lago Espelho.
+close|who=rei;e=feliz;bg=salao|O rei aplaudiu. Mais cem moedas pro Igor. E mais dez cavaleiros.
+close|who=kai;e=raiva;bg=salao|O Kai tava no fundo do salão. Ele abriu a boca pra falar. E fechou.
+texto|txt=QUEM IA ACREDITAR?|Quem ia acreditar nele? O herói que quebrou a catapulta contra o herói favorito do rei?
+close|who=lia;e=serio;bg=salao|Mas uma pessoa no salão não tava aplaudindo. A Lia.
+close|who=lia;e=serio;bg=floresta|Porque a Lia tava escondida naquela floresta. Ela viu quem lutou com os goblins. E não foi o Igor.
+grupo|bg=vila;who=lia,kai;e=serio,triste;esp=400|Na saída do castelo, ela passou do lado do Kai e falou baixinho: eu sei que foi tu.
+close|who=kai;e=raiva;bg=vila|O Kai cerrou o punho. A vontade era voltar e gritar no meio do salão.
+close|who=lia;e=serio;bg=vila|Mas a Lia segurou o braço dele. Grito não é prova.
+close|who=kai;e=surpreso;bg=vila|Então fala pro rei! Ela balançou a cabeça. Sem prova, ninguém escuta. Mas tem outro jeito.
+close|who=lia;e=confiante;bg=vila|O cristal tem cinco pedaços. Se tu achar o segundo antes dele, tu prova quem conhece o caminho.
+desafio|n=5;titulo=O_SEGUNDO_FRAGMENTO;sub=CHEGAR_ANTES_DO_IGOR;bg=estrada|Desafio número cinco. Achar o segundo fragmento antes do Igor.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago;rota=vila,lago;em=lago|O Kai lembrava do mapa de cabeça. O segundo brilho tava no Lago Espelho.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago;rota=castelo,montanhas;em=montanhas|E o Igor, com o mapa na mão mas sem saber ler as marcas, foi pros Montes de Ferro. Caminho errado.
+close|who=igor;e=raiva;bg=estrada|O Igor girava o cristal na mão sem entender. As linhas não apareciam pra ele. Só uma luz fraquinha.
+grupo|bg=estrada;who=kai;acao=correr;dx=500;topo=LAGO_ESPELHO|O Kai correu o dia inteiro. Atravessou o rio, cortou caminho pela colina do moinho.
+texto|txt=DIA 3 DE 30|Dia três de trinta. Pelo menos era isso que todo mundo achava.
+close|who=kai;e=cansado;bg=estrada|A perna queimava. A armadura nova esfregava no ombro. Mas parar não era opção.
+grupo|bg=estrada;who=kai;e=surpreso|E chegou no lago no fim da tarde. A água era tão parada que o céu aparecia de cabeça pra baixo.
+close|who=kai;e=serio;bg=estrada|No meio do lago, uma ilha pequena. E na ilha, um brilho azul.
+fato|k=texto;txt=ÁGUA_PARADA:_ESPELHO_PERFEITO;topo=CURIOSIDADE|Sabe por que lago parado vira espelho? Sem vento, a superfície fica tão lisa que reflete a luz quase toda de volta, igual vidro.
+texto|txt=MAS ALGO SE MEXEU|Mas antes dele dar o primeiro passo na ponte, a água se mexeu.
+close|who=chefe;e=raiva;bg=caverna|Um gigante de pedra levantou do fundo do lago. Musgo nas costas, olho brilhando, três metros de altura.
+painel|titulo=GUARDIÃO_DO_LAGO;linhas=NÍVEL 15,ATAQUE: 120,DEFESA: 300;cor=#FF5F5F|Guardião do Lago. Nível quinze. E o Kai era nível cinco.
+quiz|q=NÍVEL_5_CONTRA_NÍVEL_15._E_AGORA?;a=FOGE;b=LUTA_ATÉ_O_FIM;c=PEGA_O_CRISTAL;bg=estrada|Nível cinco contra nível quinze. Tu foge, luta até o fim, ou tenta só pegar o cristal e sair vivo?
+close|who=kai;e=serio;bg=estrada|O Kai escolheu a C. Ele não precisava vencer o gigante. Ele precisava do cristal e de voltar inteiro.
+reflexo|atk=chefe;hit=.7;bg=estrada|O gigante desceu o punho. Reflexo. O braço de pedra rachou.
+close|who=kai;e=serio;bg=estrada|O Kai contou o tempo entre os socos. Três segundos. O gigante era forte, mas era lento.
+texto|txt=LENTO = PREVISÍVEL|E tudo que é lento é previsível.
+close|who=kai;e=choque;bg=estrada|Mas o Kai também voou dois metros. O escudo devolveu o dano, mas o impacto ainda passava pro corpo.
+painel|titulo=SISTEMA;linhas=VIDA: 40%,O REFLEXO TEM LIMITE;cor=#FF5F5F;amarelo=1|Vida em quarenta por cento. O reflexo tinha limite.
+close|who=kai;e=serio;bg=estrada|Ele precisava de um jeito de usar a força do gigante sem tomar o golpe de frente.
+close|who=kai;e=surpreso;bg=estrada|E aí ele lembrou da praça. Se o escudo inclinado fez a espada do Igor escorregar, por que não um punho de pedra?
+close|who=kai;e=confiante;bg=estrada|Ele esperou o próximo soco, inclinou o escudo e deixou o punho escorregar direto pro chão.
+texto|txt=O PUNHO PRENDEU|O punho do gigante afundou na lama da margem e prendeu.
+reflexo|atk=chefe;hit=.5;bg=estrada|E enquanto ele puxava o braço, o Kai bateu o escudo com tudo no joelho rachado. Reflexo.
+grupo|bg=estrada;who=chefe;acao=medo|O gigante perdeu o equilíbrio, caiu pra trás e afundou de volta no lago.
+cena|k=nivel;de=5;para=11|Nível seis. Sete. Oito. Nove. Dez. Onze.
+close|who=kai;e=cansado;bg=estrada|O Kai caiu de joelhos na lama, respirando fundo. Vida em doze por cento. Mas vivo.
+grupo|bg=estrada;who=kai;e=cansado;s=1.1|Ele tirou a bota, despejou a água e riu sozinho. Vinte e dois anos de sofá e agora isso.
+cena|k=cristal_mapa|O Kai atravessou a ponte e pegou o segundo fragmento. Esse era maior. E mais brilhante.
+painel|titulo=SISTEMA;linhas=FRAGMENTO 1/5,RECUPERADO DA MEMÓRIA;amarelo=1|E quando encostou nele, o sistema fez uma coisa estranha: o primeiro fragmento voltou também. Como lembrança.
+close|who=kai;e=confiante;bg=estrada|O Igor tinha roubado a pedra. Mas o mapa tinha escolhido o Kai.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto;em=deserto|O mapa abriu de novo no ar. O Deserto Rubro apareceu do nada.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda;fenda=1;em=fenda|E uma linha roxa ligava o deserto até a Fenda. Uma linha que pulsava.
+close|who=kai;e=surpreso;bg=estrada|E o cristal mostrou também uma marca nova, nos Montes de Ferro: um martelo. A forja de alguém.
+painel|titulo=SISTEMA;linhas=FRAGMENTO 2/5,ALERTA: A FENDA ACELEROU;cor=#C77DFF|E o sistema mostrou um alerta que ninguém no castelo sabia.
+cena|k=fenda_profecia;txt=3_DIAS|A Fenda não ia abrir em vinte e oito dias. Ia abrir em três.
+close|who=kai;e=choque;bg=estrada|Três dias. E os heróis tavam espalhados pelo reino, procurando no lugar errado.
+close|who=lia;e=serio;bg=estrada|Na beira do lago, a Lia tinha chegado escondida pra ver. E ela viu o mapa no ar.
+close|who=igor;e=raiva;bg=escuro|E lá nos Montes de Ferro, o Igor olhou pro cristal roubado, e ele tinha ficado preto.
+quiz|q=QUEM_ROUBOU_O_FRAGMENTO?;a=O_IGOR;b=UM_GOBLIN;c=A_LIA;certa=A;bg=vila_noite|Lembra do palpite do começo? Letra A. O cristal só apaga na mão de quem roubou. Quem acertou, comenta: eu sabia.
+close|who=kai;e=serio;bg=estrada|Agora me diz: o Kai volta pro castelo pra avisar o rei, que não acredita nele, ou corre sozinho pra Fenda?
+texto|txt=AVISA OU VAI SOZINHO?|Avisa o rei ou vai sozinho? Comenta aí. E curte pra parte três.

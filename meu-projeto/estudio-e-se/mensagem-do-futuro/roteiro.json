@@ -1,0 +1,150 @@
+{
+ "titulo": "Mensagem do futuro",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "dia",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "golpe",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "corte",
+ "legenda_estilo": "ref",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "a1",
+   "voz": "narrador",
+   "texto": "E se o teu celular recebesse uma mensagem"
+  },
+  {
+   "id": "a2",
+   "voz": "narrador",
+   "texto": "dez segundos antes de tudo acontecer?"
+  },
+  {
+   "id": "b1",
+   "voz": "narrador",
+   "texto": "A Bia tava no ponto quando chegou:"
+  },
+  {
+   "id": "b2",
+   "voz": "narrador",
+   "texto": "não entra no ônibus."
+  },
+  {
+   "id": "b3",
+   "voz": "narrador",
+   "texto": "O número era o dela mesma."
+  },
+  {
+   "id": "b4",
+   "voz": "narrador",
+   "texto": "Ela riu. E entrou."
+  },
+  {
+   "id": "b5",
+   "voz": "narrador",
+   "texto": "Dez segundos depois, o ônibus freou do nada."
+  },
+  {
+   "id": "b6",
+   "voz": "narrador",
+   "texto": "E ela bateu a cabeça no banco."
+  },
+  {
+   "id": "c1",
+   "voz": "narrador",
+   "texto": "Aí chegou outra: agora tu acredita?"
+  },
+  {
+   "id": "c2",
+   "voz": "narrador",
+   "texto": "Dez segundos parece pouco."
+  },
+  {
+   "id": "c3",
+   "voz": "narrador",
+   "texto": "Mas o cérebro leva só uns dois décimos de segundo pra reagir ao que vê."
+  },
+  {
+   "id": "c4",
+   "voz": "narrador",
+   "texto": "Dez segundos é uma eternidade."
+  },
+  {
+   "id": "d1",
+   "voz": "narrador",
+   "texto": "No dia seguinte, ela usou."
+  },
+  {
+   "id": "d2",
+   "voz": "narrador",
+   "texto": "Desviou da bolada no recreio."
+  },
+  {
+   "id": "d3",
+   "voz": "narrador",
+   "texto": "Respondeu antes do professor perguntar."
+  },
+  {
+   "id": "d4",
+   "voz": "narrador",
+   "texto": "Pegou o celular antes de cair no bueiro."
+  },
+  {
+   "id": "e1",
+   "voz": "narrador",
+   "texto": "Até que chegou uma mensagem diferente."
+  },
+  {
+   "id": "e2",
+   "voz": "narrador",
+   "texto": "Não abre a porta."
+  },
+  {
+   "id": "e3",
+   "voz": "narrador",
+   "texto": "A campainha tocou."
+  },
+  {
+   "id": "e4",
+   "voz": "narrador",
+   "texto": "Ela olhou pelo olho mágico."
+  },
+  {
+   "id": "e5",
+   "voz": "narrador",
+   "texto": "Não tinha ninguém."
+  },
+  {
+   "id": "e6",
+   "voz": "narrador",
+   "texto": "O celular vibrou de novo."
+  },
+  {
+   "id": "e7",
+   "voz": "narrador",
+   "texto": "Tarde demais. Eu já tô aqui dentro."
+  },
+  {
+   "id": "e8",
+   "voz": "narrador",
+   "texto": "E o número era o dela."
+  },
+  {
+   "id": "f1",
+   "voz": "narrador",
+   "texto": "Ela responde a mensagem, ou corre pra fora de casa?"
+  },
+  {
+   "id": "f2",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}

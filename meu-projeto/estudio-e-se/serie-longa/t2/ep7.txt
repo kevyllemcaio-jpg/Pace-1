@@ -1,0 +1,23 @@
+# T2 EP 7: OS PROCURADOS
+grupo|who=kai,igor,lia,nina;e=cansado;bg=floresta_noite;topo=FLORESTA_SOMBRIA|Três dias escondidos na floresta. Sem fogo, sem cama, comendo o que achavam no mato.
+close|who=nina;e=raiva;bg=floresta_noite|A Nina reclamava: ontem eu era ferreira. Hoje eu sou bandida.
+fato|k=texto;txt=FORA_DA_LEI:_ERA_LITERAL;topo=CURIOSIDADE|E sabe de onde vem fora da lei? Na Idade Média, quem era declarado fora da lei perdia toda a proteção. Qualquer um podia te prender.
+texto|txt=MIL MOEDAS,POR CABEÇA|E a cabeça de cada um valia mil moedas.
+close|who=kai;e=serio;bg=floresta_noite|O Kai decidiu: a gente precisa de comida. Eu vou na vila.
+grupo|who=kai;acao=andar;dx=250;bg=vila;topo=VILA_PEDRAVERDE|Capuz na cabeça, escudo enrolado num pano, ele entrou na Vila Pedraverde.
+grupo|who=guarda,guarda;e=serio;bg=vila|Guardas em cada esquina. Cartaz em cada parede.
+close|who=kai;e=medo;bg=vila|E aí um guarda olhou bem pra ele. Olhou de novo. E puxou a espada.
+grupo|who=kai,guarda;acao=correr;dx=-400;bg=vila|O Kai correu. Beco, barraca, carroça de maçã.
+close|who=crianca0;e=serio;bg=vila|Até que uma mão pequena puxou ele pra dentro de um celeiro.
+close|who=crianca0;e=feliz;bg=vila|Era a menina da vila. A que ele salvou na barreira.
+close|who=kai;e=surpreso;bg=vila|Tu não vai me entregar? Mil moedas é muito dinheiro.
+close|who=crianca0;e=confiante;bg=vila|Ela respondeu: tu me salvou de graça. Eu te escondo de graça.
+grupo|who=povo0,povo1,povo2;e=serio;bg=vila_noite|E naquela noite, metade da vila levou comida escondida pro celeiro.
+grupo|who=kai,igor,lia,nina;e=feliz;bg=vila_noite|Pão, queijo, maçã. Os quatro comeram como se fosse a última vez.
+close|who=igor;e=triste;bg=vila_noite|O Igor ficou quieto. Ninguém nunca tinha feito isso por ele.
+cena|k=fogueira;e=serio|Meia-noite. A porta do celeiro rangeu.
+close|who=lia;e=raiva;bg=vila_noite|A Lia puxou uma flecha. O Kai levantou o escudo.
+close|who=teo;e=serio;bg=vila_noite|E na porta, sozinho, sem armadura, estava o Téo.
+close|who=teo;e=triste;bg=vila_noite|Eu vim sozinho. E tenho uma coisa que vocês precisam ver.
+close|who=kai;e=serio;bg=escuro|Agora me diz: tu deixava o Téo entrar ou mandava ele embora?
+texto|txt=DEIXA OU MANDA EMBORA?|Comenta aí. E curte pra parte oito.

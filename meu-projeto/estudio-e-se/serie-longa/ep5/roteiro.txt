@@ -1,0 +1,146 @@
+# EPISÓDIO 5 — A ARMA VERDADEIRA
+grupo|bg=vila;who=igor,rei;e=raiva,choque;esp=500;topo=PRAÇA_DE_VALDORA|O herói da espada, apontando a espada sagrada pro pescoço do próprio rei. Na frente da cidade inteira.
+close|who=igor;e=raiva;bg=vila|E atrás dele, de joelhos, acorrentado, o herói do escudo.
+texto|txt=COMO CHEGOU NISSO?|Como é que chegou nisso? Volta dois dias.
+quiz|q=POR_QUE_O_IGOR_VIROU_CONTRA_O_REI?;a=QUER_O_TRONO;b=VINGANÇA;c=ARREPENDIMENTO;bg=vila|Antes de voltar: por que tu acha que o Igor tá fazendo isso? Quer o trono, quer vingança, ou se arrependeu? Guarda a letra.
+texto|txt=EPISÓDIO FINAL,A ARMA VERDADEIRA|Episódio final. A arma verdadeira.
+grupo|bg=salao;who=kai,rei;e=serio,feliz;esp=500;topo=CASTELO_DE_VALDORA|De volta ao castelo, o Kai foi direto falar com o rei.
+close|who=kai;e=serio;bg=salao|Majestade, a Fenda disse que eu já estive aqui. Quinhentos anos atrás. O que isso quer dizer?
+close|who=rei;e=sorriso;bg=salao|O rei sorriu, calmo. Lenda antiga, meu jovem. Dizem que o primeiro herói do escudo fechou a Fenda com o próprio corpo.
+close|who=rei;e=serio;bg=salao|E a profecia diz que só o escudo pode fechar ela de novo. Do mesmo jeito.
+texto|txt=DO MESMO JEITO?|Do mesmo jeito. Entrando nela. E não saindo mais.
+close|who=kai;e=choque;bg=salao|O Kai sentiu o estômago gelar.
+close|who=rei;e=feliz;bg=salao|Pensa bem, disse o rei. Um sacrifício e o reino inteiro tá salvo. Tu vai virar estátua na praça.
+comenta|txt=ACEITO_OU_RECUSO;top=NO_LUGAR_DO_KAI,_TU..._COMENTA:|Para tudo. No lugar dele, tu aceitava? Comenta: aceito ou recuso.
+close|who=kai;e=serio;bg=salao|O Kai saiu do salão sem responder. E lá fora, a Nina e a Lia tavam esperando.
+grupo|bg=vila_noite;who=kai,lia,nina;e=serio|A Nina falou primeiro: os homens do castelo levaram a espada do meu pai. A Lia completou: e o rei nunca olhou o mapa que tu mostrou.
+close|who=lia;e=serio;bg=vila_noite|Tem alguma coisa errada nesse castelo. E a resposta tá lá dentro.
+desafio|n=1;titulo=O_ARSENAL_DO_REI;sub=ENTRAR_E_SAIR_SEM_SER_VISTO;bg=vila_noite|Desafio número um. Entrar no arsenal do rei à noite e sair sem ser visto.
+grupo|bg=vila_noite;who=kai,lia,nina;acao=andar;dx=200;topo=MEIA-NOITE|Meia-noite. Os três subiram pelo muro dos fundos do castelo, onde a Lia tinha contado os guardas por três dias.
+close|who=nina;e=medo;bg=vila_noite|Mas antes do muro, tinha o fosso. Água preta, parada, e um cheiro que fez a Nina tapar o nariz.
+quiz|q=O_QUE_TINHA_NUM_FOSSO_DE_CASTELO?;a=JACARÉ;b=ESGOTO;c=TUBARÃO;bg=vila_noite|Rapidinho: o que tinha de verdade dentro de um fosso de castelo? Jacaré, esgoto, ou tubarão?
+fato|k=texto;txt=FOSSO_=_ÁGUA_PARADA_E_ESGOTO;topo=CURIOSIDADE|Esgoto. Jacaré é coisa de desenho. Muito castelo despejava as latrinas direto no fosso. Ninguém queria atravessar aquilo, e era justamente essa a ideia.
+close|who=kai;e=confiante;bg=vila_noite|O Kai deitou o escudo na água e eles atravessaram em cima dele, um de cada vez, sem molhar o pé.
+fato|k=texto;txt=TROCA_DA_GUARDA:_O_PONTO_FRACO;topo=CURIOSIDADE|Em castelo de verdade, o momento mais perigoso pra defesa era a troca da guarda. Por um ou dois minutos, ninguém tá olhando direito.
+close|who=lia;e=serio;bg=vila_noite|Dois minutos, disse a Lia. A partir de agora.
+grupo|bg=salao;who=guarda,guarda;e=neutro|Eles passaram por um corredor, por uma escada, e chegaram numa porta de ferro.
+detalhe|bg=salao;x=960;y=900;r=170;txt=REPARA_NA_PORTA|No meio do corredor, a Lia levantou a mão. Repara na luz debaixo da porta: duas sombras de pé passando.
+close|who=kai;e=medo;bg=salao|Os três se espremeram atrás de uma armadura vazia. Os guardas passaram a um metro. E seguiram.
+close|who=nina;e=confiante;bg=salao|A Nina olhou a fechadura e riu. Fui eu que fiz essa fechadura. Faz seis anos.
+fato|k=texto;txt=FECHADURA_DE_PINOS:_+_DE_4_MIL_ANOS;topo=CURIOSIDADE|E fechadura é invenção velha. No Egito antigo, há mais de quatro mil anos, já existia fechadura de madeira com pinos que caíam dentro da trava. A ideia é quase a mesma da chave da tua casa.
+texto|txt=CLIC|Clic.
+grupo|bg=forja;who=kai,lia,nina;e=surpreso;topo=O_ARSENAL|Lá dentro, armas de todos os tipos. E na parede do fundo, uma espada com cabo de bronze.
+close|who=nina;e=triste;bg=forja|A espada do meu pai. Ela passou a mão na lâmina e ficou em silêncio.
+close|who=kai;e=surpreso;bg=forja|Mas o Kai achou outra coisa. Uma caixa de pedra, com o mesmo triângulo do escudo na tampa.
+cena|k=cristal_mapa|Dentro da caixa: o quarto fragmento do mapa. E um livro velho.
+objeto|obj=pergaminho_livro;txt=O_LIVRO_DOS_REIS|O livro dos reis de Valdora. Escrito à mão, por quinhentos anos.
+close|who=lia;e=choque;bg=forja|A Lia leu em voz alta. E a voz dela foi sumindo a cada linha.
+texto|txt=A CADA 500 ANOS,A FENDA PEDE O ESCUDO|A cada quinhentos anos, a Fenda pede o escudo.
+texto|txt=E EM TROCA,DÁ PODER À COROA|E em troca, dá poder à coroa.
+close|who=kai;e=choque;bg=forja|O Kai entendeu tudo de uma vez.
+close|who=kai;e=raiva;bg=forja|O rei não invocou quatro heróis pra salvar o reino. Ele invocou um sacrifício. E mais três pra servir de plateia.
+texto|txt=POR ISSO RIRAM DELE|Por isso o escudo foi humilhado desde o primeiro dia. Ninguém sente falta de quem o povo odeia.
+close|who=nina;e=raiva;bg=forja|A Nina apertou o martelo. E a espada do meu pai? A Lia virou a página. Foi dada de presente a um cavaleiro. Pela ajuda na invocação.
+fato|k=texto;txt=DOCUMENTO_É_PROVA;topo=CURIOSIDADE|E aqui tá a sacada: na Idade Média, quase ninguém sabia ler. Mas os reis anotavam tudo. Impostos, terras, acordos. E às vezes, os próprios crimes.
+close|who=kai;e=serio;bg=forja|Agora eles tinham uma prova. Escrita com a letra do próprio rei.
+quiz|q=O_QUE_FAZER_COM_O_LIVRO?;a=MOSTRAR_AGORA;b=GUARDAR_PRO_MOMENTO_CERTO;c=QUEIMAR;bg=forja|E tu, com esse livro na mão: mostrava pro reino agora, guardava pro momento certo, ou queimava pra ninguém usar?
+texto|txt=E AÍ A PORTA ABRIU|E aí a porta abriu.
+grupo|bg=salao;who=guarda,guarda,guarda,guarda;e=raiva|Doze guardas. E o capitão na frente, com o brasão do rei no peito.
+desafio|n=2;titulo=A_FUGA;sub=TIRAR_O_LIVRO_DO_CASTELO;bg=salao|Desafio número dois. A fuga. Tirar o livro do castelo.
+close|who=kai;e=confiante;bg=salao|O Kai entregou o livro pra Lia. Vocês correm. Eu seguro a porta.
+reflexo|atk=guarda;hit=.5;bg=salao|O primeiro guarda bateu. Reflexo.
+close|who=guarda;e=choque;bg=salao|O segundo viu o primeiro atravessar a sala voando e travou no meio do passo.
+quiz|q=COMO_PRENDER_QUEM_DEVOLVE_TODO_GOLPE?;a=MAIS_FORÇA;b=UMA_REDE;c=CANSAR_ELE;bg=salao|Pensa como o capitão: como tu prende alguém que devolve todo golpe em dobro?
+close|who=guarda;e=raiva;bg=salao|Mas o capitão tinha aprendido. Ele não atacou. Mandou jogar uma rede.
+texto|txt=A REDE|Escudo não devolve rede. Rede não bate. Rede abraça.
+close|who=kai;e=medo;bg=salao|O Kai caiu enrolado no chão.
+grupo|bg=vila_noite;who=lia,nina;acao=correr;dx=600|Mas a Lia e a Nina já tinham pulado o muro. Com o livro.
+painel|titulo=SISTEMA;linhas=CAPTURADO,ACUSAÇÃO: TRAIÇÃO;cor=#FF5F5F|O Kai foi preso. Acusação: traição contra a coroa.
+grupo|bg=escuro;who=kai;e=triste;s=1.1;topo=A_MASMORRA|Naquela noite, cela úmida, corrente no pé, e nenhuma janela.
+close|who=teo;e=serio;bg=escuro|Aí a porta rangeu. Era o Téo, com um pão e uma caneca de água escondidos na capa.
+close|who=teo;e=triste;bg=escuro|Eu vi o que tu fez na vila e no vale. Eu não sei mais de que lado eu tô.
+quiz|q=O_TÉO_É_CONFIÁVEL?;a=É;b=NÃO_É;bg=escuro|E aí, confiava no Téo? Ele seguiu o Igor e o rei o tempo todo.
+close|who=kai;e=serio;bg=escuro|O Kai confiou. Fala pra Lia uma coisa só: não mostra o livro antes da hora. Espera o rei falar da Fenda.
+close|who=teo;e=confiante;bg=escuro|O Téo balançou a cabeça e sumiu no corredor.
+desafio|n=3;titulo=O_JULGAMENTO;sub=AO_MEIO-DIA_NA_PRAÇA;bg=vila|Desafio número três. O julgamento. Ao meio-dia, na praça.
+grupo|bg=vila;who=povo0,povo1,povo2,povo3,crianca0,crianca1;e=surpreso;topo=O_JULGAMENTO|A cidade inteira foi ver. A praça lotada.
+close|who=kai;e=cansado;bg=vila|O Kai no meio, acorrentado. Sem escudo. O escudo tava numa mesa, do lado do rei.
+close|who=rei;e=serio;bg=vila|O rei falou alto: esse homem invadiu o meu castelo pra roubar. O herói do escudo é um ladrão.
+grupo|bg=vila;who=povo1,povo2;e=raiva|Algumas pessoas gritaram. Outras ficaram quietas.
+close|who=rei;e=confiante;bg=vila|E a pena pra traição é uma só. Ao pôr do sol, ele vai ser levado até a Fenda.
+detalhe|bg=vila;who=lia;wx=960;wy=1000;s=1.0;x=960;y=640;r=160;txt=REPARA_NA_LIA|Repara lá no fundo, perto da fonte. A Lia, de capuz, com o livro debaixo do braço. Esperando exatamente essa frase.
+texto|txt=A FENDA|A Fenda. Exatamente onde o rei queria ele desde o começo.
+close|who=crianca0;e=raiva;bg=vila|Aí uma voz pequena gritou no meio da multidão. Ele não é ladrão!
+close|who=crianca0;e=raiva;bg=vila|Era a menina da vila. A da barreira. Ele salvou a gente quando os cavaleiros nem tavam lá!
+close|who=povo0;e=raiva;bg=vila|Depois o mercador da carroça. Ele protegeu minha carga sem pedir nada a mais!
+detalhe|bg=vila;x=1500;y=700;r=130;txt=REPARA_NO_ESCUDO|E repara no escudo em cima da mesa do rei. A cada voz que defendia o Kai, ele brilhava um pouquinho mais.
+grupo|bg=vila;who=povo0,povo1,povo2,crianca0;e=raiva|E depois outro. E outro. A praça começou a murmurar.
+close|who=rei;e=raiva;bg=vila|O rei bateu o cetro no chão. Silêncio! Quem defende traidor é traidor!
+grupo|bg=vila;who=lia,nina;e=raiva;esp=400|E aí a Lia subiu na fonte. Com o livro na mão.
+close|who=lia;e=raiva;bg=vila|E leu em voz alta, pra cidade inteira ouvir: a cada quinhentos anos, a Fenda pede o escudo. E em troca, dá poder à coroa.
+close|who=rei;e=choque;bg=vila|O rei ficou branco.
+close|who=igor;e=choque;bg=vila|E o Igor, do lado do rei, olhou pra espada no cinto dele. E lembrou de tudo.
+close|who=igor;e=triste;bg=vila|A risada no altar. As dez moedas. O cristal roubado. Tudo que ele fez porque o rei mandou, ou porque o rei deixou.
+close|who=rei;e=raiva;bg=vila|Guardas! O rei gritou. Levem o escudo pra Fenda. Agora!
+texto|txt=E O IGOR SE MEXEU|E aí o Igor se mexeu.
+grupo|bg=vila;who=igor,rei;e=raiva,choque;esp=500|Ele puxou a espada sagrada e apontou pro pescoço do rei.
+close|who=igor;e=raiva;bg=vila|Ninguém vai levar ele a lugar nenhum.
+close|who=igor;e=serio;bg=vila|E pela primeira vez, ele falou o nome certo: o Kai salvou a minha vida no vale. Eu devo isso a ele.
+quiz|q=POR_QUE_O_IGOR_VIROU_CONTRA_O_REI?;a=QUER_O_TRONO;b=VINGANÇA;c=ARREPENDIMENTO;certa=C;bg=vila|Lembra do palpite lá do começo? Letra C. Arrependimento. Quem acertou, comenta: eu sabia.
+close|who=kai;e=surpreso;bg=vila|O Kai olhou pra cima sem acreditar.
+painel|titulo=SISTEMA;linhas=REQUISITO CUMPRIDO,ALGUÉM PROTEGEU O ESCUDO;amarelo=1|E o painel apareceu. Requisito cumprido. Alguém protegeu o escudo.
+texto|txt=O ESCUDO SE PROTEGE,QUANDO ALGUÉM O PROTEGE|Esse era o segredo que ninguém em quinhentos anos tinha descoberto.
+close|who=kai;e=surpreso;bg=vila|O primeiro herói do escudo, quinhentos anos atrás, foi sozinho pra Fenda. Ninguém protegeu ele. Por isso ele nunca voltou.
+objeto|obj=escudo;racha=0;brilho=1;velocidade=1;sfx=brilho|O escudo na mesa saiu voando sozinho e voltou pro braço do Kai.
+texto|txt=AS CORRENTES QUEBRARAM|As correntes quebraram.
+objeto|obj=escudo_verdadeiro;txt=A_ÉGIDE_TRIANGULAR|E o escudo mudou. Cresceu. Ganhou três pontas de luz, uma em cada canto. A Égide Triangular.
+painel|titulo=ARMA_VERDADEIRA;linhas=ÉGIDE TRIANGULAR,TRI-BARREIRA,REFLEXO TOTAL;amarelo=1;cor=#F2C14E|A arma verdadeira. Tri-barreira. Reflexo total.
+comenta|txt=ÉGIDE;top=SE_TU_ARREPIOU,_COMENTA:|Se tu arrepiou nessa parte, comenta: égide.
+fato|k=triangulo;topo=CURIOSIDADE|E aqui tá a engenharia de verdade: o triângulo é a forma mais firme que existe. Empurra um quadrado, ele vira losango. Empurra um triângulo, ele não muda.
+fato|k=texto;txt=TRIÂNGULO:_A_FORMA_QUE_NÃO_CEDE|É por isso que ponte, guindaste e torre de energia são cheios de triângulo. A força se divide pelos três lados e nenhum lado aguenta sozinho.
+close|who=kai;e=confiante;bg=vila|Três lados. Três pessoas que protegeram ele. A Lia, a Nina, e agora o Igor.
+close|who=rei;e=raiva;bg=vila|O rei recuou. E tirou a coroa da cabeça.
+cena|k=cristal_mapa|No centro da coroa, brilhando, o quinto fragmento do mapa.
+close|who=rei;e=raiva;bg=vila_fenda|Se eu não tenho o escudo, ninguém tem o reino. E levantou a coroa pro céu.
+desafio|n=4;titulo=A_FENDA_SOBRE_A_CIDADE;sub=PROTEGER_TODO_MUNDO;bg=vila_fenda|Desafio número quatro. A Fenda se abriu bem em cima da cidade.
+grupo|bg=vila_fenda;who=povo0,povo1,crianca0,crianca1;acao=correr;dx=-500|O céu rachou em roxo. As sombras desceram como chuva.
+close|who=gigante;e=raiva;bg=vila_fenda|E junto com elas, três guardiões iguais ao do vale.
+close|who=kai;e=serio;bg=vila_fenda|O Kai levantou a Égide. E dessa vez ele não pensou em se proteger. Ele pensou na cidade inteira.
+cerco|atk=sombra;n=7;e=raiva;bg=vila_fenda;barreira=1;brilho=1;sfx=brilho|Tri-barreira.
+texto|txt=A CIDADE INTEIRA|A barreira não cobriu uma praça. Cobriu a cidade inteira.
+reflexo|atk=gigante;hit=.5;bg=vila_fenda|O primeiro guardião bateu na cúpula. Reflexo total. Ele sumiu no céu.
+grupo|bg=vila_fenda;who=igor,teo,lia,nina;e=raiva|E dentro da barreira, os outros atacavam. Espada, lança, flecha, martelo.
+grupo|bg=vila_fenda;who=povo0,povo1,povo2,crianca0;e=feliz|E a vila lembrou da lição das sombras. Cada casa acendeu tudo o que tinha. A cidade virou um farol.
+cena|k=alvo;who=lia;acerto=1|E as flechas de cristal da Nina cortavam o céu, cada uma deixando um rastro de luz azul.
+cerco|atk=gigante;n=2;e=raiva;bg=vila_fenda;barreira=1;brilho=1|O segundo e o terceiro vieram juntos, de lados opostos. A Égide girou e devolveu os dois ao mesmo tempo.
+painel|titulo=SISTEMA;linhas=VIDA: 30%,A FENDA AINDA ESTÁ ABERTA;cor=#FF5F5F|Mas a Fenda continuava aberta. E a vida do Kai caindo.
+close|who=kai;e=cansado;bg=vila_fenda|O braço do Kai começou a abaixar. Aí duas mãos seguraram ele por baixo. O Igor de um lado. O Téo do outro.
+close|who=teo;e=confiante;bg=vila_fenda|Ninguém segura isso sozinho, disse o Téo. Nem tanque.
+desafio|n=5;titulo=O_MAPA_COMPLETO;sub=FECHAR_A_FENDA_PARA_SEMPRE;bg=vila_fenda|Desafio número cinco. O último.
+close|who=kai;e=serio;bg=vila_fenda|O Kai olhou pro mapa no ar. Quatro fragmentos. Faltava um. O da coroa.
+close|who=lia;e=confiante;bg=vila_fenda|E a Lia entendeu sem ele falar nada. Ela puxou uma flecha só.
+cena|k=alvo;who=lia;acerto=1|Prova do alvo. Cinquenta metros. Ela acertou a coroa na mão do rei.
+objeto|obj=coroa;txt=A_COROA_CAIU|A coroa voou, e o quinto fragmento caiu rolando na frente do Kai.
+mapa|exp=castelo,vila,floresta,caverna,montanhas,lago,deserto,fenda,forja;fenda=1;em=fenda|Cinco de cinco. O mapa se completou no ar. Sem nenhuma névoa.
+detalhe|bg=mapa_completo;x=1180;y=470;r=330;txt=REPARA_NAS_5_PONTAS|Repara onde ficam os cinco lugares dos fragmentos: caverna, lago, deserto, castelo e a coroa. Todos em volta da Fenda, como as pontas de uma estrela.
+close|who=kai;e=surpreso;bg=vila_fenda;brilho=1|E aí o Kai viu. O mapa não era um mapa. Era um selo. Cinco pontas em volta da Fenda.
+texto|txt=O MAPA ERA O SELO|O mapa era o selo. Era só juntar.
+close|who=kai;e=confiante;bg=vila_fenda;brilho=1|Ele levantou a Égide com o mapa completo em cima.
+cena|k=voz;txt=OBRIGADO,_ESCUDO|E a voz da Fenda falou pela última vez. Obrigado, escudo. Dessa vez, tu não veio sozinho.
+texto|txt=A FENDA FECHOU|E a Fenda fechou.
+grupo|bg=vila;who=povo0,povo1,povo2,crianca0,crianca1;acao=aplaudir|O céu voltou a ser azul. As sombras viraram poeira. E a cidade explodiu em grito.
+grupo|bg=vila;who=rei,guarda;e=triste|O rei ficou sozinho no meio da praça, sem coroa, sem guarda, sem nada.
+close|who=guarda;e=serio;bg=vila|E foi o próprio capitão da guarda que tirou o brasão do peito, jogou no chão, e levou o rei preso.
+close|who=nina;e=feliz;bg=vila|A Nina anunciou que ia reabrir a forja do pai, ali mesmo, na praça. Primeira encomenda: uma alça nova pro escudo do Kai.
+close|who=igor;e=serio;bg=vila|O Igor entregou a espada do pai da Nina de volta pra ela. Sem falar nada.
+close|who=nina;e=feliz;bg=vila|E a Nina, pela primeira vez, sorriu pra um herói.
+grupo|bg=vila;who=kai,igor,teo,lia,nina;e=feliz|Os quatro heróis e a ferreira, juntos no meio da praça.
+painel|titulo=SISTEMA;linhas=FENDA SELADA,VOLTAR PARA CASA? SIM / NÃO;amarelo=1|E aí o sistema mostrou a última mensagem. Fenda selada. Voltar pra casa? Sim ou não.
+close|who=kai;e=serio;bg=vila|O Kai olhou pro painel. Pensou na cama dele. No videogame. Na vida simples.
+close|who=crianca0;e=feliz;bg=vila|E olhou pra menina, que segurava a capa dele do mesmo jeito que na noite da barreira.
+close|who=kai;e=sorriso;bg=vila|Ele sorriu. E apertou um dos botões.
+texto|txt=*CLIQUE*|Clique.
+close|who=lia;e=surpreso;bg=vila|E do outro lado da praça, no mesmo segundo, a Lia também viu um painel aparecer na frente dela. Um painel que ela nunca tinha visto.
+texto|txt=FIM DA TEMPORADA 1|Fim da primeira temporada.
+quiz|q=VOLTAR_PRA_CASA?;a=SIM;b=NÃO;bg=vila|Agora é a última pergunta da temporada. Se fosse tu: sim, voltava pra casa, ou não, ficava no reino?
+texto|txt=SIM OU NÃO?|O botão que o Kai apertou, a gente descobre na temporada dois. Comenta tua resposta e curte se tu quer ver.

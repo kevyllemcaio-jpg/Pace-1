@@ -1,0 +1,23 @@
+# T2 EP 10: O TRIÂNGULO
+close|who=kai;e=serio;bg=vila_fenda;topo=O_FINAL|O Kai tirou o escudo do braço. E jogou no chão, na frente do rei.
+close|who=igor;e=choque;bg=vila_fenda|O Igor gritou. A Lia gritou. Mas o Kai não olhou pra trás.
+close|who=rei;e=riso;bg=vila_fenda|O rei soltou o Téo e se abaixou pra pegar o escudo, rindo.
+objeto|obj=escudo;racha=0;brilho=1|Ele puxou. Não saiu do chão.
+close|who=rei;e=raiva;bg=vila_fenda|Puxou com as duas mãos. Nada. O escudo pesava mais que uma montanha.
+painel|titulo=SISTEMA;linhas=O ESCUDO SÓ SE LEVANTA,PRA QUEM PROTEGE;amarelo=1|O escudo só se levanta pra quem protege alguém.
+close|who=kai;e=confiante;bg=vila_fenda|O Kai sabia disso. Ele nunca tinha entregado nada.
+reflexo|atk=rei;hit=.5;bg=vila_fenda|O rei bateu no escudo com a coroa, de raiva. Reflexo.
+grupo|who=rei;e=choque;bg=vila_fenda|A coroa voou da mão dele e rachou no chão de pedra.
+cena|k=fenda_profecia;txt=A_FENDA_CRESCE|Mas a fenda continuava crescendo. Engolindo a torre inteira.
+close|who=kai;e=serio;bg=vila_fenda|O Kai pegou o escudo e gritou: cada um numa ponta!
+grupo|who=igor,lia,teo;e=serio;esp=400;bg=vila_fenda|Espada, arco e lança. Três heróis. Três pontas.
+objeto|obj=escudo_verdadeiro;txt=O_TRIÂNGULO|E o Kai no centro, segurando o escudo pro céu.
+fato|k=triangulo;topo=CURIOSIDADE|Sabe por que tripé de câmera tem três pernas? Com três apoios, nunca balança. Uma mesa de quatro pés pode mancar. A de três, nunca.
+cerco|atk=sombra;n=6;e=raiva;bg=vila_fenda;barreira=1;brilho=1;sfx=brilho|E a barreira virou um triângulo de luz do tamanho do castelo.
+texto|txt=A FENDA FECHOU|A fenda tremeu. Encolheu. E fechou.
+grupo|who=povo0,povo1,crianca0,crianca1;acao=aplaudir;bg=vila|O céu voltou a ser azul. A lua, branca de novo.
+close|who=rei;e=triste;bg=vila|O rei foi levado pelos próprios guardas. Sem coroa.
+grupo|who=kai,igor,lia,teo,nina;e=feliz;bg=vila|E os cinco ficaram ali, no meio da praça, sem saber o que vinha agora.
+painel|titulo=SISTEMA;linhas=TEMPORADA 2 CONCLUÍDA,NOVO MAPA: ILHAS DO NORTE;amarelo=1|Até o sistema mostrar uma última linha. Novo mapa: Ilhas do Norte.
+close|who=kai;e=surpreso;bg=escuro|Fim da segunda temporada. Tu quer ver o Kai nas Ilhas do Norte?
+texto|txt=TEMPORADA 3?|Comenta sim. E curte pra temporada três.

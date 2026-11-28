@@ -1,0 +1,25 @@
+a1|narrador|E se o defeito da tua arma
+a2|narrador|fosse, na verdade, uma fechadura?
+b1|narrador|Faltando dois dias pra fenda, o Kai foi atrás de um ferreiro.
+b2|narrador|Todos recusaram. Ninguém conserta a arma do herói do escudo.
+b3|narrador|Menos uma.
+b4|narrador|A Nina. Uma ferreira baixinha que ninguém contratava.
+b5|narrador|Ela olhou a rachadura e disse: isso não é rachadura.
+b6|narrador|É uma fechadura.
+c1|narrador|Ela esquentou o escudo na forja até ficar vermelho.
+c2|narrador|E jogou na água.
+c3|narrador|Isso tem nome: têmpera.
+c4|narrador|O aço esfria tão rápido que o carbono fica preso lá dentro, e ele fica bem mais duro.
+d1|narrador|A rachadura brilhou.
+d2|narrador|E fechou sozinha.
+d3|narrador|Nova habilidade: barreira.
+d4|narrador|O escudo protege todo mundo que estiver perto dele.
+e1|narrador|Pra testar, a Nina jogou o martelo no Kai.
+e2|narrador|O martelo bateu na barreira
+e3|narrador|e voltou na testa dela.
+e4|narrador|Ela riu: tô dentro. Vou com você na fenda.
+f1|narrador|Naquela noite, o céu começou a rachar mais cedo.
+f2|narrador|A fenda não ia esperar três dias.
+f3|narrador|Ela ia abrir amanhã.
+g1|narrador|Os dois enfrentam a fenda sozinhos, ou chamam os outros heróis?
+g2|narrador|Curte pra parte quatro.

@@ -1,0 +1,26 @@
+a1|narrador|E se tu fosse invocado pra outro mundo com mais três pessoas
+a2|narrador|e recebesse a pior arma de todas?
+b1|narrador|O Kai tava jogando no quarto quando o chão começou a brilhar.
+b2|narrador|Quando abriu o olho, tava num castelo, do lado de três desconhecidos.
+b3|narrador|O rei explicou: vocês são os quatro heróis lendários.
+b4|narrador|Cada um encostou numa arma do altar.
+b5|narrador|O primeiro ganhou a espada.
+b6|narrador|O segundo, a lança.
+b7|narrador|A terceira, o arco.
+b8|narrador|E o Kai, o escudo. Triangular.
+c1|narrador|O salão ficou em silêncio.
+c2|narrador|Depois riu.
+c3|narrador|Herói do escudo não ataca. Não derrota monstro. Não serve pra nada.
+c4|narrador|Quando o rei chamou os aventureiros, cada herói ganhou um grupo.
+c5|narrador|O Kai ficou sozinho.
+d1|narrador|E escudo desse formato existiu de verdade, lá pelo ano mil e duzentos.
+d2|narrador|Era leve, e o golpe escorregava pela ponta.
+e1|narrador|Sem grupo, ele foi treinar sozinho na floresta.
+e2|narrador|Um lobo pulou nele.
+e3|narrador|Ele só levantou o escudo.
+e4|narrador|E o lobo voou duas vezes mais longe do que pulou.
+f1|narrador|Habilidade única: reflexo. Todo golpe volta em dobro.
+f2|narrador|Só que os outros três heróis viram tudo de longe.
+f3|narrador|E o herói da espada sorriu. Não era um sorriso bom.
+g1|narrador|O Kai conta o segredo pros outros heróis, ou esconde até a primeira batalha?
+g2|narrador|Curte pra parte dois.

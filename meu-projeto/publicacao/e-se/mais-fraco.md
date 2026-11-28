@@ -1,0 +1,35 @@
+# O MAIS FRACO DA CIDADE (2D animado, Bolinha)
+
+**Arquivos:** `mais-fraco-2d.mp4` (desenho 2D, 3 min 12 s, capa nos 2 s finais) · `capa-mais-fraco-2d.jpg` · versão 3D: `mais-fraco.mp4` (3D animado a 30 fps, 3 min 12 s) · `capa-mais-fraco.jpg`
+
+Refação do teu vídeo "CUIDADO COM ESTE TREINADOR", agora em **desenho 2D totalmente animado** (personagens andando, correndo, caindo, lutando).
+- **Elenco:** o Zeca (versão nova com rosto expressivo) como protagonista, o Bruno do cachecol vermelho, o Lucas do gorro xadrez, o Mestre e uma criatura de gelo original.
+- **Narração:** tem mudanças (números, dias, 150 degraus, os amigos chegando a 62).
+- **Bugs do original corrigidos:** personagens atravessando objetos e câmera atrás de paredes.
+
+## Título
+```
+Nesta cidade, o NÚMERO no seu peito diz o quanto você é fraco 😨 #shorts
+```
+Alternativas:
+- `Ele era o MAIS FRACO da cidade… e a criatura voltou #shorts`
+- `Treinei 30 dias com o mestre e continuei o mais fraco #shorts`
+
+## Descrição
+```
+Nesta cidade, o número no seu peito diz o quanto você é fraco. E a cada 12 anos, uma criatura sai da montanha e leva o mais fraco. 😨
+O Bolinha nasceu com 100. Os amigos dele tinham 44… e fizeram uma coisa que ninguém esperava. ❄️👊
+
+Qual seria o seu número? Comenta 👇
+
+#shorts #animação #3d #historia #roblox #amizade
+```
+
+## Campos do YouTube
+| Campo | O que colocar |
+|---|---|
+| Visibilidade | Programado |
+| Público-alvo | Decida pelo seu público real; marcar errado pode gerar penalidade. |
+| Uso de IA | **Sim** (narração com voz sintética) |
+| Tags | `mais fraco, treinador, história, animação, shorts, bolinha, amizade` |
+| Categoria | Filmes e animação |

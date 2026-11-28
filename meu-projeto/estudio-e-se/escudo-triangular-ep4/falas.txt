@@ -1,0 +1,26 @@
+a1|narrador|E se os três heróis mais fortes fugissem
+a2|narrador|e só sobrasse o escudo?
+b1|narrador|A fenda abriu de manhã, em cima da vila.
+b2|narrador|E de dentro dela caíram monstros.
+b3|narrador|O Igor, o Téo e a Lia atacaram sozinhos, cada um querendo a glória.
+b4|narrador|A espada errou.
+b5|narrador|A lança quebrou.
+b6|narrador|As flechas acabaram.
+b7|narrador|E os três correram.
+c1|narrador|Aí veio o raio.
+c2|narrador|Sabe aquela regra? Conta os segundos entre o raio e o trovão e divide por três.
+c3|narrador|Dá a distância em quilômetros.
+c4|narrador|O Kai não contou nem um segundo. O monstro tava em cima deles.
+d1|narrador|Ele levantou a barreira na frente da vila inteira.
+d2|narrador|A Nina puxou as crianças pra dentro.
+d3|narrador|O monstro gigante deu o soco mais forte que tinha.
+d4|narrador|A barreira segurou.
+d5|narrador|E devolveu em dobro.
+d6|narrador|O monstro voou de volta pra dentro da fenda.
+e1|narrador|A fenda começou a fechar.
+e2|narrador|A vila inteira gritou o nome do Kai.
+e3|narrador|E os três heróis viram tudo lá do alto do morro.
+f1|narrador|Mas antes de fechar, uma voz saiu lá de dentro.
+f2|narrador|Escudo. Finalmente.
+g1|narrador|Quem tá chamando o escudo? E por que ele brilhou quando ouviu?
+g2|narrador|Curte pra parte cinco.

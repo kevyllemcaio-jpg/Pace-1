@@ -1,0 +1,115 @@
+{
+ "titulo": "O mais fraco do mundo",
+ "formato": "9:16",
+ "qualidade": "alta",
+ "estilo": "noturno",
+ "narrador": "narrador",
+ "musica": "tenso",
+ "musica_vol": 0.12,
+ "tema": "golpe",
+ "efeitos_auto": false,
+ "legendas": true,
+ "transicao": "zoom",
+ "legenda_estilo": "centro",
+ "vozes": {
+  "narrador": "externo"
+ },
+ "pronuncias": {},
+ "falas": [
+  {
+   "id": "n1",
+   "voz": "narrador",
+   "texto": "E se o humano mais fraco do mundo ganhasse um sistema que só ele consegue ver?"
+  },
+  {
+   "id": "n2",
+   "voz": "narrador",
+   "texto": "Dez anos atrás, portais começaram a abrir no meio das cidades. De dentro, saíam monstros."
+  },
+  {
+   "id": "n3",
+   "voz": "narrador",
+   "texto": "E algumas pessoas acordaram com poder. Viraram caçadores, com rank de S até E."
+  },
+  {
+   "id": "n4",
+   "voz": "narrador",
+   "texto": "O Léo era rank E. Tão fraco que o apelido dele era caçador de papel."
+  },
+  {
+   "id": "n5",
+   "voz": "narrador",
+   "texto": "Ele nem lutava. Ganhava a vida carregando a mochila dos outros dentro das masmorras."
+  },
+  {
+   "id": "n6",
+   "voz": "narrador",
+   "texto": "Até que, numa missão fácil, o portal se fechou atrás do grupo."
+  },
+  {
+   "id": "n7",
+   "voz": "narrador",
+   "texto": "E do fundo da caverna saiu um monstro que não devia estar ali."
+  },
+  {
+   "id": "n8",
+   "voz": "narrador",
+   "texto": "O grupo correu. E deixou o Léo pra trás."
+  },
+  {
+   "id": "n9",
+   "voz": "narrador",
+   "texto": "Ele levou um golpe. Depois outro. Quase sem vida, uma janela azul apareceu na frente dele."
+  },
+  {
+   "id": "n10",
+   "voz": "narrador",
+   "texto": "Candidato encontrado. Condição: sobreviver sessenta segundos."
+  },
+  {
+   "id": "n11",
+   "voz": "narrador",
+   "texto": "E aí veio a parte estranha. Cada golpe que ele levava virava XP."
+  },
+  {
+   "id": "n12",
+   "voz": "narrador",
+   "texto": "Nível dois. Seis. Quinze."
+  },
+  {
+   "id": "n13",
+   "voz": "narrador",
+   "texto": "Quanto mais o monstro batia, mais forte o Léo ficava."
+  },
+  {
+   "id": "n14",
+   "voz": "narrador",
+   "texto": "No segundo sessenta, ele segurou o soco do monstro com uma mão só."
+  },
+  {
+   "id": "n15",
+   "voz": "narrador",
+   "texto": "E devolveu."
+  },
+  {
+   "id": "n16",
+   "voz": "narrador",
+   "texto": "Na saída do portal, o grupo que fugiu ficou olhando o painel da guilda."
+  },
+  {
+   "id": "n17",
+   "voz": "narrador",
+   "texto": "Léo, rank E. E, embaixo, um rank que ninguém nunca tinha visto."
+  },
+  {
+   "id": "n18",
+   "voz": "narrador",
+   "texto": "Aí a janela azul voltou. Próxima missão: o portal de rank S. Tempo: vinte e quatro horas."
+  },
+  {
+   "id": "n19",
+   "voz": "narrador",
+   "texto": "Curte pra parte dois."
+  }
+ ]
+}
