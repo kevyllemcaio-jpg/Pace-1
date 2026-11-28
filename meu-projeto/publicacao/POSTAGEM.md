@@ -187,3 +187,94 @@ Você atravessa a rua, e um carro surge da esquina. Seu corpo já pula pra trás
 🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
 
 #comofunciona #reflexo #sentido #ideias #curiosidades #shorts
+
+## 30 dias postando animação (`saida/dinheiro-animacao.mp4`, capa `publicacao/capa-dinheiro-animacao.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+30 dias postando animação com IA: dá dinheiro? 💸 #shorts
+
+**Descrição:**
+Um vídeo de animação por dia, durante 30 dias. O YouTube só paga Shorts com 1.000 inscritos e 10 milhões de views em 90 dias, o TikTok pede 10 mil seguidores e vídeos de mais de 1 minuto… mas tem um jeito que paga antes disso tudo. Qual seria o tema do seu primeiro vídeo? Comenta aí! 👇
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+_Sem promessa de ganhos: os resultados dependem de constância e de cada canal._
+
+#animação #ia #rendaextra #youtubeshorts #tiktok #criadordeconteudo #shorts
+
+## 7 dias sem dormir (`saida/sem-dormir.mp4`, capa `publicacao/capa-sem-dormir.png`)
+Formato "N dias de…" (ver `estudio3d/PADRAO-DIAS.md`).
+
+**Título (YouTube):**
+E se você ficasse 7 dias sem dormir? 😵 #shorts
+
+**Descrição:**
+Com 24 horas acordado, seus reflexos já ficam iguais aos de quem bebeu. No dia 3, as paredes começam a se mexer. Em 1964, um estudante de 17 anos ficou 11 dias acordado e chegou a achar que era outra pessoa. Quantas horas você já ficou sem dormir? Comenta aí! 👇
+
+⚠️ Não tente fazer isso: privação de sono é perigosa.
+
+🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!
+
+#sono #curiosidades #cerebro #ciencia #insonia #shorts
+
+## Minha mãe jogou Minecraft pela 1ª vez (`saida/mae-minecraft.mp4`, capa `publicacao/capa-mae-minecraft.png`)
+Short de história com a **mãe** (elenco fixo: `criarPersonagem({ estilo: 'mae' })`, voz `pt-BR-FranciscaNeural`).
+O jogo mostrado é um jogo de blocos genérico (sem personagens, logos ou interface do jogo real).
+
+**Título (YouTube):**
+Minha mãe jogou Minecraft pela primeira vez 😂 #shorts
+
+**Descrição:**
+Ela pediu desculpa pro bloco, derrubou árvore na mão e construiu uma casa sem porta… e isso salvou a vida dela. 🧱
+E a sua mãe, já jogou videogame? Comenta aí! 👇
+
+#minecraft #mae #videogame #humor #animacao #shorts
+
+## Se a sua geladeira falasse (`saida/geladeira-falante.mp4`, capa `publicacao/capa-geladeira-falante.png`)
+Formato **objetos falantes** (rosto em `estudio3d/rosto-objeto.js`). Geladeira = voz do narrador; micro-ondas = `pt-BR-FranciscaNeural`.
+
+**Título (YouTube):**
+Se a sua geladeira falasse… 🧊 #shorts
+
+**Descrição:**
+3 da manhã. Você abre, olha, olha… e fecha sem pegar nada. A sua geladeira viu tudo — e o micro-ondas também. 😅
+O que a SUA geladeira diria de você? Comenta aí! 👇
+
+#geladeira #humor #objetosfalantes #animacao #curiosidades #shorts
+
+## Quem a névoa toca esquece o próprio nome (`saida/historia-nevoa.mp4`, capa `publicacao/capa-historia-nevoa.png`)
+Formato **história narrada 2D** (desenho em SVG: `estudio3d/desenho2d.js`, camada `fundo` do motor). História original.
+
+**Título (YouTube):**
+Quem a névoa toca esquece o próprio nome 🌫️ #shorts
+
+**Descrição:**
+Na minha vila, as casas ficam a dez metros do chão. Toda noite sobe a Maré Cinza — e quem ela toca esquece o próprio nome e caminha para o mar. Uma noite, eu desci para saber o que a névoa diz…
+Você teria respondido a névoa? Comenta aí! 👇
+
+#historia #misterio #animacao2d #contos #plottwist #shorts
+
+## Na minha cidade, a chuva cai pra cima (`saida/chuva-pra-cima.mp4`, 2K, capa `publicacao/capa-chuva-pra-cima.png`)
+Formato novo: **personagem 3D + cenário 2D, em 2K**. História original.
+
+**Título (YouTube):**
+Na minha cidade, a chuva cai pra cima ☔ #shorts
+
+**Descrição:**
+Aqui a gente amarra os sapatos no chão pra não sair flutuando quando chove. Hoje eu desamarrei o meu… e descobri o que tem lá em cima. 👀
+Você desamarraria o seu sapato? Comenta aí! 👇
+
+#historia #animacao #plottwist #imaginacao #curiosidades #shorts
+
+## E se um piano caísse na sua cabeça? (isekai) (`saida/piano-isekai.mp4`, 2K, capa `publicacao/capa-piano-isekai.png`)
+Personagem 3D + cenário 2D. Parte 1: física da queda (30 m, ~2,4 s, ~85 km/h, ~69 mil J). Parte 2: isekai — renasce num reino medieval onde todo mundo nasce com uma marca de poder… e a sua é amaldiçoada.
+
+**Título (YouTube):**
+E se um piano caísse na sua cabeça? 🎹💀 #shorts
+
+**Descrição:**
+Você tá na Paulista, de fone, mexendo no celular… e a corda do piano arrebenta lá no 10º andar. Em 2,4 segundos ele passa de 80 km/h. Aí tudo fica preto — e você acorda bebê, num reino onde todo mundo nasce com uma marca de poder. A sua é a única que ninguém nunca viu. 👁️
+Qual marca você queria ter? Quer a parte 2? Comenta aí! 👇
+
+#isekai #anime #animacao #esevoce #fisica #shorts

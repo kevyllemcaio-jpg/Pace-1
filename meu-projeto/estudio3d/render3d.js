@@ -7,6 +7,8 @@
 //   node estudio3d/render3d.js ponte --sem-voz  -> sem narração (tempos estimados)
 //   --escala=1  renderiza o 3D em 720x1280 (mais rápido); padrão 1.5 = 1080x1920
 //   --horizontal  vídeo deitado 1920x1080 (YouTube)
+//   --rapido    prévia rápida em 720x1280 (para conferir o vídeo antes do render final)
+//   --2k        qualidade 2K: 1440x2560 (ou config.qualidade = '2k' no vídeo)
 //   --so-audio  refaz só o áudio (voz + efeitos + música) em cima do vídeo já pronto (rápido)
 //   --so-audio --refazer-final  troca só o final (renderiza o último bloco e emenda no vídeo pronto)
 //   --final-antigo  usa o final antigo "link na bio" (para remixar vídeos antigos)
@@ -29,13 +31,22 @@ if (!nome) {
 }
 const previa = args.includes('--previa');
 const comVoz = !args.includes('--sem-voz');
-const escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--escala=1.5').split('=')[1]);
+let escala = parseFloat((args.find((a) => a.startsWith('--escala=')) || '--escala=1.5').split('=')[1]);
 const limpo = args.includes('--limpo');
 const soAudio = args.includes('--so-audio');
 const finalAntigo = args.includes('--final-antigo');
 const refazerFinal = args.includes('--refazer-final'); // com --so-audio: renderiza de novo só o último bloco
 const horizontal = args.includes('--horizontal'); // vídeo deitado 1920x1080 (YouTube)
-const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280, SAIDA = horizontal ? '1920:1080' : '1080:1920';
+// 2K: --2k ou `qualidade: '2k'` no config do vídeo -> 1440x2560 (vertical) / 2560x1440 (horizontal)
+const rapido = args.includes('--rapido'); // prévia rápida: 720x1280, compressão veloz
+const doisK = !rapido && (args.includes('--2k') || (() => { try { return /qualidade:\s*['"]2k['"]/.test(fs.readFileSync(path.join(__dirname, 'videos', `${nome}.js`), 'utf8')); } catch (e) { return false; } })());
+const DSF = rapido ? 1 : doisK ? 2 : 1.5;
+const VW = horizontal ? 1280 : 720, VH = horizontal ? 720 : 1280;
+const SAIDA = rapido ? (horizontal ? '1280:720' : '720:1280') : doisK ? (horizontal ? '2560:1440' : '1440:2560') : (horizontal ? '1920:1080' : '1080:1920');
+const CRF = rapido ? '23' : doisK ? '17' : '19';
+const PRESET = rapido ? 'veryfast' : 'medium';
+if (rapido && !args.some((a) => a.startsWith('--escala='))) escala = 1;
+if (doisK && !args.some((a) => a.startsWith('--escala='))) escala = 2; // 3D renderizado já em 2K
 const argNum = (n) => { const a = args.find((x) => x.startsWith(`--${n}=`)); return a ? parseFloat(a.split('=')[1]) : null; };
 const trechoDe = argNum('de'), trechoAte = argNum('ate'); // recorte de cena (sem áudio)
 const raiz = path.join(__dirname, '..');
@@ -60,35 +71,8 @@ function fimDaFala(arq) {
   return ult && total - ult < 1.5 ? ult : total;
 }
 
-// Efeitos sonoros sintetizados (sem arquivos externos).
-const SONS = {
-  baque: 'anoisesrc=d=0.6:c=brown:a=0.9,lowpass=f=220,afade=t=out:st=0.05:d=0.55,volume=2.2',
-  quebra: 'anoisesrc=d=1.1:c=pink:a=0.9,lowpass=f=900,afade=t=out:st=0.1:d=1.0,volume=1.6',
-  rachando: 'anoisesrc=d=0.7:c=white:a=0.5,highpass=f=1500,tremolo=f=28:d=0.9,afade=t=out:st=0.1:d=0.6,volume=0.7',
-  splash: 'anoisesrc=d=1.2:c=pink:a=0.8,bandpass=f=1800:w=1500,afade=t=in:d=0.05,afade=t=out:st=0.15:d=1.0,volume=1.1',
-  martelo: 'sine=f=180:d=0.35,afade=t=out:st=0.02:d=0.33,volume=1.4',
-  tum: 'sine=f=70:d=0.28,afade=t=out:st=0.03:d=0.25,volume=2.6',
-  ok: 'sine=f=880:d=0.18,afade=t=out:st=0.05:d=0.13,volume=0.6',
-  descarga: 'anoisesrc=d=2.2:c=pink:a=0.8,bandpass=f=700:w=900,afade=t=in:d=0.1,afade=t=out:st=0.8:d=1.4,volume=1.5',
-  gargalo: 'anoisesrc=d=1.0:c=brown:a=0.9,lowpass=f=450,tremolo=f=9:d=0.95,afade=t=out:st=0.4:d=0.6,volume=1.8',
-  zap: 'sine=f=120:d=0.5,tremolo=f=60:d=1,afade=t=out:st=0.05:d=0.45,volume=1.2',
-  whoosh: 'anoisesrc=d=0.4:c=pink:a=0.9,highpass=f=500,lowpass=f=3500,afade=t=in:d=0.15,afade=t=out:st=0.15:d=0.25,volume=1.6',
-  pop: 'aevalsrc=0.6*sin(2*PI*(300+1600*t)*t)*exp(-22*t):d=0.22',
-  plim: 'aevalsrc=0.45*sin(2*PI*1568*t)*exp(-14*t)+0.22*sin(2*PI*2349*t)*exp(-18*t):d=0.35',
-  brilho: 'aevalsrc=0.28*sin(2*PI*(800+1800*t)*t)*exp(-3*t):d=0.7',
-  motor: 'anoisesrc=d=2.2:c=brown:a=0.8,lowpass=f=220,tremolo=f=14:d=0.6,afade=t=in:d=0.6,afade=t=out:st=1.6:d=0.6,volume=1.4',
-  passagem: 'anoisesrc=d=0.9:c=pink:a=0.9,bandpass=f=1200:w=900,afade=t=in:d=0.1,afade=t=out:st=0.4:d=0.5,volume=1.8',
-  vidro: 'anoisesrc=d=0.6:c=white:a=0.9,highpass=f=3000,afade=t=out:st=0.05:d=0.55,volume=1.3',
-  replay: 'aevalsrc=0.3*sin(2*PI*(1600-1100*t)*t)*(0.6+0.4*sin(2*PI*16*t)):d=1.1,afade=t=out:st=0.8:d=0.3',
-  asas: 'anoisesrc=d=0.8:c=white:a=0.6,bandpass=f=2500:w=2000,tremolo=f=12:d=1,afade=t=out:st=0.5:d=0.3,volume=1.2',
-  uivo: 'aevalsrc=0.35*sin(2*PI*(280+240*t)*t)*(0.75+0.25*sin(2*PI*5*t))*exp(-0.7*t):d=1.8,afade=t=in:d=0.2,afade=t=out:st=1.3:d=0.5',
-  fogo: 'anoisesrc=d=2.5:c=brown:a=0.9,lowpass=f=300,afade=t=in:d=0.3,afade=t=out:st=1.5:d=1.0,volume=2.2',
-};
-function arquivoSom(tipo) {
-  const arq = path.join(pastaVoz, `som-${tipo}.wav`);
-  if (!fs.existsSync(arq)) ffmpeg(['-f', 'lavfi', '-i', SONS[tipo], '-ar', '44100', '-ac', '1', arq]);
-  return arq;
-}
+const { SONS, arquivoSom: gerarSom } = require('./sons');
+const arquivoSom = (tipo) => gerarSom(tipo, pastaVoz);
 
 (async () => {
   // Servidor local: o navegador precisa de http:// para carregar módulos (three.js).
@@ -98,7 +82,7 @@ function arquivoSom(tipo) {
   const porta = servidor.address().port;
 
   const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-  const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 1.5 });
+  const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: DSF });
   page.on('pageerror', (e) => console.error('ERRO NA PÁGINA:', e.message));
   page.on('console', (m) => m.type() === 'error' && console.error('console:', m.text()));
   await page.goto(`http://127.0.0.1:${porta}/estudio3d/pagina.html?video=${nome}&escala=${escala}${limpo ? '&limpo=1' : ''}${horizontal ? '&formato=horizontal' : ''}${finalAntigo ? '&finalAntigo=1' : ''}`);
@@ -106,22 +90,40 @@ function arquivoSom(tipo) {
 
   // 1) Narração: um MP3 + tempos das palavras por bloco (com cache).
   const config = await page.evaluate(() => MOTOR.config);
-  const voz = config.voz || 'pt-BR-AntonioNeural';
+  const vozPadrao = config.voz || 'pt-BR-AntonioNeural';
   const velocidade = config.velocidade || '+10%';
   const falas = await page.evaluate(() => MOTOR.falas());
+  const vozes = await page.evaluate(() => (MOTOR.vozes ? MOTOR.vozes() : []));
+  const vels = await page.evaluate(() => (MOTOR.velocidades ? MOTOR.velocidades() : []));
+  const tons = await page.evaluate(() => (MOTOR.tons ? MOTOR.tons() : []));
   const audios = [];
-  if (comVoz) {
+  const leads = []; // silêncio cortado do começo de cada fala (ritmo corrido)
+  // ritmo: 'corrido' -> uma fala emenda na outra (corta o silêncio do começo/fim, quase sem pausa)
+  const corrido = config.ritmo === 'corrido';
+  const pausa = corrido ? (config.pausa ?? 0.18) : PAUSA; // corrido: só um respirinho entre as falas
+  // narração GRAVADA pelo usuário (estudio3d/narracao/<nome>.json + .wav, gerados por narracao.py)
+  const narr = config.narracao ? JSON.parse(fs.readFileSync(path.join(__dirname, 'narracao', `${config.narracao}.json`), 'utf8')) : null;
+  if (narr) {
+    const tempos = narr.blocos.map((b) => (b.inicio == null ? { dur: 0.05, palavras: [] } : { dur: b.fim - b.inicio, palavras: b.palavras.map((p) => ({ ...p, inicio: p.inicio - ATRASO_FALA, fim: p.fim - ATRASO_FALA })) }));
+    await page.evaluate((t) => MOTOR.definirTempos(t), tempos);
+    falas.forEach(() => { audios.push(null); leads.push(0); });
+  } else if (comVoz) {
     const tempos = falas.map((fala, i) => {
-      if (!fala) { audios.push(null); return null; }
-      const id = crypto.createHash('sha1').update(`${voz}|${velocidade}|${fala}`).digest('hex').slice(0, 12);
+      if (!fala) { audios.push(null); leads.push(0); return null; }
+      const voz = vozes[i] || vozPadrao;
+      const vel = vels[i] || velocidade, tom = tons[i];
+      const id = crypto.createHash('sha1').update(`${voz}|${vel}|${fala}${tom ? '|' + tom : ''}`).digest('hex').slice(0, 12);
       const mp3 = path.join(pastaVoz, `${id}.mp3`), json = path.join(pastaVoz, `${id}.json`);
       if (!fs.existsSync(mp3) || !fs.existsSync(json)) {
         process.stdout.write(`voz: bloco ${i + 1}... `);
-        execFileSync('python3', [path.join(raiz, 'estudio', 'voz.py'), fala, mp3, voz, velocidade, json], { stdio: 'inherit' });
+        execFileSync('python3', [path.join(raiz, 'estudio', 'voz.py'), fala, mp3, voz, vel, json, ...(tom ? [tom] : [])], { stdio: 'inherit' });
         console.log('ok');
       }
       audios.push(mp3);
-      return { dur: ATRASO_FALA + fimDaFala(mp3) + PAUSA, palavras: JSON.parse(fs.readFileSync(json, 'utf8')) };
+      const pal = JSON.parse(fs.readFileSync(json, 'utf8'));
+      const lead = corrido && pal.length ? Math.max(0, pal[0].inicio + ATRASO_FALA - 0.02) : 0;
+      leads.push(lead);
+      return { dur: ATRASO_FALA + fimDaFala(mp3) - lead + pausa, palavras: pal.map((p) => ({ ...p, inicio: p.inicio - lead, fim: p.fim - lead })) };
     });
     await page.evaluate((t) => MOTOR.definirTempos(t), tempos);
   }
@@ -148,7 +150,7 @@ function arquivoSom(tipo) {
     fs.mkdirSync(pasta, { recursive: true });
     const arq = path.join(pasta, `${nome}_${trechoDe.toFixed(2)}_${trechoAte.toFixed(2)}.mp4`);
     const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', arq], { stdio: ['pipe', 'inherit', 'inherit'] });
     const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
     for (let f = Math.round(trechoDe * FPS); f < Math.round(trechoAte * FPS); f++) {
       await desenhar(f / FPS);
@@ -176,7 +178,7 @@ function arquivoSom(tipo) {
       const ini = inicios[inicios.length - 1];
       const clipe = path.join(pastaSaida, `.${nome}-final.mp4`);
       const ffc = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-        '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', clipe], { stdio: ['pipe', 'inherit', 'inherit'] });
+        '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', clipe], { stdio: ['pipe', 'inherit', 'inherit'] });
       const fimC = new Promise((ok, erro) => ffc.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg ${c}`)))));
       for (let f = Math.round(ini * FPS); f < Math.round(duracao * FPS); f++) {
         await desenhar(f / FPS);
@@ -188,13 +190,13 @@ function arquivoSom(tipo) {
       const nIni = Math.round(ini * FPS);
       ffmpeg(['-i', anterior, '-i', clipe, '-filter_complex',
         `[0:v]trim=end_frame=${nIni},setpts=PTS-STARTPTS[a];[1:v]setpts=PTS-STARTPTS[b];[a][b]concat=n=2:v=1:a=0[v]`,
-        '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', semAudio]);
+        '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', semAudio]);
       fs.rmSync(clipe);
     }
   } else {
   const total = Math.round(duracao * FPS);
   const PEDACO = FPS * 10;
-  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
+  const assinatura = crypto.createHash('sha1').update(JSON.stringify({ nome, total, escala, horizontal, inicios, codigo: [`estudio3d/videos/${nome}.js`, 'estudio3d/motor.js', 'estudio3d/cenarios/rua.js', 'estudio3d/cenarios/cozinha.js', 'estudio3d/cenarios/quarto.js', 'estudio3d/cenarios/sala.js', 'estudio3d/cenarios/jogo-blocos.js', 'estudio3d/personagem3d.js', 'estudio3d/personagem-toon.js', 'estudio3d/rosto-objeto.js', 'estudio3d/desenho2d.js', 'estudio3d/desenho-medieval.js', 'estudio3d/personagem-flat.js', 'estudio3d/estilo-cinema.js', 'estudio3d/cenarios/cidade-sp.js', 'estudio3d/cenarios/medieval3d.js', 'estudio3d/formato-dias.js', 'estudio3d/cenarios/campo-rpg.js', 'estudio3d/hud-rpg.js'].map((f) => { try { return fs.readFileSync(path.join(raiz, f), 'utf8'); } catch (e) { return ''; } }).join('') })).digest('hex').slice(0, 10);
   pastaPedacos = path.join(pastaSaida, '.pedacos', `${nome}-${assinatura}`);
   fs.mkdirSync(pastaPedacos, { recursive: true });
   const nPedacos = Math.ceil(total / PEDACO);
@@ -205,7 +207,7 @@ function arquivoSom(tipo) {
     if (fs.existsSync(arq)) continue; // já renderizado antes
     const tmpArq = arq + '.tmp.mp4';
     const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', tmpArq], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', `scale=${SAIDA}`, '-c:v', 'libx264', '-preset', PRESET, '-crf', CRF, '-pix_fmt', 'yuv420p', tmpArq], { stdio: ['pipe', 'inherit', 'inherit'] });
     const fimFF = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error(`ffmpeg saiu com ${c}`)))));
     const ini = k * PEDACO, fim = Math.min(total, ini + PEDACO);
     for (let f = ini; f < fim; f++) {
@@ -234,12 +236,14 @@ function arquivoSom(tipo) {
   await browser.close();
   servidor.close();
   const faixas = []; // [arquivo, início, volume]
-  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + ATRASO_FALA, 1.5]));
+  // o começo silencioso cortado (lead) entra antes do início do bloco; atrim tira o que sobraria antes de 0
+  audios.forEach((a, i) => a && faixas.push([a, inicios[i] + ATRASO_FALA - (leads[i] || 0), 1.5, leads[i] || 0]));
+  if (narr) faixas.push([path.join(__dirname, 'narracao', narr.audio), 0, 1.0]);
   sons.forEach((s) => SONS[s.tipo] && faixas.push([arquivoSom(s.tipo), Math.max(0, s.t), 0.55]));
   const entradas = ['-i', semAudio];
   faixas.forEach(([a]) => entradas.push('-i', a));
   const filtro =
-    faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,volume=${vol},adelay=${Math.round(ini * 1000)}:all=1[s${i}]`).join(';') +
+    faixas.map(([, ini, vol], i) => `[${i + 1}:a]aresample=44100,${ini < 0 ? `atrim=start=${(-ini).toFixed(3)},asetpts=PTS-STARTPTS,` : ''}volume=${vol},adelay=${Math.round(Math.max(0, ini) * 1000)}:all=1[s${i}]`).join(';') +
     `;${faixas.map((_, i) => `[s${i}]`).join('')}amix=inputs=${faixas.length}:normalize=0,alimiter=limit=0.95,apad[a]`;
   // versão só com voz e efeitos (guardada) + versão final com música de fundo
   const semMusica = path.join(pastaSaida, '.sem-musica', `${nome}.mp4`);

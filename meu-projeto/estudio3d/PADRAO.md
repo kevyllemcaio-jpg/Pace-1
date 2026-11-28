@@ -36,6 +36,10 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
   abaixa sozinha quando a voz fala. Entra automaticamente no `render3d.js`
   (`node estudio3d/musicar.js <video>` recoloca a música num vídeo já pronto).
 
+## Outros formatos
+- **"N dias de…"** (contador de horas + escalada dia a dia, ex.: "7 dias no escuro"): ver `PADRAO-DIAS.md`.
+  Efeitos sonoros desse formato: `impacto`, `dia`, `tique`, `porta`, `ofuscar`, `tensao`.
+
 ## Efeitos sonoros automáticos
 - Todo corte seco ganha um *whoosh*; cartão = *pop*; etiqueta = *plim*; selo ✓ = *ding*; texto final = *pop* (no motor, `sons()`; desligar com `config.sonsAuto = false`).
 - Para refazer só o áudio de um vídeo pronto (≈20 s): `node estudio3d/render3d.js <video> --so-audio` (vídeos antigos com "link na bio": acrescente `--final-antigo`).
@@ -44,7 +48,21 @@ Formato principal do canal a partir de agora (baseado no vídeo de referência).
 - Quando o usuário pede um vídeo, fazer direto, no padrão atual, sem pedir aprovação.
 - Mandar o vídeo + a capa e, logo abaixo, na mesma mensagem, o **título (YouTube, com #shorts)** e a **legenda/descrição** pronta pra copiar (resumo curioso + linha "🔧 Quer aprender a fazer vídeos assim? Deixa o like, me segue e acessa o link na bio!" + hashtags). Registrar também em `publicacao/POSTAGEM.md`.
 
-## Personagem principal ("você")
+## Padrão de produção atual (a partir de agora)
+- **Personagem 3D novo** (`personagem-toon.js`) **na frente de cenário 2D** (SVG, `desenho2d.js`), usando a
+  camada `cenario2d(lt, b)` do motor e `cena.background = null` (exemplo: `videos/chuva-pra-cima.js`).
+  Sombra do personagem: plano com `THREE.ShadowMaterial`. Câmera 3D fixa e lente fechada (fov ~28) para o
+  chão 3D (y = 0) cair na linha do chão do desenho.
+- **Qualidade 2K**: `qualidade: '2k'` no config do vídeo → 1440x2560 (ou `--2k` no render3d.js).
+
+## Personagem novo (desenho animado) — usar a partir de agora
+`personagem-toon.js` → `criarPersonagemToon()`: redondo, cabeça grande, contorno preto, sombreado de desenho,
+olhos grandes com brilho, cores vivas (moletom amarelo, calça azul, tênis vermelho). A mãe:
+`criarPersonagemToon({ estilo: 'mae' })` (coque + óculos). Mesmas poses/expressões do antigo
+(`cabeca` = mãos nas bochechas). Objetos falantes: `rosto-objeto.js` (mesmo estilo).
+O boneco quadrado (`personagem3d.js`) fica só para os vídeos antigos.
+
+## Personagem principal antigo ("você")
 `personagem3d.js`: jaqueta amarela sem zíper, calça preta, tênis branco com sola vermelha,
 cabelo castanho-escuro curto repartido de lado. Aparece na abertura, comemora no
 "Parabéns" e fala com o público no final.
